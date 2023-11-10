@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Egg.ProyectoFinal.servicios;
 
-/**
- *
- * @author Picu Ibazeta
- */
+import Egg.ProyectoFinal.entidades.Proveedor;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ProveedorServicio {
+    
+    public void crearProveedor(Double precioHora, String descripcionServicio, String rubro){
+        Proveedor proveedor = new Proveedor();
+        proveedor.setDescripcionServicio(descripcionServicio);
+        proveedor.setPrecioHora(precioHora);
+        proveedor.setRubros(rubro);
+    }
     
 }

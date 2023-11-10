@@ -1,13 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Egg.ProyectoFinal.entidades;
 
-/**
- *
- * @author Picu Ibazeta
- */
-public class Cliente {
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+public class Cliente extends Contratacion {
+    
+    @OneToMany
+    private List<Contratacion> contrataciones;
+
+    public Cliente() {
+    }
+
+    public List<Contratacion> getContrataciones() {
+        return contrataciones;
+    }
+
+    public void setContrataciones(List<Contratacion> contrataciones) {
+        this.contrataciones = contrataciones;
+    }
+    
     
 }
