@@ -12,18 +12,18 @@ public class Usuario {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    private String nombre;
-    private String apellido;
-    private Date fechaAlta;
-    private String email;
-    private String contraseña;
-    private boolean estado;
-    private String telefono;
-    private Boolean tipoUsuario;
-    private Imagen imagen;
-    private String direccion;
-    private String documento;
+    protected String id;
+    protected String nombre;
+    protected String apellido;
+    protected Date fechaAlta;
+    protected String email;
+    protected String contraseña;
+    protected boolean estado;
+    protected String telefono;
+    protected Boolean tipoUsuario;
+    protected Imagen imagen;
+    protected String direccion;
+    protected String documento;
 
     public String getDocumento() {
         return documento;
