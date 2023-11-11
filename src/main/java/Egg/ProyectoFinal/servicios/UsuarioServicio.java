@@ -2,7 +2,7 @@
 package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.entidades.Usuario;
-import Repositorios.UsuarioRepositorio;
+import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
