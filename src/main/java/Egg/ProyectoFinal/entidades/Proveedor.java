@@ -23,7 +23,6 @@ public class Proveedor extends Usuario {
     }
 
     public Proveedor(Double calificacion, Double precioHora, String descripcionServicio, List<String> rubros, List<Contratacion> contrataciones) {
-        super(id, nombre, apellido, fechaAlta, email, password, estado, telefono, tipoUsuario, imagen, direccion, documento);
         this.calificacion = calificacion;
         this.precioHora = precioHora;
         this.descripcionServicio = descripcionServicio;

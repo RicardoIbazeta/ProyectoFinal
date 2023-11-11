@@ -4,9 +4,13 @@ package Egg.ProyectoFinal.entidades;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
+
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
     
     @Id
@@ -17,7 +21,8 @@ public class Usuario {
     protected String apellido;
     protected Date fechaAlta;
     protected String email;
-    protected String contraseña;
+    protected String password;
+    protected String password2;
     protected boolean estado;
     protected String telefono;
     protected Boolean tipoUsuario;
@@ -78,12 +83,20 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
     public boolean isEstado() {
