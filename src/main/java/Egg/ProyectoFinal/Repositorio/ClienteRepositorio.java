@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface Cliente extends JpaRepository<Contratacion, String > {
+public interface ClienteRepositorio extends JpaRepository<Contratacion, String > {
     
 }
