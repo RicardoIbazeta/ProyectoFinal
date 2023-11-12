@@ -1,29 +1,43 @@
 
 package Egg.ProyectoFinal.entidades;
 
+import Egg.ProyectoFinal.enumeraciones.Estado;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
+
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
     
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-    private String nombre;
-    private String apellido;
-    private Date fechaAlta;
-    private String email;
-    private String contraseña;
-    private boolean estado;
-    private String telefono;
-    private Boolean tipoUsuario;
-    private Imagen imagen;
-    private String direccion;
-    private String documento;
+    protected String id;
+    protected String nombre;
+    protected String apellido;
+    @Temporal(TemporalType.DATE)
+    protected Date fechaAlta;
+    protected String email;
+    protected String password;
+    protected String password2;
+    @Enumerated(EnumType.STRING)
+    protected Estado estado;
+    protected String telefono;
+    protected Boolean tipoUsuario;
+    @OneToOne
+    protected Imagen imagen;
+    protected String direccion;
+    protected String documento;
 
     public String getDocumento() {
         return documento;
@@ -78,19 +92,27 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getPassword2() {
+        return password2;
     }
 
-    public boolean isEstado() {
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
+
+    public Estado isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -116,7 +138,7 @@ public class Usuario {
 
     public void setImagen(Imagen imagen) {
         this.imagen = imagen;
-    }
+    } 
 
     public String getDireccion() {
         return direccion;

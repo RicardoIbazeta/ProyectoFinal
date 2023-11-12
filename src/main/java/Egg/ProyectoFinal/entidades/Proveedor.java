@@ -14,13 +14,22 @@ public class Proveedor extends Usuario {
     private Double calificacion;
     private Double precioHora;
     private String descripcionServicio;
-    List<String> rubros;
+    private List<String> rubros;
     
-    @OneToMany
-    List<Contratacion> contrataciones;
+    /*@OneToMany
+    List<Contratacion> contrataciones; */
 
     public Proveedor() {
     }
+
+    public Proveedor(Double calificacion, Double precioHora, String descripcionServicio, List<String> rubros, List<Contratacion> contrataciones) {
+        this.calificacion = calificacion;
+        this.precioHora = precioHora;
+        this.descripcionServicio = descripcionServicio;
+        this.rubros = rubros;
+        //this.contrataciones = contrataciones;
+    }
+    
 
     public Double getCalificacion() {
         return calificacion;
@@ -54,13 +63,13 @@ public class Proveedor extends Usuario {
         this.rubros = rubros;
     }
 
-    public List<Contratacion> getContrataciones() {
+    /*public List<Contratacion> getContrataciones() {
         return contrataciones;
     }
 
     public void setContrataciones(List<Contratacion> contrataciones) {
         this.contrataciones = contrataciones;
-    }
+    }*/
     
     
     

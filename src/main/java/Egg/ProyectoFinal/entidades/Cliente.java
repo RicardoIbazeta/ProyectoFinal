@@ -1,12 +1,13 @@
 
 package Egg.ProyectoFinal.entidades;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Cliente extends Contratacion {
+public class Cliente extends Usuario {
     
     @OneToMany
     private List<Contratacion> contrataciones;
