@@ -7,10 +7,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-<<<<<<< HEAD
-public interface ClienteRepositorio extends JpaRepository<Contratacion, String > {
-=======
 public interface ClienteRepositorio extends JpaRepository<Cliente, String > {
->>>>>>> main
     
 }
