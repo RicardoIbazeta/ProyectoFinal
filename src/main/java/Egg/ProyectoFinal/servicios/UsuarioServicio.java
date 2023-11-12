@@ -2,13 +2,10 @@ package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
-<<<<<<< HEAD
-=======
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.excepciones.MiException;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
->>>>>>> main
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
