@@ -1,11 +1,20 @@
 
 package Egg.ProyectoFinal.entidades;
 
+import Egg.ProyectoFinal.enumeraciones.Estado;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+<<<<<<< HEAD
+=======
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+>>>>>>> origin
 import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,13 +28,20 @@ public class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
+    @Temporal(TemporalType.DATE)
     protected Date fechaAlta;
     protected String email;
     protected String password;
     protected String password2;
+<<<<<<< HEAD
     protected boolean estado;
+=======
+    @Enumerated(EnumType.STRING)
+    protected Estado estado;
+>>>>>>> origin
     protected String telefono;
     protected Boolean tipoUsuario;
+    @OneToOne
     protected Imagen imagen;
     protected String direccion;
     protected String documento;
@@ -93,17 +109,24 @@ public class Usuario {
     
     public String getPassword2() {
         return password2;
+<<<<<<< HEAD
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+=======
+>>>>>>> origin
     }
 
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
 
-    public boolean isEstado() {
+    public Estado isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -129,7 +152,7 @@ public class Usuario {
 
     public void setImagen(Imagen imagen) {
         this.imagen = imagen;
-    }
+    } 
 
     public String getDireccion() {
         return direccion;

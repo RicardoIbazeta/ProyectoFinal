@@ -2,6 +2,10 @@ package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
+<<<<<<< HEAD
+=======
+import Egg.ProyectoFinal.enumeraciones.Estado;
+>>>>>>> origin
 import Egg.ProyectoFinal.excepciones.MiException;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -18,7 +22,11 @@ public class UsuarioServicio {
     private UsuarioRepositorio usuariorepositorio;
 
     @Transactional
+<<<<<<< HEAD
     public void crearUsuario(String nombre, String apellido, String documento, String email, String password, Boolean estado,
+=======
+    public void crearUsuario(String nombre, String apellido, String documento, String email, String password, Estado estado,
+>>>>>>> origin
             String telefono, String direccion, Boolean tipoUsuario) throws MiException {
 
         Usuario usuario = new Usuario();
@@ -29,7 +37,12 @@ public class UsuarioServicio {
         usuario.setDocumento(documento);
         usuario.setEmail(email);
         usuario.setPassword(password);
+<<<<<<< HEAD
         usuario.setEstado(true);
+=======
+        // definir si ESTADO es referente al ESTADO DE LA CONTRATACION o estado del usuario.
+        usuario.setEstado(estado);
+>>>>>>> origin
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
         usuario.setTipoUsuario(tipoUsuario);
