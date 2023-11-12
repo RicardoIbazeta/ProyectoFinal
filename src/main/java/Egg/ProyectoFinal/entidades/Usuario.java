@@ -9,12 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-<<<<<<< HEAD
-=======
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
->>>>>>> origin
 import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -33,12 +30,8 @@ public class Usuario {
     protected String email;
     protected String password;
     protected String password2;
-<<<<<<< HEAD
-    protected boolean estado;
-=======
     @Enumerated(EnumType.STRING)
     protected Estado estado;
->>>>>>> origin
     protected String telefono;
     protected Boolean tipoUsuario;
     @OneToOne
@@ -109,13 +102,6 @@ public class Usuario {
     
     public String getPassword2() {
         return password2;
-<<<<<<< HEAD
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-=======
->>>>>>> origin
     }
 
     public void setPassword2(String password2) {
