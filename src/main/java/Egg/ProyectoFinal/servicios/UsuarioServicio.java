@@ -16,42 +16,43 @@ import org.springframework.stereotype.Service;
 public class UsuarioServicio {
 
     @Autowired
-    private UsuarioRepositorio usuariorepositorio;
+    private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
     public void crearUsuario(String nombre, String apellido, String documento, String email, String password, Estado estado,
             String telefono, String direccion, Boolean tipoUsuario) throws MiException {
 
+        validarUsuario(nombre, apellido, documento, email, password, password, telefono, direccion);
+
         Usuario usuario = new Usuario();
 
-        validarUsuario(nombre, apellido, documento, email, password, password, telefono, direccion);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setDocumento(documento);
         usuario.setEmail(email);
         usuario.setPassword(password);
-        // definir si ESTADO es referente al ESTADO DE LA CONTRATACION o estado del usuario.
-        usuario.setEstado(estado);
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
+        usuario.setEstado(estado);
         usuario.setTipoUsuario(tipoUsuario);
         usuario.setFechaAlta(new Date());
 
-        usuariorepositorio.save(usuario);
+        usuarioRepositorio.save(usuario);
 
     }
 
     public List<Usuario> listarUsuarios() {
 
         List<Usuario> usuarios = new ArrayList();
-        usuarios = usuariorepositorio.findAll();
+        usuarios = usuarioRepositorio.findAll();
         return usuarios;
     }
 
+    @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String email, String password, String telefono,
             String direccion, Boolean tipoUsuario) {
 
-        Optional<Usuario> respuesta = usuariorepositorio.findById(id);
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
@@ -63,11 +64,11 @@ public class UsuarioServicio {
             usuario.setTelefono(telefono);
             usuario.setTipoUsuario(tipoUsuario);
 
-            usuariorepositorio.save(usuario);
+            usuarioRepositorio.save(usuario);
 
         }
     }
-        // Metodo que valida que el usuario haya introducido todos los datos del form
+
     private void validarUsuario(String nombre, String apellido, String documento, String email,
             String password, String password2, String telefono, String direccion) throws MiException {
 
@@ -98,5 +99,4 @@ public class UsuarioServicio {
 
     }
 }
-
 
