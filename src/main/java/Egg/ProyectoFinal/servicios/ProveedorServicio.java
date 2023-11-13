@@ -33,6 +33,20 @@ public class ProveedorServicio {
     
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<String> rubros){
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        Proveedor proveedor = new Proveedor();
+        
+        
+        
+        if (respuesta.isPresent()){
+            Usuario usuario=respuesta.get();
+            proveedor.setDescripcionServicio(descripcionServicio);
+            proveedor.setPrecioHora(precioHora);
+            proveedor.setRubros(rubros);
+            
+            
+            proveedorRepositorio.save(proveedor);
+            
+        }
     }
     
     
