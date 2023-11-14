@@ -15,15 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-<<<<<<< HEAD
-<<<<<<< HEAD
 @RequestMapping("/usuario")
-=======
-@RequestMapping("/")
->>>>>>> c0a5630 (Creacion paquete controlador y clase UsuarioControlador)
-=======
-@RequestMapping("/usuario")
->>>>>>> 23b3327 (modificacion index. app funcional)
 public class UsuarioControlador {
     
     @Autowired
