@@ -4,103 +4,110 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
 <html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
-  <body style="background-color: rgb(99, 46, 203)">
-    <header th:replace="/fragments/header :: header "></header>
-    <h1 style="text-align: center; color: blanchedalmond">
-      Chacras de Coria Contrataciones
-    </h1>
-    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-    <div id="contenido">
-      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm">
-            <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">Usuario</h4>
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    >
+    <head th:replace="/fragments/head :: head "></head>
+    <body style="background-color: rgb(99, 46, 203)">
+        <header th:replace="/fragments/header :: header "></header>
+        <h1 style="text-align: center; color: blanchedalmond">
+            Chacras de Coria Contrataciones
+        </h1>
+        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+        <form>
+            <div id="contenido">
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">Usuario</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">
+                                    Visite y conozca<small
+                                        class="text-body-secondary fw-light"
+                                        ></small>
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Visualizacion de Servicios/Rubros</li>
+                                    <li>Visualizacion de Proveedores</li>
+                                    <li>Registro</li>
+                                    <li>.</li>
+                                </ul>
+                                <a
+                                    th:href="@{/usuario/registrar}"
+                                    role="button"
+                                    class="w-100 btn btn-lg btn-outline-primary"
+                                    >
+                                    Registrarse como Usuario
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">Proveedor</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">
+                                    Ofrezca Servicios<small
+                                        class="text-body-secondary fw-light"
+                                        ></small>
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Recepcion de Contrataciones</li>
+                                    <li>Manejo de Contrataciones</li>
+                                    <li>Honorarios segun Servicio/Rubro</li>
+                                    <li>Cotizacion de presupuestos</li>
+                                </ul>
+
+                                <button type="button" class="w-100 btn btn-lg btn-primary">
+                                    Registrarse como Proveedor
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-bg-primary border-primary">
+                                <h4 class="my-0 fw-normal">Cliente</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">
+                                    Solicite Servicios<small
+                                        class="text-body-secondary fw-light"
+                                        ></small>
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Solicitud de Contrataciones</li>
+                                    <li>Calificacion de Contrataciones</li>
+                                    <li>Contactar Proveedores</li>
+                                    <li>Califiacion de Proveedores</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-primary">
+                                    Registrarse como Cliente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="exito/error">
+                    <div th:if="${exito != null}" id="exito">
+                        <h5>exito</h5>
+                        <p th:text="${exito}"></p>
+                    </div>
+                    <div th:if="${error != null}" id="error">
+                        <h5>error</h5>
+                        <p th:text="${error}"></p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <h1 class="card-title pricing-card-title">
-                Visite y conozca<small
-                  class="text-body-secondary fw-light"
-                ></small>
-              </h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                <li>Visualizacion de Servicios/Rubros</li>
-                <li>Visualizacion de Proveedores</li>
-                <li>Registro</li>
-                <li>.</li>
-              </ul>
-              <button
-                type="button"
-                class="w-100 btn btn-lg btn-outline-primary"
-              >
-                Registarse como Usuario
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm">
-            <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">Proveedor</h4>
-            </div>
-            <div class="card-body">
-              <h1 class="card-title pricing-card-title">
-                Ofrezca Servicios<small
-                  class="text-body-secondary fw-light"
-                ></small>
-              </h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                <li>Recepcion de Contrataciones</li>
-                <li>Manejo de Contrataciones</li>
-                <li>Honorarios segun Servicio/Rubro</li>
-                <li>Cotizacion de presupuestos</li>
-              </ul>
-              <button type="button" class="w-100 btn btn-lg btn-primary">
-                Registrarse como Proveedor
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm border-primary">
-            <div class="card-header py-3 text-bg-primary border-primary">
-              <h4 class="my-0 fw-normal">Cliente</h4>
-            </div>
-            <div class="card-body">
-              <h1 class="card-title pricing-card-title">
-                Solicite Servicios<small
-                  class="text-body-secondary fw-light"
-                ></small>
-              </h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                <li>Solicitud de Contrataciones</li>
-                <li>Calificacion de Contrataciones</li>
-                <li>Contactar Proveedores</li>
-                <li>Califiacion de Proveedores</li>
-              </ul>
-              <button type="button" class="w-100 btn btn-lg btn-primary">
-                Registrarse como Cliente
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="exito/error">
-        <div th:if="${exito != null}" id="exito">
-          <h5>exito</h5>
-          <p th:text="${exito}"></p>
-        </div>
-        <div th:if="${error != null}" id="error">
-          <h5>error</h5>
-          <p th:text="${error}"></p>
-        </div>
-      </div>
-    </div>
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
+        </form>
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 </html>
