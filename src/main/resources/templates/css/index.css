@@ -1,6 +1,10 @@
 h1{
     color: bisque;
     text-align: center;
-   
+
+}
+#carouselExampleIndicators {
+    max-width: 1000px;
+    margin: auto;
 }
 
