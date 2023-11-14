@@ -3,7 +3,7 @@
   style="background-color: rgb(99, 46, 203)"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Inicio</a>
+    <a class="navbar-brand" th:href="@{/}">Inicio</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,15 +15,25 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/iniciarSesion"
+          <a
+            class="nav-link active"
+            aria-current="page"
+            th:if="${session.usuariosession == null}"
+            href="/iniciarSesion"
             >Iniciar Sesion</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/registro">Registrar</a>
+          <a
+            class="nav-link"
+            th:if="${session.usuariosession == null}"
+            href="/registro"
+            >Registrar</a
+          >
         </li>
         <!-- <li>
           <a>Usuario</a>
