@@ -1,53 +1,29 @@
-<nav
-  class="navbar navbar-expand-lg bg-body-tertiary"
-  style="background-color: rgb(99, 46, 203)"
->
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: rgb(99, 46, 203)">
   <div class="container-fluid">
     <a class="navbar-brand" th:href="@{/}">Inicio</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            th:if="${session.usuariosession == null}"
-            href="/iniciarSesion"
-            >Iniciar Sesion</a
-          >
+          <a class="nav-link active" aria-current="page" th:if="${session.usuariosession == null}"
+            href="usuario/iniciarSesion">Iniciar Sesion</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            th:if="${session.usuariosession == null}"
-            href="/usuario/registrar"
-            >Registrar</a
-          >
+          <a class="nav-link" th:if="${session.usuariosession == null}" href="/usuario/registrar">Registrar</a>
         </li>
         <li class="nav-item dropdown">
-          <a 
-          class="nav-link dropdown-toggle" 
-          href="#" 
-          role="button" 
-          data-bs-toggle="dropdown" 
-          aria-expanded="false"
-          th:if="${session.usuariosession != null}">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            th:if="${session.usuariosession != null}">
             Usuario
           </a>
           <ul class="dropdown-menu">
 
             <li><a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a></li>
+<<<<<<< HEAD
             
             <li><hr class="dropdown-divider"></li>
 
@@ -56,28 +32,61 @@
             <li><hr class="dropdown-divider"></li>
             <!-- ¿este item solo tendria acceso el admin? -->
             <li><a class="dropdown-item" th:href="@{admin/listaUsuarios}">Lista de Usuarios</a></li>
+=======
 
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li><a class="dropdown-item" th:href="@{usuario/editarPerfil}">Editar Perfil</a></li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <!-- ¿este item solo tendria acceso el admin? -->
+            <li><a class="dropdown-item" th:href="@{admin/listaUsuarios}" sec:authorize="hasRole('ADMIN')">Lista de
+                Usuarios</a></li>
+>>>>>>> 090f7ed17ef2e247d6db8430d4f2956d070b9354
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
             <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
-            
+
           </ul>
         </li>
 
-     <!--   <li>
-          <a>Proveedores</a>
-          <ul></ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            th:if="${session.usuariosession != null}">
+            Proveedores
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{listaProveedores}">Lista de Proveedores</a></li>
+          </ul>
+
+        </li>
+
+        <li>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Servicios
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{listaServicios}">Lista de Servicios</a></li>
+          </ul>
         </li>
         <li>
-          <a>Servicios</a>
-          <ul></ul>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            th:if="${session.usuariosession != null}">
+            Contrataciones
+          </a>
+          <ul class="dropdown-menu">
+
+            <li><a class="dropdown-item" th:href="@{listaServicios}">Lista de Contrataciones</a></li>
+
+          </ul>
         </li>
-        <li>
-          <a
-            >Contrataciones
-            <ul></ul
-          ></a>
-        </li>-->
       </ul>
     </div>
   </div>
