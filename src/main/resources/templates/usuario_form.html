@@ -15,7 +15,7 @@
       <div class="container-fluid m-5 contenedor">
         <form
           class="formulario"
-          th:action="@{/registro}"
+          th:action="@{/usuario/registro}"
           method="POST"
           enctype="multipart/form-data"
         >
@@ -63,11 +63,11 @@
               th:value="${email}"
             />
           </div>
-
+          <!-- comment 
           <div class="form-group my-3">
             <input type="file" class="form-control" name="archivo" />
           </div>
-
+          -->
           <div class="form-group my-3">
             <input
               type="password"
@@ -78,7 +78,7 @@
             />
           </div>
 
-          <!-- <div class="form-group my-3">
+           <div class="form-group my-3">
             <input
               type="password"
               class="form-control"
@@ -86,7 +86,7 @@
               placeholder="REPETIR CONTRASEÑA"
               th:value="${password2}"
             />
-          </div> -->
+          </div> 
 
           <div class="form-group my-3">
             <input
@@ -107,7 +107,7 @@
               th:value="${direccion}"
             />
           </div>
-
+          
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
           </button>
