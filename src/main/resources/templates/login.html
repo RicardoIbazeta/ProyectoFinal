@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head "></head>
+
+<body style="background-color: rgb(99, 46, 203)">
+    <header th:replace="/fragments/header :: header "></header>
+    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+    
+    <form class="formulario" th:action="@{/logincheck}" method="POST">
+        <div class="form-group my-3">
+            <h1>Iniciar Sesión</h1>
+        </div>
+       
+        <div class="form-group my-3">
+            <input type="email" class="form-control" name="email" placeholder="EMAIL" th:value="${email}">
+        </div>
+
+        <div class="form-group my-3">
+            <input type="password" class="form-control" name="contrasena" placeholder="CONTRASEÑA" th:value="${contrasena}">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 botones">Ingresar</button>
+    </form>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>

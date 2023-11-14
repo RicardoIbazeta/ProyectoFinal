@@ -1,8 +1,6 @@
 package Egg.ProyectoFinal;
 
-import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.excepciones.MiException;
-import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
