@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
     
     @Autowired
@@ -28,15 +28,15 @@ public class UsuarioControlador {
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, Estado estado,
+    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password,String password2,
             String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo){
         
         try {
-            usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, estado, telefono, direccion, tipoUsuario);
+            usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion, tipoUsuario);
             modelo.put("exito", "El usuario fue cargado correctamente");
         } catch (MiException ex) {
             return "usuario_form";
         }
-        return "usuario_form";
+        return "index.html";
     }
 }

@@ -19,7 +19,7 @@ public class UsuarioServicio {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public void crearUsuario(String nombre, String apellido, String documento, String email, String password, Estado estado,
+    public void crearUsuario(String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion, Boolean tipoUsuario) throws MiException {
 
         validarUsuario(nombre, apellido, documento, email, password, password, telefono, direccion);
@@ -31,9 +31,9 @@ public class UsuarioServicio {
         usuario.setDocumento(documento);
         usuario.setEmail(email);
         usuario.setPassword(password);
+        usuario.setPassword2(password2);
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
-        usuario.setEstado(estado);
         usuario.setTipoUsuario(tipoUsuario);
         usuario.setFechaAlta(new Date());
 
