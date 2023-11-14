@@ -31,19 +31,40 @@
           <a
             class="nav-link"
             th:if="${session.usuariosession == null}"
-            href="/registro"
+            href="/usuario/registrar"
             >Registrar</a
           >
         </li>
-        <!-- <li>
-          <a>Usuario</a>
-          <ul>
-            <li>Perfil</li>
-            <li>Editar Perfil</li>
-            <li>Cerrar Sesion</li>
+        <li class="nav-item dropdown">
+          <a 
+          class="nav-link dropdown-toggle" 
+          href="#" 
+          role="button" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false"
+          th:if="${session.usuariosession != null}">
+            Usuario
+          </a>
+          <ul class="dropdown-menu">
+
+            <li><a class="dropdown-item" th:href="@usuario/Perfil}">Perfil</a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+
+            <li><a class="dropdown-item" th:href="@usuario/editarPerfil}">Editar Perfil</a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+            <!-- ¿este item solo tendria acceso el admin? -->
+            <li><a class="dropdown-item" th:href="@admin/listaUsuarios}">Lista de Usuarios</a></li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
+            
           </ul>
         </li>
-        <li>
+
+     <!--   <li>
           <a>Proveedores</a>
           <ul></ul>
         </li>
@@ -56,7 +77,7 @@
             >Contrataciones
             <ul></ul
           ></a>
-        </li> -->
+        </li>-->
       </ul>
     </div>
   </div>
