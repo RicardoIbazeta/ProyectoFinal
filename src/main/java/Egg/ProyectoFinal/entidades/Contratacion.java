@@ -7,14 +7,16 @@ package Egg.ProyectoFinal.entidades;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.annotations.GenericGenerator;
 
-/**
- *
- * @author Picu Ibazeta
- */
+
 @Entity
 public class Contratacion {
     
@@ -23,6 +25,19 @@ public class Contratacion {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Usuario cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "proveedor_id")
+    private Usuario proveedor;
+    
+    @Temporal(TemporalType.TIMESTAMP)   
+    private Date alta;
+    
     /*@ManyToOne
     private List<Proveedor> proveedores; */
+    
+    
 }

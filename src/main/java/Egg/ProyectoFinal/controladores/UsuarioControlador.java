@@ -1,9 +1,12 @@
 
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.excepciones.MiException;
+import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
+    
+    private ContratacionServicio contratacionServicio;
     
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -38,5 +43,12 @@ public class UsuarioControlador {
             return "usuario_form";
         }
         return "index.html";
+    }
+    @GetMapping ("/lista")
+    public String historialContrataciones(ModelMap modelo){
+        
+        List <Contratacion> historial = contratacionServicio.listarContrataciones();
+        modelo.addAttribute("historial", historial);
+        return "contratacion_list.html";
     }
 }
