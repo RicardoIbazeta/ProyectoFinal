@@ -6,14 +6,59 @@ package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
+import Egg.ProyectoFinal.entidades.Usuario;
+import Egg.ProyectoFinal.enumeraciones.Estado;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContratacionServicio {
     
     private ContratacionRepositorio contratacionRepositorio;
+    
+    public void crearContratacion(Usuario cliente, Usuario proveedor){
+        
+        Contratacion contratacion = new Contratacion();
+        contratacion.setCliente(cliente);
+        contratacion.setProveedor(proveedor);
+        contratacion.setEstadoContratacion(Estado.SOLICITADO);
+        contratacion.setAlta(new Date());
+        contratacionRepositorio.save(contratacion);
+        
+    }
+    
+    
+    //Falta agregar una excepcion para cuando no se encuetra la contratacion
+    public void finalizarContratacion (String idContratacion, String idProveedor){
+        Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
+        if (respuesta.isPresent()){
+            Contratacion contratacion = respuesta.get();
+            contratacion.setEstadoContratacion(Estado.FINALIZADO);
+            contratacionRepositorio.save(contratacion);
+            
+        }
+    }
+    
+    
+    //Falta agregar una excepcion para cuando no se encuetra la contratacion
+    public void cancelarContratacion(String idContratacion){
+        Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
+        if (respuesta.isPresent()){
+            Contratacion contratacion = respuesta.get();
+            contratacion.setEstadoContratacion(Estado.CANCELADO);
+            contratacionRepositorio.save(contratacion);
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
     
     public List listarContrataciones(){
         
