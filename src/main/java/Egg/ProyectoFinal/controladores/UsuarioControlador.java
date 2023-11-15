@@ -43,7 +43,6 @@ public class UsuarioControlador {
             return "usuario_form";
         }
         return "index.html";
-<<<<<<< HEAD
     }
     @GetMapping ("/lista")
     public String historialContrataciones(ModelMap modelo){
@@ -51,7 +50,5 @@ public class UsuarioControlador {
         List <Contratacion> historial = contratacionServicio.listarContrataciones();
         modelo.addAttribute("historial", historial);
         return "contratacion_list.html";
-=======
->>>>>>> Rama-Front
     }
 }
