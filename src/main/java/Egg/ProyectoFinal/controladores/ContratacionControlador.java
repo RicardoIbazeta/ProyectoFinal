@@ -1,13 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Egg.ProyectoFinal.controladores;
 
-/**
- *
- * @author Picu Ibazeta
- */
+import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
+import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
+import Egg.ProyectoFinal.entidades.Contratacion;
+import Egg.ProyectoFinal.entidades.Usuario;
+import Egg.ProyectoFinal.enumeraciones.Estado;
+import java.util.Date;
+import java.util.Optional;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+@RequestMapping("/contratacion")
 public class ContratacionControlador {
+
+    private UsuarioRepositorio usuarioRepositorio;
+    private ContratacionRepositorio contratacionRepositorio;
     
+    
+    @PostMapping("/contratar")
+    public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
+
+        Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);
+        Optional<Usuario> respuestaProveedor = usuarioRepositorio.findById(idProveedor);
+
+        if (respuestaCliente.isPresent() && respuestaProveedor.isPresent()) {
+            Usuario cliente = respuestaCliente.get();
+            Usuario proveedor = respuestaProveedor.get();
+            
+            Contratacion contratacion = new Contratacion();
+            contratacion.setCliente(cliente);
+            contratacion.setProveedor(proveedor);
+            contratacion.setAlta(new Date());
+            contratacion.setEstadoContratacion(Estado.SOLICITADO);
+            
+            contratacionRepositorio.save(contratacion);
+            
+            
+
+        }
+        return "index.html";
+
+    }
+
 }
