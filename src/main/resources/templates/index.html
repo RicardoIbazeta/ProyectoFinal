@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     >
+<<<<<<< HEAD
     <head th:replace="/fragments/head :: head "></head>
     <body style="background-color: rgb(99, 46, 203)">
         <header th:replace="/fragments/header :: header "></header>
@@ -110,4 +107,197 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <script th:replace="/fragments/script :: script "></script>
         <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
+=======
+
+    <head th:replace="~{/fragments/head :: head}"></head>
+
+    <!--
+    
+    <body style="background-color: rgb(99, 46, 203)">
+      <header th:replace="/fragments/header :: header "></header>
+      <h1 style="text-align: center; color: blanchedalmond">
+        Chacras de Coria Contrataciones
+      </h1>
+      <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+      <div id="contenido">
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Usuario</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  Visite y conozca<small
+                    class="text-body-secondary fw-light"
+                  ></small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Visualizacion de Servicios/Rubros</li>
+                  <li>Visualizacion de Proveedores</li>
+                  <li>Registro</li>
+                  <li>.</li>
+                </ul>
+                <button
+                  type="button"
+                  class="w-100 btn btn-lg btn-outline-primary"
+                >
+                  Registarse como Usuario
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Proveedor</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  Ofrezca Servicios<small
+                    class="text-body-secondary fw-light"
+                  ></small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Recepcion de Contrataciones</li>
+                  <li>Manejo de Contrataciones</li>
+                  <li>Honorarios segun Servicio/Rubro</li>
+                  <li>Cotizacion de presupuestos</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">
+                  Registrarse como Proveedor
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Cliente</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">
+                  Solicite Servicios<small
+                    class="text-body-secondary fw-light"
+                  ></small>
+                </h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Solicitud de Contrataciones</li>
+                  <li>Calificacion de Contrataciones</li>
+                  <li>Contactar Proveedores</li>
+                  <li>Califiacion de Proveedores</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">
+                  Registrarse como Cliente
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="exito/error">
+          <div th:if="${exito != null}" id="exito">
+            <h5>exito</h5>
+            <p th:text="${exito}"></p>
+          </div>
+          <div th:if="${error != null}" id="error">
+            <h5>error</h5>
+            <p th:text="${error}"></p>
+          </div>
+        </div>
+      </div>
+    
+      <script th:replace="/fragments/script :: script "></script>
+      <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
+    -->
+
+    <body>
+        <header th:replace="~{/fragments/header :: header}"></header>
+        <nav th:replace="~{/fragments/nav :: nav}"></nav>
+
+        <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a th:href="@{/registrar}">
+                            <img th:src="@{/1.png}" class="d-block w-100" alt="...">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a th:href="@{/registrar}">
+                            <img th:src="@{/2.png}" class="d-block w-100" alt="...">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a th:href="@{/registrar}">
+                            <img th:src="@{/3.png}" class="d-block w-100" alt="...">
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <h1>Comentarios más populares:</h1>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="background-color: #D5F9FF;">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>"¡Increíble servicio! El plomero que encontré a través de esta plataforma fue muy profesional 
+                                    y resolvió mi problema de manera rápida y eficiente. ¡Definitivamente lo recomendaré a todos 
+                                    mis amigos y familiares!"</p>
+                                <footer class="blockquote-footer">Maria Garcia</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body" style="background-color: #D5F9FF;">
+                            <blockquote class="blockquote mb-0">
+                                <p>"¡El gasista que contraté superó mis expectativas! Fue puntual, amable y solucionó el problema de manera rápida. 
+                                    Además, me dio algunos consejos útiles para el mantenimiento. ¡Gracias por un servicio excelente!"</p>
+                                <footer class="blockquote-footer">Pedro Acosta</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body" style="background-color: #D5F9FF;">
+                            <blockquote class="blockquote mb-0">
+                                <p>"Nunca he tenido una experiencia tan positiva con un electricista. Este profesional fue muy detallado, 
+                                    explicó cada paso y se aseguró de que todo estuviera funcionando perfectamente antes de irse. ¡Confiable y altamente recomendado!"</p>
+                                <footer class="blockquote-footer">Julieta Diaz</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+    </body>
+
+>>>>>>> Rama-Front
 </html>

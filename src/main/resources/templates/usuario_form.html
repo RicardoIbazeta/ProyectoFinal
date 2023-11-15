@@ -25,6 +25,7 @@
           </div>
 
           <div class="form-group my-3">
+            <label for="nombre">Nombre del Usuario</label><br />
             <input
               type="text"
               class="form-control"
@@ -78,7 +79,11 @@
             />
           </div>
 
+<<<<<<< HEAD
            <div class="form-group my-3">
+=======
+          <div class="form-group my-3">
+>>>>>>> Rama-Front
             <input
               type="password"
               class="form-control"
@@ -86,7 +91,11 @@
               placeholder="REPETIR CONTRASEÑA"
               th:value="${password2}"
             />
+<<<<<<< HEAD
           </div> 
+=======
+          </div>
+>>>>>>> Rama-Front
 
           <div class="form-group my-3">
             <input
@@ -107,7 +116,57 @@
               th:value="${direccion}"
             />
           </div>
+<<<<<<< HEAD
           
+=======
+
+          <select></select>
+
+          <!-- <div class="form-group my-3">
+            <input
+              type="text"
+              class="form-control"
+              name="calificacion"
+              placeholder="PRECIO HS PROMEDIO"
+              th:value="${calificacion = 0}"
+              sec:authorize="hasRole('PROVEEDOR')"
+            />
+          </div> -->
+
+          <div class="form-group my-3">
+            <input
+              type="text"
+              class="form-control"
+              name="precioHora"
+              placeholder="PRECIO HS PROMEDIO"
+              th:value="${precioHora}"
+              sec:authorize="hasRole('PROVEEDOR')"
+            />
+          </div>
+
+          <!-- <div class="form-group my-3">
+            <input
+              type="text"
+              class="form-control"
+              name="descripcionServicio"
+              placeholder="DESCRIPCION DE SU SERVICIO"
+              th:value="${descripcionServicio}"
+              sec:authorize="hasRole('PROVEEDOR')"
+            />
+          </div> -->
+
+          <div class="form-group my-3">
+            <textarea
+              type="text"
+              class="form-control"
+              name="descripcionServicio"
+              placeholder="DESCRIPCION DE SU SERVICIO"
+              th:value="${descripcionServicio}"
+              sec:authorize="hasRole('PROVEEDOR')"
+            ></textarea>
+          </div>
+
+>>>>>>> Rama-Front
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
           </button>
