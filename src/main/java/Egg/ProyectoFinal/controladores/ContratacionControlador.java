@@ -52,12 +52,11 @@ public class ContratacionControlador {
     private ProveedorServicio proveedorServicio;
     private ProveedorRepositorio proveedorRepositorio;
     
-    @GetMapping("/registro/{id}")
-    public String registrarSolicitud(@PathVariable String id, ModelMap modelo) {
-
-        Proveedor proveedor = proveedorRepositorio.get();
-        modelo.put("proveedor", proveedor);
-
+    @GetMapping("/lista")
+    public String listarProveedores(ModelMap modelo){
+        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+        modelo.addAttribute("proveedores", proveedores);
+        
         return "contratacion_list.html";
     }
 

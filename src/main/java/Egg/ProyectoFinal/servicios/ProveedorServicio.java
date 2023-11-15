@@ -100,5 +100,21 @@ public class ProveedorServicio {
         }
 
     }
+<<<<<<< HEAD
 
+=======
+    
+    public List<Proveedor> listarProveedores() {
+
+        List<Proveedor> proveedores = new ArrayList();
+
+        proveedores = proveedorRepositorio.findAll();
+
+        return proveedores;
+    }
+            
+    
+    
+    
+>>>>>>> 263775b (commit numero 3 millones)
 }
