@@ -1,15 +1,19 @@
 package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
+import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
+import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
+import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +24,18 @@ public class ContratacionControlador {
 
     private UsuarioRepositorio usuarioRepositorio;
     private ContratacionRepositorio contratacionRepositorio;
+    private ProveedorServicio proveedorServicio;
+    private ProveedorRepositorio proveedorRepositorio;
     
-    
-    
+    @GetMapping("/registro/{id}")
+    public String registrarSolicitud(@PathVariable String id, ModelMap modelo) {
+
+        Proveedor proveedor = proveedorRepositorio.get();
+        modelo.put("proveedor", proveedor);
+
+        return "contratacion_list.html";
+    }
+
     
     
     @PostMapping("/contratar")
