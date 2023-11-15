@@ -128,10 +128,16 @@
           </div>
 
           <div class="form-group my-3">
-            <select th:value="${tipo_usuario}" style="display: flex">
-              <option value="Cliente">Cliente</option>
-              <option value="Proveedor">Proveedor</option>
-            </select>
+            <label for="tipoUsuario" style="display: flex"
+              >Tipo de Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="tipoUsuario"
+              placeholder="Indique si es Cliente o Proveedor"
+              th:value="${tipoUsuario}"
+            />
           </div>
 
           <!-- <div class="form-group my-3">
