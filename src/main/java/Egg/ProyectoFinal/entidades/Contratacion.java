@@ -39,6 +39,7 @@ public class Contratacion {
     //esta notacion @Enumerated(EnumType.STRING) indica que los valores de la enumeración 
     //estadoContratacion deben ser almacenados y recuperados como cadenas de texto en la base de datos
     @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "estado_contratacion")
     private Estado estadoContratacion;
     
     
