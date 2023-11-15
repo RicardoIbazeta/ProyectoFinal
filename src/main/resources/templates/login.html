@@ -7,11 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
 <head th:replace="/fragments/head :: head "></head>
 
-<body style="background-color: rgb(99, 46, 203)">
+<body>
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
     
-    <form class="formulario" th:action="@{/logincheck}" method="POST">
+    <form class="container text-center" th:action="@{/logincheck}" method="POST">
         <div class="form-group my-3">
             <h1>Iniciar Sesión</h1>
         </div>
