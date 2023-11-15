@@ -1,91 +1,167 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" >
+<nav
+  class="navbar navbar-expand-lg bg-body-tertiary"
+  style="background-color: dodgerblue"
+>
   <div class="container-fluid">
     <a class="navbar-brand" th:href="@{/}">Inicio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <div class="nav justify-content-end" >
-      <div class="collapse navbar-collapse justify-content-end" id="navbarScroll" >
-      <ul  class="nav nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" th:if="${session.usuariosession == null}"
-            href="/usuario/iniciarSesion">Ingresar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:if="${session.usuariosession == null}" href="/usuario/registrar" >Registrar</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            th:if="${session.usuariosession != null}">
-            Usuario
-          </a>
-          <ul class="dropdown-menu">
 
-            <li><a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a></li>
+    <div class="nav justify-content-end">
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarScroll"
+      >
+        <ul
+          class="nav nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+          style="--bs-scroll-height: 150px"
+        >
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              th:if="${session.usuariosession == null}"
+              href="/usuario/iniciarSesion"
+              >Ingresar</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              th:if="${session.usuariosession == null}"
+              href="/usuario/registrar"
+              >Registrar</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              th:if="${session.usuariosession != null}"
+            >
+              Usuario
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a>
+              </li>
 
-            
-            <li><hr class="dropdown-divider"></li>
+              <li><hr class="dropdown-divider" /></li>
 
-            <li><a class="dropdown-item" th:href="@{usuario/editarPerfil}">Editar Perfil</a></li>
-            
-            <li><hr class="dropdown-divider"></li>
-            <!-- ¿este item solo tendria acceso el admin? -->
-            <li><a class="dropdown-item" th:href="@{admin/listaUsuarios}">Lista de Usuarios</a></li>
+              <li>
+                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                  >Editar Perfil</a
+                >
+              </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              <li><hr class="dropdown-divider" /></li>
+              <!-- ¿este item solo tendria acceso el admin? -->
+              <li>
+                <a class="dropdown-item" th:href="@{admin/listaUsuarios}"
+                  >Lista de Usuarios</a
+                >
+              </li>
 
-            <li><a class="dropdown-item" th:href="@{usuario/editarPerfil}">Editar Perfil</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <!-- ¿este item solo tendria acceso el admin? -->
-            <li><a class="dropdown-item" th:href="@{admin/listaUsuarios}" sec:authorize="hasRole('ADMIN')">Lista de
-                Usuarios</a></li>
+              <li>
+                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                  >Editar Perfil</a
+                >
+              </li>
 
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <!-- ¿este item solo tendria acceso el admin? -->
+              <li>
+                <a
+                  class="dropdown-item"
+                  th:href="@{admin/listaUsuarios}"
+                  sec:authorize="hasRole('ADMIN')"
+                  >Lista de Usuarios</a
+                >
+              </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
-            <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
-
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            th:if="${session.usuariosession != null}">
-            Proveedores
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{listaProveedores}">Lista de Proveedores</a></li>
-          </ul>
-
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Servicios
-          </a>
-          <ul class="dropdown-menu dropdown-menu-lg-end">
-            <li><a class="dropdown-item" th:href="@{listaServicios}">Lista de Servicios</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            th:if="${session.usuariosession != null}">
-            Contrataciones
-          </a>
-          <ul class="dropdown-menu">
-
-            <li><a class="dropdown-item" th:href="@{listaServicios}">Lista de Contrataciones</a></li>
-
-          </ul>
-        </li>
-      </ul>
-    </div>
+              <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              th:if="${session.usuariosession != null}"
+            >
+              Proveedores
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" th:href="@{listaProveedores}"
+                  >Lista de Proveedores</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Servicios
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li>
+                <a class="dropdown-item" th:href="@{listaServicios}"
+                  >Lista de Servicios</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              th:if="${session.usuariosession != null}"
+            >
+              Contrataciones
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" th:href="@{listaServicios}"
+                  >Lista de Contrataciones</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

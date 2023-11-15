@@ -4,15 +4,12 @@
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
   <head th:replace="/fragments/head :: head "></head>
-  <body style="background-color: rgb(99, 46, 203)">
+  <body>
     <header th:replace="/fragments/header :: header "></header>
-    <h1 style="text-align: center; color: blanchedalmond">
-      Chacras de Coria Contrataciones
-    </h1>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div id="contenido/formulario">
-      <div class="container-fluid m-5 contenedor">
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
           th:action="@{/usuario/registro}"
@@ -23,95 +20,122 @@
           <div class="form-group my-3">
             <h3 class="card-title">Registrate!</h3>
           </div>
+          <br />
 
           <div class="form-group my-3">
-            <label for="nombre">Nombre del Usuario</label><br />
+            <label for="nombre" style="display: flex">Nombre del Usuario</label>
             <input
               type="text"
               class="form-control"
               name="nombre"
-              placeholder="NOMBRE"
+              placeholder="Ingrese su nombre completo"
               th:value="${nombre}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="apellido" style="display: flex"
+              >Apellido del Usuario</label
+            >
             <input
               type="text"
               class="form-control"
               name="apellido"
-              placeholder="APELLIDO"
+              placeholder="Ingrese su apellido completo"
               th:value="${apellido}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="documento" style="display: flex"
+              >Documento del Usuario</label
+            >
             <input
               type="text"
               class="form-control"
               name="documento"
-              placeholder="DOCUMENTO"
+              placeholder="Indique su numero de Documento"
               th:value="${documento}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="email" style="display: flex">Mail del Usuario</label>
             <input
               type="email"
               class="form-control"
               name="email"
-              placeholder="EMAIL"
+              placeholder="Ingrese su mail de contacto"
               th:value="${email}"
             />
           </div>
           <!-- comment 
           <div class="form-group my-3">
+            <label for="archivo" style="display: flex">Foto del Usuario</label><br />
             <input type="file" class="form-control" name="archivo" />
           </div>
           -->
           <div class="form-group my-3">
+            <label for="password" style="display: flex"
+              >Contraseña del Usuario</label
+            >
             <input
               type="password"
               class="form-control"
               name="password"
-              placeholder="CONTRASEÑA"
+              placeholder="Ingrese una contraseña"
               th:value="${password}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="password2" style="display: flex"
+              >Repita contraseña del Usuario</label
+            >
             <input
               type="password"
               class="form-control"
               name="password2"
-              placeholder="REPETIR CONTRASEÑA"
+              placeholder="Repita la contraseña"
               th:value="${password2}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="telefono" style="display: flex"
+              >Telefono del Usuario</label
+            >
             <input
               type="text"
               class="form-control"
               name="telefono"
-              placeholder="TELEFONO"
+              placeholder="Indique su telefono de contacto"
               th:value="${telefono}"
             />
           </div>
 
           <div class="form-group my-3">
+            <label for="direccion" style="display: flex"
+              >Domicilio del Usuario</label
+            >
             <input
               type="text"
               class="form-control"
               name="direccion"
-              placeholder="DIRECCION"
+              placeholder="Indique su direccion"
               th:value="${direccion}"
             />
           </div>
 
-          <select></select>
+          <div class="form-group my-3">
+            <select style="display: flex">
+              <option value="Cliente">Cliente</option>
+              <option value="Proveedor">Proveedor</option>
+            </select>
+          </div>
 
           <!-- <div class="form-group my-3">
+            <label for="calificacion" style="display: flex">Calificacion del Usuario</label><br />
             <input
               type="text"
               class="form-control"
@@ -123,11 +147,14 @@
           </div> -->
 
           <div class="form-group my-3">
+            <label for="precioHora" style="display: flex"
+              >Valor Hora Promedio</label
+            >
             <input
               type="text"
               class="form-control"
               name="precioHora"
-              placeholder="PRECIO HS PROMEDIO"
+              placeholder="Indique un valor promedio de hora laboral"
               th:value="${precioHora}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
@@ -145,11 +172,14 @@
           </div> -->
 
           <div class="form-group my-3">
+            <label for="descripcionServicio" style="display: flex"
+              >Descripcion de Servicios</label
+            >
             <textarea
               type="text"
               class="form-control"
               name="descripcionServicio"
-              placeholder="DESCRIPCION DE SU SERVICIO"
+              placeholder="Describa brevemente en que consiste el servicio que puede brindar"
               th:value="${descripcionServicio}"
               sec:authorize="hasRole('PROVEEDOR')"
             ></textarea>
@@ -157,6 +187,9 @@
 
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
+          </button>
+          <button type="reset" class="btn btn-primary mt-3 botones">
+            Borrar
           </button>
 
           <div id="exito/error">
@@ -170,6 +203,7 @@
               <p th:text="${error}"></p>
             </div>
           </div>
+          <div th:replace="/fragments/div :: div "></div>
         </form>
       </div>
     </div>
