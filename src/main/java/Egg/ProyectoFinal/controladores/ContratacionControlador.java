@@ -8,6 +8,8 @@ import Egg.ProyectoFinal.enumeraciones.Estado;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,9 @@ public class ContratacionControlador {
 
     private UsuarioRepositorio usuarioRepositorio;
     private ContratacionRepositorio contratacionRepositorio;
+    
+    
+    
     
     
     @PostMapping("/contratar")
@@ -37,9 +42,6 @@ public class ContratacionControlador {
             contratacion.setEstadoContratacion(Estado.SOLICITADO);
             
             contratacionRepositorio.save(contratacion);
-            
-            
-
         }
         return "index.html";
 

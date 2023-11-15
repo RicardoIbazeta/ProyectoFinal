@@ -4,14 +4,15 @@ package Egg.ProyectoFinal.servicios;
 import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
-import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProveedorServicio {
@@ -20,7 +21,7 @@ public class ProveedorServicio {
     private ProveedorRepositorio proveedorRepositorio;
     private UsuarioRepositorio usuarioRepositorio;
     @Transactional
-    public void crearProveedor(Double precioHora, String descripcionServicio, List<String> rubros) throws MiException{
+    public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros) throws MiException{
         Proveedor proveedor = new Proveedor();
         
         validarProveedor(precioHora, descripcionServicio, rubros);
@@ -31,7 +32,7 @@ public class ProveedorServicio {
         proveedorRepositorio.save(proveedor);
     }
     
-    public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<String> rubros){
+    public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
         Proveedor proveedor = new Proveedor();
         
@@ -52,7 +53,7 @@ public class ProveedorServicio {
     
     
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
-    private void validarProveedor(Double precioHora, String descripcionServicio, List<String> rubros) throws MiException {
+    private void validarProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros) throws MiException {
         if (precioHora == null || precioHora.isNaN()) {
             throw new MiException("Debe indicar el valor hora/labor");
         }

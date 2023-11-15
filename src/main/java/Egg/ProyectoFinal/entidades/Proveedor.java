@@ -4,8 +4,7 @@
  */
 package Egg.ProyectoFinal.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -14,23 +13,16 @@ public class Proveedor extends Usuario {
     private Double calificacion;
     private Double precioHora;
     private String descripcionServicio;
-    private List<String> rubros;
+    
+    @OneToMany
+    private List<Rubro> rubros;
     
     /*@OneToMany
     List<Contratacion> contrataciones; */
 
     public Proveedor() {
     }
-
-    public Proveedor(Double calificacion, Double precioHora, String descripcionServicio, List<String> rubros, List<Contratacion> contrataciones) {
-        this.calificacion = calificacion;
-        this.precioHora = precioHora;
-        this.descripcionServicio = descripcionServicio;
-        this.rubros = rubros;
-        //this.contrataciones = contrataciones;
-    }
     
-
     public Double getCalificacion() {
         return calificacion;
     }
@@ -55,22 +47,20 @@ public class Proveedor extends Usuario {
         this.descripcionServicio = descripcionServicio;
     }
 
-    public List<String> getRubros() {
+    public List<Rubro> getRubros() {
         return rubros;
     }
 
-    public void setRubros(List<String> rubros) {
+    public void setRubros(List<Rubro> rubros) {
         this.rubros = rubros;
     }
-
-    /*public List<Contratacion> getContrataciones() {
+    
+     /*public List<Contratacion> getContrataciones() {
         return contrataciones;
     }
 
     public void setContrataciones(List<Contratacion> contrataciones) {
         this.contrataciones = contrataciones;
     }*/
-    
-    
     
 }
