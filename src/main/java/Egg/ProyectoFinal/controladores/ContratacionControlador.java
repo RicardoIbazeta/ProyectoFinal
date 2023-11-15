@@ -7,7 +7,10 @@ import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
+<<<<<<< HEAD
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
+=======
+>>>>>>> 56fd5a9 (a)
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +32,7 @@ public class ContratacionControlador {
     private UsuarioRepositorio usuarioRepositorio;
     private ProveedorRepositorio proveedorRepositorio;
     private ContratacionRepositorio contratacionRepositorio;
+<<<<<<< HEAD
     /* podemos acceder a los repositorios desde los servicios */
     @Autowired
     private ContratacionServicio contratacionServicio;
@@ -44,6 +48,23 @@ public class ContratacionControlador {
     }
     
     @PostMapping("/contratado")
+=======
+    private ProveedorServicio proveedorServicio;
+    private ProveedorRepositorio proveedorRepositorio;
+    
+    @GetMapping("/registro/{id}")
+    public String registrarSolicitud(@PathVariable String id, ModelMap modelo) {
+
+        Proveedor proveedor = proveedorRepositorio.get();
+        modelo.put("proveedor", proveedor);
+
+        return "contratacion_list.html";
+    }
+
+    
+    
+    @PostMapping("/contratar")
+>>>>>>> 56fd5a9 (a)
     public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
 
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);
