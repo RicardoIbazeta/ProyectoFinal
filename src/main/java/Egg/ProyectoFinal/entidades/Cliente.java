@@ -2,8 +2,7 @@
 package Egg.ProyectoFinal.entidades;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
