@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<<<<<<< HEAD
     <head th:replace="/fragments/head :: head "></head>
 
     <body>
@@ -89,5 +90,61 @@
         <script th:replace="/fragments/script :: script "></script>
         <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
+=======
+<head th:replace="/fragments/head :: head "></head>
+
+<body>
+  <header th:replace="~{/fragments/header :: header}"></header>
+  <nav th:replace="~{/fragments/nav :: nav}"></nav>
+
+  <div class="container m-5">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Alta</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cliente ID</th>
+          <th scope="col">Proveedor ID</th>
+        </tr>
+      </thead>
+      <tbody th:each="contratacion : ${contrataciones}">
+        <tr>
+          <th scope="row" th:text="${contratacion.id}"></th>
+          <td th:text="${contratacion.alta}"></td>
+          <td th:text="${contratacion.estado}"></td>
+          <td th:text="${contratacion.cliente_id}"></td>
+          <td th:text="${contratacion.proveedor_id}"></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <section class="text-center container">
+    <div class="row mt-3">
+      <div class="divVolver">
+        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+    </div>
+  </section>
+  </form>
+
+  <div id="exito/error">
+    <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+      <h5>exito</h5>
+      <p th:text="${exito}"></p>
+    </div>
+    <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
+      <h5>error</h5>
+      <p th:text="${error}"></p>
+    </div>
+  </div>
+
+  <script th:replace="/fragments/script :: script "></script>
+  <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+>>>>>>> db2e91b (proovedor_list)
 
 </html>
