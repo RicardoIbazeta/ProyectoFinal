@@ -5,7 +5,6 @@
 >
   <head th:replace="/fragments/head :: head "></head>
 
- 
   <script th:replace="/fragments/script :: script "></script>
   <body style="background-color: rgb(99, 46, 203)">
     <header th:replace="/fragments/header :: header "></header>
@@ -13,7 +12,7 @@
       Chacras de Coria Contrataciones
     </h1>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-    
+
     <div id="contenido/"></div>
 
     <table class="table table table-bordered border-dark">
@@ -34,11 +33,22 @@
           <td th:text="${usuario.apellido}">Otto</td>
           <td th:text="${usuario.email}">@md787678o</td>
           <td th:text="${usuario.rol}">@cliente</td>
-          <td><button type="submit" th:action="${usuario.eliminar}">X</button></td>
-          
+          <td>
+            <button type="submit" th:action="${usuario.eliminar}">X</button>
+          </td>
         </tr>
       </tbody>
     </table>
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>

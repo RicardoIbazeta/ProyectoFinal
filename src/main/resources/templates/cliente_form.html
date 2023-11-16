@@ -198,23 +198,19 @@
           <button type="reset" class="btn btn-primary mt-3 botones">
             Borrar
           </button>
-
-          <div id="exito/error">
-            <div th:if="${exito != null}" id="exito">
-              <h5>exito</h5>
-              <p th:text="${exito}"></p>
-            </div>
-
-            <div th:if="${error != null}" id="error">
-              <h5>error</h5>
-              <p th:text="${error}"></p>
-            </div>
-          </div>
-          <div th:replace="/fragments/div :: div "></div>
         </form>
       </div>
     </div>
-
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>

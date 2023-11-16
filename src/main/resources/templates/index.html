@@ -230,6 +230,16 @@
       </div>
     </div>
 
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <footer th:replace="~{/fragments/footer :: footer}"></footer>
   </body>
