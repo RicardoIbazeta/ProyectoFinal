@@ -4,6 +4,10 @@
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
   <head th:replace="/fragments/head :: head "></head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 48cf616 (proveedor form y cliente form)
   <body>
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
@@ -12,13 +16,25 @@
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
+<<<<<<< HEAD
           th:action="@{/usuario/registro}"
+=======
+          th:action="@{/proveedor/registro}"
+>>>>>>> 48cf616 (proveedor form y cliente form)
           method="POST"
           enctype="multipart/form-data"
         >
           <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
           <div class="form-group my-3">
+<<<<<<< HEAD
             <h3 class="card-title">Registro Cliente</h3>
+=======
+<<<<<<<< HEAD:src/main/resources/templates/proveedor_form.html
+            <h3 class="card-title">Registro Proveedor</h3>
+========
+            <h3 class="card-title">Registrato Cliente</h3>
+>>>>>>>> 48cf616 (proveedor form y cliente form):src/main/resources/templates/cliente_form.html
+>>>>>>> 48cf616 (proveedor form y cliente form)
           </div>
           <br />
 
@@ -126,6 +142,75 @@
               th:value="${direccion}"
             />
           </div>
+<<<<<<< HEAD
+=======
+          
+          <!-- no lo vamos a usar al tipo de usuario
+          <div class="form-group my-3">
+<<<<<<<< HEAD:src/main/resources/templates/proveedor_form.html
+========
+            <label for="tipoUsuario" style="display: flex"
+              >Tipo de Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="tipoUsuario"
+              placeholder="Indique si es Cliente (1) o Proveedor (0)"
+              th:value="${tipoUsuario}"
+            />
+          </div> -->
+
+          <!-- <div class="form-group my-3">
+            <label for="calificacion" style="display: flex">Calificacion del Usuario</label><br />
+            <input
+              type="text"
+              class="form-control"
+              name="calificacion"
+              placeholder="PRECIO HS PROMEDIO"
+              th:value="${calificacion = 0}"
+              sec:authorize="hasRole('PROVEEDOR')"
+            />
+          </div> -->
+
+          <!-- <div class="form-group my-3">
+>>>>>>>> 48cf616 (proveedor form y cliente form):src/main/resources/templates/cliente_form.html
+            <label for="precioHora" style="display: flex"
+              >Valor Hora Promedio</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="precioHora"
+              placeholder="Indique un valor promedio de hora laboral"
+              th:value="${precioHora}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="descripcionServicio" style="display: flex"
+              >Descripcion de Servicios</label
+            >
+            <textarea
+              type="text"
+              class="form-control"
+              name="descripcionServicio"
+              placeholder="Describa brevemente en que consiste el servicio que puede brindar"
+              th:value="${descripcionServicio}"
+            ></textarea>
+          </div>
+
+          <div>
+            <select name="rubro">
+              <option>Elija un rubro</option>
+              <option
+                th:each="rubro : ${rubros}"
+                th:value="${rubro.id}"
+                th:text="${rubro.nombre}"
+              ></option>
+            </select>
+          </div>
+>>>>>>> 48cf616 (proveedor form y cliente form)
 
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
@@ -133,6 +218,7 @@
           <button type="reset" class="btn btn-primary mt-3 botones">
             Borrar
           </button>
+<<<<<<< HEAD
         </form>
       </div>
     </div>
@@ -150,3 +236,34 @@
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
 </html>
+=======
+
+          <div id="exito/error">
+            <div
+              th:if="${exito != null}"
+              id="exito"
+              class="card text-white bg-success mb-3 mt-3 mensajeExito"
+            >
+              <h5>exito</h5>
+              <p th:text="${exito}"></p>
+            </div>
+            <div
+              th:if="${error != null}"
+              id="error"
+              class="card text-white bg-danger mb-3 mensajeError"
+            >
+              <h5>error</h5>
+              <p th:text="${error}"></p>
+            </div>
+          </div>
+
+          <div th:replace="/fragments/div :: div "></div>
+        </form>
+      </div>
+    </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+</html>
+>>>>>>> 48cf616 (proveedor form y cliente form)
