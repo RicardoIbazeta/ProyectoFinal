@@ -21,7 +21,8 @@ public class ProveedorServicio {
     private ProveedorRepositorio proveedorRepositorio;
     private UsuarioRepositorio usuarioRepositorio;
     @Transactional
-    public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros) throws MiException{
+     public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
+            String telefono, String direccion) throws MiException{
         Proveedor proveedor = new Proveedor();
         
         validarProveedor(precioHora, descripcionServicio, rubros);
@@ -29,8 +30,18 @@ public class ProveedorServicio {
         proveedor.setPrecioHora(precioHora);
         proveedor.setRubros(rubros);
         
+        proveedor.setNombre(nombre);
+        proveedor.setApellido(apellido);
+        proveedor.setDocumento(documento);
+        proveedor.setEmail(email);
+        proveedor.setPassword(password);
+        proveedor.setTelefono(telefono);
+        proveedor.setDireccion(direccion);
+        
+        
         proveedorRepositorio.save(proveedor);
     }
+
     
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
