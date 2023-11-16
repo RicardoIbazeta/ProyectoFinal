@@ -17,6 +17,14 @@ public class PortalControlador {
 
         return "index.html";
 
+<<<<<<< HEAD
+=======
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login.html";
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
     }
 
     @GetMapping("/registrarseBotones")

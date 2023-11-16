@@ -41,16 +41,36 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setApellido(apellido);
         usuario.setDocumento(documento);
         usuario.setEmail(email);        
+<<<<<<< HEAD
 
         // De esta forma se encripta la contraseña antes de guardarse en la BD
 
+=======
+<<<<<<< HEAD
+        // De esta forma se encripta la contraseña antes de guardarse en la BD
+=======
+        //                                  De esta forma se encripta la contraseña antes de guardarse en la BD
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+>>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
         // usuario.setPassword2(password2);
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
+<<<<<<< HEAD
         usuario.setRol(Rol.USER);
         usuario.setFechaAlta(new Date());   
         
+=======
+        usuario.setTipoUsuario(tipoUsuario);
+        usuario.setFechaAlta(new Date());   
+        
+        if(usuario.getTipoUsuario() == true) {
+        usuario.setRol(Rol.USER);            
+        } else {
+            usuario.setRol(Rol.PROVEEDOR);
+        }
+
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
         usuarioRepositorio.save(usuario);
     }
 
@@ -77,13 +97,19 @@ public class UsuarioServicio implements UserDetailsService {
     
      public List<Usuario> listarUsuarios() {
 
+<<<<<<< HEAD
         List<Usuario> usuarios = new ArrayList();
         usuarios = usuarioRepositorio.findAll();
         
         return usuarios;
     }
 
+<<<<<<< HEAD
      
+=======
+=======
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+>>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
     //Metodo para validar que el usuario ingrese todos los datos requeridos en el form
     private void validarUsuario(String nombre, String apellido, String documento, String email,
             String telefono, String direccion) throws MiException {
@@ -110,7 +136,14 @@ public class UsuarioServicio implements UserDetailsService {
 
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+>>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
         if (password.isEmpty()) {
             throw new MiException("La contraseña no debe estar vacía");
         }
