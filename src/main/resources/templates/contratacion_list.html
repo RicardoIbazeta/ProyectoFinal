@@ -38,17 +38,19 @@
       </table>
 
     </div>
+    <div id="exito/error">
+          <div th:if="${exito != null}" id="exito">
+            <h5>exito</h5>
+            <p th:text="${exito}"></p>
+          </div>
+          <div th:if="${error != null}" id="error">
+            <h5>error</h5>
+            <p th:text="${error}"></p>
+          </div>
+        </div>
 
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
 
-<<<<<<< HEAD
 </html>
-=======
-</html>
-<<<<<<< HEAD
->>>>>>> Rama-Front
-=======
->>>>>>> 263775b (commit numero 3 millones)
->>>>>>> 49c01c6 (commit numero 3 millones)
