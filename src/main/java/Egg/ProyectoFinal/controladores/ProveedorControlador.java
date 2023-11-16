@@ -1,11 +1,17 @@
 package Egg.ProyectoFinal.controladores;
 
+<<<<<<< HEAD
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.ArrayList;
+=======
+import Egg.ProyectoFinal.entidades.Rubro;
+import Egg.ProyectoFinal.excepciones.MiException;
+import Egg.ProyectoFinal.servicios.ProveedorServicio;
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +25,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/proveedor")
 public class ProveedorControlador {
+<<<<<<< HEAD
 
+=======
+    
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
     @Autowired
     private ProveedorServicio proveedorServicio;
 
@@ -27,6 +42,7 @@ public class ProveedorControlador {
     private RubroServicio rubroServicio;
 
     @GetMapping("/registrar")
+<<<<<<< HEAD
     public String registrar(ModelMap modelo) {
 
         // intento de recopilacion de rubros para proveedor_form -> opcion cambio de privacidad de atributo
@@ -34,16 +50,44 @@ public class ProveedorControlador {
 
         
 //        
+<<<<<<< HEAD
         List<Rubro> rubros = rubroServicio.listarRubros();
         modelo.addAttribute("rubros", rubros);
+=======
+//        List<Rubro> rubros = rubroServicio.listarRubros();
+//        modelo.addAttribute("rubros",rubros);
+=======
+    public String registrar() {
+
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
         return "proveedor_form.html";
     }
 
     @PostMapping("/registro")
+<<<<<<< HEAD
     public String registro(Double precioHora, String descripcionServicio, Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
+=======
+    public String registro(Double precioHora, String descripcionServicio, List<Rubro> rubros, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2,
+<<<<<<< HEAD
+            String telefono, String direccion, ModelMap modelo) {
+
+        try {
+            /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
+            Rubro gas = new Rubro();
+            gas.setId("1");
+            gas.setNombre("gasista");
+            rubros.add(gas);
+=======
+            String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
+
+        try {
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+            proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubros, nombre, apellido, documento, email, password, password2, telefono, direccion);
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
             
             proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubro, nombre, apellido, documento, email, password, password2, telefono, direccion);
 
@@ -69,7 +113,12 @@ public class ProveedorControlador {
         }
 
     }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+    
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
     /* Mapeo que lista todos los proveedores */
  /*@GetMapping("/lista")
     public String listarProveedores(ModelMap modelo){
@@ -77,4 +126,10 @@ public class ProveedorControlador {
         modelo.addAttribute("proveedores", proveedores);
         return "proveedor_list.html";
     }*/
+<<<<<<< HEAD
 }
+=======
+=======
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+}
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)

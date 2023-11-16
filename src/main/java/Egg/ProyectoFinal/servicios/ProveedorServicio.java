@@ -23,15 +23,31 @@ public class ProveedorServicio {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
+<<<<<<< HEAD
     public void crearProveedor(Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException {
 
+=======
+     public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
+            String telefono, String direccion) throws MiException{
+<<<<<<< HEAD
+         
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
 //         Rubro gas = new Rubro();
 //            gas.setId("1");
 //            gas.setNombre("gasista");
 //            rubros.add(gas);
+<<<<<<< HEAD
         validarProveedor(precioHora, descripcionServicio, rubro);
 
+=======
+=======
+        Proveedor proveedor = new Proveedor();
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+        
+        validarProveedor(precioHora, descripcionServicio, rubros);
+        
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
         Proveedor proveedor = new Proveedor();
 
         proveedor.setDescripcionServicio(descripcionServicio);
@@ -46,7 +62,12 @@ public class ProveedorServicio {
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
+<<<<<<< HEAD
 
+=======
+        
+        
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
         proveedor.setDocumento(documento);
@@ -54,13 +75,27 @@ public class ProveedorServicio {
         proveedor.setPassword(password);
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
+<<<<<<< HEAD
 
+=======
+        
+        
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
         proveedorRepositorio.save(proveedor);
     }
 
+<<<<<<< HEAD
     @Transactional
+<<<<<<< HEAD
     public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
 
+=======
+=======
+    
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+    public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
+        
+>>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
         Proveedor proveedor = new Proveedor();
