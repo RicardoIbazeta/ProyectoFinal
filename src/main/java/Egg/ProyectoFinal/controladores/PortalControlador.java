@@ -21,10 +21,5 @@ public class PortalControlador {
     public String login() {
         return "login.html";
     }
-    //no tener en cuenta, lo cree para poder acceder a la vista de iniciar sesion y poder darle formato..
-    @GetMapping("/login")
-    public String login(){
-        
-        return "login.html";
-    }
+
 }
