@@ -11,7 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+<<<<<<< HEAD
 @EnableWebSecurity 
+=======
+@EnableWebSecurity
+>>>>>>> ccd7cfa (Seguridad web, encriptacion de password, ROL Proveedor)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     
