@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
-  <body style="background-color: rgb(99, 46, 203)">
-    <header th:replace="/fragments/header :: header "></header>
-    <h1 style="text-align: center; color: blanchedalmond">
-      Chacras de Coria Contrataciones
-    </h1>
-    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <div id="contenido"></div>
+<head th:replace="/fragments/head :: head "></head>
+
+<body>
+  <header th:replace="/fragments/header :: header "></header>
+
+  <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+  <body>
+
+    <nav th:replace="/fragments/navbar :: nav"></nav>
+
+    <div class="container m-5">
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody th:each="proveedor : ${proovedores}">
+          <tr>
+            <th scope="row" th:text="${proovedor.id}"></th>
+            <td th:text="${proveedor.nombre}"></td>
+            <td th:text="${proovedor.apellido}"></td>
+            <td>
+              <a th:href="@{/contratacion/crear/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> Contratar </a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
 
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
+
 </html>
