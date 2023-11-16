@@ -9,6 +9,7 @@ import java.util.List;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 public class Proveedor extends Usuario {
     private Double calificacion;
     private Double precioHora;

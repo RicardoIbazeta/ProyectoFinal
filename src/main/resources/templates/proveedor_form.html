@@ -12,7 +12,7 @@
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
-          th:action="@{/usuario/registro}"
+          th:action="@{/proveedor/registro}"
           method="POST"
           enctype="multipart/form-data"
         >
@@ -126,7 +126,8 @@
               th:value="${direccion}"
             />
           </div>
-
+          
+           <!-- no lo vamos a usar al tipo de usuario
           <div class="form-group my-3">
             <label for="tipoUsuario" style="display: flex"
               >Tipo de Usuario</label
@@ -138,9 +139,9 @@
               placeholder="Indique si es Cliente (1) o Proveedor (0)"
               th:value="${tipoUsuario}"
             />
-          </div>
+          </div>-->
 
-          <!-- <div class="form-group my-3">
+          <div class="form-group my-3">
             <label for="calificacion" style="display: flex">Calificacion del Usuario</label><br />
             <input
               type="text"
@@ -150,9 +151,9 @@
               th:value="${calificacion = 0}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> -->
+          </div> 
 
-          <!-- <div class="form-group my-3">
+          <div class="form-group my-3">
             <label for="precioHora" style="display: flex"
               >Valor Hora Promedio</label
             >
@@ -164,9 +165,9 @@
               th:value="${precioHora}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> -->
+          </div> 
 
-          <!-- <div class="form-group my-3">
+          <div class="form-group my-3">
             <input
               type="text"
               class="form-control"
@@ -175,9 +176,9 @@
               th:value="${descripcionServicio}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> -->
+          </div> 
 
-          <!-- <div class="form-group my-3">
+          <div class="form-group my-3">
             <label for="descripcionServicio" style="display: flex"
               >Descripcion de Servicios</label
             >
@@ -189,7 +190,7 @@
               th:value="${descripcionServicio}"
               sec:authorize="hasRole('PROVEEDOR')"
             ></textarea>
-          </div> -->
+          </div> 
 
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
@@ -197,19 +198,23 @@
           <button type="reset" class="btn btn-primary mt-3 botones">
             Borrar
           </button>
+
+          <div id="exito/error">
+            <div th:if="${exito != null}" id="exito">
+              <h5>exito</h5>
+              <p th:text="${exito}"></p>
+            </div>
+
+            <div th:if="${error != null}" id="error">
+              <h5>error</h5>
+              <p th:text="${error}"></p>
+            </div>
+          </div>
+          <div th:replace="/fragments/div :: div "></div>
         </form>
       </div>
     </div>
-    <div id="exito/error">
-      <div th:if="${exito != null}" id="exito">
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div th:if="${error != null}" id="error">
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
+
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
