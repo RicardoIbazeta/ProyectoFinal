@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.entidades.Contratacion;
@@ -20,34 +19,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
-    
+
     private ContratacionServicio contratacionServicio;
-    
+
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
+
     @GetMapping("/registrar")
-    public String registrar(){
-        
+    public String registrar() {
+
         return "usuario_form.html";
     }
-    
+
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password,String password2,
-            String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo){
-        
+    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2,
+            String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
+
         try {
             usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion, tipoUsuario);
+            
             modelo.put("exito", "El usuario fue cargado correctamente");
+            return "index.html";
+            
         } catch (MiException ex) {
-            return "usuario_form";
+            
+            modelo.put("error", ex.getMessage());
+            
+            /*
+            Se Inyecta la informacion proporcionada por el usuario previo a un error 
+            y asi no tiene que volver ingresar todo nuevamente.
+            La contraseña y el tipoUsuario siempre deberan ser ingresados
+            */
+            modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
+            modelo.put("documento", documento);
+            modelo.put("email", email);
+            modelo.put("telefono", telefono);
+            modelo.put("direccion", direccion);
+            return "usuario_form.html";
         }
-        return "index.html";
     }
-    @GetMapping ("/lista")
-    public String historialContrataciones(ModelMap modelo){
-        
-        List <Contratacion> historial = contratacionServicio.listarContrataciones();
+
+    @GetMapping("/lista")
+    public String historialContrataciones(ModelMap modelo) {
+
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
         modelo.addAttribute("historial", historial);
         return "contratacion_list.html";
     }

@@ -2,6 +2,7 @@
 package Egg.ProyectoFinal.entidades;
 
 import Egg.ProyectoFinal.enumeraciones.Estado;
+import Egg.ProyectoFinal.enumeraciones.Rol;
 import javax.persistence.*;
 import java.util.Date;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,6 +24,8 @@ public class Usuario {
     protected String password2;
     @Enumerated(EnumType.STRING)
     protected Estado estado;
+    @Enumerated(EnumType.STRING)
+    protected Rol rol;
     protected String telefono;
     protected Boolean tipoUsuario;
     @OneToOne
@@ -30,16 +33,6 @@ public class Usuario {
     protected String direccion;
     protected String documento;
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    
-    
     public Usuario() {
     }
 
@@ -90,7 +83,7 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getPassword2() {
         return password2;
     }
@@ -99,12 +92,20 @@ public class Usuario {
         this.password2 = password2;
     }
 
-    public Estado isEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     public String getTelefono() {
@@ -129,7 +130,7 @@ public class Usuario {
 
     public void setImagen(Imagen imagen) {
         this.imagen = imagen;
-    } 
+    }
 
     public String getDireccion() {
         return direccion;
@@ -138,6 +139,13 @@ public class Usuario {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
     
 }
