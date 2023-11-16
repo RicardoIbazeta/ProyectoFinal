@@ -26,6 +26,7 @@
 </html>
 =======
 <html
+<<<<<<< HEAD
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     >
@@ -84,5 +85,28 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <footer th:replace="~{/fragments/footer :: footer}"></footer>
     </body>
+=======
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="~{/fragments/head :: head}"></head>
+  <body>
+    <header th:replace="~{/fragments/header :: header}"></header>
+    <nav th:replace="~{/fragments/nav :: nav}"></nav>
+
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer th:replace="~{/fragments/footer :: footer}"></footer>
+  </body>
+>>>>>>> a30d301 (actualizacion main)
 </html>
 >>>>>>> 7eda60c (Hice inicio y cambie imgs)
