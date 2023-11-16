@@ -41,9 +41,12 @@ public class PortalControlador {
         }
         return "login.html";
     }
+<<<<<<< HEAD
     
     
     
+=======
+>>>>>>> ade606e (pull main)
 
 
 //    @GetMapping("/login")
