@@ -21,11 +21,26 @@ public class PortalControlador {
 =======
     }
 
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login.html";
+//    }
+    
+    @GetMapping("/inicio")
+    public String inicio() {
+        return "inicio.html";
+    } 
+    
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false)String error, ModelMap modelo){
+        if(error !=null){
+            modelo.put("error","Usuario o Contraseña Invalidos");
+            
+        }
         return "login.html";
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     @GetMapping("/registrarseBotones")
@@ -33,6 +48,8 @@ public class PortalControlador {
         
         return "registrarse-botones.html";
 =======
+=======
+>>>>>>> 97961be (ultima version. no ingresa session)
     @GetMapping("/login")
     public String login(@RequestParam(required = false)String error, ModelMap modelo){
         if(error !=null){
@@ -57,6 +74,9 @@ public class PortalControlador {
     
 =======
 >>>>>>> ade606e (pull main)
+=======
+    
+>>>>>>> f2539ca (ultima version. no ingresa session)
 
 
 //    @GetMapping("/login")
