@@ -26,7 +26,20 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
 @Override
 protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/css/*","/js/*", "/img/*","/**").permitAll();
+    http.authorizeRequests().antMatchers("/css/*","/js/*", "/img/*","/**").permitAll()
+            .and().formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/logincheck")
+                .usernameParameter("emailUsuario")
+                .passwordParameter("passwordUsuario")
+                .defaultSuccessUrl("/usuarios")
+                .permitAll()
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and().csrf()
+                .disable();
 }
 
 }
