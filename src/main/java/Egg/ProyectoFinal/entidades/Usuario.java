@@ -27,7 +27,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     protected Rol rol;
     protected String telefono;
-    protected Boolean tipoUsuario;
     @OneToOne
     protected Imagen imagen;
     protected String direccion;
@@ -114,14 +113,6 @@ public class Usuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Boolean getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(Boolean tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
     }
 
     public Imagen getImagen() {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head "></head>
+
+<body>
+  <header th:replace="/fragments/header :: header "></header>
+
+  <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+  <body>
+
+    <nav th:replace="/fragments/navbar :: nav"></nav>
+
+    <div class="container m-5">
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody th:each="proveedor : ${proovedores}">
+          <tr>
+            <th scope="row" th:text="${proovedor.id}"></th>
+            <td th:text="${proveedor.nombre}"></td>
+            <td th:text="${proovedor.apellido}"></td>
+            <td>
+              <a th:href="@{/contratacion/crear/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> Contratar </a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+    <div id="exito/error">
+          <div th:if="${exito != null}" id="exito">
+            <h5>exito</h5>
+            <p th:text="${exito}"></p>
+          </div>
+          <div th:if="${error != null}" id="error">
+            <h5>error</h5>
+            <p th:text="${error}"></p>
+          </div>
+        </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+
+</html>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+</html>
+<<<<<<< HEAD
+>>>>>>> Rama-Front
+=======
+>>>>>>> 263775b (commit numero 3 millones)
+>>>>>>> 49c01c6 (commit numero 3 millones)
+>>>>>>> 1ed2212 (commit numero 3 millones)
+=======
+>>>>>>> a30d301 (actualizacion main)

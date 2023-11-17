@@ -18,13 +18,25 @@
     <div class="container-fluid m-5 contenedor">
       <form
         class="formulario"
-        th:action="@{/contratacion/contratar}"
+        th:action="@{/contratacion/contratado}"
         method="POST"
         enctype="multipart/form-data"
       >
         <div class="form-group my-3">
           <h3 class="card-title">Contrataciones!</h3>
         </div>
+
+        <div class="form-group my-3">
+          <select name="idProveedor">
+            <option>Elija un proveedor</option>
+            <option th:each="proveedor : ${proveedores}" th:value="${proveedor.id}" th:text="${proveedor.nombre}"></option>
+          </select>
+        </div>
+
+        <!-- verificar form. controlador solicita String idCliente, String idProveedor
+              podemos mostrar la lista y que elija el proveedor encapsulando en un select
+              para conseguir el idProveedor. para el idCliente podemos sacarlo de la info
+              de la sesion -->
 
         <div class="form-group my-3">
           <input
@@ -75,7 +87,7 @@
           />
         </div>
 
-        <div class="form-group my-3">
+        <!-- <div class="form-group my-3">
           <h3>Que desea contratar</h3>
           <select name="oficio" id="oficio">
             <option value="${oficio.eletricista}">Eletricista</option>
@@ -91,7 +103,7 @@
             name="direccion"
             placeholder="TAREA A REALIZAR"
             th:value="${cliente.tarea.mensaje}"></textarea>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-primary mt-3 botones">
           Pedir Presupuesto

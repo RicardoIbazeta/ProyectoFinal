@@ -6,6 +6,7 @@ import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
+import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +20,39 @@ public class ProveedorServicio {
     
     @Autowired
     private ProveedorRepositorio proveedorRepositorio;
+    @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    
     @Transactional
      public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException{
+<<<<<<< HEAD
         Proveedor proveedor = new Proveedor();
+=======
+         
+//         Rubro gas = new Rubro();
+//            gas.setId("1");
+//            gas.setNombre("gasista");
+//            rubros.add(gas);
+>>>>>>> Rama-Front
         
         validarProveedor(precioHora, descripcionServicio, rubros);
+        
+        Proveedor proveedor = new Proveedor();
+        
         proveedor.setDescripcionServicio(descripcionServicio);
         proveedor.setPrecioHora(precioHora);
         proveedor.setRubros(rubros);
+        proveedor.setCalificacion(1D);
+        proveedor.setNombre(nombre);
+        proveedor.setApellido(apellido);
+        proveedor.setDocumento(documento);
+        proveedor.setEmail(email);
+        proveedor.setPassword(password);
+        proveedor.setTelefono(telefono);
+        proveedor.setDireccion(direccion);
+        proveedor.setRol(Rol.PROVEEDOR);
+        
         
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
@@ -42,26 +66,38 @@ public class ProveedorServicio {
         proveedorRepositorio.save(proveedor);
     }
 
+<<<<<<< HEAD
     
+=======
+    @Transactional
+>>>>>>> Rama-Front
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
+        
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        
         Proveedor proveedor = new Proveedor();
-        
-        
-        
+       
         if (respuesta.isPresent()){
-            Usuario usuario=respuesta.get();
+            
+            /* Proveedor proveedor = (Proveedor) respuesta.get(); */ // verificar funcionamiento del casteo
+            Usuario usuario = respuesta.get();
+            
             proveedor.setDescripcionServicio(descripcionServicio);
             proveedor.setPrecioHora(precioHora);
             proveedor.setRubros(rubros);
             
-            
             proveedorRepositorio.save(proveedor);
-            
         }
     }
     
-    
+    public List<Proveedor> listarProveedores() {
+
+        List<Proveedor> proveedores = new ArrayList();
+
+        proveedores = proveedorRepositorio.findAll();
+
+        return proveedores;
+    }
     
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
     private void validarProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros) throws MiException {
@@ -76,6 +112,7 @@ public class ProveedorServicio {
         }
         
     }
+<<<<<<< HEAD
     
     public List<Proveedor> listarProveedores() {
 
@@ -89,4 +126,7 @@ public class ProveedorServicio {
     
     
     
+=======
+
+>>>>>>> Rama-Front
 }
