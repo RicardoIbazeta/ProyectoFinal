@@ -1,9 +1,16 @@
 <nav
+<<<<<<< HEAD
   class="navbar navbar-expand-lg bg-body-tertiary" 
 
 >
   <div class="container-fluid" style="background-color: #142E79; padding-top: 10px; padding-bottom: 10px; margin: auto; ">
     <a class="navbar-brand" th:href="@{/}" style="color: white">Inicio</a>
+=======
+  class="navbar navbar-expand-lg bg-body-tertiary"
+>
+  <div class="container-fluid" style="background-color: #142E79;">
+    <a class="navbar-brand" style="color: white" th:href="@{/}">Inicio</a>
+>>>>>>> 95831f8 (background color nav)
     <button
       class="navbar-toggler"
       type="button"
@@ -31,7 +38,7 @@
               aria-current="page"
               style="color: white"
               th:if="${session.usuariosession == null}"
-              href="/login"
+              href="/botones_login"
               >Ingresar</a
             >
           </li>
@@ -115,9 +122,15 @@
             >
               Servicios
             </a>
+<<<<<<< HEAD
             <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
               <li>
                 <a class="dropdown-item" style="color: white" th:href="@{listaServicios}"
+=======
+            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79;">
+              <li>
+                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
+>>>>>>> 95831f8 (background color nav)
                   >Lista de Servicios</a
                 >
               </li>
