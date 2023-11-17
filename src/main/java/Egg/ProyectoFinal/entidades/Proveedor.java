@@ -16,7 +16,7 @@ public class Proveedor extends Usuario {
     private String descripcionServicio;
     
     @OneToMany
-    private List<Rubro> rubros;
+    public List<Rubro> rubros;
     
     /*@OneToMany
     List<Contratacion> contrataciones; */

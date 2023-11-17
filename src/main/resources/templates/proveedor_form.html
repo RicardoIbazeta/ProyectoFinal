@@ -126,23 +126,11 @@
               th:value="${direccion}"
             />
           </div>
-          
-           <!-- no lo vamos a usar al tipo de usuario
-          <div class="form-group my-3">
-            <label for="tipoUsuario" style="display: flex"
-              >Tipo de Usuario</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="tipoUsuario"
-              placeholder="Indique si es Cliente (1) o Proveedor (0)"
-              th:value="${tipoUsuario}"
-            />
-          </div>-->
 
-          <div class="form-group my-3">
-            <label for="calificacion" style="display: flex">Calificacion del Usuario</label><br />
+          <!-- <div class="form-group my-3">
+            <label for="calificacion" style="display: flex"
+              >Calificacion del Usuario</label
+            ><br />
             <input
               type="text"
               class="form-control"
@@ -151,7 +139,8 @@
               th:value="${calificacion = 0}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> 
+          </div> la calificacion sera setteada en 1 desde constructor
+                  se modificara desde la contratacion -->
 
           <div class="form-group my-3">
             <label for="precioHora" style="display: flex"
@@ -163,9 +152,10 @@
               name="precioHora"
               placeholder="Indique un valor promedio de hora laboral"
               th:value="${precioHora}"
-              sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> 
+            <!-- eliminacion sec:authorize="hasRole('PROVEEDOR')"
+                  debido a que el controlador direcciona al form -->
+          </div>
 
           <div class="form-group my-3">
             <input
@@ -176,7 +166,7 @@
               th:value="${descripcionServicio}"
               sec:authorize="hasRole('PROVEEDOR')"
             />
-          </div> 
+          </div>
 
           <div class="form-group my-3">
             <label for="descripcionServicio" style="display: flex"
@@ -188,9 +178,36 @@
               name="descripcionServicio"
               placeholder="Describa brevemente en que consiste el servicio que puede brindar"
               th:value="${descripcionServicio}"
-              sec:authorize="hasRole('PROVEEDOR')"
             ></textarea>
-          </div> 
+            <!-- eliminacion sec:authorize="hasRole('PROVEEDOR')"
+                  debido a que el controlador direcciona al form -->
+          </div>
+
+          <div>
+            <select name="rubros" multiple>
+              <option>Elija un rubro</option>
+              <option
+                th:each="rubro : ${rubros}"
+                th:value="${rubro.id}"
+                th:text="${rubro.nombre}"
+              ></option>
+            </select>
+          </div>
+
+          <!--<div class="form-group my-3">
+            <input
+              type="text"
+              class="form-control"
+              name="descripcionServicio"
+              placeholder="DISTA DE RUBROS"
+              th:value="${rubros}"
+            />
+             eliminacion sec:authorize="hasRole('PROVEEDOR')"
+                  debido a que el controlador direcciona al form 
+                 creacion input para rubros -> tablas con boton agregar
+                                            -> select con opciones multiples
+                                            -> mandar opciones en rubros ? 
+          </div> -->
 
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme

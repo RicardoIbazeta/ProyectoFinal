@@ -30,7 +30,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Transactional
     public void crearUsuario(String nombre, String apellido, String documento, String email, String password, String password2,
-            String telefono, String direccion, Boolean tipoUsuario) throws MiException {
+            String telefono, String direccion) throws MiException {
 
         validarUsuario(nombre, apellido, documento, email, telefono, direccion);
         validarPassword(password, password2);
@@ -41,29 +41,15 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setApellido(apellido);
         usuario.setDocumento(documento);
         usuario.setEmail(email);        
-        //                                  De esta forma se encripta la contraseña antes de guardarse en la BD
+        // De esta forma se encripta la contraseña antes de guardarse en la BD
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
         // usuario.setPassword2(password2);
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
-        usuario.setTipoUsuario(tipoUsuario);
+        usuario.setRol(Rol.USER);
         usuario.setFechaAlta(new Date());   
         
-        if(usuario.getTipoUsuario() == true) {
-        usuario.setRol(Rol.USER);            
-        } else {
-            usuario.setRol(Rol.PROVEEDOR);
-        }
-
         usuarioRepositorio.save(usuario);
-
-    }
-
-    public List<Usuario> listarUsuarios() {
-
-        List<Usuario> usuarios = new ArrayList();
-        usuarios = usuarioRepositorio.findAll();
-        return usuarios;
     }
 
     @Transactional
@@ -73,18 +59,26 @@ public class UsuarioServicio implements UserDetailsService {
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
+            
             Usuario usuario = respuesta.get();
+            
             usuario.setApellido(apellido);
             usuario.setPassword(password);
             usuario.setDireccion(direccion);
             usuario.setEmail(email);
             usuario.setNombre(nombre);
             usuario.setTelefono(telefono);
-            usuario.setTipoUsuario(tipoUsuario);
 
             usuarioRepositorio.save(usuario);
-
         }
+    }
+    
+     public List<Usuario> listarUsuarios() {
+
+        List<Usuario> usuarios = new ArrayList();
+        usuarios = usuarioRepositorio.findAll();
+        
+        return usuarios;
     }
 
     //Metodo para validar que el usuario ingrese todos los datos requeridos en el form
@@ -113,6 +107,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
+        
         if (password.isEmpty()) {
             throw new MiException("La contraseña no debe estar vacía");
         }
