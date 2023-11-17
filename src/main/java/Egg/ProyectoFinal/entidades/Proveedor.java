@@ -15,8 +15,16 @@ public class Proveedor extends Usuario {
     private Double precioHora;
     private String descripcionServicio;
     
-    @OneToMany
-    public List<Rubro> rubros;
+    @OneToOne
+    public Rubro rubro;
+
+    public Rubro getRubro() {
+        return rubro;
+    }
+
+    public void setRubro(Rubro rubro) {
+        this.rubro = rubro;
+    }
     
     /*@OneToMany
     List<Contratacion> contrataciones; */
@@ -48,13 +56,7 @@ public class Proveedor extends Usuario {
         this.descripcionServicio = descripcionServicio;
     }
 
-    public List<Rubro> getRubros() {
-        return rubros;
-    }
-
-    public void setRubros(List<Rubro> rubros) {
-        this.rubros = rubros;
-    }
+   
     
      /*public List<Contratacion> getContrataciones() {
         return contrataciones;

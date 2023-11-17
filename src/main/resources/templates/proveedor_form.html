@@ -157,16 +157,7 @@
                   debido a que el controlador direcciona al form -->
           </div>
 
-          <div class="form-group my-3">
-            <input
-              type="text"
-              class="form-control"
-              name="descripcionServicio"
-              placeholder="DESCRIPCION DE SU SERVICIO"
-              th:value="${descripcionServicio}"
-              sec:authorize="hasRole('PROVEEDOR')"
-            />
-          </div>
+         
 
           <div class="form-group my-3">
             <label for="descripcionServicio" style="display: flex"
@@ -184,7 +175,7 @@
           </div>
 
           <div>
-            <select name="rubros" multiple>
+            <select name="rubro">
               <option>Elija un rubro</option>
               <option
                 th:each="rubro : ${rubros}"

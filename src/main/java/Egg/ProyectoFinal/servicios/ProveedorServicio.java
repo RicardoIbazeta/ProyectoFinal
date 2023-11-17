@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
@@ -17,28 +16,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProveedorServicio {
-    
+
     @Autowired
     private ProveedorRepositorio proveedorRepositorio;
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    
+
     @Transactional
-     public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
-            String telefono, String direccion) throws MiException{
-         
+    public void crearProveedor(Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
+            String telefono, String direccion) throws MiException {
+
 //         Rubro gas = new Rubro();
 //            gas.setId("1");
 //            gas.setNombre("gasista");
 //            rubros.add(gas);
-        
-        validarProveedor(precioHora, descripcionServicio, rubros);
-        
+        validarProveedor(precioHora, descripcionServicio, rubro);
+
         Proveedor proveedor = new Proveedor();
-        
+
         proveedor.setDescripcionServicio(descripcionServicio);
         proveedor.setPrecioHora(precioHora);
-        proveedor.setRubros(rubros);
+        proveedor.setRubro(rubro);
         proveedor.setCalificacion(1D);
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
@@ -48,8 +46,7 @@ public class ProveedorServicio {
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
-        
-        
+
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
         proveedor.setDocumento(documento);
@@ -57,31 +54,30 @@ public class ProveedorServicio {
         proveedor.setPassword(password);
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
-        
-        
+
         proveedorRepositorio.save(proveedor);
     }
 
     @Transactional
-    public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
-        
+    public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
+
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-        
+
         Proveedor proveedor = new Proveedor();
-       
-        if (respuesta.isPresent()){
-            
+
+        if (respuesta.isPresent()) {
+
             /* Proveedor proveedor = (Proveedor) respuesta.get(); */ // verificar funcionamiento del casteo
             Usuario usuario = respuesta.get();
-            
+
             proveedor.setDescripcionServicio(descripcionServicio);
             proveedor.setPrecioHora(precioHora);
-            proveedor.setRubros(rubros);
-            
+            proveedor.setRubro(rubro);
+
             proveedorRepositorio.save(proveedor);
         }
     }
-    
+
     public List<Proveedor> listarProveedores() {
 
         List<Proveedor> proveedores = new ArrayList();
@@ -90,19 +86,19 @@ public class ProveedorServicio {
 
         return proveedores;
     }
-    
+
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
-    private void validarProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros) throws MiException {
+    private void validarProveedor(Double precioHora, String descripcionServicio, Rubro rubro) throws MiException {
         if (precioHora == null || precioHora.isNaN()) {
             throw new MiException("Debe indicar el valor hora/labor");
         }
         if (descripcionServicio == null || descripcionServicio.isEmpty()) {
             throw new MiException("Debes indicar la descripción del servicio que deseas proveer");
         }
-        if (rubros == null || rubros.isEmpty()) {
+        if (rubro == null) {
             throw new MiException("Debes seleccionar un oficio de la lista ");
         }
-        
+
     }
-               
+
 }
