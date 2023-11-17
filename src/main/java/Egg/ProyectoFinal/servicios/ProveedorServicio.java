@@ -31,6 +31,9 @@ public class ProveedorServicio {
      public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
          
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
 //         Rubro gas = new Rubro();
@@ -38,12 +41,17 @@ public class ProveedorServicio {
 //            gas.setNombre("gasista");
 //            rubros.add(gas);
 <<<<<<< HEAD
+<<<<<<< HEAD
         validarProveedor(precioHora, descripcionServicio, rubro);
 
 =======
 =======
+>>>>>>> a8e86fc (merge con rama front)
+=======
         Proveedor proveedor = new Proveedor();
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
         
         validarProveedor(precioHora, descripcionServicio, rubros);
         
@@ -85,6 +93,7 @@ public class ProveedorServicio {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Transactional
 <<<<<<< HEAD
     public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
@@ -93,6 +102,9 @@ public class ProveedorServicio {
 =======
     
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+    @Transactional
+>>>>>>> 1aed3b3 (merge con rama front)
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
         
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
@@ -136,6 +148,7 @@ public class ProveedorServicio {
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
@@ -152,4 +165,7 @@ public class ProveedorServicio {
     
     
 >>>>>>> 263775b (commit numero 3 millones)
+=======
+               
+>>>>>>> 1aed3b3 (merge con rama front)
 }

@@ -42,20 +42,32 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setDocumento(documento);
         usuario.setEmail(email);        
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         // De esta forma se encripta la contraseña antes de guardarse en la BD
 
 =======
+=======
+>>>>>>> a8e86fc (merge con rama front)
 <<<<<<< HEAD
         // De esta forma se encripta la contraseña antes de guardarse en la BD
 =======
         //                                  De esta forma se encripta la contraseña antes de guardarse en la BD
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+<<<<<<< HEAD
 >>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+=======
+
+        // De esta forma se encripta la contraseña antes de guardarse en la BD
+
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
         // usuario.setPassword2(password2);
         usuario.setTelefono(telefono);
         usuario.setDireccion(direccion);
+<<<<<<< HEAD
 <<<<<<< HEAD
         usuario.setRol(Rol.USER);
         usuario.setFechaAlta(new Date());   
@@ -71,6 +83,11 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+        usuario.setRol(Rol.USER);
+        usuario.setFechaAlta(new Date());   
+        
+>>>>>>> 1aed3b3 (merge con rama front)
         usuarioRepositorio.save(usuario);
     }
 
@@ -98,6 +115,9 @@ public class UsuarioServicio implements UserDetailsService {
      public List<Usuario> listarUsuarios() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
         List<Usuario> usuarios = new ArrayList();
         usuarios = usuarioRepositorio.findAll();
         
@@ -105,11 +125,19 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
      
 =======
 =======
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
 >>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+=======
+>>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+     
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
     //Metodo para validar que el usuario ingrese todos los datos requeridos en el form
     private void validarUsuario(String nombre, String apellido, String documento, String email,
             String telefono, String direccion) throws MiException {
@@ -137,13 +165,22 @@ public class UsuarioServicio implements UserDetailsService {
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> a8e86fc (merge con rama front)
 <<<<<<< HEAD
         
 =======
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+<<<<<<< HEAD
 >>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+=======
+
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
         if (password.isEmpty()) {
             throw new MiException("La contraseña no debe estar vacía");
         }

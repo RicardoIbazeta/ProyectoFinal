@@ -1,17 +1,23 @@
 package Egg.ProyectoFinal.controladores;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.ArrayList;
+<<<<<<< HEAD
 =======
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +36,17 @@ public class ProveedorControlador {
 =======
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
     
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+<<<<<<< HEAD
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
     @Autowired
     private ProveedorServicio proveedorServicio;
 
@@ -43,6 +55,9 @@ public class ProveedorControlador {
 
     @GetMapping("/registrar")
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
     public String registrar(ModelMap modelo) {
 
         // intento de recopilacion de rubros para proveedor_form -> opcion cambio de privacidad de atributo
@@ -56,24 +71,36 @@ public class ProveedorControlador {
 =======
 //        List<Rubro> rubros = rubroServicio.listarRubros();
 //        modelo.addAttribute("rubros",rubros);
+<<<<<<< HEAD
 =======
     public String registrar() {
 
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+<<<<<<< HEAD
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
         return "proveedor_form.html";
     }
 
     @PostMapping("/registro")
+<<<<<<< HEAD
 <<<<<<< HEAD
     public String registro(Double precioHora, String descripcionServicio, Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
 =======
+=======
+>>>>>>> a8e86fc (merge con rama front)
     public String registro(Double precioHora, String descripcionServicio, List<Rubro> rubros, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2,
 <<<<<<< HEAD
             String telefono, String direccion, ModelMap modelo) {
+=======
+    public String registro(Double precioHora, String descripcionServicio, List<Rubro> rubros, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2,String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
+>>>>>>> 1aed3b3 (merge con rama front)
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
@@ -81,11 +108,14 @@ public class ProveedorControlador {
             gas.setId("1");
             gas.setNombre("gasista");
             rubros.add(gas);
+<<<<<<< HEAD
 =======
             String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
 
         try {
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
             proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubros, nombre, apellido, documento, email, password, password2, telefono, direccion);
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
             
@@ -114,9 +144,15 @@ public class ProveedorControlador {
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
     
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
     /* Mapeo que lista todos los proveedores */
@@ -127,9 +163,17 @@ public class ProveedorControlador {
         return "proveedor_list.html";
     }*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 =======
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
 }
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+>>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
+}
+>>>>>>> a8e86fc (merge con rama front)

@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioControlador {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
     @Autowired
     private UsuarioServicio usuarioServicio;
     @Autowired
@@ -31,12 +34,15 @@ public class UsuarioControlador {
     public String registrar() {
         return "cliente_form.html";
 <<<<<<< HEAD
+<<<<<<< HEAD
         
     }
 
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 =======
+=======
+>>>>>>> a8e86fc (merge con rama front)
 =======
     private ContratacionServicio contratacionServicio;
 
@@ -54,18 +60,31 @@ public class UsuarioControlador {
     public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2,
 <<<<<<< HEAD
             String telefono, String direccion, ModelMap modelo) {
+<<<<<<< HEAD
 >>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+=======
+        
+    }
+
+    @PostMapping("/registro")
+    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+>>>>>>> 1aed3b3 (merge con rama front)
+>>>>>>> a8e86fc (merge con rama front)
 
         try {
             /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
                 se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
             usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion);
+<<<<<<< HEAD
 =======
             String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
 
         try {
             usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion, tipoUsuario);
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+>>>>>>> 1aed3b3 (merge con rama front)
             
             modelo.put("exito", "El usuario fue cargado correctamente");
             return "index.html";
@@ -86,14 +105,22 @@ public class UsuarioControlador {
             modelo.put("telefono", telefono);
             modelo.put("direccion", direccion);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
 >>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+<<<<<<< HEAD
+>>>>>>> a8e86fc (merge con rama front)
             return "cliente_form.html";
 =======
             return "usuario_form.html";
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
+=======
+
+            return "cliente_form.html";
+>>>>>>> 1aed3b3 (merge con rama front)
         }
     }
 
