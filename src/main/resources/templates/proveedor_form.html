@@ -92,6 +92,10 @@
                   debido a que el controlador direcciona al form -->
         </div>
 
+<<<<<<< HEAD
+=======
+         
+>>>>>>> c207221 (relacion Proveedor y Rubro)
 
 
         <div class="form-group my-3">
@@ -103,12 +107,25 @@
                   debido a que el controlador direcciona al form -->
         </div>
 
+<<<<<<< HEAD
         <div>
           <select name="rubro">
             <option>Elija un rubro</option>
             <option th:each="rubro : ${rubros}" th:value="${rubro.id}" th:text="${rubro.nombre}"></option>
           </select>
         </div>
+=======
+          <div>
+            <select name="rubro">
+              <option>Elija un rubro</option>
+              <option
+                th:each="rubro : ${rubros}"
+                th:value="${rubro.id}"
+                th:text="${rubro.nombre}"
+              ></option>
+            </select>
+          </div>
+>>>>>>> c207221 (relacion Proveedor y Rubro)
 
         <!--<div class="form-group my-3">
             <input

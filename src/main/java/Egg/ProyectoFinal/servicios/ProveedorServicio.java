@@ -24,10 +24,13 @@ public class ProveedorServicio {
 
     @Transactional
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void crearProveedor(Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException {
 
 =======
+=======
+>>>>>>> c207221 (relacion Proveedor y Rubro)
      public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException{
 <<<<<<< HEAD
@@ -35,11 +38,20 @@ public class ProveedorServicio {
 =======
 >>>>>>> 1aed3b3 (merge con rama front)
          
+<<<<<<< HEAD
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+    public void crearProveedor(Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
+            String telefono, String direccion) throws MiException {
+
+>>>>>>> e859dbe (relacion Proveedor y Rubro)
+>>>>>>> c207221 (relacion Proveedor y Rubro)
 //         Rubro gas = new Rubro();
 //            gas.setId("1");
 //            gas.setNombre("gasista");
 //            rubros.add(gas);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         validarProveedor(precioHora, descripcionServicio, rubro);
@@ -48,6 +60,8 @@ public class ProveedorServicio {
 =======
 >>>>>>> a8e86fc (merge con rama front)
 =======
+>>>>>>> c207221 (relacion Proveedor y Rubro)
+=======
         Proveedor proveedor = new Proveedor();
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
 =======
@@ -55,7 +69,14 @@ public class ProveedorServicio {
         
         validarProveedor(precioHora, descripcionServicio, rubros);
         
+<<<<<<< HEAD
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+        validarProveedor(precioHora, descripcionServicio, rubro);
+
+>>>>>>> e859dbe (relacion Proveedor y Rubro)
+>>>>>>> c207221 (relacion Proveedor y Rubro)
         Proveedor proveedor = new Proveedor();
 
         proveedor.setDescripcionServicio(descripcionServicio);
@@ -71,11 +92,15 @@ public class ProveedorServicio {
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
         
         
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+
+>>>>>>> c207221 (relacion Proveedor y Rubro)
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
         proveedor.setDocumento(documento);
@@ -84,11 +109,15 @@ public class ProveedorServicio {
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
         
         
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+
+>>>>>>> c207221 (relacion Proveedor y Rubro)
         proveedorRepositorio.save(proveedor);
     }
 
@@ -96,9 +125,12 @@ public class ProveedorServicio {
 <<<<<<< HEAD
     @Transactional
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
 
 =======
+=======
+>>>>>>> c207221 (relacion Proveedor y Rubro)
 =======
     
 >>>>>>> 92b9a40 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
@@ -107,7 +139,14 @@ public class ProveedorServicio {
 >>>>>>> 1aed3b3 (merge con rama front)
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
         
+<<<<<<< HEAD
 >>>>>>> 6cc7270 (creacion de ProveedorControlador, modificacion de Inheretance en usuario, modificacion usuarioServicio)
+=======
+=======
+    public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
+
+>>>>>>> e859dbe (relacion Proveedor y Rubro)
+>>>>>>> c207221 (relacion Proveedor y Rubro)
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
         Proveedor proveedor = new Proveedor();
@@ -149,6 +188,7 @@ public class ProveedorServicio {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
@@ -168,4 +208,7 @@ public class ProveedorServicio {
 =======
                
 >>>>>>> 1aed3b3 (merge con rama front)
+=======
+
+>>>>>>> e859dbe (relacion Proveedor y Rubro)
 }
