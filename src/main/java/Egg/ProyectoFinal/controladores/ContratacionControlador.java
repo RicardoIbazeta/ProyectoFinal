@@ -7,10 +7,7 @@ import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
-<<<<<<< HEAD
-=======
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
->>>>>>> Rama-Front
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import java.util.Date;
 import java.util.List;
@@ -32,22 +29,6 @@ public class ContratacionControlador {
     private UsuarioRepositorio usuarioRepositorio;
     private ProveedorRepositorio proveedorRepositorio;
     private ContratacionRepositorio contratacionRepositorio;
-<<<<<<< HEAD
-    private ProveedorServicio proveedorServicio;
-    private ProveedorRepositorio proveedorRepositorio;
-    
-    @GetMapping("/lista")
-    public String listarProveedores(ModelMap modelo){
-        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
-        modelo.addAttribute("proveedores", proveedores);
-        
-        return "contratacion_list.html";
-    }
-
-    
-    
-    @PostMapping("/contratar")
-=======
     /* podemos acceder a los repositorios desde los servicios */
     @Autowired
     private ContratacionServicio contratacionServicio;
@@ -63,7 +44,6 @@ public class ContratacionControlador {
     }
     
     @PostMapping("/contratado")
->>>>>>> Rama-Front
     public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
 
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);

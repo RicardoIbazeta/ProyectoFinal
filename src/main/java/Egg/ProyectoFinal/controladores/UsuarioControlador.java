@@ -21,17 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
-<<<<<<< HEAD
-    private ContratacionServicio contratacionServicio;
-
-    @Autowired
-    private UsuarioServicio usuarioServicio;
-
-    @GetMapping("/registrar")
-    public String registrar() {
-
-        return "usuario_form.html";
-=======
     @Autowired
     private UsuarioServicio usuarioServicio;
     @Autowired
@@ -40,24 +29,16 @@ public class UsuarioControlador {
     @GetMapping("/registrar")
     public String registrar() {
         return "cliente_form.html";
->>>>>>> Rama-Front
+        
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2,
-<<<<<<< HEAD
-            String telefono, String direccion, Boolean tipoUsuario, ModelMap modelo) {
-
-        try {
-            usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion, tipoUsuario);
-=======
-            String telefono, String direccion, ModelMap modelo) {
+    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
         try {
             /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
                 se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
             usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion);
->>>>>>> Rama-Front
             
             modelo.put("exito", "El usuario fue cargado correctamente");
             return "index.html";
@@ -77,11 +58,8 @@ public class UsuarioControlador {
             modelo.put("email", email);
             modelo.put("telefono", telefono);
             modelo.put("direccion", direccion);
-<<<<<<< HEAD
-            return "usuario_form.html";
-=======
+
             return "cliente_form.html";
->>>>>>> Rama-Front
         }
     }
 

@@ -26,15 +26,11 @@ public class ProveedorServicio {
     @Transactional
      public void crearProveedor(Double precioHora, String descripcionServicio, List<Rubro> rubros, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException{
-<<<<<<< HEAD
-        Proveedor proveedor = new Proveedor();
-=======
          
 //         Rubro gas = new Rubro();
 //            gas.setId("1");
 //            gas.setNombre("gasista");
 //            rubros.add(gas);
->>>>>>> Rama-Front
         
         validarProveedor(precioHora, descripcionServicio, rubros);
         
@@ -66,11 +62,7 @@ public class ProveedorServicio {
         proveedorRepositorio.save(proveedor);
     }
 
-<<<<<<< HEAD
-    
-=======
     @Transactional
->>>>>>> Rama-Front
     public void modificarProveedor (String id, Double precioHora, String descripcionServicio, List<Rubro> rubros){
         
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
@@ -112,21 +104,5 @@ public class ProveedorServicio {
         }
         
     }
-<<<<<<< HEAD
-    
-    public List<Proveedor> listarProveedores() {
-
-        List<Proveedor> proveedores = new ArrayList();
-
-        proveedores = proveedorRepositorio.findAll();
-
-        return proveedores;
-    }
-            
-    
-    
-    
-=======
-
->>>>>>> Rama-Front
+               
 }
