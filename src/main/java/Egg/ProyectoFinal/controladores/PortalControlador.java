@@ -19,6 +19,12 @@ public class PortalControlador {
 
     }
 
+    @GetMapping("/registrarseBotones")
+    public String registrarseBotones(){
+        
+        return "registrarse-botones.html";
+    }
+    
     @GetMapping("/login")
     public String login(@RequestParam(required = false)String error, ModelMap modelo){
         if(error !=null){

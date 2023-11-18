@@ -40,7 +40,7 @@
               class="nav-link"
               style="color: white"
               th:if="${session.usuariosession == null}"
-              href="/usuario/registrar"
+              href="/registrarseBotones"
               >Registrar</a
             >
           </li>
@@ -52,7 +52,7 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession == null}"
+              th:if="${session.usuariosession != null}"
             >
               Usuario
             </a>
@@ -92,7 +92,7 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession == null}"
+              th:if="${session.usuariosession != null}"
             >
               Proveedores
             </a>
@@ -126,6 +126,7 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
+              style="color: white;"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -134,9 +135,9 @@
             >
               Contrataciones
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
               <li>
-                <a class="dropdown-item" th:href="@{listaServicios}"
+                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
                   >Lista de Contrataciones</a
                 >
               </li>
