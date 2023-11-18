@@ -26,11 +26,21 @@ public class PortalControlador {
         return "login.html";
 >>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
     }
+<<<<<<< HEAD
 
     @GetMapping("/registrarseBotones")
     public String registrarseBotones(){
         
         return "registrarse-botones.html";
+=======
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false)String error, ModelMap modelo){
+        if(error !=null){
+            modelo.put("error","Usuario o Contraseña Invalidos");
+            
+        }
+        return "login.html";
+>>>>>>> af2e986 (asdasd)
     }
     
     @GetMapping("/login")
