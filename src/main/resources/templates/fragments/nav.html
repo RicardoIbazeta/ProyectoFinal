@@ -1,36 +1,6 @@
-<nav
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  class="navbar navbar-expand-lg bg-body-tertiary" 
-
->
-  <div class="container-fluid" style="background-color: #142E79; padding-top: 10px; padding-bottom: 10px; margin: auto; ">
-    <a class="navbar-brand" th:href="@{/}" style="color: white">Inicio</a>
-=======
-=======
->>>>>>> 09d4be9 (color nav)
-  class="navbar navbar-expand-lg bg-body-tertiary"
->
-  <div class="container-fluid" style="background-color: #142E79;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid" style="background-color: #142e79">
     <a class="navbar-brand" style="color: white" th:href="@{/}">Inicio</a>
-<<<<<<< HEAD
->>>>>>> 95831f8 (background color nav)
-=======
-=======
-  class="navbar navbar-expand-lg bg-body-tertiary" 
-
->
-  <div class="container-fluid" style="background-color: #142E79; padding-top: 10px; padding-bottom: 10px; margin: auto; ">
-    <a class="navbar-brand" th:href="@{/}" style="color: white">Inicio</a>
->>>>>>> 2637830 (color nav)
->>>>>>> 09d4be9 (color nav)
-=======
-  class="navbar navbar-expand-lg bg-body-tertiary"
->
-  <div class="container-fluid" style="background-color: #142E79;">
-    <a class="navbar-brand" style="color: white" th:href="@{/}">Inicio</a>
->>>>>>> Rama-Front
     <button
       class="navbar-toggler"
       type="button"
@@ -67,7 +37,7 @@
               class="nav-link"
               style="color: white"
               th:if="${session.usuariosession == null}"
-              href="/registrarseBotones"
+              href="/usuario/registrar"
               >Registrar</a
             >
           </li>
@@ -83,15 +53,15 @@
             >
               Usuario
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
+            <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" style="color: white" th:href="@{usuario/Perfil}">Perfil</a>
+                <a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a>
               </li>
 
               <li><hr class="dropdown-divider" /></li>
 
               <li>
-                <a class="dropdown-item" style="color: white" th:href="@{usuario/editarPerfil}"
+                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
                   >Editar Perfil</a
                 >
               </li>
@@ -99,7 +69,7 @@
               <li><hr class="dropdown-divider" /></li>
               <!-- ¿este item solo tendria acceso el admin? -->
               <li>
-                <a class="dropdown-item" style="color: white" th:href="@{admin/listaUsuarios}"
+                <a class="dropdown-item" th:href="@{admin/listaUsuarios}"
                   >Lista de Usuarios</a
                 >
               </li>
@@ -108,13 +78,35 @@
                 <hr class="dropdown-divider" />
               </li>
 
-              <li><a class="dropdown-item" style="color: white" href="/logout">Cerrar Sesion</a></li>
+              <li>
+                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                  >Editar Perfil</a
+                >
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <!-- ¿este item solo tendria acceso el admin? -->
+              <li>
+                <a
+                  class="dropdown-item"
+                  th:href="@{admin/listaUsuarios}"
+                  sec:authorize="hasRole('ADMIN')"
+                  >Lista de Usuarios</a
+                >
+              </li>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
-              style="color: white"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -123,9 +115,9 @@
             >
               Proveedores
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
+            <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" style="color: white" th:href="@{listaProveedores}"
+                <a class="dropdown-item" th:href="@{listaProveedores}"
                   >Lista de Proveedores</a
                 >
               </li>
@@ -143,32 +135,15 @@
             >
               Servicios
             </a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
+            <ul
+              class="dropdown-menu dropdown-menu-lg-end"
+              style="background-color: #142e79"
+            >
               <li>
-                <a class="dropdown-item" style="color: white" th:href="@{listaServicios}"
-=======
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79;">
-              <li>
-                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
->>>>>>> 95831f8 (background color nav)
-=======
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79;">
-              <li>
-                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
-=======
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
-              <li>
-                <a class="dropdown-item" style="color: white" th:href="@{listaServicios}"
->>>>>>> 2637830 (color nav)
->>>>>>> 09d4be9 (color nav)
-=======
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79;">
-              <li>
-                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
->>>>>>> Rama-Front
+                <a
+                  class="dropdown-item"
+                  style="color: white"
+                  th:href="@{listaServicios}"
                   >Lista de Servicios</a
                 >
               </li>
@@ -177,7 +152,6 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
-              style="color: white;"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -186,9 +160,9 @@
             >
               Contrataciones
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
+            <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" style="color: white;" th:href="@{listaServicios}"
+                <a class="dropdown-item" th:href="@{listaServicios}"
                   >Lista de Contrataciones</a
                 >
               </li>

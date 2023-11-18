@@ -36,21 +36,6 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario,String>{
             
     /*@Query ("SELECT u FROM usuario u WHERE u.tipoUsuario = :true")
     public UsuarioRepositorio buscarPorProveedor (@Param ("tipoUsuario") Boolean tipoUsuario);*/
-<<<<<<< HEAD
-<<<<<<< HEAD
-     
-=======
-    
-    // Metodo para buscar usuario por email
-    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
-    public Usuario buscarPorEmail(@Param("email")String email);
-        
-    }
-    
->>>>>>> 3cfab1a (Seguridad web, encriptacion de password, ROL Proveedor)
-=======
-     
->>>>>>> a8e86fc (merge con rama front)
         
     }
     

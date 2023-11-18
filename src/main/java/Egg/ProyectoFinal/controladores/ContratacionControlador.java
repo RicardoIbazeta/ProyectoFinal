@@ -7,14 +7,7 @@ import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
-=======
->>>>>>> 56fd5a9 (a)
-=======
-import Egg.ProyectoFinal.servicios.ContratacionServicio;
->>>>>>> 1aed3b3 (merge con rama front)
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import java.util.Date;
 import java.util.List;
@@ -36,10 +29,6 @@ public class ContratacionControlador {
     private UsuarioRepositorio usuarioRepositorio;
     private ProveedorRepositorio proveedorRepositorio;
     private ContratacionRepositorio contratacionRepositorio;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1aed3b3 (merge con rama front)
     /* podemos acceder a los repositorios desde los servicios */
     @Autowired
     private ContratacionServicio contratacionServicio;
@@ -55,25 +44,6 @@ public class ContratacionControlador {
     }
     
     @PostMapping("/contratado")
-<<<<<<< HEAD
-=======
-    private ProveedorServicio proveedorServicio;
-    private ProveedorRepositorio proveedorRepositorio;
-    
-    @GetMapping("/lista")
-    public String listarProveedores(ModelMap modelo){
-        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
-        modelo.addAttribute("proveedores", proveedores);
-        
-        return "contratacion_list.html";
-    }
-
-    
-    
-    @PostMapping("/contratar")
->>>>>>> 56fd5a9 (a)
-=======
->>>>>>> 1aed3b3 (merge con rama front)
     public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
 
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);

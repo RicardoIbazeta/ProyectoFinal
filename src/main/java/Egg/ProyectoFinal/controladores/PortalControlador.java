@@ -16,12 +16,6 @@ public class PortalControlador {
     public String index() {
 
         return "index.html";
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    }
-=======
     }
 
     @GetMapping("/registrarseBotones")
@@ -38,85 +32,10 @@ public class PortalControlador {
         }
         return "login.html";
     }
-    
-    
-    
-
->>>>>>> 6273dfc (Login)
-
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login.html";
-//    }
-    
-    @GetMapping("/inicio")
-    public String inicio() {
-        return "inicio.html";
-    } 
-<<<<<<< HEAD
-    
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false)String error, ModelMap modelo){
-        if(error !=null){
-            modelo.put("error","Usuario o Contraseña Invalidos");
-            
-        }
-        return "login.html";
->>>>>>> 8e98b87 (Seguridad web, encriptacion de password, ROL Proveedor)
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    @GetMapping("/registrarseBotones")
-    public String registrarseBotones(){
         
-        return "registrarse-botones.html";
-=======
-=======
->>>>>>> 97961be (ultima version. no ingresa session)
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false)String error, ModelMap modelo){
-        if(error !=null){
-            modelo.put("error","Usuario o Contraseña Invalidos");
-            
-        }
-        return "login.html";
->>>>>>> af2e986 (asdasd)
-    }
-    
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false)String error, ModelMap modelo){
-        if(error !=null){
-            modelo.put("error","Usuario o Contraseña Invalidos");
-            
-        }
-        return "login.html";
-    }
-<<<<<<< HEAD
-    
-    
-    
-=======
->>>>>>> ade606e (pull main)
-=======
-    
->>>>>>> f2539ca (ultima version. no ingresa session)
-=======
-
-
->>>>>>> 6273dfc (Login)
-
-
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login.html";
-//    }
-    
     @GetMapping("/inicio")
     public String inicio() {
         return "inicio.html";
     } 
-
-
-
+    
 }

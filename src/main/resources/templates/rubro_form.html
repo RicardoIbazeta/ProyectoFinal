@@ -1,59 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head th:replace="/fragments/head :: head "></head>
-
-<body>
-  <header th:replace="/fragments/header :: header "></header>
-  <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-  <div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3">
-      <form class="formulario" th:action="@{/rubro/registro}" method="POST" enctype="multipart/form-data">
-        <div class="form-group my-3">
-          <h3 class="card-title">Creacion Nuevo Rubro</h3>
-        </div>
-        <br />
-
-        <div class="form-group my-3">
-          <label for="nombre" style="display: flex">Nombre del Rubro</label>
-          <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del rubro"
-            th:value="${nombre}" />
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-3 botones">
-          Crear
-        </button>
-        <button type="reset" class="btn btn-primary mt-3 botones">
-          Borrar
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <div id="exito/error">
-    <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-      <h5>exito</h5>
-      <p th:text="${exito}"></p>
-    </div>
-    <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-      <h5>error</h5>
-      <p th:text="${error}"></p>
-    </div>
-  </div>
-
-  <script th:replace="/fragments/script :: script "></script>
-  <footer th:replace="/fragments/footer :: footer"></footer>
-</body>
-
-</html>
-=======
-=======
->>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
-=======
->>>>>>> Rama-Front
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
@@ -63,117 +8,49 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
     <div class="container my-5">
-        <div class="p-5 text-center bg-body-tertiary rounded-3">
-          <form
-            class="formulario"
-<<<<<<< HEAD
-<<<<<<< HEAD
-            th:action="@{/}"
-=======
-            th:action="@{/rubro/registro}"
->>>>>>> e859dbe (relacion Proveedor y Rubro)
-=======
-            th:action="@{/}"
->>>>>>> Rama-Front
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="form-group my-3">
-              <h3 class="card-title">Creacion Nuevo Rubro</h3>
-            </div>
-            <br />
-  
-            <div class="form-group my-3">
-              <label for="nombre" style="display: flex">Nombre del Rubro</label>
-              <input
-                type="text"
-                class="form-control"
-                name="nombre"
-                placeholder="Ingrese el nombre del rubro"
-                th:value="${nombre}"
-              />
-            </div>
-  
-            <button type="submit" class="btn btn-primary mt-3 botones">
-              Crear
-            </button>
-            <button type="reset" class="btn btn-primary mt-3 botones">
-              Borrar
-            </button>
-          </form>
-<<<<<<< HEAD
-=======
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/rubro/registro}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group my-3">
+            <h3 class="card-title">Creacion Nuevo Rubro</h3>
+          </div>
+          <br />
 
-<head th:replace="/fragments/head :: head "></head>
+          <div class="form-group my-3">
+            <label for="nombre" style="display: flex">Nombre del Rubro</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              placeholder="Ingrese el nombre del rubro"
+              th:value="${nombre}"
+            />
+          </div>
 
-<body>
-  <header th:replace="/fragments/header :: header "></header>
-  <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-  <div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3">
-      <form class="formulario" th:action="@{/rubro/registro}" method="POST" enctype="multipart/form-data">
-        <div class="form-group my-3">
-          <h3 class="card-title">Creacion Nuevo Rubro</h3>
->>>>>>> ac87a70 (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
-        </div>
-        <br />
-
-        <div class="form-group my-3">
-          <label for="nombre" style="display: flex">Nombre del Rubro</label>
-          <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre del rubro"
-            th:value="${nombre}" />
-        </div>
-<<<<<<< HEAD
-=======
-        </div>
+          <button type="submit" class="btn btn-primary mt-3 botones">
+            Crear
+          </button>
+          <button type="reset" class="btn btn-primary mt-3 botones">
+            Borrar
+          </button>
+        </form>
       </div>
-      <div id="exito/error">
-        <div th:if="${exito != null}" id="exito">
-          <h5>exito</h5>
-          <p th:text="${exito}"></p>
-        </div>
->>>>>>> Rama-Front
-        <div th:if="${error != null}" id="error">
-          <h5>error</h5>
-          <p th:text="${error}"></p>
-        </div>
+    </div>
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
       </div>
-      <script th:replace="/fragments/script :: script "></script>
-      <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
-<<<<<<< HEAD
-  </html>
->>>>>>> 9f29a0b (creacion del rubro_form)
-=======
-
-        <button type="submit" class="btn btn-primary mt-3 botones">
-          Crear
-        </button>
-        <button type="reset" class="btn btn-primary mt-3 botones">
-          Borrar
-        </button>
-      </form>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
     </div>
-  </div>
-
-  <div id="exito/error">
-    <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-      <h5>exito</h5>
-      <p th:text="${exito}"></p>
-    </div>
-    <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-      <h5>error</h5>
-      <p th:text="${error}"></p>
-    </div>
-  </div>
-
-  <script th:replace="/fragments/script :: script "></script>
-  <footer th:replace="/fragments/footer :: footer"></footer>
-</body>
-
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
 </html>
->>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
-=======
-  </html>
->>>>>>> Rama-Front
