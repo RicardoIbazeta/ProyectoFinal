@@ -11,10 +11,46 @@
     </h1>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
+<<<<<<< HEAD
     <div id="contenido"></div>
     
     <div id="exito/error" >
       <div th:if="${exito != null}" id="exito"  class="card text-white bg-success mb-3 mt-3 mensajeExito">
+=======
+    <div id="contenido">
+      <table>
+        <thead>
+          <tr>
+            <th>Clientes</th>
+            <th>Proveedores</th>
+            <th>Contrataciones</th>
+            <th>Rubros</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <button th:ref="@{/usuario/lista}">Listar Clientes</button>
+            </td>
+            <td>
+              <button th:ref="@{/proveedor/lista}">Listar Proveedores</button>
+            </td>
+            <td>
+              <button th:ref="@{/contratacion/lista}">
+                Listar Contrataciones
+              </button>
+            </td>
+            <td>
+              <button th:ref="@{/rubro/lista}">Listar Rubros</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+>>>>>>> dfe595c (panel form)
         <h5>exito</h5>
         <p th:text="${exito}"></p>
       </div>
