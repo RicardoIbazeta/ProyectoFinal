@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/fragments/head :: head "></head>
@@ -51,6 +52,8 @@
 =======
 =======
 >>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
+=======
+>>>>>>> Rama-Front
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
@@ -64,10 +67,14 @@
           <form
             class="formulario"
 <<<<<<< HEAD
+<<<<<<< HEAD
             th:action="@{/}"
 =======
             th:action="@{/rubro/registro}"
 >>>>>>> e859dbe (relacion Proveedor y Rubro)
+=======
+            th:action="@{/}"
+>>>>>>> Rama-Front
             method="POST"
             enctype="multipart/form-data"
           >
@@ -94,6 +101,7 @@
               Borrar
             </button>
           </form>
+<<<<<<< HEAD
 =======
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
@@ -117,6 +125,15 @@
             th:value="${nombre}" />
         </div>
 <<<<<<< HEAD
+=======
+        </div>
+      </div>
+      <div id="exito/error">
+        <div th:if="${exito != null}" id="exito">
+          <h5>exito</h5>
+          <p th:text="${exito}"></p>
+        </div>
+>>>>>>> Rama-Front
         <div th:if="${error != null}" id="error">
           <h5>error</h5>
           <p th:text="${error}"></p>
@@ -125,6 +142,7 @@
       <script th:replace="/fragments/script :: script "></script>
       <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
+<<<<<<< HEAD
   </html>
 >>>>>>> 9f29a0b (creacion del rubro_form)
 =======
@@ -156,3 +174,6 @@
 
 </html>
 >>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
+=======
+  </html>
+>>>>>>> Rama-Front
