@@ -1,6 +1,7 @@
 package Egg.ProyectoFinal.controladores;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,15 @@ public class PortalControlador {
         return "index.html";
 
     }
-
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false)String error, ModelMap modelo){
+        if(error !=null){
+            modelo.put("error","Usuario o Contraseña Invalidos");
+            
+        }
+        return "login.html";
+    }
+    
     @GetMapping("/login")
     public String login() {
         return "login.html";
