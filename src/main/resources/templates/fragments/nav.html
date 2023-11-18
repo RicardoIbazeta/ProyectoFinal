@@ -1,9 +1,9 @@
 <nav
-  class="navbar navbar-expand-lg bg-body-tertiary"
-  style="background-color: dodgerblue"
+  class="navbar navbar-expand-lg bg-body-tertiary" 
+
 >
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Inicio</a>
+  <div class="container-fluid" style="background-color: #142E79; padding-top: 10px; padding-bottom: 10px; margin: auto; ">
+    <a class="navbar-brand" th:href="@{/}" style="color: white">Inicio</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -29,6 +29,7 @@
             <a
               class="nav-link"
               aria-current="page"
+              style="color: white"
               th:if="${session.usuariosession == null}"
               href="/login"
               >Ingresar</a
@@ -37,6 +38,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
+              style="color: white"
               th:if="${session.usuariosession == null}"
               href="/usuario/registrar"
               >Registrar</a
@@ -45,23 +47,24 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
+              style="color: white"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession != null}"
+              th:if="${session.usuariosession == null}"
             >
               Usuario
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
               <li>
-                <a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a>
+                <a class="dropdown-item" style="color: white" th:href="@{usuario/Perfil}">Perfil</a>
               </li>
 
               <li><hr class="dropdown-divider" /></li>
 
               <li>
-                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                <a class="dropdown-item" style="color: white" th:href="@{usuario/editarPerfil}"
                   >Editar Perfil</a
                 >
               </li>
@@ -69,7 +72,7 @@
               <li><hr class="dropdown-divider" /></li>
               <!-- ¿este item solo tendria acceso el admin? -->
               <li>
-                <a class="dropdown-item" th:href="@{admin/listaUsuarios}"
+                <a class="dropdown-item" style="color: white" th:href="@{admin/listaUsuarios}"
                   >Lista de Usuarios</a
                 >
               </li>
@@ -78,46 +81,24 @@
                 <hr class="dropdown-divider" />
               </li>
 
-              <li>
-                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
-                  >Editar Perfil</a
-                >
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <!-- ¿este item solo tendria acceso el admin? -->
-              <li>
-                <a
-                  class="dropdown-item"
-                  th:href="@{admin/listaUsuarios}"
-                  sec:authorize="hasRole('ADMIN')"
-                  >Lista de Usuarios</a
-                >
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
+              <li><a class="dropdown-item" style="color: white" href="/logout">Cerrar Sesion</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
+              style="color: white"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession != null}"
+              th:if="${session.usuariosession == null}"
             >
               Proveedores
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
               <li>
-                <a class="dropdown-item" th:href="@{listaProveedores}"
+                <a class="dropdown-item" style="color: white" th:href="@{listaProveedores}"
                   >Lista de Proveedores</a
                 >
               </li>
@@ -126,6 +107,7 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
+              style="color: white"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -133,9 +115,9 @@
             >
               Servicios
             </a>
-            <ul class="dropdown-menu dropdown-menu-lg-end">
+            <ul class="dropdown-menu dropdown-menu-lg-end" style="background-color: #142E79">
               <li>
-                <a class="dropdown-item" th:href="@{listaServicios}"
+                <a class="dropdown-item" style="color: white" th:href="@{listaServicios}"
                   >Lista de Servicios</a
                 >
               </li>
