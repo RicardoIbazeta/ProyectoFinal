@@ -72,7 +72,7 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession == null}"
+              th:if="${session.usuariosession != null}"
             >
               Usuario
             </a>
@@ -112,7 +112,7 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              th:if="${session.usuariosession == null}"
+              th:if="${session.usuariosession != null}"
             >
               Proveedores
             </a>

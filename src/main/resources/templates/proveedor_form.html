@@ -93,9 +93,12 @@
         </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
          
 >>>>>>> c207221 (relacion Proveedor y Rubro)
+=======
+>>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
 
 
         <div class="form-group my-3">
@@ -108,12 +111,16 @@
         </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
         <div>
           <select name="rubro">
             <option>Elija un rubro</option>
             <option th:each="rubro : ${rubros}" th:value="${rubro.id}" th:text="${rubro.nombre}"></option>
           </select>
         </div>
+<<<<<<< HEAD
 =======
           <div>
             <select name="rubro">
@@ -126,6 +133,8 @@
             </select>
           </div>
 >>>>>>> c207221 (relacion Proveedor y Rubro)
+=======
+>>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
 
         <!--<div class="form-group my-3">
             <input
@@ -142,6 +151,7 @@
                                             -> mandar opciones en rubros ? 
           </div> -->
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         <button type="submit" class="btn btn-primary mt-3 botones">
           Registrarme
@@ -172,6 +182,8 @@
 
 </html>
 =======
+=======
+>>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
           <button type="submit" class="btn btn-primary mt-3 botones">
             Registrarme
           </button>
@@ -195,4 +207,37 @@
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
 </html>
+<<<<<<< HEAD
 >>>>>>> 6aec816 (actualizacion main)
+=======
+=======
+        <button type="submit" class="btn btn-primary mt-3 botones">
+          Registrarme
+        </button>
+        <button type="reset" class="btn btn-primary mt-3 botones">
+          Borrar
+        </button>
+
+        <div id="exito/error">
+          <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+            <h5>exito</h5>
+            <p th:text="${exito}"></p>
+          </div>
+          <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
+            <h5>error</h5>
+            <p th:text="${error}"></p>
+          </div>
+        </div>
+
+        <div th:replace="/fragments/div :: div "></div>
+      </form>
+    </div>
+  </div>
+
+  <script th:replace="/fragments/script :: script "></script>
+  <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>
+>>>>>>> ac87a70 (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
+>>>>>>> 6cd931d (BOTONES_REGISTRO ya funciona correctamente, agregando una ruta en portalcontrolador; tambien agregue el boton VOLVER a algunas vistas)
