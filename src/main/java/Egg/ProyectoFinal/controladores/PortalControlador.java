@@ -18,8 +18,22 @@ public class PortalControlador {
         return "index.html";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     }
+=======
+    }
+
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false)String error, ModelMap modelo){
+        if(error !=null){
+            modelo.put("error","Usuario o Contraseña Invalidos");
+            
+        }
+        return "login.html";
+    }
+
+>>>>>>> 6273dfc (Login)
 
 //    @GetMapping("/login")
 //    public String login() {
@@ -30,6 +44,7 @@ public class PortalControlador {
     public String inicio() {
         return "inicio.html";
     } 
+<<<<<<< HEAD
     
     @GetMapping("/login")
     public String login(@RequestParam(required = false)String error, ModelMap modelo){
@@ -77,6 +92,10 @@ public class PortalControlador {
 =======
     
 >>>>>>> f2539ca (ultima version. no ingresa session)
+=======
+
+
+>>>>>>> 6273dfc (Login)
 
 
 //    @GetMapping("/login")
