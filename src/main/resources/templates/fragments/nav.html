@@ -162,8 +162,10 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" th:href="@{listaServicios}"
-                  >Lista de Contrataciones</a
+                <a class="dropdown-item" 
+                th:href="@{/contratacion/lista}"
+                sec:authorize="hasRole('ADMIN')"
+                >Lista de Contrataciones</a
                 >
               </li>
             </ul>
