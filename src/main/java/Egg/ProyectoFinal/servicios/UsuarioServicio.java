@@ -2,6 +2,7 @@ package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
+import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
@@ -27,9 +28,15 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-
+    
+    //Llamo a imagen servicio para vincular la imagen con el usuario
+    @Autowired
+    private ImagenServicio imagenServicio;
+    
+    
+    //Agrego el Atributo MultiPartFile
     @Transactional
-    public void crearUsuario(String nombre, String apellido, String documento, String email, String password, String password2,
+    public void crearUsuario(MultipartFile archivo,String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException {
 
         validarUsuario(nombre, apellido, documento, email, telefono, direccion);
@@ -38,21 +45,36 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         usuario.setNombre(nombre);
+        
         usuario.setApellido(apellido);
+        
         usuario.setDocumento(documento);
-        usuario.setEmail(email);        
+        
+        usuario.setEmail(email); 
+        
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
+        
         // usuario.setPassword2(password2);
+       
         usuario.setTelefono(telefono);
+       
         usuario.setDireccion(direccion);
+       
         usuario.setRol(Rol.USER);
+       
         usuario.setFechaAlta(new Date());   
+        
+        //Paso la imagen y la seteo
+        Imagen imagen = imagenServicio.guardar(archivo);
+        
+        usuario.setImagen(imagen);
         
         usuarioRepositorio.save(usuario);
     }
 
+    //Agrego atributo MultiPartFile para la imagen
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String email, String password, String telefono,
+    public void modificarUsuario(MultipartFile archivo,String id, String nombre, String apellido, String email, String password, String telefono,
             String direccion, Boolean tipoUsuario) {
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
@@ -67,7 +89,17 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setEmail(email);
             usuario.setNombre(nombre);
             usuario.setTelefono(telefono);
-
+            //Verifica que la imagen no sea nula,busca por idImagen y la actualiza
+            String idImagen = null;
+            if(usuario.getImagen()!=null){
+                idImagen = usuario.getImagen().getId();
+                
+            }
+            
+            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+            
+            usuario.setImagen(imagen);
+            
             usuarioRepositorio.save(usuario);
         }
     }
