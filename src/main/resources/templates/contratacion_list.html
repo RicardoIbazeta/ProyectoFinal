@@ -32,34 +32,6 @@
 
   </div>
 
-<<<<<<< HEAD
-=======
-<div class="container m-5">
-
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Fecha Alta</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Proveedor</th>
-          </tr>
-        </thead>
-        <tbody th:each="contratacion : ${contrataciones}">
-          <tr>
-            <th scope="row" th:text="${contratacion.id}"></th>
-            <td th:text="${proveedor.nombre}"></td>
-            <td th:text="${proovedor.apellido}"></td>
-            <td>
-              <a th:href="@{/contratacion/crear/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> Contratar </a>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
->>>>>>> 4f8000d (actualizando Rama-Front)
-
   <section class="text-center container">
     <div class="row mt-3">
       <div class="divVolver">
@@ -85,31 +57,3 @@
 </body>
 
 </html>
-
-
-<!--
-  <div class="container m-5">
-
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody th:each="proveedor : ${proveedores}">
-        <tr>
-          <th scope="row" th:text="${proveedor.id}"></th>
-          <td th:text="${proveedor.nombre}"></td>
-          <td th:text="${proveedor.apellido}"></td>
-          <td>
-            <a th:href="@{/contratacion/crear/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> Contratar </a>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-
-  </div>-->
