@@ -6,11 +6,8 @@
   <head th:replace="/fragments/head :: head "></head>
 
 
-  <body style="background-color: rgb(99, 46, 203)">
+  <body>
     <header th:replace="/fragments/header :: header "></header>
-    <h1 style="text-align: center; color: blanchedalmond">
-      Chacras de Coria Contrataciones
-    </h1>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
     <div id="contenido/Contrataciones"></div>
@@ -22,14 +19,12 @@
         method="POST"
         enctype="multipart/form-data"
       >
-        <div class="form-group my-3">
-          <h3 class="card-title">Contrataciones!</h3>
-        </div>
+      <div></div>
 
         <div class="form-group my-3">
-          <select name="idProveedor">
-            <option>Elija un proveedor</option>
-            <option th:each="proveedor : ${proveedores}" th:value="${proveedor.id}" th:text="${proveedor.nombre}"></option>
+          <select>
+            <option>Elija un rubro</option>
+            <option th:each="rubro : ${rubros}" th:value="${rubro.id}" th:text="${rubro.nombre}"></option>
           </select>
         </div>
           
@@ -68,73 +63,6 @@
               podemos mostrar la lista y que elija el proveedor encapsulando en un select
               para conseguir el idProveedor. para el idCliente podemos sacarlo de la info
               de la sesion -->
-
-        <div class="form-group my-3">
-          <input
-            type="text"
-            class="form-control"
-            name="nombre"
-            placeholder="NOMBRE"
-            th:value="${nombre}"
-          />
-        </div>
-
-        <div class="form-group my-3">
-          <input
-            type="text"
-            class="form-control"
-            name="apellido"
-            placeholder="APELLIDO"
-            th:value="${apellido}"
-          />
-        </div>
-
-        <div class="form-group my-3">
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            placeholder="EMAIL"
-            th:value="${email}"
-          />
-        </div>
-        <div class="form-group my-3">
-          <input
-            type="text"
-            class="form-control"
-            name="telefono"
-            placeholder="TELEFONO"
-            th:value="${telefono}"
-          />
-        </div>
-
-        <div class="form-group my-3">
-          <input
-            type="text"
-            class="form-control"
-            name="direccion"
-            placeholder="DIRECCION"
-            th:value="${direccion}"
-          />
-        </div>
-
-        <!-- <div class="form-group my-3">
-          <h3>Que desea contratar</h3>
-          <select name="oficio" id="oficio">
-            <option value="${oficio.eletricista}">Eletricista</option>
-            <option value="${oficio,gasista}">Gasista</option>
-            <option value="${oficio.plomero}">Plomero</option>
-          </select>
-        </div>
-
-        <div class="form-group my-3">
-        <textarea
-            type="text"
-            class="form-control"
-            name="direccion"
-            placeholder="TAREA A REALIZAR"
-            th:value="${cliente.tarea.mensaje}"></textarea>
-        </div> -->
 
         <button type="submit" class="btn btn-primary mt-3 botones">
           Pedir Presupuesto

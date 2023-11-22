@@ -5,10 +5,12 @@ import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
+import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +36,10 @@ public class ContratacionControlador {
     private ContratacionServicio contratacionServicio;
     @Autowired
     private ProveedorServicio proveedorServicio;
+    @Autowired
+    private RubroServicio rubroServicio;
     
+<<<<<<< HEAD
     
     
     
@@ -43,6 +48,13 @@ public class ContratacionControlador {
         modelo.put("contratacion", contratacionServicio.getOne(id));
 
 
+=======
+    @GetMapping("/contratar")
+    public String registrar(ModelMap modelo) {
+        
+        List<Rubro> rubros = rubroServicio.listarRubros() ;
+        modelo.addAttribute("rubros",rubros);
+>>>>>>> 5c48500 (.)
         return "contratacion_form.html";
     }
     

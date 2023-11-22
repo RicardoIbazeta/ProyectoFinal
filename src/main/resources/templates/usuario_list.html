@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
 
+<<<<<<< HEAD
     <head th:replace="/fragments/head :: head "></head>
 
     <script th:replace="/fragments/script :: script "></script>
@@ -65,6 +70,17 @@
         <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
 =======
+=======
+  <script th:replace="/fragments/script :: script "></script>
+
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+    <div id="contenido/"></div>
+
+<<<<<<< HEAD
+>>>>>>> 7fa73ec (.)
   <div id="contenido/" th:each="usuario : ${usuarios}">
 =======
   <div id="contenido/"></div>
@@ -113,4 +129,50 @@
 </body>
 >>>>>>> a84e660 (ultima versione. 22/11/2023 18:12)
 
+=======
+    <table class="table table table-bordered border-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Rol</th>
+          <th scope="col">eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" th:text="${usuario.id}">1</th>
+          <td th:text="${usuario.nombre}">Mark</td>
+          <td th:text="${usuario.apellido}">Otto</td>
+          <td th:text="${usuario.email}">@md787678o</td>
+          <td th:text="${usuario.rol}">@cliente</td>
+          <td>
+            <button type="submit" th:action="${usuario.eliminar}">X</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+>>>>>>> 5c48500 (.)
 </html>
