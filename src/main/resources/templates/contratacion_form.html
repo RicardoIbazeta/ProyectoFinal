@@ -32,6 +32,37 @@
             <option th:each="proveedor : ${proveedores}" th:value="${proveedor.id}" th:text="${proveedor.nombre}"></option>
           </select>
         </div>
+          
+          
+          
+          
+          <form th:action="@{/contratacion/contratar__${contratacion.id}__}" method="POST"> 
+              <input hidden th:value="${id}" name="id">
+              
+          </form>
+            
+              
+          
+          -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
 
         <!-- verificar form. controlador solicita String idCliente, String idProveedor
               podemos mostrar la lista y que elija el proveedor encapsulando en un select

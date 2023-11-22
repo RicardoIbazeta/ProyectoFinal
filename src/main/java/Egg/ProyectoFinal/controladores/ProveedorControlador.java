@@ -39,6 +39,7 @@ public class ProveedorControlador {
     }
 
     @PostMapping("/registro")
+
     public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
             String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
@@ -83,4 +84,7 @@ public class ProveedorControlador {
         modelo.addAttribute("proveedores", proveedores);
         return "proveedor_list.html";
     }
+    
+    
+    
 }
