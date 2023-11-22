@@ -7,11 +7,34 @@
         <header th:replace="~{/fragments/header :: header}"></header>
         <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
+<<<<<<< HEAD
         <img
             th:src="@{/8.png}"
             class="d-block mx-lg-auto img-fluid"
             alt="Bootstrap Themes"
             />
+=======
+  <div class="container m-5">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Alta</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cliente ID</th>
+          <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
+          
+        </tr>
+      </thead>
+      <tbody th:each="contratacion : ${contrataciones}">
+        <tr>
+          <th scope="row" th:text="${contratacion.id}"></th>
+          <td th:text="${contratacion.alta}"></td>
+          <td th:text="${contratacion.estado}"></td>
+          <td th:text="${contratacion.cliente_id}"></td>
+          <td th:text="${contratacion.proveedor_id}"></td>
+        </tr>
+>>>>>>> 2e4e88e (22/11/2023 19:12)
 
         <div class="container m-5">
             <table class="table table-dark">
