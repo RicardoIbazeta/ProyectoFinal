@@ -94,7 +94,7 @@ public class ContratacionControlador {
     @GetMapping("/misContrataciones/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 
-            List<Contratacion> misContrataciones = contratacionServicio.listarContrataciones(id);
+            List<Contratacion> misContrataciones = contratacionServicio.misContrataciones(id);
 
             modelo.addAttribute("misContrataciones", misContrataciones);
 

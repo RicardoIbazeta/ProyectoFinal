@@ -95,7 +95,7 @@ public class ContratacionServicio {
         }
     }
 
-    public List<Contratacion> listarContrataciones(String id) {
+    public List<Contratacion> misContrataciones(String id) {
         
         List<Contratacion> contrataciones1 = new ArrayList();
         List<Contratacion> contrataciones = new ArrayList();
