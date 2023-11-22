@@ -33,7 +33,8 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento, 
+            String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
 
         try {
