@@ -94,4 +94,21 @@ public class ContratacionServicio {
             throw new MiException("indicar estado de la contratacion");
         }
     }
+
+    public List<Contratacion> listarContrataciones(String id) {
+        
+        List<Contratacion> contrataciones1 = new ArrayList();
+        List<Contratacion> contrataciones = new ArrayList();
+
+        contrataciones1 = contratacionRepositorio.findAll();
+        
+        for (Contratacion contratacion : contrataciones1) {
+            if (contratacion.getCliente().getId().equals(id)) {
+                contrataciones.add(contratacion);
+            }
+        }
+
+        return contrataciones;
+    }
+    
 }
