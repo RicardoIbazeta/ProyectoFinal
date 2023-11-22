@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" >
   <div class="container-fluid" style="background-color: #142e79">
-    <a class="navbar-brand" style="color: white" th:href="@{/}">Inicio</a>
+    <a class="navbar-brand" style="color: white" th:if="${session.usuario != null}" th:href="@{/inicio}">Inicio</a>
+    <a class="navbar-brand" style="color: white" th:if="${session.usuario == null}" th:href="@{/}">Inicio</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -13,7 +14,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="nav justify-content-end">
+    <div class="nav justify-content-end ">
       <div
         class="collapse navbar-collapse justify-content-end"
         id="navbarScroll"
@@ -53,15 +54,16 @@
             >
               Usuario
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-lg-end"
+              style="background-color: #142e79">
               <li>
-                <a class="dropdown-item" th:href="@{usuario/Perfil}">Perfil</a>
+                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/Perfil}">Perfil</a>
               </li>
 
               <li><hr class="dropdown-divider" /></li>
 
               <li>
-                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
                   >Editar Perfil</a
                 >
               </li>
@@ -69,7 +71,7 @@
               <li><hr class="dropdown-divider" /></li>
               <!-- ¿este item solo tendria acceso el admin? -->
               <li>
-                <a class="dropdown-item" th:href="@{admin/listaUsuarios}"
+                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/lista}"
                   >Lista de Usuarios</a
                 >
               </li>
@@ -79,7 +81,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item" th:href="@{usuario/editarPerfil}"
+                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
                   >Editar Perfil</a
                 >
               </li>
@@ -87,21 +89,8 @@
               <li>
                 <hr class="dropdown-divider" />
               </li>
-              <!-- ¿este item solo tendria acceso el admin? -->
-              <li>
-                <a
-                  class="dropdown-item"
-                  th:href="@{admin/listaUsuarios}"
-                  sec:authorize="hasRole('ADMIN')"
-                  >Lista de Usuarios</a
-                >
-              </li>
 
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
+              <li><a class="dropdown-item" style="color: rgb(242, 14, 14);" href="/logout">Cerrar Sesion</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -116,9 +105,11 @@
             >
               Proveedores
             </a>
-            <ul class="dropdown-menu">
+            <ul 
+            class="dropdown-menu dropdown-menu-lg-end"
+            style="background-color: #142e79">
               <li>
-                <a class="dropdown-item" th:href="@{/proveedor/lista}"
+                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/proveedor/lista}"
                   >Lista de Proveedores</a
                 >
               </li>
@@ -143,9 +134,17 @@
               <li>
                 <a
                   class="dropdown-item"
-                  style="color: white"
-                  th:href="@{listaServicios}"
+                  style="color: darkgrey;"
+                  th:href="@{/rubro/lista}"
                   >Lista de Servicios</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  style="color: darkgrey;"
+                  th:href="@{/rubro/registrar}"
+                  >Crear un Servicio</a
                 >
               </li>
             </ul>
@@ -162,10 +161,13 @@
             >
               Contrataciones
             </a>
-            <ul class="dropdown-menu">
+            <ul 
+            class="dropdown-menu dropdown-menu-lg-end"
+            style="background-color: #142e79">
               <li>
                 <a class="dropdown-item" 
                 th:href="@{/contratacion/lista}"
+                style="color: darkgrey;"
                 sec:authorize="hasRole('ADMIN')"
                 >Lista de Contrataciones</a
                 >
