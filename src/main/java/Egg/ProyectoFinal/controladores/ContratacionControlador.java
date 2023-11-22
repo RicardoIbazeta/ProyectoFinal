@@ -35,19 +35,13 @@ public class ContratacionControlador {
     @Autowired
     private ProveedorServicio proveedorServicio;
     
-    
-    
-    
-    @GetMapping("/contratar/{id}")
-    public String contratar(@PathVariable String id, ModelMap modelo) {
-        modelo.put("contratacion", contratacionServicio.getOne(id));
-
-
+    @GetMapping("/contratar")
+    public String registrar(ModelMap modelo) {
+        
+//        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+//        modelo.addAttribute("proveedores",proveedores);
         return "contratacion_form.html";
     }
-    
-    
-    
     
     @PostMapping("/contratado")
     public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
@@ -87,11 +81,6 @@ public class ContratacionControlador {
         return "contratacion_list.html";
     }*/
 
-    
-    
-    
-    
-    //ADMIN
     /* Mapeo que lista todas las contrataciones */
     @GetMapping("/lista")
     public String listarContrataciones(ModelMap modelo){
@@ -101,17 +90,15 @@ public class ContratacionControlador {
     }
     
     
-    
-    
     /* En desarrollo! Trae todas las contrataciones del id del usuario que esta en sesion   */
-    @GetMapping("/historial/{id}")
+    @GetMapping("/misContrataciones/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 
-            List<Contratacion> Contrataciones = contratacionServicio.misContrataciones(id);
+            List<Contratacion> misContrataciones = contratacionServicio.misContrataciones(id);
 
-            modelo.addAttribute("Contrataciones", Contrataciones);
+            modelo.addAttribute("misContrataciones", misContrataciones);
 
-            return "contratacion_list";
+            return "mis_contrataciones.html";
             
     }
     

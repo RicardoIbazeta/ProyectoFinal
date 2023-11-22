@@ -70,10 +70,6 @@ public class ContratacionServicio {
         
     }
     
-    public Contratacion getOne(String id){
-        return contratacionRepositorio.getOne(id);
-    }
-    
     public List<Contratacion> listarContrataciones(){
         
         List<Contratacion> contrataciones = new ArrayList();
