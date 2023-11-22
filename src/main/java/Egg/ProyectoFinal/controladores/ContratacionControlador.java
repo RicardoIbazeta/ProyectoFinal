@@ -35,13 +35,20 @@ public class ContratacionControlador {
     @Autowired
     private ProveedorServicio proveedorServicio;
     
-    @GetMapping("/contratar")
-    public String registrar(ModelMap modelo) {
-        
+    
+    
+    
+    @GetMapping("/contratar/{id}")
+    public String contratar(@PathVariable String id, ModelMap modelo) {
+        modelo.put("contratacion", contratacionServicio.getOne(id));
+
 //        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
 //        modelo.addAttribute("proveedores",proveedores);
         return "contratacion_form.html";
     }
+    
+    
+    
     
     @PostMapping("/contratado")
     public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
