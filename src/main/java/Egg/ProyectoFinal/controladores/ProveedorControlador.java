@@ -77,5 +77,8 @@ public class ProveedorControlador {
         modelo.addAttribute("proveedores", proveedores);
         return "proveedor_list.html";
     }
+    
+    
+    
 }
 
