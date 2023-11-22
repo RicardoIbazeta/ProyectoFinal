@@ -4,8 +4,10 @@
  */
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.RubroServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -47,7 +49,13 @@ public class RubroControlador {
         }
     }
     
-    
+    /* Mapeo que lista todos los rubros */
+    @GetMapping("/lista")
+    public String listarRubros(ModelMap modelo){
+        List<Rubro> rubros = rubroServicio.listarRubros();
+        modelo.addAttribute("rubros", rubros);
+        return "rubro_list.html";
+    }
     
     
 }
