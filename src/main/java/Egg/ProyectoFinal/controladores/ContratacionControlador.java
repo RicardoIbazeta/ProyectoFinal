@@ -73,19 +73,34 @@ public class ContratacionControlador {
 
     }
     
-    @GetMapping("/lista")
+   /* @GetMapping("/lista")
     public String listarProveedores(ModelMap modelo){
         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
         modelo.addAttribute("proveedores", proveedores);
         
         return "contratacion_list.html";
-    }
+    }*/
 
     /* Mapeo que lista todas las contrataciones */
-    /*@GetMapping("/lista")
+    @GetMapping("/lista")
     public String listarContrataciones(ModelMap modelo){
         List<Contratacion> contrataciones = contratacionServicio.listarContrataciones() ;
         modelo.addAttribute("contrataciones", contrataciones);
         return "contratacion_list.html";
-    }*/
+    }
+    
+    
+    /* En desarrollo! Trae todas las contrataciones del id del usuario que esta en sesion   */
+    @GetMapping("/misContrataciones/{id}")
+    public String misContrataciones(@PathVariable String id, ModelMap modelo) {
+
+            List<Contratacion> misContrataciones = contratacionServicio.misContrataciones(id);
+
+            modelo.addAttribute("misContrataciones", misContrataciones);
+
+            return "mis_contrataciones.html";
+            
+    }
+    
+    
 }

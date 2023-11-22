@@ -37,19 +37,19 @@
             <a th:href="@{/}" class="nav-link px-2 text-white">Inicio</a>
         </li>
         <li class="nav-item">
-            <a th:if="${session.usuariosession != null}" href="#" class="nav-link px-2 text-white">Proveedores</a>
+            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Proveedores</a>
         </li>
         <li class="nav-item">
-            <a th:if="${session.usuariosession != null}" href="#" class="nav-link px-2 text-white">Servicios</a>
+            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Servicios</a>
         </li>
         <li class="nav-item">
-            <a th:if="${session.usuariosession != null}" href="#" class="nav-link px-2 text-white">Contrataciones</a>
+            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Contrataciones</a>
         </li>
         <li class="nav-item">
-            <a th:if="${session.usuariosession == null}" th:href="@{/login}" class="nav-link px-2 text-white">Ingresar</a>
+            <a th:if="${session.usuario == null}" th:href="@{/login}" class="nav-link px-2 text-white">Ingresar</a>
         </li>
         <li class="nav-item">
-            <a th:if="${session.usuariosession == null}" th:href="@{/registrarseBotones}" class="nav-link px-2 text-white">Registrar</a>
+            <a th:if="${session.usuario == null}" th:href="@{/registrarseBotones}" class="nav-link px-2 text-white">Registrar</a>
         </li>
     </ul>
 </footer>
