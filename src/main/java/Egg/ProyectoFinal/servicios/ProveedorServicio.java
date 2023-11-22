@@ -26,7 +26,8 @@ public class ProveedorServicio {
     public void crearProveedor(Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
             String telefono, String direccion) throws MiException {
 
-        validarProveedor(precioHora, descripcionServicio, rubro);
+        validarProveedor(nombre, apellido, documento, email, telefono, direccion, precioHora, descripcionServicio, rubro);
+        validarPassword(password, password2);
 
         Proveedor proveedor = new Proveedor();
 
@@ -76,7 +77,27 @@ public class ProveedorServicio {
     }
 
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
-    private void validarProveedor(Double precioHora, String descripcionServicio, Rubro rubro) throws MiException {
+    private void validarProveedor(String nombre, String apellido, String documento, String email,
+            String telefono, String direccion, Double precioHora, String descripcionServicio, Rubro rubro) throws MiException {
+
+        if (nombre == null || nombre.isEmpty()) {
+            throw new MiException("Debes completar tu nombre");
+        }
+        if (apellido == null || apellido.isEmpty()) {
+            throw new MiException("Debes completar tu apellido");
+        }
+        if (documento == null || documento.isEmpty()) {
+            throw new MiException("Debes completar tu DNI");
+        }
+        if (email == null || email.isEmpty()) {
+            throw new MiException("Debes completar tu correo electrónico");
+        }
+        if (telefono == null || telefono.isEmpty()) {
+            throw new MiException("Debes completar tu número de telefono");
+        }
+        if (direccion == null || direccion.isEmpty()) {
+            throw new MiException("Debes completar tu dirección");
+        }
         if (precioHora == null || precioHora.isNaN()) {
             throw new MiException("Debe indicar el valor hora/labor");
         }
@@ -84,9 +105,29 @@ public class ProveedorServicio {
             throw new MiException("Debes indicar la descripción del servicio que deseas proveer");
         }
         if (rubro == null) {
-            throw new MiException("Debes seleccionar un oficio de la lista ");
-        }
+            throw new MiException("Debes seleccionar un rubro de la lista ");
+        }       
 
     }
-                
+    
+    // Metodo que valida que la contraseña cumpla con los criterios requeridos.
+        private void validarPassword(String password, String password2) throws MiException {
+        
+        if (password.isEmpty()) {
+            throw new MiException("La contraseña no debe estar vacía");
+        }
+        if (password.length() < 8) {
+            throw new MiException("La contraseña debe tener al menos 8 caracteres");
+        }
+        if (!password.matches(".*[A-Z].*")) {
+            throw new MiException("La contraseña debe contener al menos una letra mayúscula");
+        }
+        if (!password.matches(".*\\d.*")) {
+            throw new MiException("La contraseña debe contener al menos un número");
+        }
+        if (!password.equals(password2)) {
+            throw new MiException("Las contraseñas deben coincidir");
+        }
+    }
+
 }

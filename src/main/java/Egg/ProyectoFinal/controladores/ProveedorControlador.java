@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/proveedor")
 public class ProveedorControlador {
-    
+
     @Autowired
     private ProveedorServicio proveedorServicio;
 
@@ -33,19 +33,20 @@ public class ProveedorControlador {
 
         // intento de recopilacion de rubros para proveedor_form -> opcion cambio de privacidad de atributo
         //                                                       -> opcion hacer un servicio a RUBRO para traer coleccion  
-
         List<Rubro> rubros = rubroServicio.listarRubros();
         modelo.addAttribute("rubros", rubros);
         return "proveedor_form.html";
     }
 
     @PostMapping("/registro")
-    public String registro(Double precioHora, String descripcionServicio, Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+    public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
+            String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
-            
-            proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubro, nombre, apellido, documento, email, password, password2, telefono, direccion);
+
+            proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubro, nombre, apellido, documento, email,
+                    password, password2, telefono, direccion);
 
             modelo.put("exito", "El proveedor fue cargado correctamente");
             return "index.html";
@@ -65,6 +66,11 @@ public class ProveedorControlador {
             modelo.put("email", email);
             modelo.put("telefono", telefono);
             modelo.put("direccion", direccion);
+            modelo.put("precioHora", precioHora);
+            modelo.put("descripcionServicio", descripcionServicio);
+            // De esta forma se inyectan los rubros al desplegable
+            List<Rubro> rubros = rubroServicio.listarRubros();
+            modelo.addAttribute("rubros", rubros);
             return "proveedor_form.html";
         }
 
@@ -72,10 +78,9 @@ public class ProveedorControlador {
 
     /* Mapeo que lista todos los proveedores */
     @GetMapping("/lista")
-    public String listarProveedores(ModelMap modelo){
+    public String listarProveedores(ModelMap modelo) {
         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
         modelo.addAttribute("proveedores", proveedores);
         return "proveedor_list.html";
     }
 }
-
