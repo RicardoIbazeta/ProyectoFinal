@@ -15,7 +15,8 @@
           <th scope="col">Alta</th>
           <th scope="col">Estado</th>
           <th scope="col">Cliente ID</th>
-          <th scope="col">Proveedor ID</th>
+          <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
+          
         </tr>
       </thead>
       <tbody th:each="contratacion : ${contrataciones}">
