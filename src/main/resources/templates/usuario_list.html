@@ -16,6 +16,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <img
             th:src="@{/7.png}"
             class="d-block mx-lg-auto img-fluid"
@@ -68,6 +69,9 @@
 =======
   <div id="contenido/"></div>
 >>>>>>> 1688642 (Revert "Merge branch 'main' of https://github.com/RicardoIbazeta/ProyectoFinal")
+=======
+  <div id="contenido/" th:each="usuario : ${usuarios}">
+>>>>>>> 5653319 (Revert "Revert "Merge branch 'main' of https://github.com/RicardoIbazeta/ProyectoFinal"")
 
   <table class="table table table-bordered border-dark">
     <thead>
@@ -88,11 +92,12 @@
         <td th:text="${usuario.email}">@md787678o</td>
         <td th:text="${usuario.rol}">@cliente</td>
         <td>
-          <button type="submit" th:action="${usuario.eliminar}">X</button>
         </td>
       </tr>
     </tbody>
   </table>
+  
+  
   <div id="exito/error">
     <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
       <h5>exito</h5>
@@ -104,6 +109,7 @@
     </div>
   </div>
   <footer th:replace="/fragments/footer :: footer"></footer>
+  </div>
 </body>
 >>>>>>> a84e660 (ultima versione. 22/11/2023 18:12)
 
