@@ -39,8 +39,12 @@ public class ProveedorControlador {
     }
 
     @PostMapping("/registro")
+<<<<<<< HEAD
     public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
             String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+=======
+    public String registro(Double precioHora, String descripcionServicio,@RequestParam Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+>>>>>>> a84e660 (ultima versione. 22/11/2023 18:12)
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
