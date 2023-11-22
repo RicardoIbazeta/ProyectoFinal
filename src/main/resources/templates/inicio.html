@@ -24,7 +24,7 @@
         <div class="col-lg-6">
           <br />
           <!-- Quiero agregar en el h1 th:text=" 'Hola, '+ ${session.usuariosession.nombre} " pero no lo puedo agregar hasta que se solucione el login-->
-          <h1 class="display-5 fw-bold lh-1 mb-3"></h1>
+          <h1 class="display-5 fw-bold lh-1 mb-3" th:text=" 'Hola, '+ ${session.usuario.nombre} "></h1>
           <p class="lead">
             Te invitamos a explorar la plataforma, descubrir talentosos
             proveedores y encontrar soluciones a medida para tus necesidades.
