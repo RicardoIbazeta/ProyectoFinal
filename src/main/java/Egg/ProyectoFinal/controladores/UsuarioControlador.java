@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/usuario")
@@ -32,13 +33,13 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
 
         try {
             /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
                 se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
-            usuarioServicio.crearUsuario(nombre, apellido, documento, email, password, password2, telefono, direccion);
+            usuarioServicio.crearUsuario(archivo,nombre, apellido, documento, email, password, password2, telefono, direccion);
 
             modelo.put("exito", "El usuario fue cargado correctamente");
             return "index.html";
