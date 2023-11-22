@@ -64,7 +64,7 @@ public class UsuarioControlador {
         }
     }
 
-    @GetMapping("/lista")
+    @GetMapping("/contrataciones")
     public String historialContrataciones(ModelMap modelo) {
 
         List<Contratacion> historial = contratacionServicio.listarContrataciones();
@@ -73,10 +73,10 @@ public class UsuarioControlador {
     }
     
     /* Mapeo que lista todos los usuarios */
-    /*@GetMapping("/lista")
+    @GetMapping("/lista")
     public String listarUsuarios(ModelMap modelo){
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
         modelo.addAttribute("usuarios", usuarios);
         return "usuario_list.html";
-    }*/
+    }
 }
