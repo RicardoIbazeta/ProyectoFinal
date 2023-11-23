@@ -18,7 +18,7 @@ public class Usuario {
     protected String id;
     protected String nombre;
     protected String apellido;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date fechaAlta;
     protected String email;
     protected String password;

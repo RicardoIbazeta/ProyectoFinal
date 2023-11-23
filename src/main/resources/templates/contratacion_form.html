@@ -13,7 +13,7 @@
       <div class="container-fluid m-5 contenedor">
         <form
           class="formulario"
-          th:action="@{/contratacion/contratado}"
+          th:action="@{/contratacion/contratado/__${id}__}"
           method="POST"
           enctype="multipart/form-data"
         >
@@ -34,7 +34,12 @@
           </select>
           <input type="text" hidden />
           <p th:text="'Presupuesto: '+${proveedor.precioHora} "></p>
-          <input type="text" hidden th:value="${session.id}" name="idCliente" />
+          <input
+            type="text"
+            hidden
+            th:value="${session.usuario.id}"
+            name="idCliente"
+          />
           <p th:text="'Contrata: '+${session.usuario.nombre} "></p>
           <button type="submit" class="btn btn-primary mt-3 botones">
             Aceptar

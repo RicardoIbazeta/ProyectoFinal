@@ -21,6 +21,7 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
+            <th scope="col">FechaAlta</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Email</th>
@@ -31,6 +32,7 @@
         <tbody th:each="usuario : ${usuarios}">
           <tr>
             <th scope="row" th:text="${usuario.id}"></th>
+            <td th:text="${usuario.fechaAlta}"></td>
             <td th:text="${usuario.nombre}"></td>
             <td th:text="${usuario.apellido}"></td>
             <td th:text="${usuario.email}"></td>
