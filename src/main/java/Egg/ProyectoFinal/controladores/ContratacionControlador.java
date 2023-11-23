@@ -39,22 +39,10 @@ public class ContratacionControlador {
     @Autowired
     private RubroServicio rubroServicio;
     
-<<<<<<< HEAD
-    
-    
-    
+
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
         modelo.put("contratacion", contratacionServicio.getOne(id));
-
-
-=======
-    @GetMapping("/contratar")
-    public String registrar(ModelMap modelo) {
-        
-        List<Rubro> rubros = rubroServicio.listarRubros() ;
-        modelo.addAttribute("rubros",rubros);
->>>>>>> 5c48500 (.)
         return "contratacion_form.html";
     }
     

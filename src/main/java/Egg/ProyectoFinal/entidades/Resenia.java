@@ -14,9 +14,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-@Data
+/*@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor*/
 @Entity
 @Table(name = "resenias")
 public class Resenia {

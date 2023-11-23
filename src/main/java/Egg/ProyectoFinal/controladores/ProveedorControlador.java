@@ -43,31 +43,8 @@ public class ProveedorControlador {
     }
 
     @PostMapping("/registro")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
             String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
-=======
-    public String registro(Double precioHora, String descripcionServicio,@RequestParam Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
->>>>>>> a84e660 (ultima versione. 22/11/2023 18:12)
-=======
-    public String registro(Double precioHora, String descripcionServicio, Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
->>>>>>> 1688642 (Revert "Merge branch 'main' of https://github.com/RicardoIbazeta/ProyectoFinal")
-=======
-
-    public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
-            String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
->>>>>>> 5653319 (Revert "Revert "Merge branch 'main' of https://github.com/RicardoIbazeta/ProyectoFinal"")
-=======
-
-    public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
-            String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
-=======
-    public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre, String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
->>>>>>> 5c48500 (.)
->>>>>>> 7fa73ec (.)
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
