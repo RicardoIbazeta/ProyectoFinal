@@ -14,15 +14,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-<<<<<<< HEAD
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-=======
-/*@Data
-@NoArgsConstructor
-@AllArgsConstructor*/
->>>>>>> Rama-Front
 @Entity
 @Table(name = "resenias")
 public class Resenia {

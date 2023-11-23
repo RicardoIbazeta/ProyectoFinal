@@ -39,21 +39,11 @@ public class ContratacionControlador {
     @Autowired
     private RubroServicio rubroServicio;
     
-<<<<<<< HEAD
-    
-    
-    
+   
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
         modelo.put("contratacion", contratacionServicio.getOne(id));
 
-
-=======
-
-    @GetMapping("/contratar/{id}")
-    public String contratar(@PathVariable String id, ModelMap modelo) {
-        modelo.put("contratacion", contratacionServicio.getOne(id));
->>>>>>> Rama-Front
         return "contratacion_form.html";
     }
     
