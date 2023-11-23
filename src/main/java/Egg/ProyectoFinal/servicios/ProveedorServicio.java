@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+=======
+>>>>>>> 5bbeb2c (encriptacion password proveedor)
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,10 +62,13 @@ public class ProveedorServicio {
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
         proveedor.setFechaAlta(new Date());
+<<<<<<< HEAD
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
 
         proveedor.setImagen(imagen);
+=======
+>>>>>>> 5bbeb2c (encriptacion password proveedor)
 
         proveedorRepositorio.save(proveedor);
     }
