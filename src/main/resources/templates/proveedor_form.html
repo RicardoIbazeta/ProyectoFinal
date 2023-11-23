@@ -10,14 +10,14 @@
         <header th:replace="/fragments/header :: header "></header>
         <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <form
-          class="formulario"
-          th:action="@{/proveedor/registro}"
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <div class="container my-5">
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <form
+                    class="formulario"
+                    th:action="@{/proveedor/registro}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    >
 
                     <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
                     <div class="form-group my-3">
@@ -50,145 +50,149 @@
                     </div>
 
                     <div class="form-group my-3">
-                        <label for="documento" style="display: flex"
-                               >Documento del Usuario</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="documento"
-                            placeholder="Indique su numero de Documento"
-                            th:value="${documento}"
-                            />
-                    </div>
+                        <label for="archivo" style="display: flex">Foto del Usuario</label><br />
+                        <input type="file" class="form-control" name="archivo" />
 
-                    <div class="form-group my-3">
-                        <label for="email" style="display: flex">Mail del Usuario</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            name="email"
-                            placeholder="Ingrese su mail de contacto"
-                            th:value="${email}"
-                            />
-                    </div>
-                    <!-- comment 
-                    <div class="form-group my-3">
-                      <label for="archivo" style="display: flex">Foto del Usuario</label><br />
-                      <input type="file" class="form-control" name="archivo" />
-                    </div>
-                    -->
-                    <div class="form-group my-3">
-                        <label for="password" style="display: flex"
-                               >Contraseña del Usuario</label
-                        >
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password"
-                            placeholder="Ingrese una contraseña"
-                            th:value="${password}"
-                            />
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="documento" style="display: flex"
+                                   >Documento del Usuario</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="documento"
+                                placeholder="Indique su numero de Documento"
+                                th:value="${documento}"
+                                />
+                        </div>
 
-                    <div class="form-group my-3">
-                        <label for="password2" style="display: flex"
-                               >Repita contraseña del Usuario</label
-                        >
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password2"
-                            placeholder="Repita la contraseña"
-                            th:value="${password2}"
-                            />
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="email" style="display: flex">Mail del Usuario</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                placeholder="Ingrese su mail de contacto"
+                                th:value="${email}"
+                                />
+                        </div>
+                        <!-- comment 
+                        <div class="form-group my-3">
+                          <label for="archivo" style="display: flex">Foto del Usuario</label><br />
+                          <input type="file" class="form-control" name="archivo" />
+                        </div>
+                        -->
+                        <div class="form-group my-3">
+                            <label for="password" style="display: flex"
+                                   >Contraseña del Usuario</label
+                            >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                placeholder="Ingrese una contraseña"
+                                th:value="${password}"
+                                />
+                        </div>
 
-                    <div class="form-group my-3">
-                        <label for="telefono" style="display: flex"
-                               >Telefono del Usuario</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="telefono"
-                            placeholder="Indique su telefono de contacto"
-                            th:value="${telefono}"
-                            />
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="password2" style="display: flex"
+                                   >Repita contraseña del Usuario</label
+                            >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password2"
+                                placeholder="Repita la contraseña"
+                                th:value="${password2}"
+                                />
+                        </div>
 
-                    <div class="form-group my-3">
-                        <label for="direccion" style="display: flex"
-                               >Domicilio del Usuario</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="direccion"
-                            placeholder="Indique su direccion"
-                            th:value="${direccion}"
-                            />
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="telefono" style="display: flex"
+                                   >Telefono del Usuario</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="telefono"
+                                placeholder="Indique su telefono de contacto"
+                                th:value="${telefono}"
+                                />
+                        </div>
 
-                    <div class="form-group my-3">
-                        <label for="precioHora" style="display: flex"
-                               >Valor Hora Promedio</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="precioHora"
-                            placeholder="Indique un valor promedio de hora laboral"
-                            th:value="${precioHora}"
-                            />
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="direccion" style="display: flex"
+                                   >Domicilio del Usuario</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="direccion"
+                                placeholder="Indique su direccion"
+                                th:value="${direccion}"
+                                />
+                        </div>
 
-                    <div class="form-group my-3">
-                        <label for="descripcionServicio" style="display: flex"
-                               >Descripcion de Servicios</label
-                        >
-                        <textarea
-                            type="text"
-                            class="form-control"
-                            name="descripcionServicio"
-                            placeholder="Describa brevemente en que consiste el servicio que puede brindar"
-                            th:value="${descripcionServicio}"
-                            ></textarea>
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="precioHora" style="display: flex"
+                                   >Valor Hora Promedio</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="precioHora"
+                                placeholder="Indique un valor promedio de hora laboral"
+                                th:value="${precioHora}"
+                                />
+                        </div>
 
-                    <div>
-                        <select name="rubro" required>
-                            <option value="">Elija un rubro</option>
-                            <option
-                                th:each="rubro : ${rubros}"
-                                th:value="${rubro.id}"
-                                th:text="${rubro.nombre}"
-                                ></option>
-                        </select>
-                    </div>
+                        <div class="form-group my-3">
+                            <label for="descripcionServicio" style="display: flex"
+                                   >Descripcion de Servicios</label
+                            >
+                            <textarea
+                                type="text"
+                                class="form-control"
+                                name="descripcionServicio"
+                                placeholder="Describa brevemente en que consiste el servicio que puede brindar"
+                                th:value="${descripcionServicio}"
+                                ></textarea>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary mt-3 botones">
-                        Registrarme
-                    </button>
-                    <button type="reset" class="btn btn-primary mt-3 botones">
-                        Borrar
-                    </button>
+                        <div>
+                            <select name="rubro" required>
+                                <option value="">Elija un rubro</option>
+                                <option
+                                    th:each="rubro : ${rubros}"
+                                    th:value="${rubro.id}"
+                                    th:text="${rubro.nombre}"
+                                    ></option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3 botones">
+                            Registrarme
+                        </button>
+                        <button type="reset" class="btn btn-primary mt-3 botones">
+                            Borrar
+                        </button>
 
                 </form>
 
-          <div id="exito/error">
-            <div
-              th:if="${exito != null}"
-              id="exito"
-              class="card text-white bg-success mb-3 mt-3 mensajeExito"
-            >
-              <h5>exito</h5>
-              <p th:text="${exito}"></p>
-            </div>
-        </div>
+                <div id="exito/error">
+                    <div
+                        th:if="${exito != null}"
+                        id="exito"
+                        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+                        >
+                        <h5>exito</h5>
+                        <p th:text="${exito}"></p>
+                    </div>
+                </div>
 
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
+                <script th:replace="/fragments/script :: script "></script>
+                <footer th:replace="/fragments/footer :: footer"></footer>
+                </body>
 
-</html>
+                </html>

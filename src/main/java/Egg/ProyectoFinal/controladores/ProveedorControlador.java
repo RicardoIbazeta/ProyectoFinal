@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -43,13 +44,13 @@ public class ProveedorControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
+    public String registro(MultipartFile archivo, Double precioHora, String descripcionServicio, @RequestParam Rubro rubro, @RequestParam String nombre,
             String apellido, String documento, String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
 
         try {
             /* creacion provisoria del parametro rubros debido a falta de etiqueta en form */
 
-            proveedorServicio.crearProveedor(precioHora, descripcionServicio, rubro, nombre, apellido, documento, email,
+            proveedorServicio.crearProveedor(archivo, precioHora, descripcionServicio, rubro, nombre, apellido, documento, email,
                     password, password2, telefono, direccion);
 
             modelo.put("exito", "El proveedor fue cargado correctamente");
