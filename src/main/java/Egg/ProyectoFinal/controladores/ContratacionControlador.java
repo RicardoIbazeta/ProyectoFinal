@@ -14,6 +14,7 @@ import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,12 +52,15 @@ public class ContratacionControlador {
     }*/
     
     @GetMapping("/contratar/{id}")
-    public String contratar(@PathVariable String id, ModelMap modelo) {
+    public String contratar(@PathVariable String id, ModelMap modelo/*, HttpSession session*/) {
         List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
         Proveedor proveedor = proveedorServicio.getOne(id);
+        //Usuario usuario = (Usuario) session.getAttribute("usuario");
+         
         
         modelo.addAttribute("proveedor",proveedor);
         modelo.addAttribute("rubros",rubros);
+//        modelo.addAttribute("usuario", usuario);
 
         return "contratacion_form.html";
     }
@@ -64,18 +68,19 @@ public class ContratacionControlador {
     
     
     
-    @PostMapping("/contratado")
-    public String crearContratacion(@RequestParam String idCliente, @RequestParam String idProveedor) {
+    @PostMapping("/contratado/{idProveedor}")
+    public String crearContratacion(@RequestParam String idCliente, @PathVariable String idProveedor) {
 
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);
-        Optional<Usuario> respuestaProveedor = usuarioRepositorio.findById(idProveedor);
+        Optional<Proveedor> respuestaProveedor = proveedorRepositorio.findById(idProveedor);
         
+        System.out.println("id cliente: "+idCliente);
         /* agregar try-catch y modelo en caso de que falle */
 
         if (respuestaCliente.isPresent() && respuestaProveedor.isPresent()) {
             
             Usuario cliente = respuestaCliente.get();
-            Usuario proveedor = respuestaProveedor.get();
+            Proveedor proveedor = respuestaProveedor.get();
             
             Contratacion contratacion = new Contratacion();
             
