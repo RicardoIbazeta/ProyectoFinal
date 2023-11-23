@@ -15,13 +15,19 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c8b76f8 (imagen id funcionando)
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+<<<<<<< HEAD
 =======
 >>>>>>> 5bbeb2c (encriptacion password proveedor)
+=======
+>>>>>>> c8b76f8 (imagen id funcionando)
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,12 +69,18 @@ public class ProveedorServicio {
         proveedor.setRol(Rol.PROVEEDOR);
         proveedor.setFechaAlta(new Date());
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c8b76f8 (imagen id funcionando)
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
 
         proveedor.setImagen(imagen);
+<<<<<<< HEAD
 =======
 >>>>>>> 5bbeb2c (encriptacion password proveedor)
+=======
+>>>>>>> c8b76f8 (imagen id funcionando)
 
         proveedorRepositorio.save(proveedor);
     }
