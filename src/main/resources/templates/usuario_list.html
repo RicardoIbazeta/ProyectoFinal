@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="/fragments/head :: head "></head>
+    <head th:replace="/fragments/head :: head "></head>
 
-<script th:replace="/fragments/script :: script "></script>
+    <script th:replace="/fragments/script :: script "></script>
 
-<body style="background-color: rgb(99, 46, 203)">
-  <header th:replace="/fragments/header :: header "></header>
-  <h1 style="text-align: center; color: blanchedalmond">
-    Chacras de Coria Contrataciones
-  </h1>
-  <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+    <body >
+        <header th:replace="/fragments/header :: header "></header>
+        <!--
+        <h1 style="text-align: center; color: blanchedalmond">
+            Chacras de Coria Contrataciones
+        </h1>
+        -->
+        <nav th:replace="/fragments/nav :: nav"></nav>
 
-  <div id="contenido/"></div>
+        <img
+            th:src="@{/7.png}"
+            class="d-block mx-lg-auto img-fluid"
+            alt="Bootstrap Themes"
+            />
 
-  <table class="table table table-bordered border-dark">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Email</th>
-        <th scope="col">Rol</th>
-        <th scope="col">eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row" th:text="${usuario.id}">1</th>
-        <td th:text="${usuario.nombre}">Mark</td>
-        <td th:text="${usuario.apellido}">Otto</td>
-        <td th:text="${usuario.email}">@md787678o</td>
-        <td th:text="${usuario.rol}">@cliente</td>
-        <td>
-          <button type="submit" th:action="${usuario.eliminar}">X</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="exito/error">
-    <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-      <h5>exito</h5>
-      <p th:text="${exito}"></p>
-    </div>
-    <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-      <h5>error</h5>
-      <p th:text="${error}"></p>
-    </div>
-  </div>
-  <footer th:replace="/fragments/footer :: footer"></footer>
-</body>
+
+        <div id="container m-5" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody th:each="usuario : ${usuarios}">
+                    <tr>
+                        <th scope="row" th:text="${usuario.id}"></th>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.rol}"></td>
+                        <!-- No funciona hasta que agreguen la funcion eliminar-->
+                        <td>
+                            <button type="submit" th:href= "@{/usuario/eliminar/__${usuario.id}__}">X</button>
+                        </td>
+                        
+                    </tr>
+                </tbody> 
+            </table>
+        </div>
+        <div id="exito/error">
+            <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
+            </div>
+            <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 
 </html>
