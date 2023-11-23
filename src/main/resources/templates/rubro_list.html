@@ -16,6 +16,9 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Descripcion</th>
+            <th>Agregar</th>
+            <th th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">Modificar</th>
+            <th th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">Eliminar</th>
           </tr>
         </thead>
         <tbody th:each="rubro : ${rubros}">
@@ -23,8 +26,18 @@
             <th scope="row" th:text="${rubro.id}"></th>
             <td th:text="${rubro.nombre}"></td>
             <td>
-              <a th:href="@{/proveedor/registrar/__${rubro.id}__}"
+              <a th:href="@{/rubro/registrar}"
                 ><i class="fas fa-feather-alt"></i> Agregar
+              </a>
+            </td>
+            <td th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">
+              <!-- <a th:href="@{/rubro/modificar/__${rubro.id}__}" 
+                >--><i class="fas fa-feather-alt"></i> Modificar
+              </a>
+            </td>
+            <td th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">
+              <!-- <a th:href="@{/rubro/eliminar/__${rubro.id}__}" 
+                >--><i class="fas fa-feather-alt"></i> Eliminar
               </a>
             </td>
           </tr>

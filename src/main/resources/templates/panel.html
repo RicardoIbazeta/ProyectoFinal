@@ -4,19 +4,34 @@
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
   <head th:replace="/fragments/head :: head "></head>
-  <body style="background-color: rgb(99, 46, 203)">
+  <body>
     <header th:replace="/fragments/header :: header "></header>
-    <h1 style="text-align: center; color: blanchedalmond">
-      Chacras de Coria Contrataciones
-    </h1>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div id="contenido">
-      <table>
+    <div class="container my-5" >
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <div id="contenido" >
+      <table >
         <thead>
           <tr>
             <th>Clientes</th>
             <th>Proveedores</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a type="button" href="/usuario/lista">Listar Clientes</a>
+            </td>
+            <td>
+              <a type="button" href="/proveedor/lista">Listar Proveedores</a>
+            </td>
+          </tr>
+        </tbody>
+      </table><br><br>
+      <table>
+        <thead>
+          <tr>
             <th>Contrataciones</th>
             <th>Rubros</th>
           </tr>
@@ -24,29 +39,19 @@
         <tbody>
           <tr>
             <td>
-              <!-- <button th:ref="@{/usuario/lista}">Listar Clientes</button> -->
-              <a type="button" href="/usuario/lista">Listar Clientes</a>
-              <table><thead><tr></tr></thead><tbody><tr></tr></tbody></table>
-            </td>
-            <td>
-              <!-- <button th:ref="@{/proveedor/lista}">Listar Proveedores</button> -->
-              <a type="button" href="/proveedor/lista">Listar Proveedores</a>
-              <table><thead><tr></tr></thead><tbody><tr></tr></tbody></table>
-            </td>
-            <td>
-              <!-- <button th:ref="@{/contratacion/lista}">Listar Contrataciones</button> -->
               <a type="button" href="/contratacion/lista">Listar Contrataciones</a>
-              <table><thead><tr></tr></thead><tbody><tr></tr></tbody></table>
             </td>
             <td>
-              <!-- <button th:ref="@{/rubro/lista}">Listar Rubros</button> -->
               <a type="button" href="/rubro/lista">Listar Rubros</a>
-              <table><thead><tr></tr></thead><tbody><tr></tr></tbody></table>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    </div>
+    </div>
+
+    
     
         <h5>exito</h5>
         <p th:text="${exito}"></p>
