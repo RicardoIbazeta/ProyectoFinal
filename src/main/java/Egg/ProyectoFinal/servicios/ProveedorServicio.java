@@ -1,11 +1,14 @@
 package Egg.ProyectoFinal.servicios;
 
+import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
 import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
+import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
+import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
@@ -36,6 +39,8 @@ public class ProveedorServicio {
     //Llamo a imagen servicio para vincular la imagen con el usuario
     @Autowired
     private ImagenServicio imagenServicio;
+    //@Autowired
+   // private ContratacionRepositorio contratacionRepositorio;
 
     @Transactional
     public void crearProveedor(MultipartFile archivo, Double precioHora, String descripcionServicio, Rubro rubro, String nombre, String apellido, String documento, String email, String password, String password2,
@@ -87,6 +92,7 @@ public class ProveedorServicio {
         }
     }
 
+    // Metodo que lista los proveedores
     public List<Proveedor> listarProveedores() {
 
         List<Proveedor> proveedores = new ArrayList();
@@ -95,6 +101,42 @@ public class ProveedorServicio {
 
         return proveedores;
     }
+    
+      //////////////////////////////////////////////////////|||||||||||||||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||||||||||||||||||||||||||||||||||||\\\\\\\\\\\\\\\\\
+    // Metodo que permite al proveedor aceptar una solicitud de contratacion.
+    public void aceptarContratacion(Proveedor proveedor, Contratacion contratacion) {
+        
+        /*
+        Se valida que el id del proveedor y el proveedor en la contratacion sean los mismos,
+        y si son los mismos, le permitira al proveedor cambiar el estado de la Cotratacion
+        */
+       if (proveedor.getId().equalsIgnoreCase(contratacion.getProveedor().getId())) {
+           contratacion.setEstadoContratacion(Estado.EN_PROCESO);
+       }     
+        
+    }
+    
+    
+    // Metodo que permite al proveedor rechazar una solicitud de contratacion
+    public void rechazarContratacion(Proveedor proveedor, Contratacion contratacion) {
+        
+        if(proveedor.getId().equalsIgnoreCase(contratacion.getProveedor().getId())){
+            contratacion.setEstadoContratacion(Estado.CANCELADO);
+        }
+    }
+    
+    
+    // Metodo que permite al proveedor dar por finalizada una contratacion
+    public void finalizarContratacion(Proveedor proveedor, Contratacion contratacion) {
+        
+        if(proveedor.getId().equalsIgnoreCase(contratacion.getProveedor().getId())) {
+            contratacion.setEstadoContratacion(Estado.FINALIZADO);
+        }
+        
+    }
+    
+    //////////////////////////////////////////////////////|||||||||||||||\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|||||||||||||||||||||||||||||||||||||\\\\\\\\\\\\\\\\\
+    
 
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
     private void validarProveedor(String nombre, String apellido, String documento, String email, String telefono, String direccion, Double precioHora, String descripcionServicio, Rubro rubro, MultipartFile archivo) throws MiException {
@@ -155,6 +197,12 @@ public class ProveedorServicio {
     public Proveedor getOne(String id) {
         return proveedorRepositorio.getOne(id);
     }
+    
+    /*  TAL VEZ ES INNECESARIO
+        public Contratacion getOneContract(String id) {
+        return contratacionRepositorio.getOne(id);
+    }
+*/
     
     
         // Metodo usado para autenticar usuarios
