@@ -22,7 +22,7 @@ public class Contratacion {
     
     @ManyToOne
     @JoinColumn(name = "proveedor_id")
-    private Usuario proveedor;
+    private Proveedor proveedor;
     
     @Temporal(TemporalType.TIMESTAMP)   
     private Date alta;
@@ -59,11 +59,11 @@ public class Contratacion {
         this.cliente = cliente;
     }
 
-    public Usuario getProveedor() {
+    public Proveedor getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Usuario proveedor) {
+    public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
 
