@@ -129,5 +129,9 @@ public class ProveedorServicio {
             throw new MiException("Las contraseñas deben coincidir");
         }
     }
+        
+    public Proveedor getOne(String id){
+    return proveedorRepositorio.getOne(id);
+    }
 
 }

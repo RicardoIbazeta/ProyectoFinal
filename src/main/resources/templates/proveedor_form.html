@@ -1,59 +1,15 @@
 <!DOCTYPE html>
 <html
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     >
     <head th:replace="/fragments/head :: head "></head>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 
     <body>
         <header th:replace="/fragments/header :: header "></header>
         <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <form
-                    class="formulario"
-                    th:action="@{/proveedor/registro}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    >
-=======
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
-
-    <body>
-        <header th:replace="/fragments/header :: header "></header>
-        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Rama-Front
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <form
-                    class="formulario"
-                    th:action="@{/proveedor/registro}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    >
-<<<<<<< HEAD
-=======
     <div class="container my-5">
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
@@ -62,68 +18,6 @@
           method="POST"
           enctype="multipart/form-data"
         >
-          <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
-          <div class="form-group my-3">
-            <h3 class="card-title">Registro Proveedor</h3>
-          </div>
-          <br />
->>>>>>> cfffef4 (proveedor form y cliente form)
->>>>>>> Rama-Back
-
-                    <div id="exito/error">
-                        <div
-                            th:if="${exito != null}"
-                            id="exito"
-                            class="card text-white bg-success mb-3 mt-3 mensajeExito"
-                            >
-                            <h5>exito</h5>
-                            <p th:text="${exito}"></p>
-                        </div>
-                        <div
-                            th:if="${error != null}"
-                            id="error"
-                            class="card text-white bg-danger mb-3 mensajeError"
-                            >
-                            <h5>error</h5>
-                            <p th:text="${error}"></p>
-                        </div>
-                    </div>
-=======
-
-<<<<<<< HEAD
-                    <div id="exito/error">
-                        <div
-                            th:if="${exito != null}"
-                            id="exito"
-                            class="card text-white bg-success mb-3 mt-3 mensajeExito"
-                            >
-                            <h5>exito</h5>
-                            <p th:text="${exito}"></p>
-                        </div>
-                        <div
-                            th:if="${error != null}"
-                            id="error"
-                            class="card text-white bg-danger mb-3 mensajeError"
-                            >
-                            <h5>error</h5>
-                            <p th:text="${error}"></p>
-                        </div>
-                    </div>
-=======
-          <div class="form-group my-3">
-            <label for="nombre" style="display: flex"
-              >Nombre del Proveedor</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="nombre"
-              placeholder="Ingrese su nombre completo"
-              th:value="${nombre}"
-            />
-          </div>
->>>>>>> 5c48500 (.)
->>>>>>> Rama-Front
 
                     <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
                     <div class="form-group my-3">
@@ -197,13 +91,6 @@
                             />
                     </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
                     <div class="form-group my-3">
                         <label for="password2" style="display: flex"
                                >Repita contraseña del Usuario</label
@@ -216,9 +103,6 @@
                             th:value="${password2}"
                             />
                     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
                     <div class="form-group my-3">
                         <label for="telefono" style="display: flex"
@@ -258,89 +142,6 @@
                             th:value="${precioHora}"
                             />
                     </div>
-=======
-          <div class="form-group my-3">
-            <label for="direccion" style="display: flex"
-              >Domicilio del Usuario</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="direccion"
-              placeholder="Indique su direccion"
-              th:value="${direccion}"
-            />
-          </div>
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
-
-                    <div class="form-group my-3">
-                        <label for="telefono" style="display: flex"
-                               >Telefono del Usuario</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="telefono"
-                            placeholder="Indique su telefono de contacto"
-                            th:value="${telefono}"
-                            />
-                    </div>
-
-                    <div class="form-group my-3">
-                        <label for="direccion" style="display: flex"
-                               >Domicilio del Usuario</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="direccion"
-                            placeholder="Indique su direccion"
-                            th:value="${direccion}"
-                            />
-                    </div>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Rama-Front
-                    <div class="form-group my-3">
-                        <label for="precioHora" style="display: flex"
-                               >Valor Hora Promedio</label
-                        >
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="precioHora"
-                            placeholder="Indique un valor promedio de hora laboral"
-                            th:value="${precioHora}"
-                            />
-                    </div>
-<<<<<<< HEAD
-=======
-          <div>
-            <select name="rubro">
-              <option>Elija un rubro</option>
-              <option
-                th:each="rubro : ${rubros}"
-                th:value="${rubro.id}"
-                th:text="${rubro.nombre}"
-              ></option>
-            </select>
-          </div>
-<<<<<<< HEAD
-=======
-              sec:authorize="hasRole('PROVEEDOR')"
-            ></textarea>
-          </div> 
->>>>>>> 48cf616 (proveedor form y cliente form)
->>>>>>> cfffef4 (proveedor form y cliente form)
-=======
->>>>>>> 70edfd4 (actualizando Rama-Back)
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
 
                     <div class="form-group my-3">
                         <label for="descripcionServicio" style="display: flex"
@@ -355,13 +156,6 @@
                             ></textarea>
                     </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Rama-Back
-=======
->>>>>>> Rama-Front
                     <div>
                         <select name="rubro" required>
                             <option value="">Elija un rubro</option>
@@ -380,20 +174,8 @@
                         Borrar
                     </button>
 
-
-
-                    <div th:replace="/fragments/div :: div "></div>
                 </form>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            </div>
-        </div>
 
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
-=======
           <div id="exito/error">
             <div
               th:if="${exito != null}"
@@ -402,35 +184,11 @@
             >
               <h5>exito</h5>
               <p th:text="${exito}"></p>
->>>>>>> Rama-Back
-            </div>
-        </div>
-
-<<<<<<< HEAD
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
-=======
-          <div th:replace="/fragments/div :: div "></div>
-        </form>
-      </div>
-    </div>
-
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> cfffef4 (proveedor form y cliente form)
-=======
->>>>>>> 70edfd4 (actualizando Rama-Back)
->>>>>>> Rama-Back
-=======
             </div>
         </div>
 
         <script th:replace="/fragments/script :: script "></script>
         <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
->>>>>>> Rama-Front
+
 </html>

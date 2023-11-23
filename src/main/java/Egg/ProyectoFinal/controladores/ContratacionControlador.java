@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/contratacion")
 public class ContratacionControlador {
 
-    
+    @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    @Autowired
     private ProveedorRepositorio proveedorRepositorio;
+    @Autowired
     private ContratacionRepositorio contratacionRepositorio;
     /* podemos acceder a los repositorios desde los servicios */
     @Autowired
@@ -40,9 +42,21 @@ public class ContratacionControlador {
     private RubroServicio rubroServicio;
     
    
-    @GetMapping("/contratar/{id}")
+    /*@GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
         modelo.put("contratacion", contratacionServicio.getOne(id));
+        
+
+        return "contratacion_form.html";
+    }*/
+    
+    @GetMapping("/contratar/{id}")
+    public String contratar(@PathVariable String id, ModelMap modelo) {
+        List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
+        Proveedor proveedor = proveedorServicio.getOne(id);
+        
+        modelo.addAttribute("proveedor",proveedor);
+        modelo.addAttribute("rubros",rubros);
 
         return "contratacion_form.html";
     }

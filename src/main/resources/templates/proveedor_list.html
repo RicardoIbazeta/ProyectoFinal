@@ -5,48 +5,10 @@
 >
   <head th:replace="/fragments/head :: head "></head>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   <body>
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
-=======
-<<<<<<< HEAD
-    <head th:replace="/fragments/head :: head "></head>
->>>>>>> 2070826 (proovedor_list)
-=======
-  <body>
-    <header th:replace="/fragments/header :: header "></header>
-    <nav th:replace="/fragments/nav :: nav"></nav>
->>>>>>> 8ace7a5 (actualizando Rama-Back)
 
-    <!--
-        <div class="container m-5">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody th:each="proveedor : ${proovedores}">
-              <tr>
-                <th scope="row" th:text="${proovedor.id}"></th>
-                <td th:text="${proveedor.nombre}"></td>
-                <td th:text="${proovedor.apellido}"></td>
-                <td>
-                  <a th:href="@{/contratacion/crear/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> Contratar </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        -->
-
-<<<<<<< HEAD
-<<<<<<< HEAD
     <img
       th:src="@{/6.png}"
       class="d-block mx-lg-auto img-fluid"
@@ -82,72 +44,11 @@
                     >
                       <a
                         style="color: black"
-                        th:href="@{/contratacion/crear/__${proveedor.id}__}"
+                        th:href="@{/contratacion/contratar/__${proveedor.id}__}"
                         >Contratar</a
                       >
                     </button>
                     <!-- Habilitar esto cuando se entre como admin
-=======
-=======
->>>>>>> 8ace7a5 (actualizando Rama-Back)
-                            <!--<img class="logo"  th:src="@{/imagen/usuario/__${usuario.id}__}"/> Controlar esto, no lo puedo hacer hasta que no terminen lo de la imagen-->
-                            <div class="card-body">
-                                <h4 class="card-text" color="black" th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"></h4>
-                                <p class="card-text" th:text="'Rubro: ' + ${proveedor.rubro.nombre}"></p>
-                                <p class="card-text" th:text="'Precio de hora: ' + ${proveedor.precioHora}"></p>
-                                <p class="card-text" th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"></p>
-                                <div class="d-flex justify-content-between align-items-center" >
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                                            <a style="color: black;" th:href="@{/contratacion/contratar/__${proveedor.id}__/">Contratar</a>
-                                        </button>
-                                        <!-- Habilitar esto cuando se entre como admin
-<<<<<<< HEAD
->>>>>>> a84e660 (ultima versione. 22/11/2023 18:12)
-=======
-=======
-    <img
-      th:src="@{/6.png}"
-      class="d-block mx-lg-auto img-fluid"
-      alt="Bootstrap Themes"
-    />
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col" th:each="proveedor : ${proveedores}">
-            <div class="card shadow-sm">
-              <!--<img class="logo"  th:src="@{/imagen/usuario/__${usuario.id}__}"/> Controlar esto, no lo puedo hacer hasta que no terminen lo de la imagen-->
-              <div class="card-body">
-                <h4
-                  class="card-text"
-                  color="black"
-                  th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"
-                ></h4>
-                <p class="card-text" th:text="${proveedor.rubro.nombre}"></p>
-                <p
-                  class="card-text"
-                  th:text="'Precio de hora: ' + ${proveedor.precioHora}"
-                ></p>
-                <p
-                  class="card-text"
-                  th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"
-                ></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      <a
-                        style="color: black"
-                        th:href="@{/contratacion/crear/__${proveedor.id}__}"
-                        >Contratar</a
-                      >
-                    </button>
-                    <!-- Habilitar esto cuando se entre como admin
->>>>>>> 70edfd4 (actualizando Rama-Back)
->>>>>>> 8ace7a5 (actualizando Rama-Back)
                                         <button type="button" class="btn btn-sm btn-outline-secondary" th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}">
                                             <a style="color: black;">Modificar</a>
                                         </button>
@@ -162,56 +63,10 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
       </div>
     </div>
 
-    <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
-
-<<<<<<< HEAD
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
-=======
-        <div id="exito/error">
-            <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                <h5>exito</h5>
-                <p th:text="${exito}"></p>
-            </div>
-            <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-                <h5>error</h5>
-                <p th:text="${error}"></p>
-            </div>
-        </div>
-
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
-=======
-<head th:replace="/fragments/head :: head "></head>
-
-<body>
-  <header th:replace="~{/fragments/header :: header}"></header>
-  <nav th:replace="~{/fragments/nav :: nav}"></nav>
-
-  <div class="container m-5">
+    <!-- <div class="container m-5">
     <table class="table table-dark">
       <thead>
         <tr>
@@ -240,10 +95,9 @@
     <div class="row mt-3">
       <div class="divVolver">
         <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-=======
->>>>>>> 8ace7a5 (actualizando Rama-Back)
+
       </div>
-    </div>
+    </div>-->
 
     <div id="exito/error">
       <div
@@ -264,11 +118,7 @@
       </div>
     </div>
 
-<<<<<<< HEAD
->>>>>>> 2070826 (proovedor_list)
-=======
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
->>>>>>> 8ace7a5 (actualizando Rama-Back)
 </html>

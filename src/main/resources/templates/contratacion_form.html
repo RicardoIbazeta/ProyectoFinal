@@ -5,82 +5,62 @@
 >
   <head th:replace="/fragments/head :: head "></head>
 
-
   <body>
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div id="contenido/Contrataciones"></div>
-
-    <div class="container-fluid m-5 contenedor">
-      <form
-        class="formulario"
-        th:action="@{/contratacion/contratado}"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-      <div></div>
-
-        <div class="form-group my-3">
-          <select>
-            <option>Elija un rubro</option>
-            <option th:each="rubro : ${rubros}" th:value="${rubro.id}" th:text="${rubro.nombre}"></option>
+    <div id="contenido/Contrataciones">
+      <div class="container-fluid m-5 contenedor">
+        <form
+          class="formulario"
+          th:action="@{/contratacion/contratado}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="text"
+            hidden
+            th:value="${proveedor.id}"
+            name="idProveedor"
+          />
+          <p th:text="'Profesional: '+${proveedor.nombre} "></p>
+          <select name="rubro" required>
+            <option value="">Elija un rubro</option>
+            <option
+              th:each="rubro : ${rubros}"
+              th:value="${rubro.id}"
+              th:text="${rubro.nombre}"
+            ></option>
           </select>
-        </div>
-          
-          
-          
-          
-          <form th:action="@{/contratacion/contratar__${contratacion.id}__}" method="POST"> 
-              <input hidden th:value="${id}" name="id">
-              
-          </form>
-            
-              
-          
-          -->
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+          <input type="text" hidden />
+          <p th:text="'Presupuesto: '+${proveedor.precioHora} "></p>
+          <input type="text" hidden th:value="${session.id}" name="idCliente" />
+          <p th:text="'Contrata: '+${session.usuario.nombre} "></p>
+          <button type="submit" class="btn btn-primary mt-3 botones">
+            Aceptar
+          </button>
 
-        <!-- verificar form. controlador solicita String idCliente, String idProveedor
-              podemos mostrar la lista y que elija el proveedor encapsulando en un select
-              para conseguir el idProveedor. para el idCliente podemos sacarlo de la info
-              de la sesion -->
-
-        <button type="submit" class="btn btn-primary mt-3 botones">
-          Pedir Presupuesto
-        </button>
-
-        <div id="exito/error" >
-          <div th:if="${exito != null}" id="exito"  class="card text-white bg-success mb-3 mt-3 mensajeExito">
-            <h5>exito</h5>
-            <p th:text="${exito}"></p>
+          <div id="exito/error">
+            <div
+              th:if="${exito != null}"
+              id="exito"
+              class="card text-white bg-success mb-3 mt-3 mensajeExito"
+            >
+              <h5>exito</h5>
+              <p th:text="${exito}"></p>
+            </div>
+            <div
+              th:if="${error != null}"
+              id="error"
+              class="card text-white bg-danger mb-3 mensajeError"
+            >
+              <h5>error</h5>
+              <p th:text="${error}"></p>
+            </div>
           </div>
-          <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-            <h5>error</h5>
-            <p th:text="${error}"></p>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
 
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>

@@ -5,6 +5,7 @@
 package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.RubroRepositorio;
+import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class RubroServicio {
     
     @Autowired
     private RubroRepositorio rubroRepositorio;
+    @Autowired
+    private ProveedorServicio proveedorServicio;
     
     public List<Rubro> listarRubros() {
 
@@ -31,7 +34,20 @@ public class RubroServicio {
         return rubros;
     }
     
-    
+    public List<Rubro> listarRubrosPorId(String id) {
+        Proveedor proveedor = proveedorServicio.getOne(id);
+        List<Rubro> rubros = new ArrayList();
+        List<Rubro> rubros1 = new ArrayList();
+        rubros1 = rubroRepositorio.findAll();
+        
+        for (Rubro rubro : rubros1) {
+            if (proveedor.getRubro().equals(rubro)) {
+                rubros.add(rubro);
+            }
+        }
+
+        return rubros;
+    }
 
     
     @Transactional
