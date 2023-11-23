@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
+import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/proveedor")
@@ -24,6 +27,7 @@ public class ProveedorControlador {
 
     @Autowired
     private ProveedorServicio proveedorServicio;
+    ReseniaServicio reseniaServicio;
 
     @Autowired
     private RubroServicio rubroServicio;
@@ -97,7 +101,17 @@ public class ProveedorControlador {
         modelo.addAttribute("proveedores", proveedores);
         return "proveedor_list.html";
     }
+    @PostMapping("/calificar/{id}")
+    public String registrarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,@RequestParam String idSolicitud, @RequestParam String comentario, @RequestParam String estrellas, ModelMap model) throws Exception{
+        try {
+            reseniaServicio.crear(comentario, estrellas, id, idSolicitud);
+            redirectAttributes.addFlashAttribute("exito","El proveedor fue calificado con exito!");
+            return "redirect:/usuarios";
+        } catch (MiException e) {
+            redirectAttributes.addFlashAttribute("error","El proveedor NO fue calificado con exito!");
+            return "redirect:/usuario";
+        }
     
     
-    
+    }
 }
