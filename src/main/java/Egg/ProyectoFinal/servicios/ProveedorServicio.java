@@ -8,9 +8,11 @@ import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,10 +41,11 @@ public class ProveedorServicio {
         proveedor.setApellido(apellido);
         proveedor.setDocumento(documento);
         proveedor.setEmail(email);
-        proveedor.setPassword(password);
+        proveedor.setPassword(new BCryptPasswordEncoder().encode(password));
         proveedor.setTelefono(telefono);
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
+        proveedor.setFechaAlta(new Date());
 
         proveedorRepositorio.save(proveedor);
     }
