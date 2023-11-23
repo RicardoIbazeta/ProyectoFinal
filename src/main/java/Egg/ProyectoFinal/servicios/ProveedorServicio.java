@@ -20,15 +20,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c8b76f8 (imagen id funcionando)
 =======
 >>>>>>> b90dd01 (encriptacion password proveedor)
+=======
+=======
+>>>>>>> f3cd23d (imagen id funcionando)
+>>>>>>> 4400cc5 (imagen id funcionando)
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -39,6 +45,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 =======
 >>>>>>> 9d1bbc7 (encriptacion password proveedor)
 >>>>>>> b90dd01 (encriptacion password proveedor)
+=======
+=======
+>>>>>>> 9d1bbc7 (encriptacion password proveedor)
+=======
+>>>>>>> f3cd23d (imagen id funcionando)
+>>>>>>> 4400cc5 (imagen id funcionando)
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,14 +96,20 @@ public class ProveedorServicio {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c8b76f8 (imagen id funcionando)
 =======
 >>>>>>> b90dd01 (encriptacion password proveedor)
+=======
+=======
+>>>>>>> f3cd23d (imagen id funcionando)
+>>>>>>> 4400cc5 (imagen id funcionando)
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
 
         proveedor.setImagen(imagen);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -102,6 +120,12 @@ public class ProveedorServicio {
 =======
 >>>>>>> 9d1bbc7 (encriptacion password proveedor)
 >>>>>>> b90dd01 (encriptacion password proveedor)
+=======
+=======
+>>>>>>> 9d1bbc7 (encriptacion password proveedor)
+=======
+>>>>>>> f3cd23d (imagen id funcionando)
+>>>>>>> 4400cc5 (imagen id funcionando)
 
         proveedorRepositorio.save(proveedor);
     }
