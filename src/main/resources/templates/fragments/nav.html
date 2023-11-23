@@ -68,24 +68,15 @@
                 >
               </li>
 
-              <li><hr class="dropdown-divider" /></li>
+              <li sec:authorize="hasRole('ADMIN')"><hr class="dropdown-divider" /></li>
               <!-- ¿este item solo tendria acceso el admin? -->
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/lista}"
+              <li sec:authorize="hasRole('ADMIN')">
+                <a class="dropdown-item" style="color: darkgrey;"  th:href="@{/usuario/lista}"
                   >Lista de Usuarios</a
                 >
               </li>
 
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
-                  >Editar Perfil</a
-                >
-              </li>
-
+           
               <li>
                 <hr class="dropdown-divider" />
               </li>
@@ -123,9 +114,10 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              sec:authorize="hasRole('ADMIN')"
               th:if="${session.usuario != null}"
             >
-              Servicios
+              Rubros
             </a>
             <ul
               class="dropdown-menu dropdown-menu-lg-end"
@@ -136,7 +128,7 @@
                   class="dropdown-item"
                   style="color: darkgrey;"
                   th:href="@{/rubro/lista}"
-                  >Lista de Servicios</a
+                  >Lista de Rubros</a
                 >
               </li>
               <li>
@@ -144,7 +136,7 @@
                   class="dropdown-item"
                   style="color: darkgrey;"
                   th:href="@{/rubro/registrar}"
-                  >Crear un Servicio</a
+                  >Crear un Rubro</a
                 >
               </li>
             </ul>
@@ -172,6 +164,18 @@
                 >Lista de Contrataciones</a
                 >
               </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" 
+                th:href="@{/contratacion/lista}"
+                style="color: darkgrey;"
+                sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
+                >Mis Contrataciones</a
+                >
+              </li>
+              
             </ul>
           </li>
         </ul>
