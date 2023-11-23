@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Rama-Back
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     >
     <head th:replace="/fragments/head :: head "></head>
+<<<<<<< HEAD
+=======
 
     <body>
         <header th:replace="/fragments/header :: header "></header>
@@ -17,6 +23,42 @@
                     method="POST"
                     enctype="multipart/form-data"
                     >
+=======
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
+>>>>>>> Rama-Back
+
+    <body>
+        <header th:replace="/fragments/header :: header "></header>
+        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+<<<<<<< HEAD
+        <div class="container my-5">
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <form
+                    class="formulario"
+                    th:action="@{/proveedor/registro}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    >
+=======
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/proveedor/registro}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
+          <div class="form-group my-3">
+            <h3 class="card-title">Registro Proveedor</h3>
+          </div>
+          <br />
+>>>>>>> cfffef4 (proveedor form y cliente form)
+>>>>>>> Rama-Back
 
                     <div id="exito/error">
                         <div
@@ -109,6 +151,10 @@
                             />
                     </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Rama-Back
                     <div class="form-group my-3">
                         <label for="password2" style="display: flex"
                                >Repita contraseña del Usuario</label
@@ -121,6 +167,8 @@
                             th:value="${password2}"
                             />
                     </div>
+<<<<<<< HEAD
+=======
 
                     <div class="form-group my-3">
                         <label for="telefono" style="display: flex"
@@ -160,6 +208,81 @@
                             th:value="${precioHora}"
                             />
                     </div>
+=======
+          <div class="form-group my-3">
+            <label for="direccion" style="display: flex"
+              >Domicilio del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="direccion"
+              placeholder="Indique su direccion"
+              th:value="${direccion}"
+            />
+          </div>
+>>>>>>> Rama-Back
+
+                    <div class="form-group my-3">
+                        <label for="telefono" style="display: flex"
+                               >Telefono del Usuario</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="telefono"
+                            placeholder="Indique su telefono de contacto"
+                            th:value="${telefono}"
+                            />
+                    </div>
+
+                    <div class="form-group my-3">
+                        <label for="direccion" style="display: flex"
+                               >Domicilio del Usuario</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="direccion"
+                            placeholder="Indique su direccion"
+                            th:value="${direccion}"
+                            />
+                    </div>
+
+<<<<<<< HEAD
+                    <div class="form-group my-3">
+                        <label for="precioHora" style="display: flex"
+                               >Valor Hora Promedio</label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="precioHora"
+                            placeholder="Indique un valor promedio de hora laboral"
+                            th:value="${precioHora}"
+                            />
+                    </div>
+=======
+          <div>
+            <select name="rubro">
+              <option>Elija un rubro</option>
+              <option
+                th:each="rubro : ${rubros}"
+                th:value="${rubro.id}"
+                th:text="${rubro.nombre}"
+              ></option>
+            </select>
+          </div>
+<<<<<<< HEAD
+=======
+              sec:authorize="hasRole('PROVEEDOR')"
+            ></textarea>
+          </div> 
+>>>>>>> 48cf616 (proveedor form y cliente form)
+>>>>>>> cfffef4 (proveedor form y cliente form)
+=======
+>>>>>>> 70edfd4 (actualizando Rama-Back)
+>>>>>>> Rama-Back
 
                     <div class="form-group my-3">
                         <label for="descripcionServicio" style="display: flex"
@@ -174,6 +297,10 @@
                             ></textarea>
                     </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Rama-Back
                     <div>
                         <select name="rubro" required>
                             <option value="">Elija un rubro</option>
@@ -196,10 +323,44 @@
 
                     <div th:replace="/fragments/div :: div "></div>
                 </form>
+<<<<<<< HEAD
+=======
             </div>
         </div>
 
         <script th:replace="/fragments/script :: script "></script>
         <footer th:replace="/fragments/footer :: footer"></footer>
     </body>
+=======
+          <div id="exito/error">
+            <div
+              th:if="${exito != null}"
+              id="exito"
+              class="card text-white bg-success mb-3 mt-3 mensajeExito"
+            >
+              <h5>exito</h5>
+              <p th:text="${exito}"></p>
+>>>>>>> Rama-Back
+            </div>
+        </div>
+
+<<<<<<< HEAD
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
+=======
+          <div th:replace="/fragments/div :: div "></div>
+        </form>
+      </div>
+    </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> cfffef4 (proveedor form y cliente form)
+=======
+>>>>>>> 70edfd4 (actualizando Rama-Back)
+>>>>>>> Rama-Back
 </html>

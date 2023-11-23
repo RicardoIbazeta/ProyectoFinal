@@ -76,7 +76,7 @@ public class UsuarioServicio implements UserDetailsService {
     //Agrego atributo MultiPartFile para la imagen
     @Transactional
     public void modificarUsuario(MultipartFile archivo,String id, String nombre, String apellido, String email, String password, String telefono,
-            String direccion, Boolean tipoUsuario) throws MiException {
+            String direccion) throws MiException {
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
@@ -183,5 +183,12 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-
+    
+    
+    //Implemente el getOne en usuarioservicio
+      public Usuario getOne(String id){
+        return usuarioRepositorio.getOne(id);
+    }
+    
+    
 }

@@ -69,12 +69,11 @@
               th:value="${email}"
             />
           </div>
-          <!-- comment 
+          
           <div class="form-group my-3">
             <label for="archivo" style="display: flex">Foto del Usuario</label><br />
             <input type="file" class="form-control" name="archivo" />
-          </div>
-          -->
+          
           <div class="form-group my-3">
             <label for="password" style="display: flex"
               >Contraseña del Usuario</label
@@ -136,12 +135,20 @@
         </form>
       </div>
     </div>
-    <div id="exito/error" >
-      <div th:if="${exito != null}" id="exito"  class="card text-white bg-success mb-3 mt-3 mensajeExito">
+    <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
         <h5>exito</h5>
         <p th:text="${exito}"></p>
       </div>
-      <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
