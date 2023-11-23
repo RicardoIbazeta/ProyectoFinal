@@ -6,6 +6,7 @@ package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
+import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.excepciones.MiException;
@@ -25,7 +26,7 @@ public class ContratacionServicio {
     private ContratacionRepositorio contratacionRepositorio;
     
     @Transactional
-    public void crearContratacion(Usuario cliente, Usuario proveedor){
+    public void crearContratacion(Usuario cliente, Proveedor proveedor){
         
         /* verificar metodo validarContratacion */
         
