@@ -1,5 +1,6 @@
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
@@ -12,8 +13,10 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,8 @@ public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private ContratacionServicio contratacionServicio;
+    @Autowired
+    private UsuarioRepositorio usuarioRepositorio;
 
     @GetMapping("/registrar")
     public String registrar() {
@@ -82,4 +87,5 @@ public class UsuarioControlador {
         modelo.addAttribute("usuarios", usuarios);
         return "usuario_list.html";
     }
+    
 }

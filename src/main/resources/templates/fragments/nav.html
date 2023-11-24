@@ -1,181 +1,225 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" >
-  <div class="container-fluid" style="background-color: #142e79">
-    <a class="navbar-brand" style="color: white" th:if="${session.usuario != null}" th:href="@{/inicio}">Inicio</a>
-    <a class="navbar-brand" style="color: white" th:if="${session.usuario == null}" th:href="@{/}">Inicio</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarScroll"
-      aria-controls="navbarScroll"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="nav justify-content-end ">
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarScroll"
-      >
-        <ul
-          class="nav nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-          style="--bs-scroll-height: 150px"
-        >
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              aria-current="page"
-              style="color: white"
-              th:if="${session.usuario == null}"
-              href="/login"
-              >Ingresar</a
+    <div class="container-fluid" style="background-color: #142e79">
+        <a class="navbar-brand" style="color: white" th:if="${session.usuario != null}" th:href="@{/inicio}">Inicio</a>
+        <a class="navbar-brand" style="color: white" th:if="${session.usuario == null}" th:href="@{/}">Inicio</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
             >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              style="color: white"
-              th:if="${session.usuario == null}"
-              href="/registrarseBotones"
-              >Registrar</a
-            >
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              style="color: white"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              th:if="${session.usuario != null}"
-            >
-              Usuario
-            </a>
-            <ul class="dropdown-menu dropdown-menu-lg-end"
-              style="background-color: #142e79">
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/Perfil}">Perfil</a>
-              </li>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-              <li><hr class="dropdown-divider" /></li>
+        <div class="nav justify-content-end ">
+            <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarScroll"
+                >
+                <ul
+                    class="nav nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+                    style="--bs-scroll-height: 150px"
+                    >
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            aria-current="page"
+                            style="color: white"
+                            th:if="${session.usuario == null}"
+                            href="/login"
+                            >Ingresar</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            style="color: white"
+                            th:if="${session.usuario == null}"
+                            href="/registrarseBotones"
+                            >Registrar</a
+                        >
+                    </li>
 
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
-                  >Editar Perfil</a
-                >
-              </li>
 
-              <li><hr class="dropdown-divider" /></li>
-              <!-- ¿este item solo tendria acceso el admin? -->
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/lista}"
-                  >Lista de Usuarios</a
-                >
-              </li>
 
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+                    <!---
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        style="color: white"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        th:if="${session.usuario != null}"
+                      >
+                        Usuario
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-lg-end"
+                        style="background-color: #142e79">
+                        <li>
+                          <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/Perfil}">Perfil</a>
+                        </li>
+          
+                        <li><hr class="dropdown-divider" /></li>
+          
+                        <li>
+                          <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
+                            >Editar Perfil</a
+                          >
+                        </li>
+          
+                        <li sec:authorize="hasRole('ADMIN')"><hr class="dropdown-divider" /></li>
+                    <!-- ¿este item solo tendria acceso el admin? 
+                    <li sec:authorize="hasRole('ADMIN')">
+                      <a class="dropdown-item" style="color: darkgrey;"  th:href="@{/usuario/lista}"
+                        >Lista de Usuarios</a
+                      >
+                    </li>
+                    
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+      
+                    <li><a class="dropdown-item" style="color: rgb(242, 14, 14);" href="/logout">Cerrar Sesion</a></li>
+                  </ul>
+                </li>
+                    -->
 
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
-                  >Editar Perfil</a
-                >
-              </li>
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            style="color: white"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            th:if="${session.usuario != null}"
+                            >
+                            Proveedores
+                        </a>
+                        <ul 
+                            class="dropdown-menu dropdown-menu-lg-end"
+                            style="background-color: #142e79">
+                            <li>
+                                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/proveedor/lista}"
+                                   >Lista de Proveedores</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            style="color: white"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            sec:authorize="hasRole('ADMIN')"
+                            th:if="${session.usuario != null}"
+                            >
+                            Rubros
+                        </a>
+                        <ul
+                            class="dropdown-menu dropdown-menu-lg-end"
+                            style="background-color: #142e79"
+                            >
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    style="color: darkgrey;"
+                                    th:href="@{/rubro/lista}"
+                                    >Lista de Rubros</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    style="color: darkgrey;"
+                                    th:href="@{/rubro/registrar}"
+                                    >Crear un Rubro</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            style="color: white"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            th:if="${session.usuario != null}"
+                            >
+                            Contrataciones
+                        </a>
+                        <ul 
+                            class="dropdown-menu dropdown-menu-lg-end"
+                            style="background-color: #142e79">
+                            <li>
+                                <a class="dropdown-item" 
+                                   th:href="@{/contratacion/lista}"
+                                   style="color: darkgrey;"
+                                   sec:authorize="hasRole('ADMIN')"
+                                   >Lista de Contrataciones</a
+                                >
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" 
+                                   th:href="@{/contratacion/lista}"
+                                   style="color: darkgrey;"
+                                   sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
+                                   >Mis Contrataciones</a
+                                >
+                            </li>
+                        </ul>
 
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+                    </li>
 
-              <li><a class="dropdown-item" style="color: rgb(242, 14, 14);" href="/logout">Cerrar Sesion</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              style="color: white"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              th:if="${session.usuario != null}"
-            >
-              Proveedores
-            </a>
-            <ul 
-            class="dropdown-menu dropdown-menu-lg-end"
-            style="background-color: #142e79">
-              <li>
-                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/proveedor/lista}"
-                  >Lista de Proveedores</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              style="color: white"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              th:if="${session.usuario != null}"
-            >
-              Servicios
-            </a>
-            <ul
-              class="dropdown-menu dropdown-menu-lg-end"
-              style="background-color: #142e79"
-            >
-              <li>
-                <a
-                  class="dropdown-item"
-                  style="color: darkgrey;"
-                  th:href="@{/rubro/lista}"
-                  >Lista de Servicios</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  style="color: darkgrey;"
-                  th:href="@{/rubro/registrar}"
-                  >Crear un Servicio</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              style="color: white"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              th:if="${session.usuario != null}"
-            >
-              Contrataciones
-            </a>
-            <ul 
-            class="dropdown-menu dropdown-menu-lg-end"
-            style="background-color: #142e79">
-              <li>
-                <a class="dropdown-item" 
-                th:href="@{/contratacion/lista}"
-                style="color: darkgrey;"
-                sec:authorize="hasRole('ADMIN')"
-                >Lista de Contrataciones</a
-                >
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+                    <div class="dropdown text-end">
+                        <a class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" th:if="${session.usuario != null}">
+                            <img th:src="@{/imagen/perfil/__${session.usuario.id}__}" alt="mdo" width="32" height="32" >
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-lg-end"
+                            style="background-color: #142e79">
+                            <li>
+                                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/Perfil}">Perfil</a>
+                            </li>
+
+                            <li><hr class="dropdown-divider" /></li>
+
+                            <li>
+                                <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
+                                   >Editar Perfil</a
+                                >
+                            </li>
+
+                            <li sec:authorize="hasRole('ADMIN')"><hr class="dropdown-divider" /></li>
+                            <!-- ¿este item solo tendria acceso el admin? -->
+                            <li sec:authorize="hasRole('ADMIN')">
+                                <a class="dropdown-item" style="color: darkgrey;"  th:href="@{/usuario/lista}"
+                                   >Lista de Usuarios</a
+                                >
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+
+                            <li><a class="dropdown-item" style="color: rgb(242, 14, 14);" href="/logout">Cerrar Sesion</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
