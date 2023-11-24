@@ -20,12 +20,12 @@
         <thead>
           <tr>
             <th scope="col">Nombre del Cliente</th>
-            <th scope="col">Alta</th>
+            <th scope="col">Fecha de Contratacion</th>
             <th scope="col">Estado</th>
-            <th scope="col">Cliente ID</th>
-            <th scope="col">Proveedor ID</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
         
-            <!-- <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th> -->
+            
           </tr>
         </thead>
         <tbody th:each="contratacion : ${contrataciones}">
@@ -33,8 +33,8 @@
             <th scope="row" th:text="${contratacion.cliente.nombre}">hola</th>
             <td th:text="${contratacion.alta}"></td>
             <td th:text="${contratacion.estadoContratacion}"></td>
-            <td th:text="${contratacion.cliente.id}"></td>
-            <td th:text="${contratacion.proveedor.id}"></td>
+            <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.cliente.id}"></td>
+            <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.proveedor.id}"></td>
         
           </tr>
         </tbody>

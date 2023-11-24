@@ -50,15 +50,9 @@ public class PortalControlador {
     } 
     
     //Verifica que el usuario sea user o admin
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/perfil")
-    public String perfil(ModelMap modelo,HttpSession session){
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-         modelo.put("usuario", usuario);
-        return "usuario_modificar.html";
-    }
+    
     //si es usuario lo manda a modificar usuario
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
     @PostMapping("/perfil/{id}")
     public String actualizar(MultipartFile archivo,@PathVariable String id, @RequestParam String nombre,@RequestParam String apellido,@RequestParam String email,@RequestParam String password,@RequestParam String telefono,
             @RequestParam String direccion,@RequestParam Boolean tipoUsuario,ModelMap modelo) {
