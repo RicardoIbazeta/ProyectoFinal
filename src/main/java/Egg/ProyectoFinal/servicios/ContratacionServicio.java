@@ -131,4 +131,10 @@ public class ContratacionServicio {
         return contrataciones;
     }
 
+    
+     public void darAltaBaja (Contratacion contratacion){
+     
+        contratacion.setAltaBaja(!contratacion.isAltaBaja());
+    }
+    
 }

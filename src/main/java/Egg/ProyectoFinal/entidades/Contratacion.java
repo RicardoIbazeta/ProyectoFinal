@@ -27,6 +27,7 @@ public class Contratacion {
     @Temporal(TemporalType.TIMESTAMP)   
     private Date alta;
     
+    private boolean altaBaja;
     
     //esta notacion @Enumerated(EnumType.STRING) indica que los valores de la enumeración 
     //estadoContratacion deben ser almacenados y recuperados como cadenas de texto en la base de datos
@@ -82,8 +83,14 @@ public class Contratacion {
     public void setEstadoContratacion(Estado estadoContratacion) {
         this.estadoContratacion = estadoContratacion;
     }
-    
-    
-    
+
+    public boolean isAltaBaja() {
+        return altaBaja;
+    }
+
+    public void setAltaBaja(boolean altaBaja) {
+        this.altaBaja = altaBaja;
+    }
+
     
 }

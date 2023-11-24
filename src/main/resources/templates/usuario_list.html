@@ -38,7 +38,7 @@
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.rol}"></td>
             <td>
-              <!-- <button type="submit" th:action="${usuario.eliminar}">X</button> -->
+            <button type="button"  ><a method="POST" th:action="@{/usuario/eliminar/__${usuario.id}__}" >X</a></button>
             </td>
           </tr>
         </tbody>

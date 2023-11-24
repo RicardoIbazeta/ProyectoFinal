@@ -231,4 +231,9 @@ public class ProveedorServicio {
 
     }
 
+     public void darAltaBaja (Proveedor proveedor){
+     
+        proveedor.setAltaBaja(!proveedor.isAltaBaja());
+    }
+    
 }
