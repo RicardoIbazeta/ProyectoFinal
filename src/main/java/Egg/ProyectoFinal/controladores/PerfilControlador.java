@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/usuario/Perfil")
+@RequestMapping("/perfil2")
 public class PerfilControlador {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
-    //@GetMapping("/{id}/perfil")
-    public String mostrarPerfilUsuario(@PathVariable Long id, Model model) {
-        Usuario usuario = usuarioRepositorio.findById(id);
+    @GetMapping("/perfil2/{id}")
+    public String mostrarPerfilUsuario(@PathVariable String id, Model model) {
+        Usuario usuario = (Usuario) usuarioRepositorio.buscarPorId(id); //.findById(id)
         model.addAttribute("usuario", usuario);
         return "perfil.html";
     }
