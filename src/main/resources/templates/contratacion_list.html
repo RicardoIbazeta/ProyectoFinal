@@ -20,6 +20,7 @@
         <thead>
           <tr>
             <th scope="col">Nombre del Cliente</th>
+            <th scope="col">Apellido del Cliente</th>
             <th scope="col">Fecha de Contratacion</th>
             <th scope="col">Estado</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
@@ -31,6 +32,7 @@
         <tbody th:each="contratacion : ${contrataciones}">
           <tr>
             <th scope="row" th:text="${contratacion.cliente.nombre}">hola</th>
+            <th scope="row" th:text="${contratacion.cliente.apellido}">hola</th>
             <td th:text="${contratacion.alta}"></td>
             <td th:text="${contratacion.estadoContratacion}"></td>
             <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.cliente.id}"></td>
