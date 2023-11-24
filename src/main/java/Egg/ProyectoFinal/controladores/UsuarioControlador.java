@@ -10,6 +10,7 @@ import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -87,5 +88,17 @@ public class UsuarioControlador {
         modelo.addAttribute("usuarios", usuarios);
         return "usuario_list.html";
     }
-    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo,HttpSession session){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+         modelo.put("usuario", usuario);
+        return "perfil.html";
+    }
+    @GetMapping("/editarPerfil")
+    public String editarPerfil(ModelMap modelo,HttpSession session){
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+         modelo.put("usuario", usuario);
+        return "editarPerfil.html";
+    }
 }

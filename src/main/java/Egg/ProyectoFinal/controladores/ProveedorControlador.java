@@ -6,11 +6,14 @@ import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.ArrayList;
 import Egg.ProyectoFinal.entidades.Rubro;
+import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,5 +103,13 @@ public class ProveedorControlador {
         }
     
     
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR', 'ROLE_ADMIN')")
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo,HttpSession session){
+        Proveedor proveedor = (Proveedor) session.getAttribute("usuario");
+         modelo.put("proveedor", proveedor);
+        return "perfil.html";
     }
 }
