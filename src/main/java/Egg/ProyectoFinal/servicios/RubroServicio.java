@@ -10,6 +10,7 @@ import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,5 +69,33 @@ public class RubroServicio {
     }
     
     
+    @Transactional
+    public void modificarRubro(String id,String nombre){
+        
+        Optional<Rubro> respuesta = rubroRepositorio.findById(id);
+        
+        if(respuesta.isPresent()){
+            
+            Rubro rubro = new Rubro();
+            
+            rubro.setId(nombre);
+            
+            rubroRepositorio.save(rubro);
+        }
+        
+    }
+    
+      @Transactional
+       public void eliminar (Rubro rubro){
+           
+           Optional<Rubro> respuestaRubro = rubroRepositorio.findById(rubro.getId());
+           if (respuestaRubro.isPresent()) {
+               rubroRepositorio.delete(rubro);
+               
+               
+           }
+           
+           
+    }
     
 }

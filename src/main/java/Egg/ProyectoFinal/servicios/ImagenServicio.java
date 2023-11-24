@@ -69,7 +69,20 @@ public class ImagenServicio {
         }
         
         return null;
+
+    }
+    
+    public void eliminarImagen(Imagen imagen){
+        Optional<Imagen> respuesta=imagenRepositorio.findById(imagen.getId());
+        
+        if(respuesta.isPresent()){
+            
+            imagenRepositorio.delete(imagen);
+        }
         
         
     }
+    
+    
+    
 }
