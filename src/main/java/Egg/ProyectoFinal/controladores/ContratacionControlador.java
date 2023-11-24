@@ -74,7 +74,7 @@ public class ContratacionControlador {
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);
         Optional<Proveedor> respuestaProveedor = proveedorRepositorio.findById(idProveedor);
         
-        System.out.println("id cliente: "+idCliente);
+       
         /* agregar try-catch y modelo en caso de que falle */
 
         if (respuestaCliente.isPresent() && respuestaProveedor.isPresent()) {

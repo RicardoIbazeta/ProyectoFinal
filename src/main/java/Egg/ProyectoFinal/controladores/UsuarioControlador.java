@@ -40,27 +40,26 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento, 
-            String email, String password, String password2, String telefono, String direccion,boolean AltaBaja, ModelMap modelo) {
-
+    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento,
+            String email, String password, String password2, String telefono, String direccion, boolean AltaBaja, ModelMap modelo) {
 
         try {
             /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
                 se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
-            usuarioServicio.crearUsuario(archivo,nombre, apellido, documento, email, password, password2, telefono, direccion,AltaBaja);
+            usuarioServicio.crearUsuario(archivo, nombre, apellido, documento, email, password, password2, telefono, direccion, AltaBaja);
 
             modelo.put("exito", "El usuario fue cargado correctamente");
             return "index.html";
-            
+
         } catch (MiException ex) {
-            
+
             modelo.put("error", ex.getMessage());
-            
+
             /*
             Se Inyecta la informacion proporcionada por el usuario previo a un error 
             y asi no tiene que volver ingresar todo nuevamente.
             La contraseña y el tipoUsuario siempre deberan ser ingresados
-            */
+             */
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("documento", documento);
@@ -79,40 +78,53 @@ public class UsuarioControlador {
         modelo.addAttribute("historial", historial);
         return "contratacion_list.html";
     }
-    
+
     /* Mapeo que lista todos los usuarios */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/lista")
-    public String listarUsuarios(ModelMap modelo){
+    public String listarUsuarios(ModelMap modelo) {
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
         modelo.addAttribute("usuarios", usuarios);
         return "usuario_list.html";
     }
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_PROVEEDOR' )")
     @GetMapping("/perfil")
-    public String perfil(ModelMap modelo,HttpSession session){
+    public String perfil(ModelMap modelo, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-         modelo.put("usuario", usuario);
+        modelo.put("usuario", usuario);
         return "perfil.html";
     }
+
     @GetMapping("/editarPerfil")
-    public String editarPerfil(ModelMap modelo,HttpSession session){
+    public String editarPerfil(ModelMap modelo, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-         modelo.put("usuario", usuario);
+        modelo.put("usuario", usuario);
         return "editarPerfil.html";
     }
-    
-    @PostMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id,ModelMap modelo){
-        
-        Usuario usuario =usuarioServicio.getOne(id);
-        
+
+    @PostMapping("/altaBaja/{id}")
+    public String altaBajaUsuario(@PathVariable String id, ModelMap modelo) {
+
+        Usuario usuario = usuarioServicio.getOne(id);
+
         usuarioServicio.darAltaBaja(usuario);
-        
-        
+
         modelo.put("usuario", usuario);
-        
-        return "usuario_list.html"; 
+
+        return "redirect:/usuario/lista";
     }
-    
+
+    @PostMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable String id, ModelMap modelo) {
+
+        Usuario usuario = usuarioServicio.getOne(id);
+
+        usuarioServicio.eliminar(usuario);
+
+        modelo.put("usuario", usuario);
+
+        return "redirect:/usuario/lista";
+    }
+
 }
