@@ -15,6 +15,14 @@
       <p th:text="${usuario.apellido}"></p>
       <!-- Otros campos según tus necesidades -->
     </div>
+    
+    
+    <div sec:authorize="hasRole('PROVEEDOR')"class="perfil-card">
+      <h2 th:text="${proveedor.nombre}"></h2>
+      <p th:text="${proveedor.apellido}"></p>
+      <!-- Otros campos según tus necesidades -->
+    </div>
+    
 
     <div id="exito/error">
       <div

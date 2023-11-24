@@ -104,12 +104,4 @@ public class ProveedorControlador {
     
     
     }
-    
-    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR', 'ROLE_ADMIN')")
-    @GetMapping("/perfil")
-    public String perfil(ModelMap modelo,HttpSession session){
-        Proveedor proveedor = (Proveedor) session.getAttribute("usuario");
-         modelo.put("proveedor", proveedor);
-        return "perfil.html";
-    }
 }

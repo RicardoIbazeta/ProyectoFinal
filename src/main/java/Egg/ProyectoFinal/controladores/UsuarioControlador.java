@@ -88,7 +88,7 @@ public class UsuarioControlador {
         modelo.addAttribute("usuarios", usuarios);
         return "usuario_list.html";
     }
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_PROVEEDOR' )")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo,HttpSession session){
         Usuario usuario = (Usuario) session.getAttribute("usuario");
