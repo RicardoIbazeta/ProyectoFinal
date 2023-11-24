@@ -7,6 +7,7 @@ import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -15,6 +16,7 @@ public class ImagenServicio {
     private ImagenRepositorio imagenRepositorio;
     
     //Metodo para guardar imagen
+    @Transactional
     public Imagen guardar(MultipartFile archivo) throws MiException{
         if(archivo != null){
             try{
@@ -37,7 +39,7 @@ public class ImagenServicio {
         
         return null;
     }
-    
+    @Transactional
     public Imagen actualizar(MultipartFile archivo,String idImagen)throws MiException{
         
         if(archivo != null){
