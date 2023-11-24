@@ -22,16 +22,10 @@ public class PerfilControlador {
     @GetMapping("/perfil2/{id}")
     public String mostrarPerfilUsuario(@PathVariable String id, Model model) {
         Usuario usuario = (Usuario) usuarioRepositorio.buscarPorId(id); //.findById(id)
-<<<<<<< HEAD
-=======
-    //@GetMapping("/{id}/perfil")
-    public String mostrarPerfilUsuario(@PathVariable Long id, Model model) {
-        Usuario usuario = usuarioRepositorio.findById(id);
->>>>>>> 5684ace (ver perfil no funciona)
-=======
+
         //Usuario usuario = usuarioRepositorio.findById(id);
 
->>>>>>> aa137b1 (merge con rama front)
+
         model.addAttribute("usuario", usuario);
         return "perfil.html";
     }
