@@ -36,6 +36,8 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario,String>{
             
     /*@Query ("SELECT u FROM usuario u WHERE u.tipoUsuario = :true")
     public UsuarioRepositorio buscarPorProveedor (@Param ("tipoUsuario") Boolean tipoUsuario);*/
+
+    public Usuario findById(Long id);
         
     }
     
