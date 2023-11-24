@@ -38,7 +38,7 @@ public class UsuarioServicio implements UserDetailsService {
     //Agrego el Atributo MultiPartFile
     @Transactional
     public void crearUsuario(MultipartFile archivo,String nombre, String apellido, String documento, String email, String password, String password2,
-            String telefono, String direccion) throws MiException {
+            String telefono, String direccion,boolean AltaBaja) throws MiException {
 
         validarUsuario(nombre, apellido, documento, email, telefono, direccion);
         validarPassword(password, password2);
@@ -64,6 +64,8 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setRol(Rol.USER);
        
         usuario.setFechaAlta(new Date());   
+        
+        usuario.setAltaBaja(true);
         
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
@@ -190,7 +192,15 @@ public class UsuarioServicio implements UserDetailsService {
         return usuarioRepositorio.getOne(id);
     }
     
-      
-      
+      @Transactional
+       public void darAltaBaja (Usuario usuario){
+     
+       if(usuario.isAltaBaja()){
+           
+           usuario.setAltaBaja(false);
+           
+       }else
+           usuario.setAltaBaja(true);
+    }
       
 }

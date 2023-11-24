@@ -14,6 +14,7 @@ public class Proveedor extends Usuario {
     private Double calificacion;
     private Double precioHora;
     private String descripcionServicio;
+    private boolean altaBaja;
     
     @OneToOne
     public Rubro rubro;
@@ -65,5 +66,16 @@ public class Proveedor extends Usuario {
     public void setContrataciones(List<Contratacion> contrataciones) {
         this.contrataciones = contrataciones;
     }*/
+
+    public boolean isAltaBaja() {
+        return altaBaja;
+    }
+
+    public void setAltaBaja(boolean altaBaja) {
+        this.altaBaja = altaBaja;
+    }
+
+  
+    
     
 }
