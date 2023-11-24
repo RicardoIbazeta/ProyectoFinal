@@ -9,6 +9,7 @@ import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,8 @@ public class RubroControlador {
     @Autowired
     private RubroServicio rubroServicio;
     
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String registrar(){
         
