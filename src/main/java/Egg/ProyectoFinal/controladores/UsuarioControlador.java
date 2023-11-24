@@ -41,13 +41,13 @@ public class UsuarioControlador {
 
     @PostMapping("/registro")
     public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento, 
-            String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+            String email, String password, String password2, String telefono, String direccion,boolean AltaBaja, ModelMap modelo) {
 
 
         try {
             /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
                 se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
-            usuarioServicio.crearUsuario(archivo,nombre, apellido, documento, email, password, password2, telefono, direccion);
+            usuarioServicio.crearUsuario(archivo,nombre, apellido, documento, email, password, password2, telefono, direccion,AltaBaja);
 
             modelo.put("exito", "El usuario fue cargado correctamente");
             return "index.html";
@@ -101,4 +101,18 @@ public class UsuarioControlador {
          modelo.put("usuario", usuario);
         return "editarPerfil.html";
     }
+    
+    @PostMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable String id,ModelMap modelo){
+        
+        Usuario usuario =usuarioServicio.getOne(id);
+        
+        usuarioServicio.darAltaBaja(usuario);
+        
+        
+        modelo.put("usuario", usuario);
+        
+        return "usuario_list.html"; 
+    }
+    
 }
