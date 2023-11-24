@@ -190,5 +190,8 @@ public class UsuarioServicio implements UserDetailsService {
         return usuarioRepositorio.getOne(id);
     }
     
-    
+    public void darAltaBaja (Usuario usuario){
+     
+        usuario.setAltaBaja(!usuario.isAltaBaja());
+    }
 }

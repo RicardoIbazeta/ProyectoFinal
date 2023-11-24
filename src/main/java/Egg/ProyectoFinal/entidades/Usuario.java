@@ -32,7 +32,7 @@ public class Usuario {
     protected Imagen imagen;
     protected String direccion;
     protected String documento;
-
+    protected boolean altaBaja;
     public Usuario() {
     }
 
@@ -139,5 +139,15 @@ public class Usuario {
     public void setDocumento(String documento) {
         this.documento = documento;
     }
+
+    public boolean isAltaBaja() {
+        return altaBaja;
+    }
+
+    public void setAltaBaja(boolean altaBaja) {
+        this.altaBaja = altaBaja;
+    }
+
+  
     
 }
