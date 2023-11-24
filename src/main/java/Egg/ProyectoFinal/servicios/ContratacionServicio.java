@@ -21,92 +21,107 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ContratacionServicio {
-    
+
     @Autowired
     private ContratacionRepositorio contratacionRepositorio;
     
+    
+    
+    
     @Transactional
-    public void crearContratacion(Usuario cliente, Proveedor proveedor){
-        
+    public void aceptarContratacion(Proveedor proveedor, Contratacion contratacion) {
+
+        /*
+        Se valida que el id del proveedor y el proveedor en la contratacion sean los mismos,
+        y si son los mismos, le permitira al proveedor cambiar el estado de la Cotratacion
+         */
+        if (proveedor.getId().equalsIgnoreCase(contratacion.getProveedor().getId())) {
+            contratacion.setEstadoContratacion(Estado.EN_PROCESO);
+        }
+
+    }
+
+    @Transactional
+    public void crearContratacion(Usuario cliente, Proveedor proveedor) {
+
         /* verificar metodo validarContratacion */
-        
         Contratacion contratacion = new Contratacion();
-        
+
         contratacion.setCliente(cliente);
         contratacion.setProveedor(proveedor);
         contratacion.setEstadoContratacion(Estado.SOLICITADO);
         contratacion.setAlta(new Date());
-        
+
         contratacionRepositorio.save(contratacion);
     }
-    
+
     //Falta agregar una excepcion para cuando no se encuetra la contratacion
     @Transactional
-    public void finalizarContratacion (String idContratacion, String idProveedor){
-        
+    public void finalizarContratacion(String idContratacion, String idProveedor) {
+
         Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
-        
-        if (respuesta.isPresent()){
-            
+
+        if (respuesta.isPresent()) {
+
             Contratacion contratacion = respuesta.get();
             contratacion.setEstadoContratacion(Estado.FINALIZADO);
-            
+
             contratacionRepositorio.save(contratacion);
         }
     }
-    
+
     //Falta agregar una excepcion para cuando no se encuetra la contratacion
     @Transactional
-    public void cancelarContratacion(String idContratacion){
-        
+    public void cancelarContratacion(String idContratacion) {
+
         Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
-        
-        if (respuesta.isPresent()){
-            
+
+        if (respuesta.isPresent()) {
+
             Contratacion contratacion = respuesta.get();
             contratacion.setEstadoContratacion(Estado.CANCELADO);
-            
+
             contratacionRepositorio.save(contratacion);
         }
-        
+
     }
-    
-    public Contratacion getOne(String id){
+
+    public Contratacion getOne(String id) {
         return contratacionRepositorio.getOne(id);
     }
-    
-    public List<Contratacion> listarContrataciones(){
-        
+
+    public List<Contratacion> listarContrataciones() {
+
         List<Contratacion> contrataciones = new ArrayList();
         //usamos el metodo que nos trae JpaRepositori "findAll" que nos trae todo lo que encuentra
         contrataciones = contratacionRepositorio.findAll();
 
         return contrataciones;
     }
-    
-    public void validarContratacion(Usuario cliente, Usuario proveedor, Date alta, Estado estadoContratacion) throws MiException{
-    
-        if (cliente == null ) {
+
+    public void validarContratacion(Usuario cliente, Usuario proveedor, Date alta, Estado estadoContratacion) throws MiException {
+
+        if (cliente == null) {
             throw new MiException("el Cliente no puede ser nulo");
         }
-        if (proveedor == null ) {
+        if (proveedor == null) {
             throw new MiException("el Proveedor no puede ser nulo");
         }
-        if (alta == null ) {
+        if (alta == null) {
             throw new MiException("indicar fecha de solicitud");
         }
-        if (estadoContratacion == null ) {
+        if (estadoContratacion == null) {
             throw new MiException("indicar estado de la contratacion");
         }
     }
 
     public List<Contratacion> misContrataciones(String id) {
-        
+
         List<Contratacion> contrataciones1 = new ArrayList();
         List<Contratacion> contrataciones = new ArrayList();
 
         contrataciones1 = contratacionRepositorio.findAll();
-        
+
         for (Contratacion contratacion : contrataciones1) {
             if (contratacion.getCliente().getId().equals(id)) {
                 contrataciones.add(contratacion);
@@ -115,5 +130,5 @@ public class ContratacionServicio {
 
         return contrataciones;
     }
-    
+
 }
