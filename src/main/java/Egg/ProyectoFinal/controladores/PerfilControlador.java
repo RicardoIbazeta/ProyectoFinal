@@ -19,9 +19,15 @@ public class PerfilControlador {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
+<<<<<<< HEAD
     @GetMapping("/perfil2/{id}")
     public String mostrarPerfilUsuario(@PathVariable String id, Model model) {
         Usuario usuario = (Usuario) usuarioRepositorio.buscarPorId(id); //.findById(id)
+=======
+    //@GetMapping("/{id}/perfil")
+    public String mostrarPerfilUsuario(@PathVariable Long id, Model model) {
+        Usuario usuario = usuarioRepositorio.findById(id);
+>>>>>>> Rama-Front
         model.addAttribute("usuario", usuario);
         return "perfil.html";
     }

@@ -66,7 +66,6 @@ public class ProveedorServicio {
         proveedor.setFechaAlta(new Date());
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
-
         proveedor.setImagen(imagen);
 
         proveedorRepositorio.save(proveedor);
