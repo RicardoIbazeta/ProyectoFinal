@@ -202,5 +202,17 @@ public class UsuarioServicio implements UserDetailsService {
        }else
            usuario.setAltaBaja(true);
     }
-      
+       
+       @Transactional
+       public void eliminar (Usuario usuario){
+           
+           Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
+           if (respuestaUsuario.isPresent()) {
+               usuarioRepositorio.delete(usuario);
+               
+               
+           }
+           
+           
+    }
 }

@@ -26,6 +26,7 @@
             <th scope="col">Apellido</th>
             <th scope="col">Email</th>
             <th scope="col">Rol</th>
+            <th scope="col">Alta o Baja</th>
             <th scope="col">Eliminar</th>
           </tr>
         </thead>
@@ -37,9 +38,10 @@
             <td th:text="${usuario.apellido}"></td>
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.rol}"></td>
-            <td>
-            <button type="button"  ><a method="POST" th:action="@{/usuario/eliminar/__${usuario.id}__}" >X</a></button>
-            </td>
+            <td><form  method="POST" th:action="@{/usuario/altaBaja/__${usuario.id}__}"><button type="submit">X</button>
+                </form></td>
+            <td><form  method="POST" th:action="@{/usuario/eliminar/__${usuario.id}__}"><button type="submit">X</button>
+                </form></td>
           </tr>
         </tbody>
       </table>
