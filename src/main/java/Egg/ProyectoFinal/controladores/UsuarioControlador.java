@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,6 +75,7 @@ public class UsuarioControlador {
     }
     
     /* Mapeo que lista todos los usuarios */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/lista")
     public String listarUsuarios(ModelMap modelo){
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
