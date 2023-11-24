@@ -80,6 +80,7 @@ public class UsuarioControlador {
     }
     
     /* Mapeo que lista todos los usuarios */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/lista")
     public String listarUsuarios(ModelMap modelo){
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
