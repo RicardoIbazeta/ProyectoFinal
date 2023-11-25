@@ -6,6 +6,7 @@ import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,20 +106,51 @@ public class UsuarioControlador {
         return "perfil.html";
     }
 
+   /* @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
     @GetMapping("/editarPerfil")
     public String editarPerfil(ModelMap modelo, HttpSession session) {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        modelo.put("usuario", usuario);
+        modelo.addAttribute("usuario", usuario);
 
         return "editarPerfil.html";
-    }
+    } */
+    
+    /*/Verifica que el usuario sea user o admin
+    //si es usuario lo manda a modificar usuario
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
+    @PostMapping("/editarPerfil/{id}")
+    //@GetMapping("/editarPerfil/{id}")
+    public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
+            @RequestParam String apellido, @RequestParam String email, @RequestParam String password,
+            @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
 
-    @GetMapping("/contrataciones")
-    public String historialContrataciones(ModelMap modelo) {
+        try {
+            usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, telefono, direccion);
+            modelo.put("exito", "Usuario actualizado correctamente!");
+
+            return "inicio.html";
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+            modelo.put("nombre", nombre);
+            modelo.put("email", email);
+
+            return "usuario_modificar.html";
+        }
+    } */
+
+    @GetMapping("/contrataciones/{id}")
+    public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
 
         List<Contratacion> historial = contratacionServicio.listarContrataciones();
-        modelo.addAttribute("historial", historial);
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+        for (Contratacion contratacion : historial) {
+            if (contratacion.getCliente().getId().equals(id)) {
+                    contrataciones.add(contratacion);
+            }
+        }
+        modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list.html";
     }
