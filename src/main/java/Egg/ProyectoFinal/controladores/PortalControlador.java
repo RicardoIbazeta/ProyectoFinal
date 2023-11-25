@@ -48,6 +48,7 @@ public class PortalControlador {
     //si es usuario lo manda a modificar usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
     @PostMapping("/perfil/{id}")
+    //@GetMapping("/perfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
             @RequestParam String apellido, @RequestParam String email, @RequestParam String password,
             @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
