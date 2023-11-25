@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{/fragments/head :: head}"></head>
+
+<body>
+  <header th:replace="~{/fragments/header :: header}"></header>
+  <nav th:replace="~{/fragments/nav :: nav}"></nav>
+
+  <br />
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img th:src="@{/4.png}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500"
+          loading="lazy" />
+      </div>
+      <div class="col-lg-6">
+        <br />
+        <!-- Quiero agregar en el h1 th:text=" 'Hola, '+ ${session.usuariosession.nombre} " pero no lo puedo agregar hasta que se solucione el login-->
+
+        <a class="navbar-brand" th:text="'Error ' + ${codigo}"> Contrataciones Coria </a>
+        <p class="titulo" th:text="${mensaje}"></p>
+        <br />
+
+        <h1 class="display-5 fw-bold lh-1 mb-3" th:text=" 'Hola, '+ ${session.usuario.nombre} "></h1>
+        <p class="lead">
+          Te invitamos a explorar la plataforma, descubrir talentosos
+          proveedores y encontrar soluciones a medida para tus necesidades.
+        </p>
+
+        <p class="lead">
+          Conectando necesidades con soluciones. Tu Servicio a un Click de
+          distancia.
+        </p>
+        <!-- Esto no esta funcionando y no se porque-->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/usuario/lista}">Explorar</a>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('USER')">
+            <a th:href="@{/proveedores/lista}">Explorar</a>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('PROVEEDOR')">
+            <a th:href="@{/contratacion/lista}">Explorar</a>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-0 align-items-center rounded-3 border shadow-lg">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img th:src="@{/5.png}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500"
+          loading="lazy" />
+      </div>
+      <div class="col-lg-6">
+        <p class="lead fw-bold" mb-3>Profesiones:</p>
+        <p class="lead">-Plomeros</p>
+        <p class="lead">-Electricistas</p>
+        <p class="lead">-Jardineros</p>
+        <p class="lead">-Pintores</p>
+        <p class="lead">-Y mucho más</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="exito/error">
+    <div th:if="${exito != null}" id="exito">
+      <h5>exito</h5>
+      <p th:text="${exito}"></p>
+    </div>
+    <div th:if="${error != null}" id="error">
+      <h5>error</h5>
+      <p th:text="${error}"></p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script th:replace="/fragments/script :: script "></script> -->
+  <footer th:replace="{/fragments/footer :: footer}"></footer>
+</body>
+
+</html>
