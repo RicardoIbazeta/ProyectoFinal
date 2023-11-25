@@ -20,6 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "resenias")
 public class Resenia {
+    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid",strategy = "uuid2")

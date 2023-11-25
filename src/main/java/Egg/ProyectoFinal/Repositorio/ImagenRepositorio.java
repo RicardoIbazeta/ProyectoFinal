@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.Repositorio;
 
 import Egg.ProyectoFinal.entidades.Imagen;
@@ -12,6 +11,5 @@ public interface ImagenRepositorio extends JpaRepository<Imagen,String> {
     
   @Query("SELECT i FROM Imagen i WHERE i.id = :id")
   public Imagen buscarPorId(@Param("id") String id);
-    
     
 }

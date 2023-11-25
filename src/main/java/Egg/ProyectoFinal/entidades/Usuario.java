@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.entidades;
 
 import Egg.ProyectoFinal.enumeraciones.Estado;

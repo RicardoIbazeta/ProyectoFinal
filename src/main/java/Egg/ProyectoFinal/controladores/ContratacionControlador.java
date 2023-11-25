@@ -14,7 +14,6 @@ import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,106 +33,67 @@ public class ContratacionControlador {
     private ProveedorRepositorio proveedorRepositorio;
     @Autowired
     private ContratacionRepositorio contratacionRepositorio;
-    /* podemos acceder a los repositorios desde los servicios */
     @Autowired
     private ContratacionServicio contratacionServicio;
     @Autowired
     private ProveedorServicio proveedorServicio;
     @Autowired
     private RubroServicio rubroServicio;
-    
-   
-    /*@GetMapping("/contratar/{id}")
-    public String contratar(@PathVariable String id, ModelMap modelo) {
-        modelo.put("contratacion", contratacionServicio.getOne(id));
-        
 
-        return "contratacion_form.html";
-    }*/
-    
     @GetMapping("/contratar/{id}")
-    public String contratar(@PathVariable String id, ModelMap modelo/*, HttpSession session*/) {
+    public String contratar(@PathVariable String id, ModelMap modelo) {
+
         List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
         Proveedor proveedor = proveedorServicio.getOne(id);
-        //Usuario usuario = (Usuario) session.getAttribute("usuario");
-         
-        
-        modelo.addAttribute("proveedor",proveedor);
-        modelo.addAttribute("rubros",rubros);
-//        modelo.addAttribute("usuario", usuario);
+
+        modelo.addAttribute("proveedor", proveedor);
+        modelo.addAttribute("rubros", rubros);
 
         return "contratacion_form.html";
     }
-    
-    
-    
-    
+
     @PostMapping("/contratado/{idProveedor}")
     public String crearContratacion(@RequestParam String idCliente, @PathVariable String idProveedor) {
 
         Optional<Usuario> respuestaCliente = usuarioRepositorio.findById(idCliente);
         Optional<Proveedor> respuestaProveedor = proveedorRepositorio.findById(idProveedor);
-        
-       
-        /* agregar try-catch y modelo en caso de que falle */
 
         if (respuestaCliente.isPresent() && respuestaProveedor.isPresent()) {
-            
+
             Usuario cliente = respuestaCliente.get();
             Proveedor proveedor = respuestaProveedor.get();
-            
             Contratacion contratacion = new Contratacion();
-            
+
             contratacion.setCliente(cliente);
             contratacion.setProveedor(proveedor);
             contratacion.setAlta(new Date());
             contratacion.setEstadoContratacion(Estado.SOLICITADO);
-            
+
             contratacionRepositorio.save(contratacion);
-            //contratacionServicio.crearContratacion(cliente, proveedor); -> permite que la contratacion valide los datos
-            //necesitamos try-catch para los exito/error y a su vez el contratacionServicio para que genere excepcioness
-            // en catch //        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
-                        //        modelo.addAttribute("proveedores",proveedores); -> para tener opciones desplegables en etiqueta select
         }
+
         return "index.html";
-
     }
-    
-   /* @GetMapping("/lista")
-    public String listarProveedores(ModelMap modelo){
-        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
-        modelo.addAttribute("proveedores", proveedores);
-        
-        return "contratacion_list.html";
-    }*/
 
-    
-    
-    
-    
     //ADMIN
     /* Mapeo que lista todas las contrataciones */
     @GetMapping("/lista")
-    public String listarContrataciones(ModelMap modelo){
-        List<Contratacion> contrataciones = contratacionServicio.listarContrataciones() ;
+    public String listarContrataciones(ModelMap modelo) {
+
+        List<Contratacion> contrataciones = contratacionServicio.listarContrataciones();
         modelo.addAttribute("contrataciones", contrataciones);
+
         return "contratacion_list.html";
     }
-    
-    
-    
-    
+
     /* En desarrollo! Trae todas las contrataciones del id del usuario que esta en sesion   */
     @GetMapping("/historial/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 
-            List<Contratacion> Contrataciones = contratacionServicio.misContrataciones(id);
+        List<Contratacion> Contrataciones = contratacionServicio.misContrataciones(id);
+        modelo.addAttribute("Contrataciones", Contrataciones);
 
-            modelo.addAttribute("Contrataciones", Contrataciones);
-
-            return "contratacion_list";
-            
+        return "contratacion_list";
     }
-    
-    
+
 }

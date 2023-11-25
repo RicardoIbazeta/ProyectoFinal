@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import org.hibernate.annotations.GenericGenerator;
 
-
 @Entity
 public class Contratacion {
     
@@ -34,7 +33,6 @@ public class Contratacion {
     @Enumerated(EnumType.STRING)
     @JoinColumn(name = "estado_contratacion")
     private Estado estadoContratacion;
-    
     
     /*@ManyToOne
     private List<Proveedor> proveedores; */
