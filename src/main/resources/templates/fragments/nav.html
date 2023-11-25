@@ -188,10 +188,19 @@
               <li>
                 <hr class="dropdown-divider" />
               </li>
+              <!-- <li>
+                <a
+                  class="dropdown-item"
+                  th:href="@{/historial/__${id}__}"
+                  style="color: darkgrey"
+                  sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
+                  >Mis Contrataciones</a
+                >
+              </li> -->
               <li>
                 <a
                   class="dropdown-item"
-                  th:href="@{/historial/__${session.usuario.id}__}"
+                  th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
                   sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
                   >Mis Contrataciones</a
@@ -231,11 +240,19 @@
 
               <li><hr class="dropdown-divider" /></li>
 
-              <li>
+              <!-- <li>
                 <a
                   class="dropdown-item"
                   style="color: darkgrey"
                   th:href="@{/perfil/${session.usuario.id}}"
+                  >Editar Perfil</a
+                >
+              </li> -->
+              <li>
+                <a
+                  class="dropdown-item"
+                  style="color: darkgrey"
+                  th:href="@{/usuario/editarperfil}"
                   >Editar Perfil</a
                 >
               </li>
