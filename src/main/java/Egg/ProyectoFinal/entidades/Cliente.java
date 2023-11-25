@@ -1,6 +1,4 @@
-
 package Egg.ProyectoFinal.entidades;
-
 
 import javax.persistence.*;
 import java.util.List;

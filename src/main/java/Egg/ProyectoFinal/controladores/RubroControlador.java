@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.entidades.Rubro;
@@ -17,48 +13,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @RequestMapping("/rubro")
 public class RubroControlador {
-    
+
     @Autowired
     private RubroServicio rubroServicio;
-    
-    
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
-    public String registrar(){
-        
+    public String registrar() {
         return "rubro_form.html";
     }
-            
+
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, ModelMap modelo) {
         try {
-            
+
             rubroServicio.registrar(nombre);
-            
             modelo.put("exito", "Rubro registrado correctamente");
+
             return "index.html";
-            
-        } catch (MiException ex){
-            
+
+        } catch (MiException ex) {
+
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
-           
+
             return "rubro_form.html";
-            
         }
     }
-    
+
     /* Mapeo que lista todos los rubros */
     @GetMapping("/lista")
-    public String listarRubros(ModelMap modelo){
+    public String listarRubros(ModelMap modelo) {
+
         List<Rubro> rubros = rubroServicio.listarRubros();
         modelo.addAttribute("rubros", rubros);
+
         return "rubro_list.html";
     }
-    
-    
+
 }

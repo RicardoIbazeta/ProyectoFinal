@@ -2,8 +2,7 @@
 package Egg.ProyectoFinal.enumeraciones;
 
 public enum Estrella {
- UNO(1),
-
+    UNO(1),
     DOS(2),
     TRES(3),
     CUATRO(4),

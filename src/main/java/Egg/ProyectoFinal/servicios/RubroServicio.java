@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.RubroRepositorio;
@@ -15,17 +11,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 @Service
 public class RubroServicio {
-    
-    
+
     @Autowired
     private RubroRepositorio rubroRepositorio;
     @Autowired
     private ProveedorServicio proveedorServicio;
-    
+
+    @Transactional
+    public void registrar(String nombre) throws MiException {
+
+        validarRubro(nombre);
+        Rubro rubro = new Rubro();
+        rubro.setNombre(nombre);
+
+        rubroRepositorio.save(rubro);
+    }
+
+    @Transactional
+    public void modificarRubro(String id, String nombre) {
+
+        Optional<Rubro> respuesta = rubroRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+
+            Rubro rubro = new Rubro();
+
+            rubro.setId(nombre);
+
+            rubroRepositorio.save(rubro);
+        }
+    }
+
+    @Transactional
+    public void eliminar(Rubro rubro) {
+
+        Optional<Rubro> respuestaRubro = rubroRepositorio.findById(rubro.getId());
+        if (respuestaRubro.isPresent()) {
+
+            rubroRepositorio.delete(rubro);
+        }
+    }
+
     public List<Rubro> listarRubros() {
 
         List<Rubro> rubros = new ArrayList();
@@ -34,13 +62,14 @@ public class RubroServicio {
 
         return rubros;
     }
-    
+
     public List<Rubro> listarRubrosPorId(String id) {
+
         Proveedor proveedor = proveedorServicio.getOne(id);
         List<Rubro> rubros = new ArrayList();
         List<Rubro> rubros1 = new ArrayList();
         rubros1 = rubroRepositorio.findAll();
-        
+
         for (Rubro rubro : rubros1) {
             if (proveedor.getRubro().equals(rubro)) {
                 rubros.add(rubro);
@@ -50,52 +79,11 @@ public class RubroServicio {
         return rubros;
     }
 
-    
-    @Transactional
-    public void registrar(String nombre) throws MiException {
-        validarRubro(nombre);
-        Rubro rubro=new Rubro();
-        rubro.setNombre(nombre);
-        rubroRepositorio.save(rubro);
-        
-    }
-    
     private void validarRubro(String nombre) throws MiException {
 
         if (nombre == null || nombre.isEmpty()) {
-            throw new MiException("Debes completar tu nombre");
+            throw new MiException("Debes indicar el rubro");
         }
-        
     }
-    
-    
-    @Transactional
-    public void modificarRubro(String id,String nombre){
-        
-        Optional<Rubro> respuesta = rubroRepositorio.findById(id);
-        
-        if(respuesta.isPresent()){
-            
-            Rubro rubro = new Rubro();
-            
-            rubro.setId(nombre);
-            
-            rubroRepositorio.save(rubro);
-        }
-        
-    }
-    
-      @Transactional
-       public void eliminar (Rubro rubro){
-           
-           Optional<Rubro> respuestaRubro = rubroRepositorio.findById(rubro.getId());
-           if (respuestaRubro.isPresent()) {
-               rubroRepositorio.delete(rubro);
-               
-               
-           }
-           
-           
-    }
-    
+
 }

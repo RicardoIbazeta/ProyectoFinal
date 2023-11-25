@@ -1,9 +1,7 @@
-
 package Egg.ProyectoFinal.entidades;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
 public class Imagen {

@@ -29,16 +29,13 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    
-    //Llamo a imagen servicio para vincular la imagen con el usuario
     @Autowired
     private ImagenServicio imagenServicio;
-    
-    
-    //Agrego el Atributo MultiPartFile
+
     @Transactional
-    public void crearUsuario(MultipartFile archivo,String nombre, String apellido, String documento, String email, String password, String password2,
-            String telefono, String direccion,boolean AltaBaja) throws MiException {
+    public void crearUsuario(MultipartFile archivo, String nombre, String apellido, String documento,
+            String email, String password, String password2, String telefono, String direccion,
+            boolean AltaBaja) throws MiException {
 
         validarUsuario(nombre, apellido, documento, email, telefono, direccion);
         validarPassword(password, password2);
@@ -46,72 +43,87 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         usuario.setNombre(nombre);
-        
+
         usuario.setApellido(apellido);
-        
+
         usuario.setDocumento(documento);
-        
-        usuario.setEmail(email); 
-        
+
+        usuario.setEmail(email);
+
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        
+
         // usuario.setPassword2(password2);
-       
         usuario.setTelefono(telefono);
-       
+
         usuario.setDireccion(direccion);
-       
+
         usuario.setRol(Rol.USER);
-       
-        usuario.setFechaAlta(new Date());   
-        
+
+        usuario.setFechaAlta(new Date());
+
         usuario.setAltaBaja(true);
-        
+
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
-        
+
         usuario.setImagen(imagen);
-        
+
         usuarioRepositorio.save(usuario);
     }
 
-    //Agrego atributo MultiPartFile para la imagen
     @Transactional
-    public void modificarUsuario(MultipartFile archivo,String id, String nombre, String apellido, String email, String password, String telefono,
-            String direccion) throws MiException {
+    public void modificarUsuario(MultipartFile archivo, String id, String nombre, String apellido,
+            String email, String password, String telefono, String direccion) throws MiException {
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
-            
+
             Usuario usuario = respuesta.get();
-            
+
             usuario.setApellido(apellido);
             usuario.setPassword(password);
             usuario.setDireccion(direccion);
             usuario.setEmail(email);
             usuario.setNombre(nombre);
             usuario.setTelefono(telefono);
+
             //Verifica que la imagen no sea nula,busca por idImagen y la actualiza
             String idImagen = null;
-            if(usuario.getImagen()!=null){
+            if (usuario.getImagen() != null) {
                 idImagen = usuario.getImagen().getId();
-                
             }
-            
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-            
             usuario.setImagen(imagen);
-            
+
             usuarioRepositorio.save(usuario);
         }
     }
-    
-     public List<Usuario> listarUsuarios() {
+
+    @Transactional
+    public void darAltaBaja(Usuario usuario) {
+
+        if (usuario.isAltaBaja()) {
+            usuario.setAltaBaja(false);
+        } else {
+            usuario.setAltaBaja(true);
+        }
+    }
+
+    @Transactional
+    public void eliminar(Usuario usuario) {
+
+        Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
+        if (respuestaUsuario.isPresent()) {
+            usuarioRepositorio.delete(usuario);
+        }
+    }
+
+    public List<Usuario> listarUsuarios() {
 
         List<Usuario> usuarios = new ArrayList();
         usuarios = usuarioRepositorio.findAll();
-        
+
         return usuarios;
     }
 
@@ -141,7 +153,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
-        
+
         if (password.isEmpty()) {
             throw new MiException("La contraseña no debe estar vacía");
         }
@@ -157,6 +169,11 @@ public class UsuarioServicio implements UserDetailsService {
         if (!password.equals(password2)) {
             throw new MiException("Las contraseñas deben coincidir");
         }
+    }
+
+    //Implemente el getOne en usuarioservicio
+    public Usuario getOne(String id) {
+        return usuarioRepositorio.getOne(id);
     }
 
     // Metodo usado para autenticar usuarios
@@ -185,34 +202,5 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-    
-    
-    //Implemente el getOne en usuarioservicio
-      public Usuario getOne(String id){
-        return usuarioRepositorio.getOne(id);
-    }
-    
-      @Transactional
-       public void darAltaBaja (Usuario usuario){
-     
-       if(usuario.isAltaBaja()){
-           
-           usuario.setAltaBaja(false);
-           
-       }else
-           usuario.setAltaBaja(true);
-    }
-       
-       @Transactional
-       public void eliminar (Usuario usuario){
-           
-           Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
-           if (respuestaUsuario.isPresent()) {
-               usuarioRepositorio.delete(usuario);
-               
-               
-           }
-           
-           
-    }
+
 }

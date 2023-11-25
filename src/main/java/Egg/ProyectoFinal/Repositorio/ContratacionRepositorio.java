@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Egg.ProyectoFinal.Repositorio;
 
 import Egg.ProyectoFinal.entidades.Contratacion;
@@ -26,8 +22,8 @@ public interface ContratacionRepositorio extends JpaRepository<Contratacion, Str
     @Query("SELECT c FROM Contratacion c WHERE c.estadoContratacion= :estadoContratacion")
     public List<Contratacion> buscarPorEstadoContratacion(@Param ("estadoContratacion")String estadoContratacion);
     
-    //verificar funcionamiento -> posible error en tipo de dato de los parametros
-    /*@Query("SELECT c FROM Contratacion c WHERE c.cliente_id= :cliente_id")
+    /*verificar funcionamiento -> posible error en tipo de dato de los parametros
+    @Query("SELECT c FROM Contratacion c WHERE c.cliente_id= :cliente_id")
     public List<Contratacion> buscarPorClienteId(@Param ("cliente_id")String cliente_id);
     
     @Query("SELECT c FROM Contratacion c WHERE c.proveedor_id= :proveedor_id")

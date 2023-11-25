@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.Repositorio;
 
 import Egg.ProyectoFinal.entidades.Proveedor;
@@ -45,8 +44,8 @@ public interface ProveedorRepositorio extends JpaRepository<Proveedor, String > 
     public List<Proveedor> buscarPorPrecio(@Param ("precio_hora")String precio_hora);*/
     
     /* Query de busqueda por lista de rubros -> requiere modificacion RUBRO 
-       para que tenga relacion con Usuario proveedor, como en CONTRATACION */
-    //@Query("SELECT r FROM Rubro r WHERE r.proveedor_id= :proveedor_id")
-    //public List<Rubro> buscarPorContrataciones(@Param ("proveedor_id")String proveedor_id);
+       para que tenga relacion con Usuario proveedor, como en CONTRATACION 
+    @Query("SELECT r FROM Rubro r WHERE r.proveedor_id= :proveedor_id")
+    public List<Rubro> buscarPorContrataciones(@Param ("proveedor_id")String proveedor_id);*/
     
 }

@@ -3,18 +3,14 @@ package Egg.ProyectoFinal.controladores;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Usuario;
-import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +27,6 @@ public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private ContratacionServicio contratacionServicio;
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
 
     @GetMapping("/registrar")
     public String registrar() {
@@ -40,26 +34,23 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido, String documento,
-            String email, String password, String password2, String telefono, String direccion, boolean AltaBaja, ModelMap modelo) {
+    public String registro(MultipartFile archivo, @RequestParam String nombre, String apellido,
+            String documento, String email, String password, String password2, String telefono,
+            String direccion, boolean AltaBaja, ModelMap modelo) {
 
         try {
-            /* eliminacion parametro tipoUsuario por campo eliminado en el formulario
-                se opta por poner BOOLEAN.TRUE al ser un registro de usuario*/
             usuarioServicio.crearUsuario(archivo, nombre, apellido, documento, email, password, password2, telefono, direccion, AltaBaja);
-
             modelo.put("exito", "El usuario fue cargado correctamente");
+
             return "index.html";
 
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
 
-            /*
-            Se Inyecta la informacion proporcionada por el usuario previo a un error 
+            /* Se Inyecta la informacion proporcionada por el usuario previo a un error 
             y asi no tiene que volver ingresar todo nuevamente.
-            La contraseña y el tipoUsuario siempre deberan ser ingresados
-             */
+            La contraseña y el tipoUsuario siempre deberan ser ingresados */
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("documento", documento);
@@ -71,45 +62,12 @@ public class UsuarioControlador {
         }
     }
 
-    @GetMapping("/contrataciones")
-    public String historialContrataciones(ModelMap modelo) {
-
-        List<Contratacion> historial = contratacionServicio.listarContrataciones();
-        modelo.addAttribute("historial", historial);
-        return "contratacion_list.html";
-    }
-
-    /* Mapeo que lista todos los usuarios */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @GetMapping("/lista")
-    public String listarUsuarios(ModelMap modelo) {
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-        modelo.addAttribute("usuarios", usuarios);
-        return "usuario_list.html";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_PROVEEDOR' )")
-    @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        modelo.put("usuario", usuario);
-        return "perfil.html";
-    }
-
-    @GetMapping("/editarPerfil")
-    public String editarPerfil(ModelMap modelo, HttpSession session) {
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        modelo.put("usuario", usuario);
-        return "editarPerfil.html";
-    }
-
     @PostMapping("/altaBaja/{id}")
     public String altaBajaUsuario(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServicio.getOne(id);
 
         usuarioServicio.darAltaBaja(usuario);
-
         modelo.put("usuario", usuario);
 
         return "redirect:/usuario/lista";
@@ -121,10 +79,47 @@ public class UsuarioControlador {
         Usuario usuario = usuarioServicio.getOne(id);
 
         usuarioServicio.eliminar(usuario);
-
         modelo.put("usuario", usuario);
 
         return "redirect:/usuario/lista";
     }
 
+    /* Mapeo que lista todos los usuarios */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/lista")
+    public String listarUsuarios(ModelMap modelo) {
+
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+        modelo.addAttribute("usuarios", usuarios);
+
+        return "usuario_list.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_PROVEEDOR' )")
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo, HttpSession session) {
+
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        modelo.put("usuario", usuario);
+
+        return "perfil.html";
+    }
+
+    @GetMapping("/editarPerfil")
+    public String editarPerfil(ModelMap modelo, HttpSession session) {
+
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        modelo.put("usuario", usuario);
+
+        return "editarPerfil.html";
+    }
+
+    @GetMapping("/contrataciones")
+    public String historialContrataciones(ModelMap modelo) {
+
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        modelo.addAttribute("historial", historial);
+
+        return "contratacion_list.html";
+    }
 }
