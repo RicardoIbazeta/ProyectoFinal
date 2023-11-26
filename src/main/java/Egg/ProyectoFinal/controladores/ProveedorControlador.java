@@ -100,6 +100,17 @@ public class ProveedorControlador {
 
         return "redirect:/proveedor/contrataciones";
     }
+    @PostMapping("/finalizar/{id}")
+    public String finalizarContratacion(@PathVariable String id, ModelMap modelo) {
+
+        Contratacion contratacion = contratacionServicio.getOne(id);
+
+        contratacionServicio.finalizarContratacion(id);
+        
+
+        return "redirect:/proveedor/contrataciones";
+    }
+    
     
     
 
