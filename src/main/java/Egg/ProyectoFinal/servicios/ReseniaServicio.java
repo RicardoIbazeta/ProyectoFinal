@@ -19,7 +19,7 @@ public class ReseniaServicio {
     private ProveedorServicio proveedorServicio;
 
    @Transactional
-    public void crear(String comentario, String estrella, String idProveedor, String idSolicitud) throws Exception {
+    public Resenia crear(String comentario, String estrella, String idProveedor) throws Exception {
     
         validarResenia(comentario);
         
@@ -30,7 +30,20 @@ public class ReseniaServicio {
         resenia.setProveedor(proveedorServicio.getOne(idProveedor));
         
         reseniaRepositorio.save(resenia);
+        return resenia;
     }
+    
+    private Estrella estrellaFromString(String x){
+        switch (x) {
+            case "1" : return Estrella.UNO;
+            case "2" : return Estrella.DOS;
+            case "3" : return Estrella.TRES;
+            case "4" : return Estrella.CUATRO;
+            case "5" : return Estrella.CINCO;
+        }
+        return null;
+    }
+     
 
     /*/@Transactional
     public void modificarById(String id, String comentario, String estrella, Proveedor proveedor) throws Exception;
