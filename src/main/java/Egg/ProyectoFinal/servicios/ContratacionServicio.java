@@ -76,7 +76,7 @@ public class ContratacionServicio {
 
     //Falta agregar una excepcion para cuando no se encuetra la contratacion
     @Transactional
-    public void finalizarContratacion(String idContratacion, String idProveedor) {
+    public void finalizarContratacion(String idContratacion) {
 
         Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
 
