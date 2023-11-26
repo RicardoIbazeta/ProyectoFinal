@@ -117,11 +117,11 @@ public class ProveedorControlador {
     
     @PostMapping("/calificar/{id}")
     public String registrarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
-            @RequestParam String idSolicitud, @RequestParam String comentario, @RequestParam String estrellas,
+            @RequestParam String comentario, @RequestParam String estrellas,
             ModelMap model) throws Exception {
 
         try {
-            reseniaServicio.crear(comentario, estrellas, id, idSolicitud);
+            reseniaServicio.crear(comentario, estrellas, id);
             redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
 
             return "redirect:/usuarios";
