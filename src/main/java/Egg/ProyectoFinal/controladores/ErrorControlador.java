@@ -1,42 +1,69 @@
+
 package Egg.ProyectoFinal.controladores;
 
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ErrorControlador {
-
-    @RequestMapping(value = "/error", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView errorPage(HttpServletRequest httpServletRequest) {
-
+public class ErrorControlador implements ErrorController {
+    
+    @RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
+        
         ModelAndView errorPage = new ModelAndView("error");
-        Integer errorCode = getErrorCode(httpServletRequest);
-        String errorMsg = getErrorMsg(errorCode);
-
-        errorPage.addObject("codigo", errorCode);
+        
+        String errorMsg = "";
+        
+        int httpErrorCode = getErrorCode(httpRequest);
+        
+        switch(httpErrorCode) {
+            case 400: {
+                errorMsg = "El recurso solicitado no existe.";
+                break;
+            }
+            case 403: {
+                errorMsg = "No tiene permisos para acceder al recurso.";
+                break;
+            }            
+            case 401: {
+                errorMsg = "No se encuentra autorizado.";
+                break;
+            }
+            case 404: {
+                errorMsg = "El recurso solicitado no fue encontrado.";
+                break;
+            }
+            case 500: {
+                errorMsg = "Ocurrió un error interno.";
+                break;
+            }
+        }
+        
+        errorPage.addObject("codigo", httpErrorCode);
         errorPage.addObject("mensaje", errorMsg);
-
+        
         return errorPage;
+        
+        
     }
 
-    private Integer getErrorCode(HttpServletRequest httpServletRequest) {
-        return (Integer) httpServletRequest.getAttribute("javax.servelt.error.status_code");
+    private int getErrorCode(HttpServletRequest httpRequest) {
+        
+        return (Integer) httpRequest.getAttribute("javax.servlet.error.status_code");
     }
-
-    private String getErrorMsg(Integer errorCode) {
-
-        HashMap<Integer, String> errores = new HashMap<>();
-
-        errores.put(400, "El recurso solicitado no existe");
-        errores.put(401, "No tiene autorizacion para acceder");
-        errores.put(403, "No tiene permisos para acceder al recurso");
-        errores.put(404, "El recurso solicitado no fue encontrado");
-        errores.put(500, "Ocurrio un error interno del servidor");
-
-        return errores.get(errorCode);
+    
+    public String getErrorPath() {
+        
+        return "/error.html";
     }
+    
+    
+
+
+
+    
 }
