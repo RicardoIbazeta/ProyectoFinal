@@ -202,7 +202,16 @@
                   class="dropdown-item"
                   th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
-                  sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
+                  sec:authorize="hasAnyRole('USER')"
+                  >Mis Contrataciones</a
+                >
+              </li>
+               <li>
+                <a
+                  class="dropdown-item"
+                  th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
+                  style="color: darkgrey"
+                  sec:authorize="hasAnyRole('PROVEEDOR')"
                   >Mis Contrataciones</a
                 >
               </li>

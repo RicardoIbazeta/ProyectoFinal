@@ -63,17 +63,16 @@ public class ContratacionServicio {
 
         return contrataciones;
     }
+    
+    
+    
+    
+    
+    
+    
 
     //////////////////////////////METODOS ESTADO CONTRATACION////////////////////////|||||||||||||||\\\\\\\
-    @Transactional
-    public void aceptarContratacion(Proveedor proveedor, Contratacion contratacion) {
-
-        /* Se valida que el id del proveedor y el proveedor en la contratacion sean los mismos,
-        y si son los mismos, le permitira al proveedor cambiar el estado de la Cotratacion */
-        if (proveedor.getId().equalsIgnoreCase(contratacion.getProveedor().getId())) {
-            contratacion.setEstadoContratacion(Estado.EN_PROCESO);
-        }
-    }
+    
 
     //Falta agregar una excepcion para cuando no se encuetra la contratacion
     @Transactional
@@ -104,7 +103,40 @@ public class ContratacionServicio {
             contratacionRepositorio.save(contratacion);
         }
     }
+    
+    @Transactional
+    public void aceptarContratacion(String idContratacion) {
+        Optional<Contratacion> respuesta = contratacionRepositorio.findById(idContratacion);
+
+        /* Se valida que el id del proveedor y el proveedor en la contratacion sean los mismos,
+        y si son los mismos, le permitira al proveedor cambiar el estado de la Cotratacion */
+        if (respuesta.isPresent()){
+            Contratacion contratacion= respuesta.get();
+            contratacion.setEstadoContratacion(Estado.EN_PROCESO);
+            contratacionRepositorio.save(contratacion);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //////////////////////////////METODOS ESTADO CONTRATACION////////////////////////|||||||||||||||\\\\\\\
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public void validarContratacion(Usuario cliente, Usuario proveedor, Date alta, Estado estadoContratacion) throws MiException {
 
