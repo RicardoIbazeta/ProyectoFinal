@@ -16,28 +16,38 @@
     />
 
     <div class="container m-5">
-      <table class="table table-dark">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">Nombre del Cliente</th>
             <th scope="col">Apellido del Cliente</th>
+            <th scope="col">Nombre del Proveedor</th>
+            <th scope="col">Apellido del Proveedor</th>
             <th scope="col">Fecha de Contratacion</th>
             <th scope="col">Estado</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
-        
-            
+            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Cancelar</th>
+            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Aceptar</th>  
           </tr>
         </thead>
         <tbody th:each="contratacion : ${contrataciones}">
           <tr>
-            <th scope="row" th:text="${contratacion.cliente.nombre}">hola</th>
-            <th scope="row" th:text="${contratacion.cliente.apellido}">hola</th>
+            <td scope="row" th:text="${contratacion.cliente.nombre}">hola</td>
+            <td scope="row" th:text="${contratacion.cliente.apellido}">hola</td>
+            <td scope="row" th:text="${contratacion.proveedor.nombre}">hola</td>
+            <td scope="row" th:text="${contratacion.proveedor.apellido}">hola</td>
             <td th:text="${contratacion.alta}"></td>
             <td th:text="${contratacion.estadoContratacion}"></td>
+            
             <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.cliente.id}"></td>
             <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.proveedor.id}"></td>
-        
+            
+            <td sec:authorize="hasRole('PROVEEDOR')"><form  method="POST" th:action="@{/proveedor/cancelar/__${contratacion.id}__}"><button type="submit">Cancelar</button>
+                </form></td>
+            <td sec:authorize="hasRole('PROVEEDOR')"><form  method="POST" th:action="@{/proveedor/aceptar/__${contratacion.id}__}"><button type="submit">Aceptar</button>
+                </form></td>
+                
           </tr>
         </tbody>
       </table>

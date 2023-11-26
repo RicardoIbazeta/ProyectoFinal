@@ -1,11 +1,14 @@
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.excepciones.MiException;
+import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,9 @@ public class ProveedorControlador {
     private ReseniaServicio reseniaServicio;
     @Autowired
     private RubroServicio rubroServicio;
+    @Autowired
+    private ContratacionServicio contratacionServicio;
+    
 
     @GetMapping("/registrar")
     public String registrar(ModelMap modelo) {
@@ -41,12 +47,12 @@ public class ProveedorControlador {
     @PostMapping("/registro")
     public String registro(MultipartFile archivo, Double precioHora, String descripcionServicio,
             @RequestParam Rubro rubro, @RequestParam String nombre, String apellido, String documento,
-            String email, String password, String password2, String telefono, String direccion, ModelMap modelo) {
+            String email, String password, String password2, String telefono, String direccion, ModelMap modelo, Boolean altaBaja) {
 
         try {
 
             proveedorServicio.crearProveedor(archivo, precioHora, descripcionServicio, rubro, nombre,
-                    apellido, documento, email, password, password2, telefono, direccion);
+                    apellido, documento, email, password, password2, telefono, direccion, altaBaja);
             modelo.put("exito", "El proveedor fue cargado correctamente");
 
             return "index.html";
@@ -73,6 +79,31 @@ public class ProveedorControlador {
         }
     }
 
+    
+    @PostMapping("/cancelar/{id}")
+    public String cancelarContratacion(@PathVariable String id, ModelMap modelo) {
+
+        Contratacion contratacion = contratacionServicio.getOne(id);
+
+        contratacionServicio.cancelarContratacion(id);
+        
+
+        return "redirect:/proveedor/contrataciones";
+    }
+    @PostMapping("/aceptar/{id}")
+    public String aceptarContratacion(@PathVariable String id, ModelMap modelo) {
+
+        Contratacion contratacion = contratacionServicio.getOne(id);
+
+        contratacionServicio.aceptarContratacion(id);
+        
+
+        return "redirect:/proveedor/contrataciones";
+    }
+    
+    
+
+    
     @PostMapping("/calificar/{id}")
     public String registrarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
             @RequestParam String idSolicitud, @RequestParam String comentario, @RequestParam String estrellas,
@@ -100,5 +131,27 @@ public class ProveedorControlador {
 
         return "proveedor_list.html";
     }
+    
+    
+    
+    
+    @GetMapping("/contrataciones/{id}")
+    public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
+
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+        
+        
+        for (Contratacion contratacion : historial) {
+            if (contratacion.getProveedor().getId().equals(id)) {
+                    contrataciones.add(contratacion);
+            }
+        }
+        modelo.addAttribute("contrataciones", contrataciones);
+
+        return "contratacion_list.html";
+    }
+    
+   
 
 }

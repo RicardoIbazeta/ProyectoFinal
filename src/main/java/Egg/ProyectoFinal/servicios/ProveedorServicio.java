@@ -42,7 +42,7 @@ public class ProveedorServicio {
     @Transactional
     public void crearProveedor(MultipartFile archivo, Double precioHora, String descripcionServicio,
             Rubro rubro, String nombre, String apellido, String documento, String email, String password,
-            String password2, String telefono, String direccion) throws MiException {
+            String password2, String telefono, String direccion, Boolean altaBaja) throws MiException {
 
         validarProveedor(nombre, apellido, documento, email, telefono, direccion, precioHora, descripcionServicio, rubro, archivo);
         validarPassword(password, password2);
@@ -62,6 +62,8 @@ public class ProveedorServicio {
         proveedor.setDireccion(direccion);
         proveedor.setRol(Rol.PROVEEDOR);
         proveedor.setFechaAlta(new Date());
+        proveedor.setAltaBaja(true);
+        
         //Paso la imagen y la seteo
         Imagen imagen = imagenServicio.guardar(archivo);
         proveedor.setImagen(imagen);
@@ -87,17 +89,29 @@ public class ProveedorServicio {
             proveedorRepositorio.save(proveedor);
         }
     }
+    
+    
+    
+    
 
     @Transactional
     public void darAltaBaja(Proveedor proveedor) {
 
         proveedor.setAltaBaja(!proveedor.isAltaBaja());
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     public List<Proveedor> listarProveedores() {
 
         List<Proveedor> proveedores = new ArrayList();
-        proveedores = proveedorRepositorio.findAll();
+        proveedores = proveedorRepositorio.filtrarPorAlta(true);
 
         return proveedores;
     }

@@ -13,10 +13,12 @@ public interface ProveedorRepositorio extends JpaRepository<Proveedor, String > 
     
     /* Querys de atributos heredados */
     
-    /* Querys de busqueda individual */
+    
+    
+    @Query("SELECT p FROM Proveedor p WHERE p.altaBaja= :altaBaja")
+    public List<Proveedor> filtrarPorAlta(@Param("altaBaja") boolean altaBaja);
     @Query("SELECT p FROM Proveedor p WHERE p.id= :id")
     public Proveedor buscarPorId(@Param ("id")String id);
-    
     @Query("SELECT p FROM Proveedor p WHERE p.documento= :documento")
     public Proveedor buscarPorDocumento(@Param ("documento")String documento);
     

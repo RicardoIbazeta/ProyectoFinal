@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -118,7 +119,9 @@ public class UsuarioServicio implements UserDetailsService {
             usuarioRepositorio.delete(usuario);
         }
     }
-
+    
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN' )")
     public List<Usuario> listarUsuarios() {
 
         List<Usuario> usuarios = new ArrayList();
