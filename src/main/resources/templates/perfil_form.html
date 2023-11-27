@@ -10,6 +10,134 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
+<div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/editarPerfil/{id}}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+        <div class="form-group my-3">
+            <h3 class="card-title">Modificacion de Perfil</h3>
+          </div>
+          <br />
+
+          <div class="form-group my-3">
+            <label for="nombre" style="display: flex">Nombre del Usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              th:placeholder="${session.usuario.nombre}"
+              th:value="${nombre}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="apellido" style="display: flex"
+              >Apellido del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="apellido"
+              th:placeholder="${session.usuario.apellido}"
+              th:value="${apellido}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="documento" style="display: flex"
+              >Documento del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="documento"
+              th:placeholder="${session.usuario.documento}"
+              th:value="${documento}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="email" style="display: flex">Mail del Usuario</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              th:placeholder="${session.usuario.email}"
+              th:value="${email}"
+            />
+          </div>
+          
+          <div class="form-group my-3">
+            <label for="archivo" style="display: flex">Foto del Usuario</label><br />
+            <input type="file" class="form-control" name="archivo" />
+          <!--
+          <div class="form-group my-3">
+            <label for="password" style="display: flex"
+              >Contraseña del Usuario</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              placeholder="Ingrese una contraseña"
+              th:value="${password}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="password2" style="display: flex"
+              >Repita contraseña del Usuario</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="password2"
+              placeholder="Repita la contraseña"
+              th:value="${password2}"
+            />
+          </div>
+          -->
+          <div class="form-group my-3">
+            <label for="telefono" style="display: flex"
+              >Telefono del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="telefono"
+              th:placeholder="${session.usuario.telefono}"
+              th:value="${telefono}"
+            />
+          </div>
+
+          <div class="form-group my-3">
+            <label for="direccion" style="display: flex"
+              >Domicilio del Usuario</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="direccion"
+              th:placeholder="${session.usuario.direccion}"
+              th:value="${direccion}"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3 botones">
+            Registrarme
+          </button>
+          <button type="reset" class="btn btn-primary mt-3 botones">
+            Borrar
+          </button>
+        </form>
+      </div>
+    </div>
+
+
     <div id="exito/error">
       <div
         th:if="${exito != null}"

@@ -19,12 +19,12 @@ public class ReseniaServicio {
    @Transactional
     public Resenia crear(String comentario, String estrella, String idProveedor) throws Exception {
     
-        validarResenia(comentario);
+        validarResenia(comentario,estrella,idProveedor);
         
         Resenia resenia = new Resenia();
         
         resenia.setComentario(comentario);
-        resenia.setEstrellas(Estrella.UNO);
+        resenia.setEstrellas((Estrella.valueOf(estrella)));
         resenia.setProveedor(proveedorServicio.getOne(idProveedor));
         
         reseniaRepositorio.save(resenia);
@@ -58,9 +58,15 @@ public class ReseniaServicio {
     
     public Resenia buscarById(String id) throws Exception; */
     
-    private void validarResenia(String comentario) throws MiException {
+    private void validarResenia(String comentario, String estrella, String idProveedor) throws MiException {
 
         if (comentario == null || comentario.isEmpty()) {
+            throw new MiException("Debes completar tu comentario");
+        }
+        if (estrella == null || estrella.isEmpty()) {
+            throw new MiException("Debes completar tu comentario");
+        }
+        if (idProveedor == null || idProveedor.isEmpty()) {
             throw new MiException("Debes completar tu comentario");
         }
     }

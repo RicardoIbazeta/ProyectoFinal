@@ -135,7 +135,7 @@ public class ProveedorControlador {
             }
         }
         modelo.addAttribute("contrataciones", contrataciones);
-        
+
         Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
         String idProveedor = proveedor.getId().toString();
         modelo.addAttribute("idProveedor", idProveedor);
@@ -144,21 +144,37 @@ public class ProveedorControlador {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @PostMapping("/calificar/{id}")
-    public String registrarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
+    @GetMapping("/calificar/{id}")
+    public String calificar(ModelMap modelo, @PathVariable String id) {
+
+        Proveedor proveedor = proveedorServicio.getOne(id);
+        modelo.addAttribute("proveedor", proveedor);
+
+        //buscar lista de enum
+        //modelo.addAttribute("estrellas", estrellas);
+        return "resenia_form.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping("/calificado/{id}")
+    public String calificarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
             @RequestParam String comentario, @RequestParam String estrellas,
-            ModelMap model) throws Exception {
+            ModelMap modelo) throws Exception {
 
         try {
             reseniaServicio.crear(comentario, estrellas, id);
             redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
-
-            return "redirect:/usuarios";
+            Proveedor proveedor = proveedorServicio.getOne(id);
+            modelo.addAttribute("proveedor", proveedor);
+            
+            return "redirect:../proveedor/lista";
 
         } catch (MiException e) {
             redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
-
-            return "redirect:/usuario";
+            Proveedor proveedor = proveedorServicio.getOne(id);
+            modelo.addAttribute("proveedor", proveedor);
+            
+            return "redirect:../proveedor/lista";
         }
     }
 
