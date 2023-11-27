@@ -30,7 +30,7 @@ public class UsuarioControlador {
 
     @GetMapping("/registrar")
     public String registrar() {
-        return "cliente_form.html";
+        return "usuario_form.html";
     }
 
     @PostMapping("/registro")
@@ -109,23 +109,22 @@ public class UsuarioControlador {
         return "perfil.html";
     }
 
-   /* @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
-    @GetMapping("/editarPerfil")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
+    @GetMapping("/editarPerfil/{id}")
     public String editarPerfil(ModelMap modelo, HttpSession session) {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         modelo.addAttribute("usuario", usuario);
 
-        return "editarPerfil.html";
-    } */
+        return "perfil_form.html";
+    } 
     
-    /*/Verifica que el usuario sea user o admin
+    //Verifica que el usuario sea user o admin
     //si es usuario lo manda a modificar usuario
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
     @PostMapping("/editarPerfil/{id}")
-    //@GetMapping("/editarPerfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
-            @RequestParam String apellido, @RequestParam String email, @RequestParam String password,
+            @RequestParam String apellido, @RequestParam String email,/* @RequestParam*/ String password,
             @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
 
         try {
@@ -141,7 +140,7 @@ public class UsuarioControlador {
 
             return "usuario_modificar.html";
         }
-    } */
+    } 
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contrataciones/{id}")

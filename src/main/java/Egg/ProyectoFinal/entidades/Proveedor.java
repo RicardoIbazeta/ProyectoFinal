@@ -11,6 +11,8 @@ public class Proveedor extends Usuario {
     private Double precioHora;
     private String descripcionServicio;
     private boolean altaBaja;
+    @OneToMany
+    private List<Resenia> resenias;
     
     @OneToOne
     public Rubro rubro;
@@ -61,6 +63,13 @@ public class Proveedor extends Usuario {
         this.rubro = rubro;
     }
     
+    public List<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(List<Resenia> resenias) {
+        this.resenias = resenias;
+    }
     
     /*public List<Contratacion> getContrataciones() {
         return contrataciones;

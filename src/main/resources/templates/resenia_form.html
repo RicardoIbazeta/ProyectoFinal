@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
+
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/proveedor/calificado/__${id}__}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="text"
+            hidden
+            th:value="${proveedor.id}"
+            name="idProveedor"
+          />
+          <p
+            th:text="'usted se encuentra evaluacion al Profesional: '+${proveedor.nombre} +', '+${proveedor.apellido} "
+          ></p>
+          <select name="estrellas" required>
+            <option value="">Elija una calificacion</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <br />
+          <br />
+
+          <input type="textarea" placeholder="Descripcion" />
+          <br />
+
+          <button type="submit" class="btn btn-primary mt-3 botones">
+            Aceptar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+</html>
