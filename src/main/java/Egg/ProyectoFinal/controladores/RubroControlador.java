@@ -45,6 +45,7 @@ public class RubroControlador {
     }
 
     /* Mapeo que lista todos los rubros */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @GetMapping("/lista")
     public String listarRubros(ModelMap modelo) {
 

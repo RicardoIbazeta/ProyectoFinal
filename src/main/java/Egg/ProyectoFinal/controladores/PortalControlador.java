@@ -39,6 +39,7 @@ public class PortalControlador {
         return "login.html";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_PROVEEDOR')")
     @GetMapping("/inicio")
     public String inicio() {
         return "inicio.html";
@@ -46,7 +47,7 @@ public class PortalControlador {
 
     //Verifica que el usuario sea user o admin
     //si es usuario lo manda a modificar usuario
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_ADMIN' )")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
     @PostMapping("/perfil/{id}")
     //@GetMapping("/perfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,

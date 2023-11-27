@@ -38,11 +38,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                             .defaultSuccessUrl("/inicio")
                             .permitAll()
                 .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll()
+                            .logoutUrl("/logout")
+                            .logoutSuccessUrl("/")
+                            .permitAll()
                 .and().csrf()
-                .disable();
+                            .disable();
     }
 
 }

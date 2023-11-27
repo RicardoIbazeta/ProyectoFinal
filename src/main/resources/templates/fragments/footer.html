@@ -1,26 +1,27 @@
 <footer
-    class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-    style="background-color: #142E79"
-    >
-    <p class="col-md-4 mb-0 text-white" text-white>&copy; 2023 Equipo 4, Camada 2</p>
+  class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+  style="background-color: #142e79"
+>
+  <p class="col-md-4 mb-0 text-white" text-white>
+    &copy; 2023 Equipo 4, Camada 2
+  </p>
 
-    <a
-        href="/"
-        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-        >
-        <!-- Aca va el logo <img>-->
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-tools"
-            viewBox="0 0 16 16"
-            >
-            
-            <img th:src="@{/logo.png}" alt="logo" />
-            
-            <!--
+  <a
+    href="/"
+    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+  >
+    <!-- Aca va el logo <img>-->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-tools"
+      viewBox="0 0 16 16"
+    >
+      <img th:src="@{/logo.png}" alt="logo" />
+
+      <!--
             <path
                 d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 
                 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 
@@ -29,27 +30,55 @@
                 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 
                 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z"
                 />-->
-        </svg>
-    </a>
+    </svg>
+  </a>
 
-    <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item">
-            <a th:href="@{/}" class="nav-link px-2 text-white">Inicio</a>
-        </li>
-        <li class="nav-item">
-            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Proveedores</a>
-        </li>
-        <li class="nav-item">
-            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Servicios</a>
-        </li>
-        <li class="nav-item">
-            <a th:if="${session.usuario != null}" href="#" class="nav-link px-2 text-white">Contrataciones</a>
-        </li>
-        <li class="nav-item">
-            <a th:if="${session.usuario == null}" th:href="@{/login}" class="nav-link px-2 text-white">Ingresar</a>
-        </li>
-        <li class="nav-item">
-            <a th:if="${session.usuario == null}" th:href="@{/registrarseBotones}" class="nav-link px-2 text-white">Registrar</a>
-        </li>
-    </ul>
+  <ul class="nav col-md-4 justify-content-end">
+    <li class="nav-item">
+      <a th:href="@{/}" class="nav-link px-2 text-white">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a
+        th:if="${session.usuario != null}"
+        class="nav-link px-2 text-white"
+        th:href="@{/proveedor/lista}"
+        sec:authorize="hasAnyRole('ADMIN', 'USER')"
+        >Proveedores</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        th:if="${session.usuario != null}"
+        class="nav-link px-2 text-white"
+        th:href="@{/rubro/lista}"
+        sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')"
+        >Rubros</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        th:if="${session.usuario != null}"
+        class="nav-link px-2 text-white"
+        th:href="@{/contratacion/lista}"
+        sec:authorize="hasRole('ADMIN')"
+        >Contrataciones</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        th:if="${session.usuario == null}"
+        th:href="@{/login}"
+        class="nav-link px-2 text-white"
+        >Ingresar</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        th:if="${session.usuario == null}"
+        th:href="@{/registrarseBotones}"
+        class="nav-link px-2 text-white"
+        >Registrar</a
+      >
+    </li>
+  </ul>
 </footer>

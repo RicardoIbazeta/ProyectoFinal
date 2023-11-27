@@ -11,6 +11,7 @@ import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,6 @@ public class ProveedorControlador {
     private RubroServicio rubroServicio;
     @Autowired
     private ContratacionServicio contratacionServicio;
-    
 
     @GetMapping("/registrar")
     public String registrar(ModelMap modelo) {
@@ -79,42 +79,71 @@ public class ProveedorControlador {
         }
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @PostMapping("/cancelar/{id}")
     public String cancelarContratacion(@PathVariable String id, ModelMap modelo) {
 
         Contratacion contratacion = contratacionServicio.getOne(id);
-
         contratacionServicio.cancelarContratacion(id);
-        
 
-        return "redirect:/proveedor/contrataciones";
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+
+        for (Contratacion contratacion1 : historial) {
+            if (contratacion1.getProveedor().getId().equals(contratacion.getProveedor().getId())) {
+                contrataciones.add(contratacion1);
+            }
+        }
+        modelo.addAttribute("contrataciones", contrataciones);
+
+        return "redirect:/proveedor/contrataciones/{id}";
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @PostMapping("/aceptar/{id}")
     public String aceptarContratacion(@PathVariable String id, ModelMap modelo) {
 
         Contratacion contratacion = contratacionServicio.getOne(id);
-
         contratacionServicio.aceptarContratacion(id);
-        
 
-        return "redirect:/proveedor/contrataciones";
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+
+        for (Contratacion contratacion1 : historial) {
+            if (contratacion1.getProveedor().getId().equals(contratacion.getProveedor().getId())) {
+                contrataciones.add(contratacion1);
+            }
+        }
+        modelo.addAttribute("contrataciones", contrataciones);
+
+        return "redirect:/proveedor/contrataciones/{id}";
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @PostMapping("/finalizar/{id}")
     public String finalizarContratacion(@PathVariable String id, ModelMap modelo) {
 
         Contratacion contratacion = contratacionServicio.getOne(id);
-
         contratacionServicio.finalizarContratacion(id);
+
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+
+        for (Contratacion contratacion1 : historial) {
+            if (contratacion1.getProveedor().getId().equals(contratacion.getProveedor().getId())) {
+                contrataciones.add(contratacion1);
+            }
+        }
+        modelo.addAttribute("contrataciones", contrataciones);
         
+        Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
+        String idProveedor = proveedor.getId().toString();
+        modelo.addAttribute("idProveedor", idProveedor);
 
-        return "redirect:/proveedor/contrataciones";
+        return "redirect:../proveedor/contrataciones/{idProveedor}";
     }
-    
-    
-    
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/calificar/{id}")
     public String registrarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
             @RequestParam String comentario, @RequestParam String estrellas,
@@ -131,9 +160,10 @@ public class ProveedorControlador {
 
             return "redirect:/usuario";
         }
-    } 
+    }
 
     /* Mapeo que lista todos los proveedores */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/lista")
     public String listarProveedores(ModelMap modelo) {
 
@@ -142,27 +172,22 @@ public class ProveedorControlador {
 
         return "proveedor_list.html";
     }
-    
-    
-    
-    
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @GetMapping("/contrataciones/{id}")
-    public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
+    public String historialContrataciones(ModelMap modelo, @PathVariable String id) {
 
         List<Contratacion> historial = contratacionServicio.listarContrataciones();
         List<Contratacion> contrataciones = new ArrayList<Contratacion>();
-        
-        
+
         for (Contratacion contratacion : historial) {
             if (contratacion.getProveedor().getId().equals(id)) {
-                    contrataciones.add(contratacion);
+                contrataciones.add(contratacion);
             }
         }
         modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list.html";
     }
-    
-   
 
 }

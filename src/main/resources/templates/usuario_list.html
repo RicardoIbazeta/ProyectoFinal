@@ -15,7 +15,6 @@
       alt="Bootstrap Themes"
     />
 
-    <!-- <div id="contenido/" th:each="usuario : ${usuarios}"> -->
     <div id="container m-5">
       <table class="table">
         <thead>
@@ -40,11 +39,23 @@
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.rol}"></td>
             <td th:text="${usuario.altaBaja}"></td>
-            
-            <td><form  method="POST" th:action="@{/usuario/altaBaja/__${usuario.id}__}"><button type="submit">X</button>
-                </form></td>
-            <td><form  method="POST" th:action="@{/usuario/eliminar/__${usuario.id}__}"><button type="submit">X</button>
-                </form></td>
+
+            <td>
+              <form
+                method="POST"
+                th:action="@{/usuario/altaBaja/__${usuario.id}__}"
+              >
+                <button type="submit">X</button>
+              </form>
+            </td>
+            <td>
+              <form
+                method="POST"
+                th:action="@{/usuario/eliminar/__${usuario.id}__}"
+              >
+                <button type="submit">X</button>
+              </form>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -8,6 +8,7 @@
         <header th:replace="~{/fragments/header :: header}"></header>
         <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
+<<<<<<< HEAD
         <br />
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -46,6 +47,63 @@
                             Te invitamos a explorar la plataforma, descubrir talentosos
                             proveedores y encontrar soluciones a medida para tus necesidades.
                         </p>
+=======
+    <br />
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img
+            th:src="@{/4.png}"
+            class="d-block mx-lg-auto img-fluid"
+            alt="Bootstrap Themes"
+            width="700"
+            height="500"
+            loading="lazy"
+          />
+        </div>
+        <div class="col-lg-6">
+          <br />
+          <h1
+            class="display-5 fw-bold lh-1 mb-3"
+            th:text=" 'Hola, '+ ${session.usuario.nombre} "
+          ></h1>
+          <p class="lead">
+            Te invitamos a explorar la plataforma, descubrir talentosos
+            proveedores y encontrar soluciones a medida para tus necesidades.
+          </p>
+
+          <p class="lead">
+            Conectando necesidades con soluciones. Tu Servicio a un Click de
+            distancia.
+          </p>
+          <!-- Esto no esta funcionando y no se porque-->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('ADMIN')"
+            >
+              <a th:href="@{/usuario/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('USER')"
+            >
+              <a th:href="@{/proveedores/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('PROVEEDOR')"
+            >
+              <a th:href="@{/contratacion/lista}">Explorar</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> ac88fd9 (main version revision)
 
                         <p class="lead">
                             Conectando necesidades con soluciones. Tu Servicio a un Click de
