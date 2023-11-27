@@ -10,15 +10,6 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <h1>hola</h1>
-
-    <!-- 
-    <div sec:authorize="hasRole('PROVEEDOR')"class="perfil-card">
-      <h2 th:text="${proveedor.nombre}"></h2>
-      <p th:text="${proveedor.apellido}"></p>
-      Otros campos según tus necesidades 
-    </div> -->
-
     <div id="exito/error">
       <div
         th:if="${exito != null}"

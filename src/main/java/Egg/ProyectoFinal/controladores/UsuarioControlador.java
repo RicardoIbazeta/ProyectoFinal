@@ -1,6 +1,5 @@
 package Egg.ProyectoFinal.controladores;
 
-import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
@@ -52,17 +51,20 @@ public class UsuarioControlador {
             /* Se Inyecta la informacion proporcionada por el usuario previo a un error 
             y asi no tiene que volver ingresar todo nuevamente.
             La contraseña y el tipoUsuario siempre deberan ser ingresados */
+            modelo.put("archivo", archivo);
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
             modelo.put("documento", documento);
             modelo.put("email", email);
             modelo.put("telefono", telefono);
             modelo.put("direccion", direccion);
+            modelo.put("AltaBaja", AltaBaja);
 
             return "cliente_form.html";
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("/altaBaja/{id}")
     public String altaBajaUsuario(@PathVariable String id, ModelMap modelo) {
 
@@ -74,6 +76,7 @@ public class UsuarioControlador {
         return "redirect:/usuario/lista";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, ModelMap modelo) {
 
@@ -86,7 +89,7 @@ public class UsuarioControlador {
     }
 
     /* Mapeo que lista todos los usuarios */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @GetMapping("/lista")
     public String listarUsuarios(ModelMap modelo) {
 
@@ -140,6 +143,7 @@ public class UsuarioControlador {
         }
     } */
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contrataciones/{id}")
     public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
 

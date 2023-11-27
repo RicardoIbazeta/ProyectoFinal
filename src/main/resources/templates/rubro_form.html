@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    >
-    <head th:replace="/fragments/head :: head "></head>
-    <body>
-        <header th:replace="/fragments/header :: header "></header>
-        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <form
-                    class="formulario"
-                    th:action="@{/rubro/registro}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    >
-
-                    <div id="exito/error">
-                        <div th:if="${exito != null}" id="exito">
-                            <h5>exito</h5>
-                            <p th:text="${exito}"></p>
-                        </div>
-                        <div th:if="${error != null}" id="error">
-                            <h5>error</h5>
-                            <p th:text="${error}"></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group my-3">
-                        <h3 class="card-title">Creacion Nuevo Rubro</h3>
-                    </div>
-                    <br />
-
-                    <div class="form-group my-3">
-                        <label for="nombre" style="display: flex">Nombre del Rubro</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="nombre"
-                            placeholder="Ingrese el nombre del rubro"
-                            th:value="${nombre}"
-                            />
-                    </div>
-
-                    <button type="submit" class="btn btn-primary mt-3 botones">
-                        Crear
-                    </button>
-                    <button type="reset" class="btn btn-primary mt-3 botones">
-                        Borrar
-                    </button>
-                </form>
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/rubro/registro}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div id="exito/error">
+            <div th:if="${exito != null}" id="exito">
+              <h5>exito</h5>
+              <p th:text="${exito}"></p>
             </div>
-        </div>
+            <div th:if="${error != null}" id="error">
+              <h5>error</h5>
+              <p th:text="${error}"></p>
+            </div>
+          </div>
 
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
+          <div class="form-group my-3">
+            <h3 class="card-title">Registro Nuevo Rubro</h3>
+          </div>
+          <br />
+
+          <div class="form-group my-3">
+            <label for="nombre" style="display: flex">Descripcion</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              placeholder="Ingrese el nombre del rubro"
+              th:value="${nombre}"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3 botones">
+            Registrar
+          </button>
+          <button type="reset" class="btn btn-primary mt-3 botones">
+            Borrar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
 </html>

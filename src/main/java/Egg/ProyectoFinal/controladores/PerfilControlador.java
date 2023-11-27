@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Controller
-@RequestMapping("/perfil2")
-public class PerfilControlador {
-    
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
-    
-    @GetMapping("/perfil2/{id}")
-    public String mostrarPerfilUsuario(@PathVariable String id, Model model) {
-        
-        Usuario usuario = (Usuario) usuarioRepositorio.buscarPorId(id);
-        model.addAttribute("usuario", usuario);
-        
-        return "perfil.html";
-    }  
-}
+//@Controller
+//@RequestMapping("/perfil2")
+//public class PerfilControlador {
+//    
+//    @Autowired
+//    private UsuarioRepositorio usuarioRepositorio;
+//    
+//    @GetMapping("/perfil2/{id}")
+//    public String mostrarPerfilUsuario(@PathVariable String id, Model model) {
+//        
+//        Usuario usuario = (Usuario) usuarioRepositorio.buscarPorId(id);
+//        model.addAttribute("usuario", usuario);
+//        
+//        return "perfil.html";
+//    }  
+//}

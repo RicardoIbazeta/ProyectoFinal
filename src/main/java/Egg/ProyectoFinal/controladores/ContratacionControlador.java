@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,7 @@ public class ContratacionControlador {
     @Autowired
     private RubroServicio rubroServicio;
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
 
@@ -77,6 +79,7 @@ public class ContratacionControlador {
 
     //ADMIN
     /* Mapeo que lista todas las contrataciones */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @GetMapping("/lista")
     public String listarContrataciones(ModelMap modelo) {
 
@@ -87,6 +90,7 @@ public class ContratacionControlador {
     }
 
     /* En desarrollo! Trae todas las contrataciones del id del usuario que esta en sesion   */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_PROVEEDOR')")
     @GetMapping("/historial/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 

@@ -23,7 +23,6 @@
         </div>
         <div class="col-lg-6">
           <br />
-          <!-- Quiero agregar en el h1 th:text=" 'Hola, '+ ${session.usuariosession.nombre} " pero no lo puedo agregar hasta que se solucione el login-->
           <h1
             class="display-5 fw-bold lh-1 mb-3"
             th:text=" 'Hola, '+ ${session.usuario.nombre} "
@@ -38,18 +37,29 @@
             distancia.
           </p>
           <!-- Esto no esta funcionando y no se porque-->
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('ADMIN')">
-                            <a th:href="@{/usuario/lista}">Explorar</a>
-                        </button>
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('USER')">
-                            <a th:href="@{/proveedores/lista}">Explorar</a>
-                        </button>
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" sec:authorize="hasRole('PROVEEDOR')">
-                            <a th:href="@{/contratacion/lista}">Explorar</a>
-                        </button>
-                    </div>
-                    
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('ADMIN')"
+            >
+              <a th:href="@{/usuario/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('USER')"
+            >
+              <a th:href="@{/proveedores/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('PROVEEDOR')"
+            >
+              <a th:href="@{/contratacion/lista}">Explorar</a>
+            </button>
+          </div>
         </div>
       </div>
     </div>

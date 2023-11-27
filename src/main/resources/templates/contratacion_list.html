@@ -28,7 +28,7 @@
             <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
             <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Cancelar</th>
-            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Aceptar</th>  
+            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Aceptar</th>
             <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Finalizar</th>
           </tr>
         </thead>
@@ -37,20 +37,45 @@
             <td scope="row" th:text="${contratacion.cliente.nombre}">hola</td>
             <td scope="row" th:text="${contratacion.cliente.apellido}">hola</td>
             <td scope="row" th:text="${contratacion.proveedor.nombre}">hola</td>
-            <td scope="row" th:text="${contratacion.proveedor.apellido}">hola</td>
+            <td scope="row" th:text="${contratacion.proveedor.apellido}">
+              hola
+            </td>
             <td th:text="${contratacion.alta}"></td>
             <td th:text="${contratacion.estadoContratacion}"></td>
-            
-            <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.cliente.id}"></td>
-            <td sec:authorize="hasRole('ADMIN')" th:text="${contratacion.proveedor.id}"></td>
-            
-            <td sec:authorize="hasRole('PROVEEDOR')"><form  method="POST" th:action="@{/proveedor/cancelar/__${contratacion.id}__}"><button type="submit">Cancelar</button>
-                </form></td>
-            <td sec:authorize="hasRole('PROVEEDOR')"><form  method="POST" th:action="@{/proveedor/aceptar/__${contratacion.id}__}"><button type="submit">Aceptar</button>
-                </form></td>
-            <td sec:authorize="hasRole('PROVEEDOR')"><form  method="POST" th:action="@{/proveedor/finalizar/__${contratacion.id}__}"><button type="submit">Finalizar</button>
-                </form></td>5
-                
+
+            <td
+              sec:authorize="hasRole('ADMIN')"
+              th:text="${contratacion.cliente.id}"
+            ></td>
+            <td
+              sec:authorize="hasRole('ADMIN')"
+              th:text="${contratacion.proveedor.id}"
+            ></td>
+
+            <td sec:authorize="hasRole('PROVEEDOR')">
+              <form
+                method="POST"
+                th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
+              >
+                <button type="submit">Cancelar</button>
+              </form>
+            </td>
+            <td sec:authorize="hasRole('PROVEEDOR')">
+              <form
+                method="POST"
+                th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
+              >
+                <button type="submit">Aceptar</button>
+              </form>
+            </td>
+            <td sec:authorize="hasRole('PROVEEDOR')">
+              <form
+                method="POST"
+                th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
+              >
+                <button type="submit">Finalizar</button>
+              </form>
+            </td>
           </tr>
         </tbody>
       </table>

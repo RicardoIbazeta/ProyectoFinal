@@ -21,15 +21,18 @@ public class ContratacionServicio {
     private ContratacionRepositorio contratacionRepositorio;
 
     @Transactional
-    public void crearContratacion(Usuario cliente, Proveedor proveedor) {
+    public void crearContratacion(Usuario cliente, Proveedor proveedor) throws MiException {
 
         /* verificar metodo validarContratacion */
         Contratacion contratacion = new Contratacion();
+        
+        validarContratacion(cliente,proveedor);
 
         contratacion.setCliente(cliente);
         contratacion.setProveedor(proveedor);
         contratacion.setEstadoContratacion(Estado.SOLICITADO);
         contratacion.setAlta(new Date());
+        contratacion.setAltaBaja(true);
 
         contratacionRepositorio.save(contratacion);
     }
@@ -64,7 +67,21 @@ public class ContratacionServicio {
         return contrataciones;
     }
     
-    
+        public List<Contratacion> ContratacionesProveedor(String id) {
+
+        List<Contratacion> contrataciones1 = new ArrayList();
+        List<Contratacion> contrataciones = new ArrayList();
+
+        contrataciones1 = contratacionRepositorio.findAll();
+
+        for (Contratacion contratacion : contrataciones1) {
+            if (contratacion.getProveedor().getId().equals(id)) {
+                contrataciones.add(contratacion);
+            }
+        }
+
+        return contrataciones;
+    }
     
     
     
@@ -138,20 +155,20 @@ public class ContratacionServicio {
     
     
 
-    public void validarContratacion(Usuario cliente, Usuario proveedor, Date alta, Estado estadoContratacion) throws MiException {
+    public void validarContratacion(Usuario cliente, Usuario proveedor/*, Date alta, Estado estadoContratacion*/) throws MiException {
 
         if (cliente == null) {
             throw new MiException("el Cliente no puede ser nulo");
         }
         if (proveedor == null) {
             throw new MiException("el Proveedor no puede ser nulo");
-        }
+        }/*
         if (alta == null) {
             throw new MiException("indicar fecha de solicitud");
         }
         if (estadoContratacion == null) {
             throw new MiException("indicar estado de la contratacion");
-        }
+        }*/
     }
     
     public Contratacion getOne(String id) {

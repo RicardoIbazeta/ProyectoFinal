@@ -99,6 +99,33 @@
                 </li>
                     -->
 
+          <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+            <a
+              class="nav-link dropdown-toggle"
+              style="color: white"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              th:if="${session.usuario != null}"
+            >
+              Usuarios
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-lg-end"
+              style="background-color: #142e79"
+            >
+              <li sec:authorize="hasRole('ADMIN')">
+                <a
+                  class="dropdown-item"
+                  style="color: darkgrey"
+                  th:href="@{/usuario/lista}"
+                  >Lista de Usuarios</a
+                >
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -149,6 +176,9 @@
                   th:href="@{/rubro/lista}"
                   >Lista de Rubros</a
                 >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
               </li>
               <li>
                 <a
@@ -202,16 +232,19 @@
                   class="dropdown-item"
                   th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
-                  sec:authorize="hasAnyRole('USER')"
+                  sec:authorize="hasAnyRole('USER', 'ADMIN')"
                   >Mis Contrataciones</a
                 >
               </li>
-               <li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
                 <a
                   class="dropdown-item"
                   th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
-                  sec:authorize="hasAnyRole('PROVEEDOR')"
+                  sec:authorize="hasAnyRole('PROVEEDOR', 'ADMIN')"
                   >Mis Contrataciones</a
                 >
               </li>
@@ -269,7 +302,7 @@
               <li sec:authorize="hasRole('ADMIN')">
                 <hr class="dropdown-divider" />
               </li>
-              <!-- ¿este item solo tendria acceso el admin? -->
+              <!-- ¿este item solo tendria acceso el admin?
               <li sec:authorize="hasRole('ADMIN')">
                 <a
                   class="dropdown-item"
@@ -281,7 +314,7 @@
 
               <li>
                 <hr class="dropdown-divider" />
-              </li>
+              </li>  -->
 
               <li>
                 <a
