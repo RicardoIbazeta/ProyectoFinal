@@ -8,67 +8,12 @@
     <body>
         <header th:replace="/fragments/header :: header "></header>
         <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-
-        <!--
-        <div class="container my-5">
-          <div class="p-5 text-center bg-body-tertiary rounded-3">
-            <form
-              class="formulario"
-              th:action="@{/contratacion/contratado/__${id}__}"
-              method="POST"
-              enctype="multipart/form-data"
-            >
-              <input
-                type="text"
-                hidden
-                th:value="${proveedor.id}"
-                name="idProveedor"
-              />
-              <p th:text="'Profesional: '+${proveedor.nombre} "></p>
-              <select name="rubro" required>
-                <option value="">Elija un rubro</option>
-                <option
-                  th:each="rubro : ${rubros}"
-                  th:value="${rubro.id}"
-                  th:text="${rubro.nombre}"
-                ></option>
-              </select>
-        <!--  <input type="text" hidden th:value="${rubros.id}" name="rubros" />
-        <p th:text="'Rubro: '+${rubros.nombre} "></p>
-        <p th:text="'Presupuesto: '+${proveedor.precioHora} "></p>
-        <input
-          type="text"
-          hidden
-          th:value="${session.usuario.id}"
-          name="idCliente"
-        />
-        <p th:text="'Contrata: '+${session.usuario.nombre} "></p>
-        <button type="submit" class="btn btn-primary mt-3 botones">
-          Aceptar
-        </button>
-
-        <div id="exito/error">
-          <div
-            th:if="${exito != null}"
-            id="exito"
-            class="card text-white bg-success mb-3 mt-3 mensajeExito"
-          >
-            <h5>exito</h5>
-            <p th:text="${exito}"></p>
-          </div>
-          <div
-            th:if="${error != null}"
-            id="error"
-            class="card text-white bg-danger mb-3 mensajeError"
-          >
-            <h5>error</h5>
-            <p th:text="${error}"></p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-        -->
+        <img
+      th:src="@{/6.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+<br/><div class="form-group my-3" >
+            <h3 class="card-title" style="text-align: center;">Registro Contratacion</h3><br/>
 
         <div class="container" id="contenido/Contrataciones">
             <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
@@ -79,6 +24,26 @@
                         method="POST"
                         enctype="multipart/form-data"
                         >
+
+            <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+
                         <input
                             type="text"
                             hidden
@@ -171,28 +136,18 @@
                         
                     </div>
 
-
-                    <div id="exito/error">
-                        <div
-                            th:if="${exito != null}"
-                            id="exito"
-                            class="card text-white bg-success mb-3 mt-3 mensajeExito"
-                            >
-                            <h5>exito</h5>
-                            <p th:text="${exito}"></p>
-                        </div>
-                        <div
-                            th:if="${error != null}"
-                            id="error"
-                            class="card text-white bg-danger mb-3 mensajeError"
-                            >
-                            <h5>error</h5>
-                            <p th:text="${error}"></p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+
+             <section class="text-center container">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a th:href="@{/}" class="btn btn-danger my-2 botonVolver botones"
+                >Volver</a
+              >
+            </div>
+          </div>
+        </section>
 
             <script th:replace="/fragments/script :: script "></script>
             <footer th:replace="/fragments/footer :: footer"></footer>
