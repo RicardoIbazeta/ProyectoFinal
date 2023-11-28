@@ -216,7 +216,7 @@
                 >
               </li>
               <li>
-                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" />
               </li>
               <!-- <li>
                 <a
@@ -237,7 +237,7 @@
                 >
               </li>
               <li>
-                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" />
               </li>
               <li>
                 <a
@@ -304,9 +304,10 @@
                   class="dropdown-item"
                   style="color: darkgrey"
                   th:href="@{/admin/dashboard}"
+                  sec:authorize="hasRole('ADMIN')"
                   >Panel</a
                 >
-                <li><hr class="dropdown-divider" /></li>
+                <li><hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" /></li>
               </li>
               <li>
                 <a
@@ -326,7 +327,7 @@
                   >Editar Perfil</a
                 >
               </li>
-
+<li><hr class="dropdown-divider" /></li>
               <li sec:authorize="hasRole('ADMIN')">
                 <hr class="dropdown-divider" />
               </li>
