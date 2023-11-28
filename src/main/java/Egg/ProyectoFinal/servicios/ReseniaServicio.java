@@ -4,6 +4,7 @@ import Egg.ProyectoFinal.Repositorio.ReseniaRepositorio;
 import Egg.ProyectoFinal.entidades.Resenia;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,6 +83,21 @@ public class ReseniaServicio {
         } else {
             throw new MiException("La reseña con el ID " + id + " no existe.");
         }
+    }
+    
+    @Transactional
+    public void modificarComentario(String id, String comentario) throws MiException {
+        
+        Optional<Resenia> respuesta = reseniaRepositorio.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Resenia resenia = respuesta.get();
+            
+            resenia.setComentario(comentario);
+            
+            reseniaRepositorio.save(resenia);
+        }
+        
     }
     
     
