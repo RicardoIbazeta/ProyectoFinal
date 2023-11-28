@@ -17,9 +17,29 @@
           enctype="multipart/form-data"
         >
           <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
+          
           <div class="form-group my-3">
-            <h3 class="card-title">Registro Cliente</h3>
+            <h3 class="card-title">Registro Cliente</h3><br/>
+            <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
           </div>
+          
           <br />
 
           <div class="form-group my-3">
@@ -135,7 +155,7 @@
         </form>
       </div>
     </div>
-    <div id="exito/error">
+    <!-- <div id="exito/error">
       <div
         th:if="${exito != null}"
         id="exito"
@@ -152,7 +172,7 @@
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
-    </div>
+    </div> -->
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>

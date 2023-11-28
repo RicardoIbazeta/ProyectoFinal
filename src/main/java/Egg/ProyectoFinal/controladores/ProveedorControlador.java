@@ -4,6 +4,7 @@ import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import Egg.ProyectoFinal.entidades.Rubro;
+import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
@@ -158,7 +159,7 @@ public class ProveedorControlador {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/calificado/{id}")
     public String calificarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
-            @RequestParam String comentario, @RequestParam String estrellas,
+            @RequestParam String comentario, @RequestParam Estrella estrellas,
             ModelMap modelo) throws Exception {
 
         try {

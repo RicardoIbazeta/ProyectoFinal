@@ -21,6 +21,25 @@
 
                     <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
                     <div class="form-group my-3">
+                            <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+    <br/>
                         <h3 class="card-title">Registro Proveedor</h3>
                     </div>
                     <br />
@@ -179,17 +198,6 @@
                         </button>
 
                 </form>
-
-                <div id="exito/error">
-                    <div
-                        th:if="${exito != null}"
-                        id="exito"
-                        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-                        >
-                        <h5>exito</h5>
-                        <p th:text="${exito}"></p>
-                    </div>
-                </div>
 
                 <script th:replace="/fragments/script :: script "></script>
                 <footer th:replace="/fragments/footer :: footer"></footer>
