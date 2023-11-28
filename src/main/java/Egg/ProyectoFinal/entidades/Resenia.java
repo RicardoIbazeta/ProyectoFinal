@@ -35,9 +35,11 @@ public class Resenia {
     private Estrella estrellas;
 
     @ManyToOne(targetEntity = Proveedor.class)
+    @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
     
     @ManyToOne(targetEntity = Proveedor.class)
+    @JoinColumn(name = "cliente_id")
     private Usuario cliente;
     
 
