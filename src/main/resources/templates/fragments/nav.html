@@ -216,7 +216,7 @@
                 >
               </li>
               <li>
-                <hr class="dropdown-divider" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
               </li>
               <!-- <li>
                 <a
@@ -232,20 +232,48 @@
                   class="dropdown-item"
                   th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
-                  sec:authorize="hasAnyRole('USER', 'ADMIN')"
+                  sec:authorize="hasRole('USER')"
                   >Mis Contrataciones</a
                 >
               </li>
               <li>
-                <hr class="dropdown-divider" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
               </li>
               <li>
                 <a
                   class="dropdown-item"
                   th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
                   style="color: darkgrey"
-                  sec:authorize="hasAnyRole('PROVEEDOR', 'ADMIN')"
+                  sec:authorize="hasRole('PROVEEDOR')"
                   >Mis Contrataciones</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              style="color: white"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              sec:authorize="hasRole('ADMIN')"
+              th:if="${session.usuario != null}"
+            >
+              Resenias
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-lg-end"
+              style="background-color: #142e79"
+            >
+              <li>
+                <a
+                  class="dropdown-item"
+                  style="color: darkgrey"
+                  th:href="@{/resenia/lista}"
+                  sec:authorize="hasRole('ADMIN')"
+                  >Lista de Resenias</a
                 >
               </li>
             </ul>
@@ -275,22 +303,21 @@
                 <a
                   class="dropdown-item"
                   style="color: darkgrey"
+                  th:href="@{/admin/dashboard}"
+                  >Panel</a
+                >
+                <li><hr class="dropdown-divider" /></li>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  style="color: darkgrey"
                   th:href="@{/usuario/perfil}"
                   >Perfil</a
                 >
                 <!-- <a href="#profile-container" class="profile-btn">Perfil</a> -->
               </li>
-
               <li><hr class="dropdown-divider" /></li>
-
-              <!-- <li>
-                <a
-                  class="dropdown-item"
-                  style="color: darkgrey"
-                  th:href="@{/perfil/${session.usuario.id}}"
-                  >Editar Perfil</a
-                >
-              </li> -->
               <li>
                 <a
                   class="dropdown-item"

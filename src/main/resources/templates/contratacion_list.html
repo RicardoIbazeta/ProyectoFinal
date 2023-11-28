@@ -9,40 +9,41 @@
     <header th:replace="~{/fragments/header :: header}"></header>
     <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
-    <img
+
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+
+            <img
       th:src="@{/8.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"
-    />
+    /><br/>
 
-    <div class="container m-5">
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Nombre del Cliente</th>
-            <th scope="col">Apellido del Cliente</th>
+            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
             <th scope="col">Nombre del Proveedor</th>
-            <th scope="col">Apellido del Proveedor</th>
+            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
             <th scope="col">Fecha de Contratacion</th>
             <th scope="col">Estado</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
-            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Cancelar</th>
-            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Aceptar</th>
-            <th sec:authorize="hasRole('PROVEEDOR')" scope="col">Finalizar</th>
+            <th sec:authorize="hasAnyRole('ADMIN','PROVEEDOR')" scope="col">Cancelar</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Aceptar</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Finalizar</th>
+            <th sec:authorize="hasRole('USER')" scope="col">Calificar</th>
           </tr>
         </thead>
         <tbody th:each="contratacion : ${contrataciones}">
           <tr>
-            <td scope="row" th:text="${contratacion.cliente.nombre}">hola</td>
-            <td scope="row" th:text="${contratacion.cliente.apellido}">hola</td>
-            <td scope="row" th:text="${contratacion.proveedor.nombre}">hola</td>
-            <td scope="row" th:text="${contratacion.proveedor.apellido}">
-              hola
-            </td>
+            <th scope="row" th:text="${contratacion.cliente.nombre}"></td>
+            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.cliente.apellido}"></td>
+            <td scope="row" th:text="${contratacion.proveedor.nombre}"></td>
+            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.proveedor.apellido}"></td>
             <td th:text="${contratacion.alta}"></td>
             <td th:text="${contratacion.estadoContratacion}"></td>
-
             <td
               sec:authorize="hasRole('ADMIN')"
               th:text="${contratacion.cliente.id}"
@@ -51,34 +52,49 @@
               sec:authorize="hasRole('ADMIN')"
               th:text="${contratacion.proveedor.id}"
             ></td>
-
-            <td sec:authorize="hasRole('PROVEEDOR')">
+            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
               <form
                 method="POST"
                 th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
               >
-                <button type="submit">Cancelar</button>
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Cancelar</button>
               </form>
             </td>
-            <td sec:authorize="hasRole('PROVEEDOR')">
+            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
               <form
                 method="POST"
                 th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
               >
-                <button type="submit">Aceptar</button>
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Aceptar</button>
               </form>
             </td>
-            <td sec:authorize="hasRole('PROVEEDOR')">
+            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
+
               <form
                 method="POST"
                 th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
               >
-                <button type="submit">Finalizar</button>
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Finalizar</button>
+
               </form>
             </td>
+            <td sec:authorize="hasRole('USER')">
+              <!-- no permite rol admin -->
+              <form
+                method="POST"
+                th:action="@{/proveedor/calificar/__${proveedor.id}__}"
+              >
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Calificar</button>
+
+              </form>
+            </td>
+
           </tr>
+
         </tbody>
       </table>
+
+    </div>
     </div>
 
     <!-- <section class="text-center container">

@@ -9,13 +9,20 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
 
-    <img
+    <!-- <img
       th:src="@{/7.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"
-    />
+    /> -->
 
-    <div id="container m-5">
+     <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+            <img
+      th:src="@{/7.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+      <br>
+
       <table class="table">
         <thead>
           <tr>
@@ -26,7 +33,7 @@
             <th scope="col">Email</th>
             <th scope="col">Rol</th>
             <th scope="col">Estado</th>
-            <th scope="col">Alta o Baja</th>
+            <th scope="col">Alta/Baja</th>
             <th scope="col">Eliminar</th>
           </tr>
         </thead>
@@ -41,19 +48,21 @@
             <td th:text="${usuario.altaBaja}"></td>
 
             <td>
+
               <form
                 method="POST"
                 th:action="@{/usuario/altaBaja/__${usuario.id}__}"
               >
-                <button type="submit">X</button>
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Alta/Baja</button>
               </form>
+
             </td>
             <td>
               <form
                 method="POST"
                 th:action="@{/usuario/eliminar/__${usuario.id}__}"
               >
-                <button type="submit">X</button>
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
               </form>
             </td>
           </tr>
