@@ -72,4 +72,17 @@ public class ReseniaServicio {
         }
     }
 
+    @Transactional
+    public void eliminarResenia(String id) throws MiException {
+        // Puedes agregar lógica de validación aquí si es necesario
+        // por ejemplo, verificar si la reseña existe antes de eliminarla
+        Resenia resenia = reseniaRepositorio.findById(id).orElse(null);
+        if (resenia != null) {
+            reseniaRepositorio.delete(resenia);
+        } else {
+            throw new MiException("La reseña con el ID " + id + " no existe.");
+        }
+    }
+    
+    
 }
