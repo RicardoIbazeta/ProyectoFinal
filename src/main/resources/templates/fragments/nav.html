@@ -227,15 +227,15 @@
                   >Mis Contrataciones</a
                 >
               </li> -->
-              <li>
-                <a
-                  class="dropdown-item"
-                  th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
-                  style="color: darkgrey"
-                  sec:authorize="hasRole('USER')"
-                  >Mis Contrataciones</a
-                >
-              </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
+                    style="color: darkgrey"
+                    sec:authorize="hasRole('USER')"
+                    >Mis Contrataciones</a
+                  >
+                </li>
               <li>
                 <hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" />
               </li>
