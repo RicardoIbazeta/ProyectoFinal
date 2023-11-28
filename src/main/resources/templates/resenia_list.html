@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
+
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav th:replace="/fragments/nav :: nav"></nav>
+
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+                   <img
+      th:src="@{/6.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+      <br/>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre del Cliente</th>
+            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
+            <th scope="col">Nombre del Proveedor</th>
+            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
+            <th scope="col">Fecha de Resenia</th>
+            <th scope="col">Estrellas</th>
+            <th scope="col">Comentario</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Modificar</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody th:each="resenia : ${resenias}">
+          <tr>
+            <th scope="row" th:text="${resenia.usuario.nombre}"></td>
+            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${resenia.usuario.apellido}"></td>
+            <td scope="row" th:text="${resenia.proveedor.nombre}"></td>
+            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${resenia.proveedor.apellido}"></td>
+            <td th:text="${resenia.estrellas}"></td>
+            <td th:text="${resenia.comentario}"></td>
+            <td
+              sec:authorize="hasRole('ADMIN')"
+              th:text="${resenia.cliente.id}"
+            ></td>
+            <td
+              sec:authorize="hasRole('ADMIN')"
+              th:text="${resenia.proveedor.id}"
+            ></td>
+            <td sec:authorize="hasRole('ADMIN')">
+              <form
+                method="POST"
+                th:action="@{/resenia/modificar/__${resenia.id}__}"
+              >
+                <button type="submit">Modificar</button>
+              </form>
+            </td>
+            <td sec:authorize="hasRole('ADMIN')">
+
+              <form
+                method="POST"
+                th:action="@{/resenia/eliminar/__${resenia.id}__}"
+              >
+                <button type="submit">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <section class="text-center container" sec:authorize="hasRole('ADMIN')">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones"
+                >Volver</a
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+      </div>
+
+
+    <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
+
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
+</html>

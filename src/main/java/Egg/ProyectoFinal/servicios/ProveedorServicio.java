@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -44,7 +46,8 @@ public class ProveedorServicio {
             Rubro rubro, String nombre, String apellido, String documento, String email, String password,
             String password2, String telefono, String direccion, Boolean altaBaja) throws MiException {
 
-        validarProveedor(nombre, apellido, documento, email, telefono, direccion, precioHora, descripcionServicio, rubro, archivo);
+        validarProveedor(nombre, apellido, documento, telefono, direccion, precioHora, descripcionServicio, rubro, archivo);
+        validarEmail(email);
         validarPassword(password, password2);
 
         Proveedor proveedor = new Proveedor();
@@ -153,7 +156,8 @@ public class ProveedorServicio {
     //////////////////////////////METODOS ESTADO CONTRATACION////////////////////////|||||||||||||||\\\\\\\
 
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
-    private void validarProveedor(String nombre, String apellido, String documento, String email, String telefono, String direccion, Double precioHora, String descripcionServicio, Rubro rubro, MultipartFile archivo) throws MiException {
+    private void validarProveedor(String nombre, String apellido, String documento, String telefono, String direccion, 
+            Double precioHora, String descripcionServicio, Rubro rubro, MultipartFile archivo) throws MiException {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("Debes completar tu nombre");
@@ -163,9 +167,6 @@ public class ProveedorServicio {
         }
         if (documento == null || documento.isEmpty()) {
             throw new MiException("Debes completar tu DNI");
-        }
-        if (email == null || email.isEmpty()) {
-            throw new MiException("Debes completar tu correo electrónico");
         }
         if (telefono == null || telefono.isEmpty()) {
             throw new MiException("Debes completar tu número de telefono");
@@ -204,6 +205,29 @@ public class ProveedorServicio {
         }
         if (!password.equals(password2)) {
             throw new MiException("Las contraseñas deben coincidir");
+        }
+    }
+    
+    // Metodo para validar que el usuario ingrese un formarto de email valido
+        private void validarEmail(String email) throws MiException {
+
+        if (email == null || email.isEmpty()) {
+            throw new MiException("Debes completar tu correo electrónico");
+        }
+
+        /*
+        ^[A-Za-z0-9._%-]+: Empieza con uno o más caracteres alfanuméricos, puntos, guiones bajos o porcentaje.
+        @: Contiene un símbolo de "@".
+        [A-Za-z0-9.-]+: Después del "@" contiene uno o más caracteres alfanuméricos, puntos o guiones.
+        \\.: Luego viene un punto.
+        [A-Z|a-z]{2,4}$: Termina con al menos 2 y hasta 4 letras, lo que representa la extensión del dominio (como "com" o "org").
+         */
+        String emailRegex = "^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,4}$";
+        Pattern patron = Pattern.compile(emailRegex);
+
+        Matcher match = patron.matcher(email);
+        if (!match.find()) {
+            throw new MiException("Correo electrónico invalido");
         }
     }
 

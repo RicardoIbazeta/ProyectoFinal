@@ -7,11 +7,16 @@
 
   <body>
     <header th:replace="/fragments/header :: header "></header>
-
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="container m-5">
-      <table class="table table-dark">
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+                   <img
+      th:src="@{/6.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+      <br/>
+      <table class="table">
         <thead>
           <tr>
             
@@ -24,25 +29,47 @@
         <tbody th:each="rubro : ${rubros}">
           <tr>
             
-            <td th:text="${rubro.nombre}"></td>
+            <th scope="row" th:text="${rubro.nombre}"></td>
             <td>
-              <a th:href="@{/rubro/registrar}"
+              <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+              <a style="color: black" th:href="@{/rubro/registrar}"
                 ><i class="fas fa-feather-alt"></i> Agregar
-              </a>
+              </a></button>
             </td>
             <td th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">
-              <!-- <a th:href="@{/rubro/modificar/__${rubro.id}__}" 
+              <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+              <!-- <a style="color: black" th:href="@{/rubro/modificar/__${rubro.id}__}" 
                 >--><i class="fas fa-feather-alt"></i> Modificar
-              </a>
+              </a></button>
             </td>
             <td th:if="${session.usuario != null}" sec:authorize="hasRole('ADMIN')">
-              <!-- <a th:href="@{/rubro/eliminar/__${rubro.id}__}" 
+              <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+              <!-- <a style="color: black" th:href="@{/rubro/eliminar/__${rubro.id}__}" 
                 >--><i class="fas fa-feather-alt"></i> Eliminar
-              </a>
+              </a></button>
             </td>
           </tr>
         </tbody>
       </table>
+      <section class="text-center container" sec:authorize="hasRole('ADMIN')">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones"
+                >Volver</a
+              >
+            </div>
+          </div>
+        </section>
+    </div>
     </div>
 
     <div id="exito/error">

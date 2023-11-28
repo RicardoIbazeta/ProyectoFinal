@@ -9,74 +9,86 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
 
-    <img
+    <!-- <img
       th:src="@{/6.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"
-    />
+    /> -->
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col" th:each="proveedor : ${proveedores}">
-            <div class="card shadow-sm">
-              <img
-                class="logo"
-                th:src="@{/imagen/perfil/__${proveedor.id}__}"
-              />
-              <div class="card-body">
-                <h4
-                  class="card-text"
-                  color="black"
-                  th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"
-                ></h4>
-                <p
-                  class="card-text"
-                  th:text="'Rubro: ' + ${proveedor.rubro.nombre}"
-                ></p>
-                <p
-                  class="card-text"
-                  th:text="'Precio de hora: ' + ${proveedor.precioHora}"
-                ></p>
-                <p
-                  class="card-text"
-                  th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"
-                ></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      <a
-                        style="color: black"
-                        th:href="@{/contratacion/contratar/__${proveedor.id}__}"
-                        >Contratar</a
-                      >
-                    </button>
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <img
+          th:src="@{/6.png}"
+          class="d-block mx-lg-auto img-fluid"
+          alt="Bootstrap Themes"
+        />
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col" th:each="proveedor : ${proveedores}">
+                <div class="card shadow-sm">
+                  <img
+                    class="logo"
+                    th:src="@{/imagen/perfil/__${proveedor.id}__}"
+                  />
 
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                      sec:authorize="hasAnyRole('ADMIN', 'USER')"
-                    >
-                      <a
-                        style="color: black"
-                        th:href="@{/proveedor/calificar/__${proveedor.id}__}"
-                        >Calificar</a
+                  <div class="card-body">
+                    <h4
+                      class="card-text"
+                      color="black"
+                      th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"
+                    ></h4>
+                    <p
+                      class="card-text"
+                      th:text="'Rubro : ' + ${proveedor.rubro.nombre}"
+                    ></p>
+                    <p
+                      class="card-text"
+                      th:text="'Precio/hs : ' + ${proveedor.precioHora}"
+                    ></p>
+                    <p
+                      class="card-text"
+                      th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"
+                    ></p>
+
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
                       >
-                    </button>
-                    <!-- Habilitar esto cuando se entre como admin
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}">
-                                            <a style="color: black;">Eliminar</a>
-                                        </button>-->
+                        <a
+                          style="color: black"
+                          th:href="@{/contratacion/contratar/__${proveedor.id}__}"
+                          >Contratar</a
+                        >
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        sec:authorize="hasRole('ADMIN')"
+                      >
+                        <a style="color: black">Eliminar</a>
+                      </button>
+                    </div>
+                    <small class="text-muted"></small>
                   </div>
-                  <small class="text-muted"></small>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <section class="text-center container" sec:authorize="hasRole('ADMIN')">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a
+                th:href="@{/admin/dashboard}"
+                class="btn btn-danger my-2 botonVolver botones"
+                >Volver</a
+              >
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 

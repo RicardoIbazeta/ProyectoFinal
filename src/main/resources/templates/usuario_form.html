@@ -17,13 +17,33 @@
           enctype="multipart/form-data"
         >
           <!-- EL ENCTYPE DEFINE EL TIPO DE FORMULARIO // SI ADMITE O NO LA SUBIDA DE UN ARCHIVO/IMAGEN -->
+          
           <div class="form-group my-3">
-            <h3 class="card-title">Registro Cliente</h3>
+            <h3 class="card-title">Registro Cliente</h3><br/>
+            <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
           </div>
+          
           <br />
 
           <div class="form-group my-3">
-            <label for="nombre" style="display: flex">Nombre del Usuario</label>
+            <label for="nombre" style="display: flex">Nombre</label>
             <input
               type="text"
               class="form-control"
@@ -35,7 +55,7 @@
 
           <div class="form-group my-3">
             <label for="apellido" style="display: flex"
-              >Apellido del Usuario</label
+              >Apellido</label
             >
             <input
               type="text"
@@ -48,7 +68,7 @@
 
           <div class="form-group my-3">
             <label for="documento" style="display: flex"
-              >Documento del Usuario</label
+              >Documento</label
             >
             <input
               type="text"
@@ -60,23 +80,23 @@
           </div>
 
           <div class="form-group my-3">
-            <label for="email" style="display: flex">Mail del Usuario</label>
+            <label for="email" style="display: flex">Correo electronico</label>
             <input
               type="email"
               class="form-control"
               name="email"
-              placeholder="Ingrese su mail de contacto"
+              placeholder="Ingrese su email de contacto"
               th:value="${email}"
             />
           </div>
           
           <div class="form-group my-3">
-            <label for="archivo" style="display: flex">Foto del Usuario</label><br />
+            <label for="archivo" style="display: flex">Foto de perfil</label><br />
             <input type="file" class="form-control" name="archivo" />
           
           <div class="form-group my-3">
             <label for="password" style="display: flex"
-              >Contraseña del Usuario</label
+              >Contraseña</label
             >
             <input
               type="password"
@@ -89,7 +109,7 @@
 
           <div class="form-group my-3">
             <label for="password2" style="display: flex"
-              >Repita contraseña del Usuario</label
+              >Repita contraseña</label
             >
             <input
               type="password"
@@ -102,7 +122,7 @@
 
           <div class="form-group my-3">
             <label for="telefono" style="display: flex"
-              >Telefono del Usuario</label
+              >Telefono</label
             >
             <input
               type="text"
@@ -115,7 +135,7 @@
 
           <div class="form-group my-3">
             <label for="direccion" style="display: flex"
-              >Domicilio del Usuario</label
+              >Domicilio</label
             >
             <input
               type="text"
@@ -135,7 +155,7 @@
         </form>
       </div>
     </div>
-    <div id="exito/error">
+    <!-- <div id="exito/error">
       <div
         th:if="${exito != null}"
         id="exito"
@@ -152,7 +172,7 @@
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
-    </div>
+    </div> -->
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>
