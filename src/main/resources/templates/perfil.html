@@ -12,7 +12,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
     <div class="card mb-3" style="max-width: 700px;">
 
-<<<<<<< HEAD
 <div class="row g-0">
     <div class="col-md-4">
     <img th:src="@{/imagen/perfil/__${session.usuario.id}__}" class="img-fluid rounded-start" alt="foto">
@@ -53,37 +52,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         <h5>exito</h5>
         <p th:text="${exito}"></p>
     </div>
-=======
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <img
-          th:src="@{/7.png}"
-          class="d-block mx-lg-auto img-fluid"
-          alt="Bootstrap Themes"
-        />
-        <br />
-        <div class="perfil-card">
-          <h2 th:text="${usuario.nombre}"></h2>
-          <h2 th:text="${usuario.apellido}"></h2>
-          <p th:text="'Dni: '+${usuario.documento}"></p>
-          <p th:text="'Direccion: '+${usuario.direccion}"></p>
-          <p th:text="'Telefono: '+${usuario.telefono}"></p>
-          <p th:text="'Email: '+${usuario.email}"></p>
-          <p th:text="'Usuario:'+${usuario.rol}"></p>
-        </div>
-
-        <div id="exito/error">
-          <div
-            th:if="${exito != null}"
-            id="exito"
-            class="card text-white bg-success mb-3 mt-3 mensajeExito"
-          >
-            <h5>exito</h5>
-            <p th:text="${exito}"></p>
-          </div>
-        </div>
-      </div>
->>>>>>> 66fb4946f8abf984318babb3ec6b2a5ae9182e0a
     </div>
 
     <script th:replace="/fragments/script :: script "></script>
