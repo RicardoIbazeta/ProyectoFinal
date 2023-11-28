@@ -7,9 +7,27 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 <head th:replace="/fragments/head :: head "></head>
 
 <body>
-
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+        <div id="exito/error"><br/>
+        <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
     <div class="card mb-3" style="max-width: 700px;">
 
 <div class="row g-0">
@@ -43,17 +61,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 </div>
 </div>
 
-    <div id="exito/error">
-    <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-    >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-    </div>
-    </div>
-
+    <section th:replace="~{/fragments/section :: section}"></section>
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
 </body>

@@ -9,7 +9,16 @@
     <header th:replace="~{/fragments/header :: header}"></header>
     <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
-    <br />
+    <div id="exito/error">
+      <div th:if="${exito != null}" id="exito">
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div th:if="${error != null}" id="error">
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
     <div class="container col-xxl-8 px-4 py-5">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6">
@@ -102,16 +111,7 @@
       </div>
     </div>
 
-    <div id="exito/error">
-      <div th:if="${exito != null}" id="exito">
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div th:if="${error != null}" id="error">
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
+    <section th:replace="~{/fragments/section :: section}"></section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script th:replace="/fragments/script :: script "></script> -->
     <footer th:replace="/fragments/footer :: footer"></footer>
