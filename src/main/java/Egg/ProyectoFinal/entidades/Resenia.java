@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,9 @@ public class Resenia {
 
     @ManyToOne(targetEntity = Proveedor.class)
     private Proveedor proveedor;
+    
+    @ManyToOne(targetEntity = Proveedor.class)
+    private Usuario cliente;
+    
 
 }
