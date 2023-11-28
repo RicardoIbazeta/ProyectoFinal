@@ -9,8 +9,8 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div id="contenido/Contrataciones">
-      <div class="container-fluid m-5 contenedor">
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
           th:action="@{/contratacion/contratado/__${id}__}"
