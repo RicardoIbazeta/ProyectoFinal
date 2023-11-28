@@ -60,7 +60,7 @@ public class UsuarioControlador {
             modelo.put("direccion", direccion);
             modelo.put("AltaBaja", AltaBaja);
 
-            return "cliente_form.html";
+            return "usuario_form.html";
         }
     }
 
