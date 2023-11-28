@@ -37,10 +37,12 @@ public class ErrorControlador implements ErrorController {
                 errorMsg = "El recurso solicitado no fue encontrado.";
                 break;
             }
+            
             case 500: {
                 errorMsg = "Ocurrió un error interno.";
                 break;
             }
+            
         }
         
         errorPage.addObject("codigo", httpErrorCode);
