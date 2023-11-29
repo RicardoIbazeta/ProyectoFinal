@@ -51,11 +51,69 @@
                             ver todos los usuarios y contrataciones.
                         </p>
 
+<<<<<<< HEAD
                         <p class="lead">
                             Conectando necesidades con soluciones. Tu Servicio a un Click de
                             distancia.
                         </p>
                     </div>
+=======
+          <p class="lead">
+            Conectando necesidades con soluciones. Tu Servicio a un Click de
+            distancia.
+          </p>
+          <!-- Esto no esta funcionando y no se porque-->
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('ADMIN')"
+            >
+              <a th:href="@{/usuario/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('USER')"
+            >
+              <a th:href="@{/proveedor/lista}">Explorar</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg px-4 me-md-2"
+              sec:authorize="hasRole('PROVEEDOR')"
+            >
+              <a th:href="@{/contratacion/lista}">Explorar</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container my-5">
+      <div
+        class="row p-4 pb-0 pe-lg-0 pt-lg-0 align-items-center rounded-3 border shadow-lg"
+      >
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img
+            th:src="@{/5.png}"
+            class="d-block mx-lg-auto img-fluid"
+            alt="Bootstrap Themes"
+            width="700"
+            height="500"
+            loading="lazy"
+          />
+        </div>
+        <div class="col-lg-6">
+          <p class="lead fw-bold" mb-3>Profesiones:</p>
+          <p class="lead">-Plomeros</p>
+          <p class="lead">-Electricistas</p>
+          <p class="lead">-Jardineros</p>
+          <p class="lead">-Pintores</p>
+          <p class="lead">-Y mucho más</p>
+        </div>
+      </div>
+    </div>
+>>>>>>> 2da9fab (main version revision 3 pre botones emi)
 
                     <div sec:authorize="hasRole('USER')">
                         <p class="lead">

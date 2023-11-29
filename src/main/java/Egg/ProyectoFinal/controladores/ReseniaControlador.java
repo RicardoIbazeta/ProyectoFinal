@@ -1,11 +1,16 @@
 
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
+import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
+import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,7 +28,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ReseniaControlador {
     
     @Autowired
+    UsuarioServicio usuarioServicio;
+    
+    @Autowired
     ProveedorServicio proveedorServicio;
+    
+    @Autowired
+    ContratacionServicio contratacionServicio;
     
     @Autowired
     ReseniaServicio reseniaServicio;
@@ -31,32 +42,35 @@ public class ReseniaControlador {
     
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/calificar/{id}")
-    public String calificar(ModelMap modelo, @PathVariable String id) {
+    public String calificar(ModelMap modelo, @PathVariable String id/*, @RequestParam String idProveedor*/) {
 
+        /*Usuario usuario = usuarioServicio.getOne(id);
+        List<Contratacion> contratacionesUsuario = contratacionServicio.misContrataciones(id);
         Proveedor proveedor = proveedorServicio.getOne(id);
-        modelo.addAttribute("proveedor", proveedor);
+        List<Contratacion> contratacionesProveedor = contratacionServicio.ContratacionesProveedor(id);*/
 
-        //buscar lista de enum
-        //modelo.addAttribute("estrellas", estrellas);
+        Contratacion contratacion = contratacionServicio.getOne(id);
+        
+        modelo.addAttribute("contratacion", contratacion);
         return "resenia_form.html";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/calificado/{id}")
-    public String calificarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
-            @RequestParam String comentario, @RequestParam Estrella estrellas,
+    public String calificarProveedor(/*RedirectAttributes redirectAttributes,*/ @PathVariable String id,
+            @RequestParam String comentario, @RequestParam String estrellas,
             ModelMap modelo) throws Exception {
 
         try {
-            reseniaServicio.crear(comentario, estrellas, id);
-            redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
-            Proveedor proveedor = proveedorServicio.getOne(id);
-            modelo.addAttribute("proveedor", proveedor);
-            
+            Contratacion contratacion = contratacionServicio.getOne(id);
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), contratacion.getProveedor().getId());
+            //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
+            modelo.put("exito", "El proveedor fue calificado con exito!");
             return "redirect:../proveedor/lista";
 
         } catch (MiException e) {
-            redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
+            //redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
+            modelo.put("error", "El proveedor NO fue calificado con exito!");
             Proveedor proveedor = proveedorServicio.getOne(id);
             modelo.addAttribute("proveedor", proveedor);
             
