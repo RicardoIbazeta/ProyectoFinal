@@ -144,40 +144,7 @@ public class ProveedorControlador {
         return "redirect:../proveedor/contrataciones/{idProveedor}";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/calificar/{id}")
-    public String calificar(ModelMap modelo, @PathVariable String id) {
-
-        Proveedor proveedor = proveedorServicio.getOne(id);
-        modelo.addAttribute("proveedor", proveedor);
-
-        //buscar lista de enum
-        //modelo.addAttribute("estrellas", estrellas);
-        return "resenia_form.html";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @PostMapping("/calificado/{id}")
-    public String calificarProveedor(RedirectAttributes redirectAttributes, @PathVariable String id,
-            @RequestParam String comentario, @RequestParam Estrella estrellas,
-            ModelMap modelo) throws Exception {
-
-        try {
-            reseniaServicio.crear(comentario, estrellas, id);
-            redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
-            Proveedor proveedor = proveedorServicio.getOne(id);
-            modelo.addAttribute("proveedor", proveedor);
-            
-            return "redirect:../proveedor/lista";
-
-        } catch (MiException e) {
-            redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
-            Proveedor proveedor = proveedorServicio.getOne(id);
-            modelo.addAttribute("proveedor", proveedor);
-            
-            return "redirect:../proveedor/lista";
-        }
-    }
+    
 
     /* Mapeo que lista todos los proveedores */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
