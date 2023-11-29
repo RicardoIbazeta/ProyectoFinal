@@ -16,17 +16,23 @@ public class ReseniaServicio {
     private ReseniaRepositorio reseniaRepositorio;
     @Autowired
     private ProveedorServicio proveedorServicio;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+    @Autowired
+    private ContratacionServicio contratacionServicio;
 
    @Transactional
-    public Resenia crear(String comentario, Estrella estrella, String idProveedor) throws Exception {
+    public Resenia crear(String comentario, Estrella estrella, String idProveedor, String idCliente, String idContratacion) throws Exception {
     
-        validarResenia(comentario,estrella,idProveedor);
+        validarResenia(comentario,estrella,idProveedor,idCliente,idContratacion);
         
         Resenia resenia = new Resenia();
         
         resenia.setComentario(comentario);
         resenia.setEstrellas(estrella);
         resenia.setProveedor(proveedorServicio.getOne(idProveedor));
+        resenia.setCliente(usuarioServicio.getOne(idCliente));
+        resenia.setContratacion(contratacionServicio.getOne(idContratacion));
         
         
         reseniaRepositorio.save(resenia);
@@ -60,7 +66,7 @@ public class ReseniaServicio {
     
     public Resenia buscarById(String id) throws Exception; */
     
-    private void validarResenia(String comentario, Estrella estrella, String idProveedor) throws MiException {
+    private void validarResenia(String comentario, Estrella estrella, String idProveedor, String idCliente, String idContratacion) throws MiException {
 
         if (comentario == null || comentario.isEmpty()) {
             throw new MiException("Debes completar tu comentario");
@@ -69,6 +75,12 @@ public class ReseniaServicio {
             throw new MiException("Debes completar tu comentario");
         }
         if (idProveedor == null || idProveedor.isEmpty()) {
+            throw new MiException("Debes completar tu comentario");
+        }
+        if (idCliente == null || idCliente.isEmpty()) {
+            throw new MiException("Debes completar tu comentario");
+        }
+        if (idContratacion == null || idContratacion.isEmpty()) {
             throw new MiException("Debes completar tu comentario");
         }
     }

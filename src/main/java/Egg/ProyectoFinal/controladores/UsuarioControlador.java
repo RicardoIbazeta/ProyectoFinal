@@ -146,13 +146,7 @@ public class UsuarioControlador {
     @GetMapping("/contrataciones/{id}")
     public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
 
-        List<Contratacion> historial = contratacionServicio.listarContrataciones();
-        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
-        for (Contratacion contratacion : historial) {
-            if (contratacion.getCliente().getId().equals(id)) {
-                    contrataciones.add(contratacion);
-            }
-        }
+        List<Contratacion> contrataciones = contratacionServicio.misContrataciones(id);
         modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list.html";

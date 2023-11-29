@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,6 +42,10 @@ public class Resenia {
     @ManyToOne(targetEntity = Proveedor.class)
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
+    
+    @OneToOne
+    @JoinColumn(name = "contratacion_id")
+    private Contratacion contratacion;
     
 
 }

@@ -100,19 +100,22 @@
             <td sec:authorize="hasRole('USER')">
               
               <form
-                method="POST"
+                method="GET"
+                th:action="@{/contratacion/calificar/__${contratacion.id}__}"
               >
-
+              <input hidden value="${contratacion.id}" name="idContratacion" >
+              <input hidden value="${contratacion.proveedor.id}" name="idProveedor" >
+              <input hidden value="${contratacion.cliente.id}" name="idCliente" >
                 <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >
-                      <a
+                      style="color: black" class="btn btn-sm btn-outline-secondary"
+                    > Calificar
+                       <!--<a
                         style="color: black"
-                        th:href="@{/resenia/calificar/__${contratacion.id}__}"
+                        th:href="@{/contratacion/calificar/__${contratacion.id}__}"
+                        name="id"
                         >Calificar</a
-                      >
-                      <input hidden value="${contratacion.id}" name="idContratacion" >
+                      >-->
+                     
                     </button>
               </form>
             </td>
