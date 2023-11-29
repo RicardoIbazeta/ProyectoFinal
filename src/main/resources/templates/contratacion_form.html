@@ -8,12 +8,33 @@
     <body>
         <header th:replace="/fragments/header :: header "></header>
         <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+
+        <div class="form-group my-3" >
         <img
-      th:src="@{/6.png}"
-      class="d-block mx-lg-auto img-fluid"
-      alt="Bootstrap Themes"/>
-<br/><div class="form-group my-3" >
+            th:src="@{/12.png}"
+            class="d-block mx-lg-auto img-fluid"
+            alt="Bootstrap Themes"/>
+            <br>
             <h3 class="card-title" style="text-align: center;">Registro Contratacion</h3><br/>
+        </div>
+        <div id="exito/error">
+            <div
+                th:if="${exito != null}"
+                id="exito"
+                class="card text-white bg-success mb-3 mt-3 mensajeExito"
+            >
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
+            </div>
+            <div
+                 th:if="${error != null}"
+                 id="error"
+                class="card text-white bg-danger mb-3 mensajeError"
+            >
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+        </div>
 
         <div class="container" id="contenido/Contrataciones">
             <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
@@ -24,26 +45,6 @@
                         method="POST"
                         enctype="multipart/form-data"
                         >
-
-            <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
-
                         <input
                             type="text"
                             hidden
@@ -138,7 +139,6 @@
 
                 </div>
             </div>
-
 
             <section th:replace="/fragments/section :: section "></section>
             <script th:replace="/fragments/script :: script "></script>

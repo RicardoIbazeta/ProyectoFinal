@@ -8,21 +8,15 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <form
-          class="formulario"
-          th:action="@{/usuario/registro}"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <img
+    <div class="form-group my-3">
+    <img
       th:src="@{/7.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"/>
-          <br/><div class="form-group my-3">
-            <h3 class="card-title">Registro Usuario</h3><br/>
-            <div id="exito/error">
+      <br/>
+      <h3 style="text-align: center;" class="card-title">Registro Usuario</h3>
+    </div>
+    <div id="exito/error">
       <div
         th:if="${exito != null}"
         id="exito"
@@ -40,10 +34,17 @@
         <p th:text="${error}"></p>
       </div>
     </div>
-          </div>
-          
-          <br />
+    
 
+    <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <form
+          class="formulario"
+          th:action="@{/usuario/registro}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+      
           <div class="form-group my-3">
             <label for="nombre" style="display: flex">Nombre</label>
             <input
@@ -161,7 +162,7 @@
       </div>
     </div>
 
-      <section th:replace="/fragments/section :: section "></section>
+    <section th:replace="/fragments/section :: section "></section>
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>

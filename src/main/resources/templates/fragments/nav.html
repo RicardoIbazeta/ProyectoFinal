@@ -152,6 +152,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -190,6 +191,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -216,17 +218,8 @@
                 >
               </li>
               <li>
-                <hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
               </li>
-              <!-- <li>
-                <a
-                  class="dropdown-item"
-                  th:href="@{/historial/__${id}__}"
-                  style="color: darkgrey"
-                  sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
-                  >Mis Contrataciones</a
-                >
-              </li> -->
                 <li>
                   <a
                     class="dropdown-item"
@@ -237,7 +230,7 @@
                   >
                 </li>
               <li>
-                <hr class="dropdown-divider" sec:authorize="hasRole('ADMIN')" />
+                <hr class="dropdown-divider" sec:authorize="hasRole('PROVEEDOR')" />
               </li>
               <li>
                 <a
@@ -250,6 +243,7 @@
               </li>
             </ul>
           </li>
+          
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -261,7 +255,7 @@
               sec:authorize="hasRole('ADMIN')"
               th:if="${session.usuario != null}"
             >
-              Resenias
+              Reseñas
             </a>
             <ul
               class="dropdown-menu dropdown-menu-lg-end"
@@ -273,7 +267,7 @@
                   style="color: darkgrey"
                   th:href="@{/resenia/lista}"
                   sec:authorize="hasRole('ADMIN')"
-                  >Lista de Resenias</a
+                  >Lista de Reseñas</a
                 >
               </li>
             </ul>
@@ -327,24 +321,7 @@
                   >Editar Perfil</a
                 >
               </li>
-<li><hr class="dropdown-divider" /></li>
-              <li sec:authorize="hasRole('ADMIN')">
-                <hr class="dropdown-divider" />
-              </li>
-              <!-- ¿este item solo tendria acceso el admin?
-              <li sec:authorize="hasRole('ADMIN')">
-                <a
-                  class="dropdown-item"
-                  style="color: darkgrey"
-                  th:href="@{/usuario/lista}"
-                  >Lista de Usuarios</a
-                >
-              </li>
-
-              <li>
-                <hr class="dropdown-divider" />
-              </li>  -->
-
+              <li><hr class="dropdown-divider" /></li>
               <li>
                 <a
                   class="dropdown-item"

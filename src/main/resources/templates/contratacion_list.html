@@ -9,18 +9,14 @@
     <header th:replace="~{/fragments/header :: header}"></header>
     <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
-
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-
+    <div class="form-group my-3">
             <img
-      th:src="@{/8.png}"
+      th:src="@{/12.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"
     /><br/>
-    <div class="form-group my-3">
             <h3 class="card-title">Lista de Contrataciones</h3>
-            <div id="exito/error"><br/>
+            </div>
         <div id="exito/error">
       <div
         th:if="${exito != null}"
@@ -38,8 +34,10 @@
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
-    </div><br/>
+    </div>
 
+        <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
       <table class="table">
         <thead>
           <tr>
@@ -90,7 +88,6 @@
               </form>
             </td>
             <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
-
               <form
                 method="POST"
                 th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
@@ -111,12 +108,9 @@
               </form>
             </td>
             -->
-
           </tr>
-
         </tbody>
       </table>
-
     </div>
     </div>
 

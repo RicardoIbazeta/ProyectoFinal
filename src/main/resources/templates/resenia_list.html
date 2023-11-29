@@ -9,16 +9,14 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-                   <img
-      th:src="@{/6.png}"
+    <div class="form-group my-3">
+    <img
+      th:src="@{/10.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"/>
-
-            <br/><div class="form-group my-3">
-            <h3 class="card-title">Lista de Reseñas</h3>
-            <div id="exito/error"><br/>
+            <br/>
+            <h3 style="text-align: center;" class="card-title">Lista de Reseñas</h3>
+            </div>
         <div id="exito/error">
       <div
         th:if="${exito != null}"
@@ -36,8 +34,10 @@
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
-    </div><br/>
+    </div>
 
+      <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
       <table class="table">
         <thead>
           <tr>
@@ -90,6 +90,8 @@
           </tr>
         </tbody>
       </table>
+      </div>
+      </div>
 
       <section th:replace="/fragments/section :: section "></section>
     <script th:replace="/fragments/script :: script "></script>

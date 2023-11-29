@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    >
-    <head th:replace="/fragments/head :: head "></head>
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
 
-    <body>
-        <header th:replace="/fragments/header :: header "></header>
-        <nav th:replace="/fragments/nav :: nav"></nav>
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav th:replace="/fragments/nav :: nav"></nav>
 
-        <img
-            th:src="@{/6.png}"
-            class="d-block mx-lg-auto img-fluid"
-            alt="Bootstrap Themes"
-            /> 
-             
-            <br/><div class="form-group my-3" style="text-align: center;">
-            <h3  class="card-title">Lista de Proveedores</h3>
-            <div id="exito/error">
-        <div id="exito/error">
+    <div class="form-group my-3">
+      <img
+        th:src="@{/6.png}"
+        class="d-block mx-lg-auto img-fluid"
+        alt="Bootstrap Themes"
+      />
+      <br />
+      <h3 style="text-align: center" class="card-title">
+        Lista de Proveedores
+      </h3>
+    </div>
+    <div id="exito/error">
       <div
         th:if="${exito != null}"
         id="exito"
@@ -37,59 +39,64 @@
       </div>
     </div>
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col" th:each="proveedor : ${proveedores}">
-                        <div class="card shadow-sm">
-                            <img class="logo"  th:src="@{/imagen/perfil/__${proveedor.id}__}"/> 
-                            <div class="card-body">
-                                <h4
-                                    class="card-text"
-                                    color="black"
-                                    th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"
-                                    ></h4>
-                                <p class="card-text" th:text="'Rubro: ' + ${proveedor.rubro.nombre}"></p>
-                                <p
-                                    class="card-text"
-                                    th:text="'Precio de hora: ' + ${proveedor.precioHora}"
-                                    ></p>
-                                <p
-                                    class="card-text"
-                                    th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"
-                                    ></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button
-                                            type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            >
-                                            <a
-                                                style="color: black"
-                                                th:href="@{/contratacion/contratar/__${proveedor.id}__}"
-                                                >Contratar</a
-                                            >
-                                        </button>
-                                        <!-- Habilitar esto cuando se entre como admin
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col" th:each="proveedor : ${proveedores}">
+            <div class="card shadow-sm">
+              <img
+                class="logo"
+                th:src="@{/imagen/perfil/__${proveedor.id}__}"
+              />
+              <div class="card-body">
+                <h4
+                  class="card-text"
+                  color="black"
+                  th:text="${proveedor.nombre} + ' ' + ${ proveedor.apellido}"
+                ></h4>
+                <p
+                  class="card-text"
+                  th:text="'Rubro: ' + ${proveedor.rubro.nombre}"
+                ></p>
+                <p
+                  class="card-text"
+                  th:text="'Precio de hora: ' + ${proveedor.precioHora}"
+                ></p>
+                <p
+                  class="card-text"
+                  th:text="'Descripcion del servicio: ' + ${proveedor.descripcionServicio}"
+                ></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                    >
+                      <a
+                        style="color: black"
+                        th:href="@{/contratacion/contratar/__${proveedor.id}__}"
+                        >Contratar</a
+                      >
+                    </button>
+                    <!-- Habilitar esto cuando se entre como admin
                                         <button type="button" class="btn btn-sm btn-outline-secondary" th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}">
                                             <a style="color: black;">Modificar</a>
                                         </button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" th:if="${#authorization.expression('hasAnyRole(''ADMIN'')')}">
                                             <a style="color: black;">Eliminar</a>
                                         </button>-->
-
-                                    </div>
-                                    <small class="text-muted"></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  <small class="text-muted"></small>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <section th:replace="/fragments/section :: section "></section>
-        <script th:replace="/fragments/script :: script "></script>
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
+    <section th:replace="/fragments/section :: section "></section>
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
 </html>

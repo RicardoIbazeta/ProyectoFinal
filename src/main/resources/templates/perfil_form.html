@@ -10,6 +10,14 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
     
+    <div class="form-group my-3">
+    <img
+      th:src="@{/7.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+      <br/>
+      <h3 style="text-align: center;" class="card-title">Actualizar Perfil</h3>
+    </div>
     <div id="exito/error">
       <div
         th:if="${exito != null}"
