@@ -11,10 +11,10 @@
         <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
         <div class="form-group my-3" >
-        <img
-             th:src="@{/6.png}"
-            class="d-block mx-lg-auto img-fluid"
-            alt="Bootstrap Themes"/>
+            <img
+                th:src="@{/6.png}"
+                class="d-block mx-lg-auto img-fluid"
+                alt="Bootstrap Themes"/>
             <br>
             <h3 style="text-align: center;" class="card-title" >Registro Proveedor</h3>
         </div>
@@ -23,22 +23,22 @@
                 th:if="${exito != null}"
                 id="exito"
                 class="card text-white bg-success mb-3 mt-3 mensajeExito"
-            >
+                >
                 <h5>exito</h5>
                 <p th:text="${exito}"></p>
             </div>
             <div
-                 th:if="${error != null}"
+                th:if="${error != null}"
                 id="error"
                 class="card text-white bg-danger mb-3 mensajeError"
-            >
+                >
                 <h5>error</h5>
                 <p th:text="${error}"></p>
             </div>
-         </div>
+        </div>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        <div class="container my-5">
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
                 <form
                     class="formulario"
                     th:action="@{/proveedor/registro}"
@@ -194,12 +194,14 @@
                             Borrar
                         </button>
                 </form>
+            </div>
         </div>
-    </div>
-
-            <section th:replace="/fragments/section :: section "></section>
-            <script th:replace="/fragments/script :: script "></script>
-            <footer th:replace="/fragments/footer :: footer"></footer>
+        <div th:replace="~{/fragments/modal :: div}"></div>
+        <section th:replace="/fragments/section :: section "></section>
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+        <!-- Bootstrap Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     </body>
 </html>
 
