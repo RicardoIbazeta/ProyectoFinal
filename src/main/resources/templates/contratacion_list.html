@@ -96,18 +96,26 @@
 
               </form>
             </td>
-            <!--
+            
             <td sec:authorize="hasRole('USER')">
-               no permite rol admin 
-              <form
+            <form
                 method="POST"
-                th:action="@{/proveedor/calificar/__${proveedor.id}__}"
               >
-                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Calificar</button>
 
+                <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                    >Calificar
+                      <a
+                        style="color: black"
+                        th:href="@{/resenia/calificar/__${contratacion.id}__}"
+                        >Calificar</a
+                      >
+                      <input hidden value="${contratacion.id}" name="idContratacion" >
+                    </button>
               </form>
             </td>
-            -->
+            
           </tr>
         </tbody>
       </table>
