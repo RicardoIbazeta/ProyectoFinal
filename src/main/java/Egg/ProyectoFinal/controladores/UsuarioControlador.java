@@ -123,9 +123,9 @@ public class UsuarioControlador {
     //si es usuario lo manda a modificar usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
     @PostMapping("/editarPerfil/{id}")
-    public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
-            @RequestParam String apellido, @RequestParam String email,/* @RequestParam*/ String password,
-            @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
+    public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String apellido, @RequestParam(required = false) String email,@RequestParam(required = false) String password,
+            @RequestParam(required = false) String telefono, @RequestParam(required = false) String direccion, ModelMap modelo) {
 
         try {
             usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, telefono, direccion);
