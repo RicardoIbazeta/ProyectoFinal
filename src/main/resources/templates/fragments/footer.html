@@ -75,7 +75,8 @@
     <li class="nav-item">
       <a
         th:if="${session.usuario == null}"
-        th:href="@{/registrarseBotones}"
+        data-bs-toggle="modal" data-bs-target="#miModal"
+        th:href="@{/#}"
         class="nav-link px-2 text-white"
         >Registrar</a
       >

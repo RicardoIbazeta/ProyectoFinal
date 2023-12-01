@@ -43,6 +43,7 @@
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
+<<<<<<< HEAD
 
           th:action="@{/proveedor/calificado/__${idProveedor}__}"
           method="POST"
@@ -58,11 +59,17 @@
           ></p>
 
           th:action="@{/resenia/calificado/__${proveedor.id}__}"
+=======
+          th:action="@{/resenia/calificado/__${contratacion.id}__}"
+>>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
           method="POST"
           enctype="multipart/form-data"
         >
 
           <input hidden value="${contratacion.id}" name="id" >
+          <p>Contratacion id: <p th:text="${contratacion.id}" ></p></p>
+          <p>Usuario id: <p th:text="${usuario.id}" ></p></p>
+          <p>Proveedor id: <p th:text="${proveedor.id}" ></p></p>
           <p>Usted se encuentra evaluando al Profesional: <br /><p th:text="${proveedor.nombre}" ></p></p>
 
           <select name="estrellas" required>

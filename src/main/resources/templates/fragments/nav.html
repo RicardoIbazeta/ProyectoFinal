@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary"
+        style="    padding-right: calc(var(--bs-gutter-x) * 3);
+        padding-left: calc(var(--bs-gutter-x) * 3);;
+        --bs-navbar-padding-y: 0;
+        ">
     <div class="container-fluid" style="background-color: #142e79">
         <a
             class="navbar-brand"
@@ -56,51 +60,6 @@
                             >Registrar</a
                         >
                     </li>
-
-                    <!---
-                    <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        style="color: white"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        th:if="${session.usuario != null}"
-                      >
-                        Usuario
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-lg-end"
-                        style="background-color: #142e79">
-                        <li>
-                          <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/Perfil}">Perfil</a>
-                        </li>
-          
-                        <li><hr class="dropdown-divider" /></li>
-          
-                        <li>
-                          <a class="dropdown-item" style="color: darkgrey;" th:href="@{/usuario/editarPerfil}"
-                            >Editar Perfil</a
-                          >
-                        </li>
-          
-                        <li sec:authorize="hasRole('ADMIN')"><hr class="dropdown-divider" /></li>
-                    <!-- ¿este item solo tendria acceso el admin? 
-                    <li sec:authorize="hasRole('ADMIN')">
-                      <a class="dropdown-item" style="color: darkgrey;"  th:href="@{/usuario/lista}"
-                        >Lista de Usuarios</a
-                      >
-                    </li>
-                    
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-      
-                    <li><a class="dropdown-item" style="color: rgb(242, 14, 14);" href="/logout">Cerrar Sesion</a></li>
-                  </ul>
-                </li>
-                    -->
-
                     <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
                         <a
                             class="nav-link dropdown-toggle"
@@ -115,12 +74,13 @@
                         </a>
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li sec:authorize="hasRole('ADMIN')">
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/usuario/lista}"
                                     >Lista de Usuarios</a
                                 >
@@ -142,12 +102,13 @@
                         </a>
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/proveedor/lista}"
                                     >Lista de Proveedores</a
                                 >
@@ -170,12 +131,13 @@
                         </a>
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/rubro/lista}"
                                     >Lista de Rubros</a
                                 >
@@ -186,7 +148,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/rubro/registrar}"
                                     >Crear un Rubro</a
                                 >
@@ -208,13 +170,14 @@
                         </a>
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li>
                                 <a
                                     class="dropdown-item"
                                     th:href="@{/contratacion/lista}"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     sec:authorize="hasRole('ADMIN')"
                                     >Lista de Contrataciones</a
                                 >
@@ -226,7 +189,7 @@
                                 <a
                                     class="dropdown-item"
                                     th:href="@{/usuario/contrataciones/__${session.usuario.id}__}"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     sec:authorize="hasRole('USER')"
                                     >Mis Contrataciones</a
                                 >
@@ -238,7 +201,7 @@
                                 <a
                                     class="dropdown-item"
                                     th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     sec:authorize="hasRole('PROVEEDOR')"
                                     >Mis Contrataciones</a
                                 >
@@ -261,12 +224,13 @@
                         </a>
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/resenia/lista}"
                                     sec:authorize="hasRole('ADMIN')"
                                     >Lista de Reseñas</a
@@ -293,12 +257,13 @@
 
                         <ul
                             class="dropdown-menu dropdown-menu-lg-end"
-                            style="background-color: #142e79"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
                             >
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/admin/dashboard}"
                                     sec:authorize="hasRole('ADMIN')"
                                     >Panel</a
@@ -308,18 +273,17 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
+                                    style="color: white"
                                     th:href="@{/usuario/perfil}"
                                     >Perfil</a
                                 >
-                                <!-- <a href="#profile-container" class="profile-btn">Perfil</a> -->
                             </li>
                             <li><hr class="dropdown-divider" /></li>
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    style="color: darkgrey"
-                                    th:href="@{usuario/editarPerfil/{id}}"
+                                    style="color: white"
+                                    th:href="@{/usuario/editarPerfil/{id}}"
                                     >Editar Perfil</a
                                 >
                             </li>

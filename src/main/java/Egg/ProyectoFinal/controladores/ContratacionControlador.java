@@ -137,7 +137,7 @@ public class ContratacionControlador {
         try {
             //Contratacion contratacion = contratacionServicio.getOne(id);
             //Proveedor proveedor = proveedorServicio.getOne(id);
-            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), idProveedor, idCliente, idContratacion);
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas)/*, idProveedor, idCliente, idContratacion*/);
             //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
             modelo.put("exito", "El proveedor fue calificado con exito!");
             return "redirect:../proveedor/lista";

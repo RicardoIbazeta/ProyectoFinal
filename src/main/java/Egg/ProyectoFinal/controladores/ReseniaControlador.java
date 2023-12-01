@@ -43,11 +43,11 @@ public class ReseniaControlador {
             
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/calificar/{id}")
-    public String calificar(ModelMap modelo, @PathVariable String id, String idContratacion, String idProveedor, String idCliente) {
+    public String calificar(ModelMap modelo, @PathVariable String id/*, String idContratacion, String idProveedor, String idCliente*/) {
 
         Contratacion contratacion = contratacionServicio.getOne(id);
-        Proveedor proveedor = proveedorServicio.getOne(idProveedor);
-        Usuario usuario = usuarioServicio.getOne(idCliente);
+        Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
+        Usuario usuario = usuarioServicio.getOne(contratacion.getCliente().getId());
 
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("proveedor", proveedor);
@@ -59,29 +59,41 @@ public class ReseniaControlador {
     
     /*@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping("/calificado/{id}")
+<<<<<<< HEAD
     public String calificarProveedor(/*RedirectAttributes redirectAttributes,*//*@PathVariable String idProveedor, String idCliente, String idContratacion,
+=======
+    public String calificarProveedor(/*RedirectAttributes redirectAttributes,*/ @PathVariable String id, /*idProveedor, String idCliente, String idContratacion,*/
+>>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
             @RequestParam String comentario, @RequestParam String estrellas,
             ModelMap modelo) throws Exception {
 
         try {
             //Contratacion contratacion = contratacionServicio.getOne(id);
             //Proveedor proveedor = proveedorServicio.getOne(id);
-            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), idProveedor, idCliente, idContratacion);
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas)/*, idProveedor, idCliente, idContratacion*/);
             //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
             modelo.put("exito", "El proveedor fue calificado con exito!");
-            return "redirect:../proveedor/lista";
+            return "proveedor_list";
 
         } catch (MiException e) {
             //redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
             modelo.put("error", "El proveedor NO fue calificado con exito!");
-            Proveedor proveedor = proveedorServicio.getOne(idProveedor);
-            modelo.addAttribute("proveedor", proveedor);
-            Usuario usuario = usuarioServicio.getOne(idCliente);
-            modelo.addAttribute("usuario", usuario);
-            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
-            modelo.addAttribute("contratacion", contratacion);
+//            Proveedor proveedor = proveedorServicio.getOne(idProveedor);
+//            modelo.addAttribute("proveedor", proveedor);
+//            Usuario usuario = usuarioServicio.getOne(idCliente);
+//            modelo.addAttribute("usuario", usuario);
+//            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
+//            modelo.addAttribute("contratacion", contratacion);
             
-            return "redirect:../proveedor/lista";
+            Contratacion contratacion = contratacionServicio.getOne(id);
+        Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
+        Usuario usuario = usuarioServicio.getOne(contratacion.getCliente().getId());
+
+        modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("proveedor", proveedor);
+        modelo.addAttribute("contratacion", contratacion);
+            
+            return "proveedor_list";
         }
     }*/
 
