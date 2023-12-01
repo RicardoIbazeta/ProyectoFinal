@@ -101,11 +101,8 @@
               
               <form
                 method="GET"
-                th:action="@{/contratacion/calificar/__${contratacion.id}__}"
+                th:action="@{/resenia/calificar/__${contratacion.id}__}"
               >
-              <input hidden value="${contratacion.id}" name="idContratacion" >
-              <input hidden value="${contratacion.proveedor.id}" name="idProveedor" >
-              <input hidden value="${contratacion.cliente.id}" name="idCliente" >
                 <button
                       style="color: black" class="btn btn-sm btn-outline-secondary"
                     > Calificar
