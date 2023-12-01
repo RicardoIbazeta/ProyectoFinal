@@ -97,7 +97,7 @@ public class ProveedorControlador {
         }
         modelo.addAttribute("contrataciones", contrataciones);
 
-        return "redirect:/proveedor/contrataciones/{id}";
+        return "redirect:/proveedor/contrataciones";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
@@ -117,7 +117,7 @@ public class ProveedorControlador {
         }
         modelo.addAttribute("contrataciones", contrataciones);
 
-        return "redirect:/proveedor/contrataciones/{id}";
+        return "redirect:/proveedor/contrataciones";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
@@ -141,7 +141,7 @@ public class ProveedorControlador {
         String idProveedor = proveedor.getId().toString();
         modelo.addAttribute("idProveedor", idProveedor);
 
-        return "redirect:../proveedor/contrataciones/{idProveedor}";
+        return "redirect:/proveedor/contrataciones";
     }
 
     
