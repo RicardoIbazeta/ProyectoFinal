@@ -4,6 +4,8 @@ import Egg.ProyectoFinal.Repositorio.ReseniaRepositorio;
 import Egg.ProyectoFinal.entidades.Resenia;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,6 +113,22 @@ public class ReseniaServicio {
         }
         
     }
+    public List<Resenia> listarResenia(String id){
+        List<Resenia> resenias1= new ArrayList();
+        List<Resenia> resenias = new ArrayList();
+        
+        resenias = reseniaRepositorio.findAll();
+        
+        for (Resenia resenia :resenias1) {
+            if (resenia.getProveedor().getId().equals(id)) {
+                resenias.add(resenia);
+            }
+        } 
+        return resenias;
+        
+    }
+    
+    
     
     
 }
