@@ -3,6 +3,7 @@ package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Resenia;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
@@ -10,6 +11,7 @@ import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -88,6 +90,18 @@ public class ReseniaControlador {
             
             return "proveedor_list";
         }
+    }
+    
+    
+    @GetMapping("/lista/{id}")
+    public String listarResenias(ModelMap modelo, @PathVariable String id){
+        
+        List<Resenia> resenias=new ArrayList();
+        resenias=reseniaServicio.listarResenia(id);
+        modelo.addAttribute("resenias", resenias);
+     
+        
+        return "resenias_list.html";
     }
     
     
