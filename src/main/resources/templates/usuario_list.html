@@ -9,25 +9,24 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
 
-    <!-- <img
-      th:src="@{/7.png}"
-      class="d-block mx-lg-auto img-fluid"
-      alt="Bootstrap Themes"
-    /> -->
-
-     <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-            <img
+    <div class="form-group my-3">
+      
+      <img
       th:src="@{/7.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"/>
       <br>
-      
-      <button id="ordenarTablaBtn" onclick="ordenarTablaPorNombre()">Ordenar Tabla Orden Alfabetico A-Z</button>
-      <button id="ordenarTablaBtn" onclick="ordenarTablaPorNombreDesc()">Ordenar Tabla Orden Alfabetico Z-A</button>
-      <button id="ordenarTablaBtn" onclick="ordenarTablaPorFechaAlta()">Ordenar por Fecha de Alta Asc</button>
-      <button id="ordenarTablaBtn" onclick="ordenarTablaPorFechaAltaDesc()">Ordenar por Fecha de Alta Desc</button>        
 
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+        
+      <div class="btn-group" role="group" aria-label="Basic outlined example">    
+      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorNombre()">Ordenar Tabla Orden Alfabetico A-Z</button>
+      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorNombreDesc()">Ordenar Tabla Orden Alfabetico Z-A</button>
+      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorFechaAlta()">Ordenar por Fecha de Alta Asc</button>
+      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorFechaAltaDesc()">Ordenar por Fecha de Alta Desc</button>        
+      </div>
+
+      
       <table id="miTabla" class="table">
         <thead>
           <tr>
