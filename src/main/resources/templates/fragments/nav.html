@@ -184,9 +184,7 @@
                                     >Lista de Contrataciones</a
                                 >
                             </li>
-                            <li>
-                                <hr class="dropdown-divider" sec:authorize="hasRole('USER')" />
-                            </li>
+
                             <li>
                                 <a
                                     class="dropdown-item"
@@ -197,12 +195,9 @@
                                 >
                             </li>
                             <li>
-                                <hr class="dropdown-divider" sec:authorize="hasRole('PROVEEDOR')" />
-                            </li>
-                            <li>
                                 <a
                                     class="dropdown-item"
-                                    th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
+                                    th:href="@{/contratacion/historial/__${session.usuario.id}__}"
                                     style="color: white"
                                     sec:authorize="hasRole('PROVEEDOR')"
                                     >Mis Contrataciones</a
