@@ -1,32 +1,59 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-  <body>
-    <header th:replace="/fragments/header :: header "></header>
-    <nav th:replace="/fragments/nav :: nav"></nav>
+<head th:replace="/fragments/head :: head "></head>
 
-    <div class="form-group my-3">
-      
-      <img
-      th:src="@{/7.png}"
-      class="d-block mx-lg-auto img-fluid"
-      alt="Bootstrap Themes"/>
-      <br>
+<body>
+  <header th:replace="/fragments/header :: header "></header>
+  <nav th:replace="/fragments/nav :: nav"></nav>
 
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        
-      <div class="btn-group" role="group" aria-label="Basic outlined example">    
-      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorNombre()">Ordenar Tabla Orden Alfabetico A-Z</button>
-      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorNombreDesc()">Ordenar Tabla Orden Alfabetico Z-A</button>
-      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorFechaAlta()">Ordenar por Fecha de Alta Asc</button>
-      <button id="ordenarTablaBtn" class="btn btn-outline-primary" onclick="ordenarTablaPorFechaAltaDesc()">Ordenar por Fecha de Alta Desc</button>        
+  <div class="form-group my-3">
+
+    <img th:src="@{/7.png}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" />
+    <br>
+
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+
+
+      <div class="btn-group dropend">
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Ordenar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"></a><button id="ordenarTablaBtn" class="btn btn-outline-primary"
+              onclick="ordenarTablaPorNombre()">Orden
+              Alfabetico A-Z</button></a></li>
+          <li><a class="dropdown-item" href="#"><button id="ordenarTablaBtn" class="btn btn-outline-primary"
+                onclick="ordenarTablaPorNombreDesc()">
+                Orden Alfabetico Z-A</button></a></li>
+          <li><a class="dropdown-item" href="#"><button id="ordenarTablaBtn" class="btn btn-outline-primary"
+                onclick="ordenarTablaPorFechaAlta()">Fecha
+                de Alta Asc</button></a></li>
+          <li><a class="dropdown-item" href="#"><button id="ordenarTablaBtn" class="btn btn-outline-primary"
+                onclick="ordenarTablaPorFechaAltaDesc()">
+                Fecha de Alta Desc</button></a></li>
+        </ul>
+      </div>
+      <div class="btn-group dropend">
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Filtrar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"></a><button class="btn btn-outline-primary"
+              onclick="filtrarPorRol('ADMIN')">Mostrar Administradores</button></a></li>
+          <li><a class="dropdown-item" href="#"><button class="btn btn-outline-primary"
+                onclick="filtrarPorRol('USER')">Mostrar Usuarios</button></a></li>
+          <li><a class="dropdown-item" href="#"><button class="btn btn-outline-primary"
+                onclick="filtrarPorRol('PROVEEDOR')">Mostrar Proveedores</button></a></li>
+          <li><a class="dropdown-item" href="#"><button class="btn btn-outline-primary" onclick="mostrarTodos()">Mostrar
+                Todos</button></a></li>
+        </ul>
       </div>
 
-      
+
+
       <table id="miTabla" class="table">
         <thead>
           <tr>
@@ -43,7 +70,8 @@
         </thead>
         <tbody class="tabla" th:each="usuario : ${usuarios}">
           <tr>
-            <td scope="row" th:text="${usuario.id}"></th>
+            <td scope="row" th:text="${usuario.id}">
+              </th>
             <td th:text="${usuario.fechaAlta}"></td>
             <td th:text="${usuario.nombre}"></td>
             <td th:text="${usuario.apellido}"></td>
@@ -52,49 +80,33 @@
             <td th:text="${usuario.altaBaja}"></td>
 
             <td sec:authorize="hasRole('ADMIN')">
-              <form
-                method="POST"
-                th:action="@{/usuario/altaBaja/__${usuario.id}__}"
-              >
+              <form method="POST" th:action="@{/usuario/altaBaja/__${usuario.id}__}">
                 <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Alta/Baja</button>
               </form>
             </td>
             <td sec:authorize="hasRole('ADMIN')">
-              <form
-                method="POST"
-                th:action="@{/usuario/eliminar/__${usuario.id}__}"
-              >
+              <form method="POST" th:action="@{/usuario/eliminar/__${usuario.id}__}">
                 <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
               </form>
             </td>
           </tr>
         </tbody>
       </table>
-              <section class="text-center container" sec:authorize="hasRole('ADMIN')">
-          <div class="row mt-3">
-            <div class="divVolver">
-              <a th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones"
-                >Volver</a
-              >
-            </div>
+      <section class="text-center container" sec:authorize="hasRole('ADMIN')">
+        <div class="row mt-3">
+          <div class="divVolver">
+            <a th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones">Volver</a>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
 
     <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
+      <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
         <h5>exito</h5>
         <p th:text="${exito}"></p>
       </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
+      <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
@@ -103,51 +115,76 @@
 
     <script>
       function ordenarTablaPorNombre() {
-          const table = document.getElementById("miTabla");
-          const rows = Array.from(table.getElementsByTagName("tr"));
-          const sortedRows = rows.slice(1).sort((a, b) => {
-              const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
-              const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
-              return nameA.localeCompare(nameB);
-          });
-          table.tBodies[0].append(...sortedRows);
-      }
-
-      function ordenarTablaPorNombreDesc() {
-          const table = document.getElementById("miTabla");
-          const rows = Array.from(table.getElementsByTagName("tr"));
-          const sortedRows = rows.slice(1).sort((b, a) => {
-              const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
-              const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
-              return nameA.localeCompare(nameB);
-          });
-          table.tBodies[0].append(...sortedRows);
-      }
-    
-    function ordenarTablaPorFechaAlta() {
         const table = document.getElementById("miTabla");
         const rows = Array.from(table.getElementsByTagName("tr"));
         const sortedRows = rows.slice(1).sort((a, b) => {
-            const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
-            const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
-            return dateA - dateB;
+          const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
+          const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
+          return nameA.localeCompare(nameB);
         });
         table.tBodies[0].append(...sortedRows);
-    }
+      }
 
-    function ordenarTablaPorFechaAltaDesc() {
+      function ordenarTablaPorNombreDesc() {
         const table = document.getElementById("miTabla");
         const rows = Array.from(table.getElementsByTagName("tr"));
         const sortedRows = rows.slice(1).sort((b, a) => {
-            const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
-            const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
-            return dateA - dateB;
+          const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
+          const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
+          return nameA.localeCompare(nameB);
         });
         table.tBodies[0].append(...sortedRows);
-    }
+      }
+
+      function ordenarTablaPorFechaAlta() {
+        const table = document.getElementById("miTabla");
+        const rows = Array.from(table.getElementsByTagName("tr"));
+        const sortedRows = rows.slice(1).sort((a, b) => {
+          const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
+          const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
+          return dateA - dateB;
+        });
+        table.tBodies[0].append(...sortedRows);
+      }
+
+      function ordenarTablaPorFechaAltaDesc() {
+        const table = document.getElementById("miTabla");
+        const rows = Array.from(table.getElementsByTagName("tr"));
+        const sortedRows = rows.slice(1).sort((b, a) => {
+          const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
+          const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
+          return dateA - dateB;
+        });
+        table.tBodies[0].append(...sortedRows);
+      }
+
+      function filtrarPorRol(rol) {
+        const table = document.getElementById("miTabla");
+        const rows = table.querySelectorAll("tbody tr");
+
+        for (let i = 0; i < rows.length; i++) {
+          const roleCell = rows[i].querySelector("td:nth-child(6)"); // Suponiendo que el rol está en la sexta columna (índice 5)
+          const role = roleCell.textContent.trim();
+
+          if (rol === 'Todos' || role === rol) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+      }
+      function mostrarTodos() {
+        const table = document.getElementById("miTabla");
+        const rows = table.querySelectorAll("tbody tr");
+
+        for (let i = 0; i < rows.length; i++) {
+          rows[i].style.display = "";
+        }
+      }
     </script>
 
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
+</body>
+
 </html>
