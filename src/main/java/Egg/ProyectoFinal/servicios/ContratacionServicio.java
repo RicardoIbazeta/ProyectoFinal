@@ -171,8 +171,14 @@ public class ContratacionServicio {
         }*/
     }
     
-    public Contratacion getOne(String id) {
+public Contratacion getOne(String id) {
+    if (contratacionRepositorio.existsById(id)) {
+        System.out.println("Contratación ID existente: " + id);
         return contratacionRepositorio.getOne(id);
+    } else {
+        System.out.println("Contratación ID no encontrado: " + id);
+        return null;
     }
+}
 
 }

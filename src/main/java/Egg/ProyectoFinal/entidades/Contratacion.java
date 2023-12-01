@@ -23,6 +23,10 @@ public class Contratacion {
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
     
+    /*@OneToOne
+    @JoinColumn(name = "resenia_id")
+    private Resenia resenia;*/
+    
     @Temporal(TemporalType.TIMESTAMP)   
     private Date alta;
     
@@ -90,5 +94,11 @@ public class Contratacion {
         this.altaBaja = altaBaja;
     }
 
-    
+    /*public Resenia getResenia() {
+        return resenia;
+    }
+
+    public void setResenia(Resenia resenia) {
+        this.resenia = resenia;
+    }*/
 }

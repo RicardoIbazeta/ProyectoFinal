@@ -151,7 +151,12 @@ public class ProveedorControlador {
     @GetMapping("/lista")
     public String listarProveedores(ModelMap modelo) {
 
+        
+        
         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+        
+        proveedores.forEach(proveedor -> System.out.println("Proveedores ID: " + proveedor.getId()));
+        
         modelo.addAttribute("proveedores", proveedores);
 
         return "proveedor_list.html";

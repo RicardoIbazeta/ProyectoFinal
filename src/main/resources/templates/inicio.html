@@ -45,37 +45,67 @@
             class="display-5 fw-bold lh-1 mb-3"
             th:text=" 'Hola, '+ ${session.usuario.nombre} "
           ></h1>
-          <p class="lead">
-            Te invitamos a explorar la plataforma, descubrir talentosos
-            proveedores y encontrar soluciones a medida para tus necesidades.
-          </p>
+          <div sec:authorize="hasRole('ADMIN')">
+            <p class="lead">
+              Te invitamos a controlar la plataforma, ingresar y eliminar nuevos
+              rubros, ver todos los usuarios y contrataciones.
+            </p>
 
-          <p class="lead">
-            Conectando necesidades con soluciones. Tu Servicio a un Click de
-            distancia.
-          </p>
-          <!-- Esto no esta funcionando y no se porque-->
+            <p class="lead">
+              Conectando necesidades con soluciones. Tu Servicio a un Click de
+              distancia.
+            </p>
+          </div>
+
+          <div sec:authorize="hasRole('USER')">
+            <p class="lead">
+              Te invitamos a explorar la plataforma, descubrir talentosos
+              proveedores y encontrar soluciones a medida para tus necesidades.
+            </p>
+
+            <p class="lead">
+              Conectando necesidades con soluciones. Tu Servicio a un Click de
+              distancia.
+            </p>
+          </div>
+
+          <div sec:authorize="hasRole('PROVEEDOR')">
+            <p class="lead">
+              Te invitamos a explorar la plataforma, y encontrar trabajos a
+              medida para tus necesidades.
+            </p>
+
+            <p class="lead">
+              Conectando necesidades con soluciones. Tu Servicio a un Click de
+              distancia.
+            </p>
+          </div>
+
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
             <button
               type="button"
               class="btn btn-primary btn-lg px-4 me-md-2"
               sec:authorize="hasRole('ADMIN')"
             >
-              <a th:href="@{/usuario/lista}">Explorar</a>
+              <a style="color: white" th:href="@{/usuario/lista}">Explorar</a>
             </button>
             <button
               type="button"
               class="btn btn-primary btn-lg px-4 me-md-2"
               sec:authorize="hasRole('USER')"
             >
-              <a th:href="@{/proveedores/lista}">Explorar</a>
+              <a style="color: white" th:href="@{/proveedores/lista}"
+                >Explorar</a
+              >
             </button>
             <button
               type="button"
               class="btn btn-primary btn-lg px-4 me-md-2"
               sec:authorize="hasRole('PROVEEDOR')"
             >
-              <a th:href="@{/contratacion/lista}">Explorar</a>
+              <a style="color: white" th:href="@{/contratacion/lista}"
+                >Explorar</a
+              >
             </button>
           </div>
         </div>

@@ -8,9 +8,13 @@ import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
+import Egg.ProyectoFinal.enumeraciones.Estrella;
+import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
+import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import Egg.ProyectoFinal.servicios.RubroServicio;
+import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,18 +44,29 @@ public class ContratacionControlador {
     private ProveedorServicio proveedorServicio;
     @Autowired
     private RubroServicio rubroServicio;
+    @Autowired
+    private ReseniaServicio reseniaServicio;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
-
+        
+        System.out.println("Proveedor Id:"+id);
+        
+       try {
+        Proveedor proveedor = proveedorRepositorio.buscarPorId(id);
         List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
-        Proveedor proveedor = proveedorServicio.getOne(id);
 
         modelo.addAttribute("proveedor", proveedor);
         modelo.addAttribute("rubros", rubros);
-
         return "contratacion_form.html";
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Manejar el error de alguna manera apropiada
+        return "error.html";
+    }
     }
 
     @PostMapping("/contratado/{idProveedor}")
@@ -94,10 +109,89 @@ public class ContratacionControlador {
     @GetMapping("/historial/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 
-        List<Contratacion> Contrataciones = contratacionServicio.misContrataciones(id);
-        modelo.addAttribute("Contrataciones", Contrataciones);
+        List<Contratacion> contrataciones = contratacionServicio.misContrataciones(id);
+        modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list";
+    }
+
+    /*@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/calificar/{id}")
+    public String calificar(ModelMap modelo, @PathVariable String id, @RequestParam String idProveedor) {
+
+        Contratacion contratacion = contratacionServicio.getOne(id);
+        String idProveedor = contratacion.getProveedor().getId();
+        Proveedor proveedor = proveedorServicio.getOne(idProveedor);
+
+        modelo.addAttribute("proveedor", proveedor);
+        modelo.addAttribute("contratacion", contratacion);
+        return "resenia_form.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping("/calificado/{id}")
+    public String calificarProveedor(RedirectAttributes redirectAttributes,@PathVariable String idProveedor,String idCliente, String idContratacion,
+            @RequestParam String comentario, @RequestParam String estrellas,
+            ModelMap modelo) throws Exception {
+
+        try {
+            //Contratacion contratacion = contratacionServicio.getOne(id);
+            //Proveedor proveedor = proveedorServicio.getOne(id);
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), idProveedor, idCliente, idContratacion);
+            //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
+            modelo.put("exito", "El proveedor fue calificado con exito!");
+            return "redirect:../proveedor/lista";
+
+        } catch (MiException e) {
+            //redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
+            modelo.put("error", "El proveedor NO fue calificado con exito!");
+            Proveedor proveedor = proveedorServicio.getOne(idProveedor);
+            modelo.addAttribute("proveedor", proveedor);
+            Usuario usuario = usuarioServicio.getOne(idCliente);
+            modelo.addAttribute("usuario", usuario);
+            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
+            modelo.addAttribute("contratacion", contratacion);
+
+            return "redirect:../proveedor/lista";
+        }
+    }*/
+
+
+    // Método para mostrar el formulario (GET)
+    public String mostrarFormCalificar(@PathVariable String idContratacion, ModelMap model) {
+    System.out.println("ID de Contratación recibido: " + idContratacion);
+    Contratacion contratacion = contratacionServicio.getOne(idContratacion);
+    model.addAttribute("idContratacion", idContratacion);
+    model.addAttribute("contratacion", contratacion);
+    return "resenia_form.html";
+    }
+    
+    @PostMapping("/calificar")
+    public String calificarProveedor(
+            @RequestParam String idContratacion,
+            @RequestParam String estrellas,
+            @RequestParam String comentario,
+            ModelMap model) {
+
+        try {
+            // Obtener las instancias de Contratacion, Proveedor y Usuario
+            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
+            Proveedor proveedor = contratacion.getProveedor();
+            Usuario cliente = contratacion.getCliente();
+            // Crear la reseña y guardarla en el servicio
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), proveedor, cliente, contratacion);
+
+            // Después de procesar, puedes redirigir a donde desees (por ejemplo, a una página de éxito)
+            model.addAttribute("exito", "Calificación exitosa");
+            return "redirect:/contrataciones/calificar/" + idContratacion;
+        } catch (Exception e) {
+            // Manejar errores (puedes agregar mensajes de error al modelo si es necesario)
+            model.addAttribute("error", "Hubo un error al procesar la calificación");
+            
+            e.printStackTrace();
+            
+            return "redirect:/contrataciones/calificar/" + idContratacion;
+        }
     }
 
 }

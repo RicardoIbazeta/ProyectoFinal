@@ -9,15 +9,79 @@
     <header th:replace="/fragments/header :: header "></header>
     <nav th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="form-group my-3">
-      <img
-        th:src="@{/7.png}"
-        class="d-block mx-lg-auto img-fluid"
-        alt="Bootstrap Themes"
-      />
-      <br />
-      <h3 style="text-align: center" class="card-title">Lista de Usuarios</h3>
+    <!-- <img
+      th:src="@{/7.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"
+    /> -->
+
+     <div class="container my-5">
+      <div class="p-5 text-center bg-body-tertiary rounded-3">
+            <img
+      th:src="@{/7.png}"
+      class="d-block mx-lg-auto img-fluid"
+      alt="Bootstrap Themes"/>
+      <br>
+      
+      <button id="ordenarTablaBtn" onclick="ordenarTablaPorNombre()">Ordenar Tabla Orden Alfabetico A-Z</button>
+      <button id="ordenarTablaBtn" onclick="ordenarTablaPorNombreDesc()">Ordenar Tabla Orden Alfabetico Z-A</button>
+      <button id="ordenarTablaBtn" onclick="ordenarTablaPorFechaAlta()">Ordenar por Fecha de Alta Asc</button>
+      <button id="ordenarTablaBtn" onclick="ordenarTablaPorFechaAltaDesc()">Ordenar por Fecha de Alta Desc</button>        
+
+      <table id="miTabla" class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">FechaAlta</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estado</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Alta/Baja</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody class="tabla" th:each="usuario : ${usuarios}">
+          <tr>
+            <td scope="row" th:text="${usuario.id}"></th>
+            <td th:text="${usuario.fechaAlta}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.rol}"></td>
+            <td th:text="${usuario.altaBaja}"></td>
+
+            <td sec:authorize="hasRole('ADMIN')">
+              <form
+                method="POST"
+                th:action="@{/usuario/altaBaja/__${usuario.id}__}"
+              >
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Alta/Baja</button>
+              </form>
+            </td>
+            <td sec:authorize="hasRole('ADMIN')">
+              <form
+                method="POST"
+                th:action="@{/usuario/eliminar/__${usuario.id}__}"
+              >
+                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+              <section class="text-center container" sec:authorize="hasRole('ADMIN')">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones"
+                >Volver</a
+              >
+            </div>
+          </div>
+        </section>
     </div>
+
     <div id="exito/error">
       <div
         th:if="${exito != null}"
@@ -37,67 +101,53 @@
       </div>
     </div>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">FechaAlta</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Email</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Estado</th>
-              <th sec:authorize="hasRole('ADMIN')" scope="col">Alta/Baja</th>
-              <th sec:authorize="hasRole('ADMIN')" scope="col">Eliminar</th>
-            </tr>
-          </thead>
-          <tbody th:each="usuario : ${usuarios}">
-            <tr>
-              <th scope="row" th:text="${usuario.id}"></th>
-              <td th:text="${usuario.fechaAlta}"></td>
-              <td th:text="${usuario.nombre}"></td>
-              <td th:text="${usuario.apellido}"></td>
-              <td th:text="${usuario.email}"></td>
-              <td th:text="${usuario.rol}"></td>
-              <td th:text="${usuario.altaBaja}"></td>
 
-              <td sec:authorize="hasRole('ADMIN')">
-                <form
-                  method="POST"
-                  th:action="@{/usuario/altaBaja/__${usuario.id}__}"
-                >
-                  <button
-                    style="color: black"
-                    class="btn btn-sm btn-outline-secondary"
-                    type="submit"
-                  >
-                    Alta/Baja
-                  </button>
-                </form>
-              </td>
-              <td sec:authorize="hasRole('ADMIN')">
-                <form
-                  method="POST"
-                  th:action="@{/usuario/eliminar/__${usuario.id}__}"
-                >
-                  <button
-                    style="color: black"
-                    class="btn btn-sm btn-outline-secondary"
-                    type="submit"
-                  >
-                    Eliminar
-                  </button>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <script>
+      function ordenarTablaPorNombre() {
+          const table = document.getElementById("miTabla");
+          const rows = Array.from(table.getElementsByTagName("tr"));
+          const sortedRows = rows.slice(1).sort((a, b) => {
+              const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
+              const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
+              return nameA.localeCompare(nameB);
+          });
+          table.tBodies[0].append(...sortedRows);
+      }
 
-    <section th:replace="/fragments/section :: section "></section>
+      function ordenarTablaPorNombreDesc() {
+          const table = document.getElementById("miTabla");
+          const rows = Array.from(table.getElementsByTagName("tr"));
+          const sortedRows = rows.slice(1).sort((b, a) => {
+              const nameA = a.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la columna que quieres ordenar (0 para la primera columna, 1 para la segunda, y así sucesivamente)
+              const nameB = b.getElementsByTagName("td")[2].textContent.trim().toLowerCase(); // Cambia el índice a la misma columna
+              return nameA.localeCompare(nameB);
+          });
+          table.tBodies[0].append(...sortedRows);
+      }
+    
+    function ordenarTablaPorFechaAlta() {
+        const table = document.getElementById("miTabla");
+        const rows = Array.from(table.getElementsByTagName("tr"));
+        const sortedRows = rows.slice(1).sort((a, b) => {
+            const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
+            const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
+            return dateA - dateB;
+        });
+        table.tBodies[0].append(...sortedRows);
+    }
+
+    function ordenarTablaPorFechaAltaDesc() {
+        const table = document.getElementById("miTabla");
+        const rows = Array.from(table.getElementsByTagName("tr"));
+        const sortedRows = rows.slice(1).sort((b, a) => {
+            const dateA = new Date(a.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la columna de Fecha de Alta (supongamos que es la segunda columna)
+            const dateB = new Date(b.getElementsByTagName("td")[1].textContent.trim()); // Cambia el índice a la misma columna
+            return dateA - dateB;
+        });
+        table.tBodies[0].append(...sortedRows);
+    }
+    </script>
+
     <script th:replace="/fragments/script :: script "></script>
     <footer th:replace="/fragments/footer :: footer"></footer>
   </body>

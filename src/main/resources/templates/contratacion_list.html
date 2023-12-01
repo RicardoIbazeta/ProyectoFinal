@@ -11,7 +11,7 @@
 
     <div class="form-group my-3">
             <img
-      th:src="@{/12.png}"
+      th:src="@{/8.png}"
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"
     /><br/>
@@ -41,7 +41,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Nombre del Cliente</th>
+            <th scope="col">Nombre del Cliente </th>
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
             <th scope="col">Nombre del Proveedor</th>
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
@@ -98,6 +98,7 @@
             </td>
             
             <td sec:authorize="hasRole('USER')">
+
             <form
                 method="POST"
               >
@@ -112,7 +113,27 @@
                         >Calificar</a
                       >
                       <input hidden value="${contratacion.id}" name="idContratacion" >
-                    </button>
+
+              
+              <form
+                method="GET"
+                th:action="@{/contratacion/calificar/__${contratacion.id}__}"
+              >
+              <input hidden value="${contratacion.id}" name="idContratacion" >
+              <input hidden value="${contratacion.proveedor.id}" name="idProveedor" >
+              <input hidden value="${contratacion.usuario.id}" name="idCliente" >
+                <!--<button
+                      style="color: black" class="btn btn-sm btn-outline-secondary"
+                    > Calificar
+                       <!--<a
+                        style="color: black"
+                        th:href="@{/contratacion/calificar/__${contratacion.id}__}"
+                        name="id"
+                        >Calificar</a
+                      >
+                     
+
+                    </button>-->
               </form>
             </td>
             

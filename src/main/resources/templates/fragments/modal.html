@@ -1,0 +1,36 @@
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bienvenido, ¿Cómo deseas registrarte?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                
+                <div class="col-md-6 border-right">
+                    <a th:href="@{/proveedor/registrar}">
+                        <img
+                            th:src="@{/13.png}"
+                            class="d-block mx-lg-auto img-fluid w-100"
+                            alt="Bootstrap Themes"
+                            />
+                    </a>
+                    <br>
+                    <h5 style="text-align: center">¡Si sos proveedor, podrás promocionarte, encontrar el trabajo ideal y aceptar contrataciones!</h5>
+                </div>
+                <div class="col-md-6">
+                    <a th:href="@{/usuario/registrar}">
+                        <img
+                            th:src="@{/14.png}"
+                            class="d-block mx-lg-auto img-fluid w-100"
+                            alt="Bootstrap Themes"
+                            />
+                    </a>
+                    <br>
+                    <h5 style="text-align: center">¡Si sos cliente, podrás buscar al proveedor idóneo, hacer contrataciones y calificar!</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

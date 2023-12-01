@@ -43,6 +43,7 @@
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
+
           th:action="@{/proveedor/calificado/__${idProveedor}__}"
           method="POST"
           enctype="multipart/form-data"
@@ -55,6 +56,15 @@
           <p
             th:text="'usted se encuentra evaluacion al Profesional: '+${proveedor.nombre} +', '+${proveedor.apellido} "
           ></p>
+
+          th:action="@{/resenia/calificado/__${proveedor.id}__}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+
+          <input hidden value="${contratacion.id}" name="id" >
+          <p>Usted se encuentra evaluando al Profesional: <br /><p th:text="${proveedor.nombre}" ></p></p>
+
           <select name="estrellas" required>
             <option value="">Elija una calificacion</option>
             <option value="UNO">1</option>
@@ -66,7 +76,7 @@
           <br />
           <br />
 
-          <input type="textarea" placeholder="Descripcion" />
+          <input type="textarea" placeholder="Descripcion" name="comentario" />
           <br />
 
           <button type="submit" class="btn btn-primary mt-3 botones">
