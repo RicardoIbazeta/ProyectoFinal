@@ -76,4 +76,13 @@ public class ImagenServicio {
         }
     }
 
+    public void validarImagen(MultipartFile archivo)throws MiException{
+        
+        if(archivo == null || archivo.isEmpty()){
+            throw new MiException("La imagen no se cargo correctamente");
+  
+        }
+        
+    }
+    
 }
