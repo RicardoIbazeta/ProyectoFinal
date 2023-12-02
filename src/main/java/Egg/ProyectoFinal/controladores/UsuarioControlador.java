@@ -125,11 +125,11 @@ public class UsuarioControlador {
     @PostMapping("/editarPerfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String apellido, @RequestParam(required = false) String email,@RequestParam(required = false) String password,
-            @RequestParam(required = false) String telefono, @RequestParam(required = false) String direccion, ModelMap modelo) {
+            @RequestParam(required = false) String password2, @RequestParam(required = false) String telefono, @RequestParam(required = false) String direccion, ModelMap modelo) {
 
         try {
-            usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, telefono, direccion);
-            modelo.put("exito", "Usuario actualizado correctamente!");
+            usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, password2, telefono, direccion);
+            modelo.put("exito", "Usuario actualizado correctamente! \n(Los cambios se verán reflejados una vez vuelvas a iniciar sesión)");
 
             return "inicio.html";
         } catch (MiException ex) {
@@ -138,7 +138,7 @@ public class UsuarioControlador {
             modelo.put("nombre", nombre);
             modelo.put("email", email);
 
-            return "usuario_modificar.html";
+            return "perfil_form.html";
         }
     } 
 

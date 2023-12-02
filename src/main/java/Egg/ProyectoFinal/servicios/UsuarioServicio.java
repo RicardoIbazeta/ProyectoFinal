@@ -77,7 +77,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Transactional
     public void modificarUsuario(MultipartFile archivo, String id, String nombre, String apellido,
-            String email, String password, String telefono, String direccion) throws MiException {
+            String email, String password,  String password2, String telefono, String direccion) throws MiException {
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
@@ -85,11 +85,15 @@ public class UsuarioServicio implements UserDetailsService {
 
             Usuario usuario = respuesta.get();
 
+            validarEditarPerfil(nombre, apellido, telefono, direccion);
+            validarEmail(email);
+            validarPassword(password, password2);
+
+            usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setPassword(new BCryptPasswordEncoder().encode(password));
             usuario.setDireccion(direccion);
             usuario.setEmail(email);
-            usuario.setNombre(nombre);
             usuario.setTelefono(telefono);
 
             //Verifica que la imagen no sea nula,busca por idImagen y la actualiza
@@ -152,6 +156,24 @@ public class UsuarioServicio implements UserDetailsService {
             throw new MiException("Debes completar tu dirección");
         }
     }
+    
+    // Metodo que valida que el usuario ingrese todos los datos necesarios al editar el perfil
+        private void validarEditarPerfil(String nombre, String apellido, 
+            String telefono, String direccion) throws MiException {
+
+        if (nombre == null || nombre.isEmpty()) {
+            throw new MiException("Debes completar tu nombre");
+        }
+        if (apellido == null || apellido.isEmpty()) {
+            throw new MiException("Debes completar tu apellido");
+        }
+        if (telefono == null || telefono.isEmpty()) {
+            throw new MiException("Debes completar tu número de telefono");
+        }
+        if (direccion == null || direccion.isEmpty()) {
+            throw new MiException("Debes completar tu dirección");
+        }
+    }
 
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
@@ -194,7 +216,6 @@ public class UsuarioServicio implements UserDetailsService {
             throw new MiException("Correo electrónico invalido");
         }
     }
-
 
     //Implemente el getOne en usuarioservicio
     public Usuario getOne(String id) {
