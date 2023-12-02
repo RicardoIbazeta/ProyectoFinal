@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary"
-        style="    padding-right: calc(var(--bs-gutter-x) * 3);
-        padding-left: calc(var(--bs-gutter-x) * 3);;
-        --bs-navbar-padding-y: 0;
-        ">
+     style="    padding-right: calc(var(--bs-gutter-x) * 3);
+     padding-left: calc(var(--bs-gutter-x) * 3);;
+     --bs-navbar-padding-y: 0;
+     ">
     <div class="container-fluid" style="background-color: #142e79">
         <a
             class="navbar-brand"
@@ -39,17 +39,18 @@
                     class="nav nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
                     style="--bs-scroll-height: 150px"
                     >
+
                     <li class="nav-item">
                         <a
                             class="nav-link"
-                            aria-current="page"
                             style="color: white"
+                            data-bs-toggle="modal" data-bs-target="#login"
                             th:if="${session.usuario == null}"
-                            href="/login"
+                            href="/#"
                             >Ingresar</a
                         >
                     </li>
-                   
+
                     <li class="nav-item">
                         <a
                             class="nav-link"
@@ -196,7 +197,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    th:href="@{/proveedor/contrataciones/__${session.usuario.id}__}"
+                                    th:href="@{/contratacion/historial/__${session.usuario.id}__}"
                                     style="color: white"
                                     sec:authorize="hasRole('PROVEEDOR')"
                                     >Mis Contrataciones</a

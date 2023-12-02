@@ -23,14 +23,14 @@ public class Contratacion {
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
     
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name = "resenia_id")
-    private Resenia resenia;
+    private Resenia resenia;*/
     
     @Temporal(TemporalType.TIMESTAMP)   
     private Date alta;
     
-    private boolean altaBaja;
+    private boolean altaBaja=true;
     
     //esta notacion @Enumerated(EnumType.STRING) indica que los valores de la enumeración 
     //estadoContratacion deben ser almacenados y recuperados como cadenas de texto en la base de datos
@@ -94,11 +94,11 @@ public class Contratacion {
         this.altaBaja = altaBaja;
     }
 
-    public Resenia getResenia() {
+    /*public Resenia getResenia() {
         return resenia;
     }
 
     public void setResenia(Resenia resenia) {
         this.resenia = resenia;
-    }
+    }*/
 }

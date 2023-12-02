@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 
 <html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    >
+    <head th:replace="/fragments/head :: head "></head>
 
-  <body>
-    <header th:replace="/fragments/header :: header "></header>
-    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+    <body>
+        <header th:replace="/fragments/header :: header "></header>
+        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
-
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <form
-          class="container text-center"
-          th:action="@{/logincheck}"
-          method="POST"
-        >
-          <div class="form-group my-3">
-            <h1>Iniciar Sesión</h1>
-          </div>
-
-          <div class="form-group my-3">
-            <input
-              type="email"
-              class="form-control"
-              name="email"
-              placeholder="Correo electronico"
-              th:value="${email}"
-            />
-          </div>
-
-          <div class="form-group my-3">
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              placeholder="Contraseña"
-              th:value="${contrasena}"
-            />
-          </div>
-
-          <button type="submit" class="btn btn-primary mt-3 botones">
-            Ingresar
-          </button>
-
-          <section class="text-center container">
-            <div class="row mt-3">
-              <div class="divVolver">
-                <a
-                  th:href="@{/}"
-                  class="btn btn-secondary my-2 botonVolver botones"
-                  >Volver</a
+        <div id="exito/error">
+            <div
+                th:if="${exito != null}"
+                id="exito"
+                class="card text-white bg-success mb-3 mt-3 mensajeExito"
                 >
-              </div>
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
             </div>
-          </section>
-        </form>
-      </div>
-    </div>
+            <div
+                th:if="${error != null}"
+                id="error"
+                class="card text-white bg-danger mb-3 mensajeError"
+                >
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+        </div>
 
-    <section th:replace="~{/fragments/section :: section}"></section>
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
+        <div class="container my-5">
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <form
+                    class="container text-center"
+                    th:action="@{/logincheck}"
+                    method="POST"
+                    >
+                    <div class="form-group my-3">
+                        <h1>Iniciar Sesión</h1>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            placeholder="Correo electronico"
+                            th:value="${email}"
+                            />
+                    </div>
+
+                    <div class="form-group my-3">
+                        <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            placeholder="Contraseña"
+                            th:value="${contrasena}"
+                            />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3 botones">
+                        Ingresar
+                    </button>
+
+                    <section class="text-center container">
+                        <div class="row mt-3">
+                            <div class="divVolver">
+                                <a
+                                    th:href="@{/}"
+                                    class="btn btn-secondary my-2 botonVolver botones"
+                                    >Volver</a
+                                >
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+
+        <section th:replace="~{/fragments/section :: section}"></section>
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 </html>

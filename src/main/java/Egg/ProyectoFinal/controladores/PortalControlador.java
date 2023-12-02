@@ -1,7 +1,9 @@
 package Egg.ProyectoFinal.controladores;
 
+import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -41,7 +43,12 @@ public class PortalControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_PROVEEDOR')")
     @GetMapping("/inicio")
-    public String inicio() {
+    public String inicio(HttpSession session) {
+        Usuario logueado = (Usuario) session.getAttribute("usuario");
+        
+        if (logueado.getRol().toString().equals("ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
         return "inicio.html";
     }
 

@@ -41,7 +41,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Nombre del Cliente</th>
+            <th scope="col">Nombre del Cliente </th>
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
             <th scope="col">Nombre del Proveedor</th>
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
@@ -98,11 +98,13 @@
             </td>
             
             <td sec:authorize="hasRole('USER')">
-              
+  
               <form
                 method="GET"
                 th:action="@{/resenia/calificar/__${contratacion.id}__}"
               >
+
+
                 <button
                       style="color: black" class="btn btn-sm btn-outline-secondary"
                     > Calificar
@@ -113,6 +115,7 @@
                         >Calificar</a
                       >-->
                      
+
                     </button>
               </form>
             </td>

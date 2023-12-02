@@ -8,8 +8,6 @@ import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
-import Egg.ProyectoFinal.enumeraciones.Estrella;
-import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
@@ -27,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/contratacion")
@@ -52,14 +51,21 @@ public class ContratacionControlador {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
-
+        
+        System.out.println("Proveedor Id:"+id);
+        
+       try {
+        Proveedor proveedor = proveedorRepositorio.buscarPorId(id);
         List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
-        Proveedor proveedor = proveedorServicio.getOne(id);
 
         modelo.addAttribute("proveedor", proveedor);
         modelo.addAttribute("rubros", rubros);
-
         return "contratacion_form.html";
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Manejar el error de alguna manera apropiada
+        return "error.html";
+    }
     }
 
     @PostMapping("/contratado/{idProveedor}")
@@ -102,51 +108,10 @@ public class ContratacionControlador {
     @GetMapping("/historial/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
 
-        List<Contratacion> contrataciones = contratacionServicio.misContrataciones(id);
+        List<Contratacion> contrataciones = contratacionServicio.ContratacionesProveedor(id);
         modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list";
     }
-
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping("/calificar/{id}")
-    public String calificar(ModelMap modelo, @PathVariable String id/*, @RequestParam String idProveedor*/) {
-
-        Contratacion contratacion = contratacionServicio.getOne(id);
-        String idProveedor = contratacion.getProveedor().getId();
-        Proveedor proveedor = proveedorServicio.getOne(idProveedor);
-
-        modelo.addAttribute("proveedor", proveedor);
-        modelo.addAttribute("contratacion", contratacion);
-        return "resenia_form.html";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @PostMapping("/calificado/{id}")
-    public String calificarProveedor(/*RedirectAttributes redirectAttributes,*/@PathVariable String idProveedor,String idCliente, String idContratacion,
-            @RequestParam String comentario, @RequestParam String estrellas,
-            ModelMap modelo) throws Exception {
-
-        try {
-            //Contratacion contratacion = contratacionServicio.getOne(id);
-            //Proveedor proveedor = proveedorServicio.getOne(id);
-            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas)/*, idProveedor, idCliente, idContratacion*/);
-            //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
-            modelo.put("exito", "El proveedor fue calificado con exito!");
-            return "redirect:../proveedor/lista";
-
-        } catch (MiException e) {
-            //redirectAttributes.addFlashAttribute("error", "El proveedor NO fue calificado con exito!");
-            modelo.put("error", "El proveedor NO fue calificado con exito!");
-            Proveedor proveedor = proveedorServicio.getOne(idProveedor);
-            modelo.addAttribute("proveedor", proveedor);
-            Usuario usuario = usuarioServicio.getOne(idCliente);
-            modelo.addAttribute("usuario", usuario);
-            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
-            modelo.addAttribute("contratacion", contratacion);
-
-            return "redirect:../proveedor/lista";
-        }
-    }
-
+ 
 }
