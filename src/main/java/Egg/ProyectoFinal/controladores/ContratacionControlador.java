@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/contratacion")
@@ -117,7 +118,7 @@ public class ContratacionControlador {
 
     /*@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/calificar/{id}")
-    public String calificar(ModelMap modelo, @PathVariable String id, @RequestParam String idProveedor) {
+    public String calificar(ModelMap modelo, @PathVariable String id ,@RequestParam String idProveedor) {
 
         Contratacion contratacion = contratacionServicio.getOne(id);
         String idProveedor = contratacion.getProveedor().getId();
@@ -137,7 +138,7 @@ public class ContratacionControlador {
         try {
             //Contratacion contratacion = contratacionServicio.getOne(id);
             //Proveedor proveedor = proveedorServicio.getOne(id);
-            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas)/*, idProveedor, idCliente, idContratacion*/);
+            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), proveedor, cliente, contratacion);
             //redirectAttributes.addFlashAttribute("exito", "El proveedor fue calificado con exito!");
             modelo.put("exito", "El proveedor fue calificado con exito!");
             return "redirect:../proveedor/lista";
@@ -157,41 +158,5 @@ public class ContratacionControlador {
     }*/
 
 
-    // Método para mostrar el formulario (GET)
-    public String mostrarFormCalificar(@PathVariable String idContratacion, ModelMap model) {
-    System.out.println("ID de Contratación recibido: " + idContratacion);
-    Contratacion contratacion = contratacionServicio.getOne(idContratacion);
-    model.addAttribute("idContratacion", idContratacion);
-    model.addAttribute("contratacion", contratacion);
-    return "resenia_form.html";
-    }
     
-    @PostMapping("/calificar")
-    public String calificarProveedor(
-            @RequestParam String idContratacion,
-            @RequestParam String estrellas,
-            @RequestParam String comentario,
-            ModelMap model) {
-
-        try {
-            // Obtener las instancias de Contratacion, Proveedor y Usuario
-            Contratacion contratacion = contratacionServicio.getOne(idContratacion);
-            Proveedor proveedor = contratacion.getProveedor();
-            Usuario cliente = contratacion.getCliente();
-            // Crear la reseña y guardarla en el servicio
-            reseniaServicio.crear(comentario, Estrella.valueOf(estrellas), proveedor, cliente, contratacion);
-
-            // Después de procesar, puedes redirigir a donde desees (por ejemplo, a una página de éxito)
-            model.addAttribute("exito", "Calificación exitosa");
-            return "redirect:/contrataciones/calificar/" + idContratacion;
-        } catch (Exception e) {
-            // Manejar errores (puedes agregar mensajes de error al modelo si es necesario)
-            model.addAttribute("error", "Hubo un error al procesar la calificación");
-            
-            e.printStackTrace();
-            
-            return "redirect:/contrataciones/calificar/" + idContratacion;
-        }
-    }
-
 }

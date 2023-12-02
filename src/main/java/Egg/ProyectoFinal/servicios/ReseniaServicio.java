@@ -25,31 +25,16 @@ public class ReseniaServicio {
     private ContratacionServicio contratacionServicio;
 
    @Transactional
-<<<<<<< HEAD
-    public Resenia crear(String comentario, Estrella estrella, Proveedor proveedor, Usuario cliente, Contratacion contratacion) throws Exception {
-    
-        validarResenia(comentario,estrella,proveedor,cliente,contratacion);
-=======
-    public Resenia crear(String comentario, Estrella estrella/*, String idProveedor, String idCliente, String idContratacion*/) throws Exception {
-    
-        validarResenia(comentario,estrella/*,idProveedor,idCliente,idContratacion*/);
->>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
+    public Resenia crear(String comentario, Estrella estrella, Proveedor proveedor, Usuario cliente,Contratacion contratacion) throws Exception {
+         
+        validarResenia(comentario, estrella,proveedor,cliente,contratacion);
         
         Resenia resenia = new Resenia();
-        
         resenia.setComentario(comentario);
         resenia.setEstrellas(estrella);
-<<<<<<< HEAD
-        resenia.setProveedor(proveedor);
         resenia.setCliente(cliente);
-        /*resenia.setContratacion(contratacionServicio.getOne(idContratacion));*/
-=======
-//        resenia.setProveedor(proveedorServicio.getOne(idProveedor));
-//        resenia.setCliente(usuarioServicio.getOne(idCliente));
-//        resenia.setContratacion(contratacionServicio.getOne(idContratacion));
->>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
-        
-        
+        resenia.setContratacion(contratacion);
+        resenia.setProveedor(proveedor);
         reseniaRepositorio.save(resenia);
         return resenia;
     }
@@ -81,39 +66,34 @@ public class ReseniaServicio {
     
     public Resenia buscarById(String id) throws Exception; */
     
-<<<<<<< HEAD
-    private void validarResenia(String comentario, Estrella estrella, Proveedor proveedor, Usuario cliente, Contratacion contratacion) throws MiException {
-=======
-    private void validarResenia(String comentario, Estrella estrella/*, String idProveedor, String idCliente, String idContratacion*/) throws MiException {
->>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
 
+    
+
+    private void validarResenia(String comentario, Estrella estrella,Proveedor proveedor,Usuario cliente,Contratacion contratacion) throws MiException {
+
+        System.out.println("contratacion id " + contratacion);
+        System.out.println("usuario id "+ cliente);
+        System.out.println("proveedor id "+ proveedor);
+        
+        
         if (comentario == null || comentario.isEmpty()) {
             throw new MiException("Debes completar tu comentario");
         }
         if (estrella == null) {
             throw new MiException("Debes completar tu comentario");
         }
-<<<<<<< HEAD
-        if (proveedor == null ) {
+
+
+       if (proveedor == null ) {
             throw new MiException("Debes completar tu comentario");
         }
         if (cliente == null) {
             throw new MiException("Debes completar tu comentario");
         }
-        if (contratacion == null) {
+        if (contratacion == null ) {
             throw new MiException("Debes completar tu comentario");
         }
-=======
-//        if (idProveedor == null || idProveedor.isEmpty()) {
-//            throw new MiException("Debes completar tu comentario");
-//        }
-//        if (idCliente == null || idCliente.isEmpty()) {
-//            throw new MiException("Debes completar tu comentario");
-//        }
-//        if (idContratacion == null || idContratacion.isEmpty()) {
-//            throw new MiException("Debes completar tu comentario");
-//        }
->>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
+
     }
 
     @Transactional

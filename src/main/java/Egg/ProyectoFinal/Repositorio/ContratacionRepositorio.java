@@ -22,10 +22,11 @@ public interface ContratacionRepositorio extends JpaRepository<Contratacion, Str
     @Query("SELECT c FROM Contratacion c WHERE c.estadoContratacion= :estadoContratacion")
     public List<Contratacion> buscarPorEstadoContratacion(@Param ("estadoContratacion")String estadoContratacion);
     
-    /*verificar funcionamiento -> posible error en tipo de dato de los parametros
-    @Query("SELECT c FROM Contratacion c WHERE c.cliente_id= :cliente_id")
-    public List<Contratacion> buscarPorClienteId(@Param ("cliente_id")String cliente_id);
-    
-    @Query("SELECT c FROM Contratacion c WHERE c.proveedor_id= :proveedor_id")
-    public List<Contratacion> buscarPorProveedorId(@Param ("proveedor_id")String proveedor_id);*/
+    @Query("SELECT c.proveedor.id FROM Contratacion c WHERE c.id = :contratacionId")
+    String buscarIdProveedorPorContratacionId(@Param("contratacionId") String contratacionId);
+
+    @Query("SELECT c.cliente.id FROM Contratacion c WHERE c.id = :contratacionId")
+    String buscarIdClientePorContratacionId(@Param("contratacionId") String contratacionId);
+
+
 }

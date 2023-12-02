@@ -98,35 +98,14 @@
             </td>
             
             <td sec:authorize="hasRole('USER')">
-
-            <form
-                method="POST"
-              >
-
-                <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                    >Calificar
-                      <a
-                        style="color: black"
-                        th:href="@{/resenia/calificar/__${contratacion.id}__}"
-                        >Calificar</a
-                      >
-                      <input hidden value="${contratacion.id}" name="idContratacion" >
-
-              
+  
               <form
                 method="GET"
                 th:action="@{/resenia/calificar/__${contratacion.id}__}"
               >
-<<<<<<< HEAD
-              <input hidden value="${contratacion.id}" name="idContratacion" >
-              <input hidden value="${contratacion.proveedor.id}" name="idProveedor" >
-              <input hidden value="${contratacion.usuario.id}" name="idCliente" >
-                <!--<button
-=======
+
+
                 <button
->>>>>>> 3d7c53e65a4c0f5092896aaf0042629fdd5ce397
                       style="color: black" class="btn btn-sm btn-outline-secondary"
                     > Calificar
                        <!--<a
@@ -134,10 +113,10 @@
                         th:href="@{/contratacion/calificar/__${contratacion.id}__}"
                         name="id"
                         >Calificar</a
-                      >
+                      >-->
                      
 
-                    </button>-->
+                    </button>
               </form>
             </td>
             
