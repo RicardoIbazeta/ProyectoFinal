@@ -32,14 +32,14 @@ public class Resenia {
     private String comentario;
 
     @Column(name = "cant_estrellas")
-    @Enumerated(EnumType.ORDINAL)
-    private Estrella estrellas;
+    @Enumerated(EnumType.STRING)
+    private Estrella estrellas; 
 
     @ManyToOne(targetEntity = Proveedor.class)
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
     
-    @ManyToOne(targetEntity = Proveedor.class)
+    @ManyToOne(targetEntity = Usuario.class)
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
     
