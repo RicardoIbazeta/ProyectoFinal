@@ -4,6 +4,7 @@ package Egg.ProyectoFinal.controladores;
 import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Resenia;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
@@ -11,10 +12,15 @@ import Egg.ProyectoFinal.servicios.ContratacionServicio;
 import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+<<<<<<< HEAD
 import java.lang.System.Logger;
 import static org.hibernate.internal.CoreLogging.logger;
 import static org.hibernate.internal.HEMLogging.logger;
 import org.slf4j.LoggerFactory;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> fe7a72e3c816dac84969f74b0e0be137b4c919f3
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -129,6 +135,18 @@ public class ReseniaControlador {
         
         
         return "proveedor_list";
+    }
+    
+    
+    @GetMapping("/lista/{id}")
+    public String listarResenias(ModelMap modelo, @PathVariable String id){
+        
+        List<Resenia> resenias=new ArrayList();
+        resenias=reseniaServicio.listarResenia(id);
+        modelo.addAttribute("resenias", resenias);
+     
+        
+        return "resenias_list.html";
     }
     
     

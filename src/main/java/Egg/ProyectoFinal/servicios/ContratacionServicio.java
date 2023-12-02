@@ -32,7 +32,7 @@ public class ContratacionServicio {
         contratacion.setProveedor(proveedor);
         contratacion.setEstadoContratacion(Estado.SOLICITADO);
         contratacion.setAlta(new Date());
-        contratacion.setAltaBaja(true);
+//        contratacion.setAltaBaja(true);
 
         contratacionRepositorio.save(contratacion);
     }
@@ -101,6 +101,7 @@ public class ContratacionServicio {
 
             Contratacion contratacion = respuesta.get();
             contratacion.setEstadoContratacion(Estado.FINALIZADO);
+            contratacion.setAltaBaja(false);
 
             contratacionRepositorio.save(contratacion);
         }
@@ -116,6 +117,7 @@ public class ContratacionServicio {
 
             Contratacion contratacion = respuesta.get();
             contratacion.setEstadoContratacion(Estado.CANCELADO);
+            contratacion.setAltaBaja(false);
 
             contratacionRepositorio.save(contratacion);
         }
@@ -130,6 +132,7 @@ public class ContratacionServicio {
         if (respuesta.isPresent()){
             Contratacion contratacion= respuesta.get();
             contratacion.setEstadoContratacion(Estado.EN_PROCESO);
+            contratacion.setAltaBaja(true);
             contratacionRepositorio.save(contratacion);
         }
     }
