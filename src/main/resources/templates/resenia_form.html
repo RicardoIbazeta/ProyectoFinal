@@ -43,14 +43,12 @@
       <div class="p-5 text-center bg-body-tertiary rounded-3">
         <form
           class="formulario"
-          th:action="@{/resenia/calificado/__${idContratacion}__}"
+          th:action="@{/resenia/calificado/__${contratacion.id}__}"
           method="POST"
           enctype="multipart/form-data"
         >
 
-          <input hidden value="${contratacion.id}" name="idContratacion" >
-          <input hidden value="${proveedor.id}" name="idProveedor" >
-          <input hidden value="${usuario.id}" name="idCliente" >
+          <input hidden value="${contratacion.id}" name="id" >
           <p>Contratacion id: <p th:text="${contratacion.id}" ></p></p>
           <p>Usuario id: <p th:text="${usuario.id}" ></p></p>
           <p>Proveedor id: <p th:text="${proveedor.id}" ></p></p>

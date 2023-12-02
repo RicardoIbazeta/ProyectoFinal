@@ -19,16 +19,10 @@ public class ReseniaServicio {
     
     @Autowired
     private ReseniaRepositorio reseniaRepositorio;
-    @Autowired
-    private ProveedorServicio proveedorServicio;
-    @Autowired
-    private UsuarioServicio usuarioServicio;
-    @Autowired
-    private ContratacionServicio contratacionServicio;
 
    @Transactional
     public Resenia crear(String comentario, Estrella estrella, Proveedor proveedor, Usuario cliente,Contratacion contratacion) throws Exception {
-         
+        
         validarResenia(comentario, estrella,proveedor,cliente,contratacion);
         
         Resenia resenia = new Resenia();
@@ -53,31 +47,10 @@ public class ReseniaServicio {
     }
      
 
-    /*/@Transactional
-    public void modificarById(String id, String comentario, String estrella, Proveedor proveedor) throws Exception;
-
-    //@Transactional
-    public void editarComentario(String id) throws Exception;
-    
-    //@Transactional
-    public void eliminarById(String id) throws Exception;
-
-    public List<Resenia> listarResenia() throws Exception;
-
-    public Resenia getOne(String id) throws Exception;
-    
-    public Resenia buscarById(String id) throws Exception; */
-    
-
-    
 
     private void validarResenia(String comentario, Estrella estrella,Proveedor proveedor,Usuario cliente,Contratacion contratacion) throws MiException {
 
-        System.out.println("contratacion id " + contratacion);
-        System.out.println("usuario id "+ cliente);
-        System.out.println("proveedor id "+ proveedor);
-        
-        
+
         if (comentario == null || comentario.isEmpty()) {
             throw new MiException("Debes completar tu comentario");
         }
@@ -99,9 +72,10 @@ public class ReseniaServicio {
     }
 
     @Transactional
-    public void eliminarResenia(String id) throws MiException {
-        // Puedes agregar lógica de validación aquí si es necesario
-        // por ejemplo, verificar si la reseña existe antes de eliminarla
+    public void eliminarResenia(String id,String comentario,Proveedor proveedor,Usuario Cliente,Contratacion contratacion,Estrella estrellas) throws MiException {
+
+        validarResenia(comentario, estrellas, proveedor, Cliente, contratacion);
+        
         Resenia resenia = reseniaRepositorio.findById(id).orElse(null);
         if (resenia != null) {
             reseniaRepositorio.delete(resenia);
