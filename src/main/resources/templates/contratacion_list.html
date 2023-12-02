@@ -1,130 +1,217 @@
 <!DOCTYPE html>
 <html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    >
+    <head th:replace="/fragments/head :: head "></head>
 
-  <body>
-    <header th:replace="~{/fragments/header :: header}"></header>
-    <nav th:replace="~{/fragments/nav :: nav}"></nav>
+    <body>
+        <header th:replace="~{/fragments/header :: header}"></header>
+        <nav th:replace="~{/fragments/nav :: nav}"></nav>
 
-    <div class="form-group my-3">
+        <div class="form-group my-3">
             <img
-      th:src="@{/8.png}"
-      class="d-block mx-lg-auto img-fluid"
-      alt="Bootstrap Themes"
-    /><br/>
-            <h3 class="card-title">Lista de Contrataciones</h3>
-            </div>
+                th:src="@{/8.png}"
+                class="d-block mx-lg-auto img-fluid"
+                alt="Bootstrap Themes"
+                /><br/>
+            <h3 class="card-title" style="text-align: center">Lista de Contrataciones</h3>
+        </div>
         <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
+            <div
+                th:if="${exito != null}"
+                id="exito"
+                class="card text-white bg-success mb-3 mt-3 mensajeExito"
+                >
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
+            </div>
+            <div
+                th:if="${error != null}"
+                id="error"
+                class="card text-white bg-danger mb-3 mensajeError"
+                >
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+        </div>
 
         <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Nombre del Cliente</th>
-            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
-            <th scope="col">Nombre del Proveedor</th>
-            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
-            <th scope="col">Fecha de Contratacion</th>
-            <th scope="col">Estado</th>
-            <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
-            <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
-            <th sec:authorize="hasAnyRole('ADMIN','PROVEEDOR')" scope="col">Cancelar</th>
-            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Aceptar</th>
-            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Finalizar</th>
-            <th sec:authorize="hasRole('USER')" scope="col">Calificar</th>
-          </tr>
-        </thead>
-        <tbody th:each="contratacion : ${contrataciones}">
-          <tr>
-            <th scope="row" th:text="${contratacion.cliente.nombre}"></td>
-            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.cliente.apellido}"></td>
-            <td scope="row" th:text="${contratacion.proveedor.nombre}"></td>
-            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.proveedor.apellido}"></td>
-            <td th:text="${contratacion.alta}"></td>
-            <td th:text="${contratacion.estadoContratacion}"></td>
-            <td
-              sec:authorize="hasRole('ADMIN')"
-              th:text="${contratacion.cliente.id}"
-            ></td>
-            <td
-              sec:authorize="hasRole('ADMIN')"
-              th:text="${contratacion.proveedor.id}"
-            ></td>
-            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
-              <form
-                method="POST"
-                th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
-              >
-                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Cancelar</button>
-              </form>
-            </td>
-            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
-              <form
-                method="POST"
-                th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
-              >
-                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Aceptar</button>
-              </form>
-            </td>
-            <td sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')">
-              <form
-                method="POST"
-                th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
-              >
-                <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Finalizar</button>
+            <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre del Cliente</th>
+                            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
+                            <th scope="col">Nombre del Proveedor</th>
+                            <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
+                            <th scope="col">Fecha de Contratacion</th>
+                            <th scope="col">Estado</th>
+                            <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
+                            <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
+                            <th scope="col">Cancelar</th>
+                            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Aceptar</th>
+                            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Finalizar</th>
+                            <th sec:authorize="hasRole('USER')" scope="col">Calificar</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="contratacion : ${contrataciones}">
+                        <tr>
+                            <th scope="row" th:text="${contratacion.cliente.nombre}"></td>
+                            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.cliente.apellido}"></td>
+                            <td scope="row" th:text="${contratacion.proveedor.nombre}"></td>
+                            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${contratacion.proveedor.apellido}"></td>
+                            <td th:text="${contratacion.alta}"></td>
+                            <td th:text="${contratacion.estadoContratacion}"></td>
+                            <td
+                                sec:authorize="hasRole('ADMIN')"
+                                th:text="${contratacion.cliente.id}"
+                                ></td>
+                            <td
+                                sec:authorize="hasRole('ADMIN')"
+                                th:text="${contratacion.proveedor.id}"
+                                ></td>
+                            <!-- ADMIN -->
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Cancelar</button>
+                                </form>
+                            </td>
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Aceptar</button>
+                                </form>
+                            </td>
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Finalizar</button>
 
-              </form>
-            </td>
-            
-            <td sec:authorize="hasRole('USER')">
-              
-              <form
-                method="GET"
-                th:action="@{/resenia/calificar/__${contratacion.id}__}"
-              >
-                <button
-                      style="color: black" class="btn btn-sm btn-outline-secondary"
-                    > Calificar
-                       <!--<a
-                        style="color: black"
-                        th:href="@{/contratacion/calificar/__${contratacion.id}__}"
-                        name="id"
-                        >Calificar</a
-                      >-->
-                     
-                    </button>
-              </form>
-            </td>
-            
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+                                </form>
+                            </td>
 
-    <section th:replace="/fragments/section :: section "></section>
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
+                            <!-- PROVEEDOR -->
+                            <td sec:authorize="hasRole('PROVEEDOR')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'FINALIZADO' or
+                                    contratacion.estadoContratacion.toString() == 'CANCELADO'}"
+                                    >
+
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" th:disabled="${true}">Cancelar</button>
+                                </form>
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/cancelar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'EN_PROCESO' or
+                                    contratacion.estadoContratacion.toString() == 'SOLICITADO'}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Cancelar</button>
+                                </form>
+                            </td>
+                            <td sec:authorize="hasRole('PROVEEDOR')">  
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'EN_PROCESO' or
+                                    contratacion.estadoContratacion.toString() == 'CANCELADO' or
+                                    contratacion.estadoContratacion.toString() == 'FINALIZADO'}"
+                                    >
+
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" th:disabled="${true}">Aceptar</button>
+                                </form>
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/aceptar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'SOLICITADO'}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Aceptar</button>
+                                </form>
+                            </td>
+                            <td sec:authorize="hasRole('PROVEEDOR')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'CANCELADO' or
+                                    contratacion.estadoContratacion.toString() == 'FINALIZADO' or
+                                    contratacion.estadoContratacion.toString() == 'SOLICITADO'}"
+                                    >
+
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" th:disabled="${true}">Finalizar</button>
+                                </form>
+                                <form
+                                    method="POST"
+                                    th:action="@{/proveedor/finalizar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'EN_PROCESO'}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Finalizar</button>
+
+                                </form>
+                            </td>
+
+                            <!-- USER -->
+                            <td sec:authorize="hasRole('USER')">
+                                <form
+                                    method="POST"
+                                    th:action="@{/usuario/cancelar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'FINALIZADO' or
+                                    contratacion.estadoContratacion.toString() == 'CANCELADO'}"
+                                    >
+
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" th:disabled="${true}">Cancelar</button>
+                                </form>
+                                <form
+                                    method="POST"
+                                    th:action="@{/usuario/cancelar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'EN_PROCESO' or
+                                    contratacion.estadoContratacion.toString() == 'SOLICITADO'}"
+                                    >
+                                    <button style="color: black" class="btn btn-sm btn-outline-secondary" type="submit">Cancelar</button>
+                                </form>
+                            </td>
+                            <td sec:authorize="hasRole('USER')">
+                                <form
+                                    method="GET"
+                                    th:action="@{/resenia/calificar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'EN_PROCESO' or 
+                                    contratacion.estadoContratacion.toString() == 'CANCELADO' or
+                                    contratacion.estadoContratacion.toString() == 'SOLICITADO'}"
+                                    >
+
+                                    <button
+                                        style="color: black" class="btn btn-sm btn-outline-secondary" th:disabled="${true}"
+                                        > Calificar
+                                    </button>
+                                </form>
+                                <form
+                                    method="GET"
+                                    th:action="@{/resenia/calificar/__${contratacion.id}__}"
+                                    th:if="${contratacion.estadoContratacion.toString() == 'FINALIZADO'}"
+                                    >
+
+                                    <button
+                                        style="color: black" class="btn btn-sm btn-outline-secondary"
+                                        > Calificar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <section th:replace="/fragments/section :: section "></section>
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 </html>
