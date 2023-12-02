@@ -113,7 +113,7 @@ public class ReseniaControlador {
         modelo.addAttribute("resenias", resenias);
      
         
-        return "resenias_list.html";
+        return "resenia_list.html";
     }
     
     
