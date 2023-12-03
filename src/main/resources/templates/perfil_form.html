@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
@@ -16,8 +15,8 @@
       class="d-block mx-lg-auto img-fluid"
       alt="Bootstrap Themes"/>
       <br/>
-      
     </div>
+
     <div id="exito/error">
       <div
         th:if="${exito != null}"
@@ -45,10 +44,6 @@
           method="POST"
           enctype="multipart/form-data"
         >
-        <div class="form-group my-3">
-            <h3 class="card-title">Modificacion de Perfil</h3>
-          </div>
-          <br />
 
           <div class="form-group my-3">
             <label for="nombre" style="display: flex">Nombre</label>

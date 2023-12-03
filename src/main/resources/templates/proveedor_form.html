@@ -16,8 +16,8 @@
                 class="d-block mx-lg-auto img-fluid"
                 alt="Bootstrap Themes"/>
             <br>
-            <h3 style="text-align: center;" class="card-title" >Registro Proveedor</h3>
         </div>
+
         <div id="exito/error">
             <div
                 th:if="${exito != null}"
@@ -196,6 +196,7 @@
                 </form>
             </div>
         </div>
+        
         <div th:replace="~{/fragments/modal :: div}"></div>
         <div th:replace="~{/fragments/login :: div}"></div>
         <section th:replace="/fragments/section :: section "></section>
