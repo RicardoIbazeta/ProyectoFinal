@@ -84,19 +84,39 @@ public class ProveedorServicio {
     }
 
     @Transactional
-    public void modificarProveedor(String id, Double precioHora, String descripcionServicio, Rubro rubro) {
+    public void modificarProveedor(String nombre, String apellido, String password, String direccion,
+            String email, String telefono, MultipartFile archivo, String id, Double precioHora, 
+            String descripcionServicio, Rubro rubro) throws MiException {
 
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        validarEmail(email);
+        
+        Optional<Proveedor> respuesta = proveedorRepositorio.findById(id);
 
         Proveedor proveedor = new Proveedor();
 
         if (respuesta.isPresent()) {
 
-            Usuario usuario = respuesta.get();
+            proveedor = respuesta.get();
+
+            proveedor.setNombre(nombre);
+            proveedor.setApellido(apellido);
+            proveedor.setPassword(new BCryptPasswordEncoder().encode(password));
+            proveedor.setDireccion(direccion);
+            proveedor.setEmail(email);
+            proveedor.setTelefono(telefono);
 
             proveedor.setDescripcionServicio(descripcionServicio);
             proveedor.setPrecioHora(precioHora);
             proveedor.setRubro(rubro);
+
+            if (archivo != null && !archivo.isEmpty()) {
+                Imagen imagen = imagenServicio.guardar(archivo);
+                proveedor.setImagen(imagen);
+            } else {
+                Imagen imagenPredeterminada = imagenServicio.obtenerImagenPredeterminada();
+                proveedor.setImagen(imagenPredeterminada);
+
+            }
 
             proveedorRepositorio.save(proveedor);
         }
@@ -180,11 +200,11 @@ public class ProveedorServicio {
         if (rubro == null) {
             throw new MiException("Debes seleccionar un rubro de la lista");
         }
-       /*
+        /*
         if (archivo.isEmpty()) {
             throw new MiException("Debes subir una imagen con el logo de emprendimiento");
         }
-        */
+         */
     }
 
     // Metodo que valida que la contraseña cumpla con los criterios requeridos.

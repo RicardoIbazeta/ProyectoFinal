@@ -74,17 +74,17 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setAltaBaja(true);
 
         // Validacion de imagen y asignacion de imagen predeterminada
-        if (archivo != null && !archivo.isEmpty()){
-        // Usuario proporcionó una imagen, guárdala y asigna al usuario
-        Imagen imagen = imagenServicio.guardar(archivo);
-        usuario.setImagen(imagen);
-            
+        if (archivo != null && !archivo.isEmpty()) {
+            // Usuario proporcionó una imagen, guárdala y asigna al usuario
+            Imagen imagen = imagenServicio.guardar(archivo);
+            usuario.setImagen(imagen);
+
         } else {
             // Si el usuario no sube una imagen, se le asigna la imagen predeterminada
             Imagen imagenPredeterminada = imagenServicio.obtenerImagenPredeterminada();
             usuario.setImagen(imagenPredeterminada);
-            
-        }  
+
+        }
 
         usuarioRepositorio.save(usuario);
     }
@@ -110,6 +110,7 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setEmail(email);
             usuario.setTelefono(telefono);
 
+            /*
             //Verifica que la imagen no sea nula,busca por idImagen y la actualiza
             String idImagen = null;
             if (usuario.getImagen() != null) {
@@ -117,6 +118,21 @@ public class UsuarioServicio implements UserDetailsService {
             }
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
             usuario.setImagen(imagen);
+            /*
+            
+             */
+            // Validacion de imagen y asignacion de imagen predeterminada
+            if (archivo != null && !archivo.isEmpty()) {
+                // Usuario proporcionó una imagen, guárdala y asigna al usuario
+                Imagen imagen = imagenServicio.guardar(archivo);
+                usuario.setImagen(imagen);
+
+            } else {
+                // Si el usuario no sube una imagen, se le asigna la imagen predeterminada
+                Imagen imagenPredeterminada = imagenServicio.obtenerImagenPredeterminada();
+                usuario.setImagen(imagenPredeterminada);
+
+            }
 
             usuarioRepositorio.save(usuario);
         }

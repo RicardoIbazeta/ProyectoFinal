@@ -11,6 +11,7 @@ import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -160,6 +161,48 @@ public class ProveedorControlador {
         modelo.addAttribute("proveedores", proveedores);
 
         return "proveedor_list.html";
+    }
+    
+    @PreAuthorize("hasRole('ROLE_PROVEEDOR')")
+    @GetMapping("/editarPerfil/{id}")
+    public String editarPerfil(ModelMap modelo, HttpSession session) {
+
+        Proveedor proveedor = (Proveedor) session.getAttribute("proveedor");
+        modelo.addAttribute("proveedor", proveedor);
+        List<Rubro> rubros = rubroServicio.listarRubros();
+        modelo.addAttribute("rubros", rubros);
+
+        return "perfil_form.html";
+    } 
+    
+    @PreAuthorize("hasRole('ROLE_PROVEEDOR')")
+    @PostMapping("/editarPerfil/{id}")
+    public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String apellido, @RequestParam(required = false) String email,@RequestParam(required = false) String password,
+            @RequestParam(required = false) String password2, @RequestParam(required = false) String telefono, @RequestParam(required = false) String direccion, 
+            @RequestParam(required = false) Double precioHora, @RequestParam(required = false) String descripcionServicio,
+            @RequestParam(required = false) Rubro rubro, ModelMap modelo) {
+
+        try {
+            proveedorServicio.modificarProveedor(nombre, apellido, password, direccion, email, telefono, archivo, id, precioHora, descripcionServicio, rubro);
+            modelo.put("exito", "Proveedor actualizado correctamente! \n(Los cambios se verán reflejados una vez vuelvas a iniciar sesión)");
+
+            return "inicio.html";
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+            modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
+            modelo.put("email", email);
+            modelo.put("telefono", telefono);
+            modelo.put("direccion", direccion);
+            modelo.put("precioHora", precioHora);
+            modelo.put("descripcionServicio", descripcionServicio);
+            List<Rubro> rubros = rubroServicio.listarRubros();
+            modelo.addAttribute("rubros", rubros);
+
+            return "perfil_form.html";
+        }
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")

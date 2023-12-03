@@ -72,8 +72,16 @@
               >
                 A third item
               </li>
-              <div class="card-body">
+              <div
+                class="card-body"
+                sec:authorize="hasAnyRole('ADMIN', 'USER')"
+              >
                 <a class="card-link" th:href="@{/usuario/editarPerfil/{id}}"
+                  >Editar Perfil</a
+                >
+              </div>
+              <div class="card-body" sec:authorize="hasRole('PROVEEDOR')">
+                <a class="card-link" th:href="@{/proveedor/editarPerfil/{id}}"
                   >Editar Perfil</a
                 >
               </div>
