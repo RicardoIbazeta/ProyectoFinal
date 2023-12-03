@@ -49,9 +49,12 @@
         >
 
           <input hidden value="${contratacion.id}" name="id" >
-          <p>Contratacion id: <p th:text="${contratacion.id}" ></p></p>
-          <p>Usuario id: <p th:text="${usuario.id}" ></p></p>
-          <p>Proveedor id: <p th:text="${proveedor.id}" ></p></p>
+          <!--<input hidden value="${proveedor.id}" name="idProveedor">
+          <input hidden value="${cliente.id}" name="idCliente">-->
+
+          <p>Contratacion id: <p th:text="${contratacion.id}"></p></p>
+          <p>Usuario id: <p th:text="${usuario.id}"></p></p>
+          <p>Proveedor id: <p th:text="${proveedor.id}"></p></p>
           <p>Usted se encuentra evaluando al Profesional: <br /><p th:text="${proveedor.nombre}" ></p></p>
 
           <select name="estrellas" required>
