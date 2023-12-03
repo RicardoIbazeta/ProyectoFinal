@@ -1,9 +1,11 @@
 package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.entidades.Contratacion;
+import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
+import Egg.ProyectoFinal.servicios.RubroServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private ContratacionServicio contratacionServicio;
+    @Autowired RubroServicio rubroServicio;
 
     @GetMapping("/registrar")
     public String registrar() {
@@ -115,6 +118,13 @@ public class UsuarioControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         modelo.addAttribute("usuario", usuario);
+        
+        /*
+        Se carga la lista de rubros para que al ser un Proveedor
+        quien edite su perfil, se pueda observar la lista.
+        */        
+        List<Rubro> rubros = rubroServicio.listarRubros();
+        modelo.addAttribute("rubros", rubros);
 
         return "perfil_form.html";
     } 

@@ -20,12 +20,28 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control rounded-4" name="password" id="floatingPassword" placeholder="Contraseña" th:value="${contrasena}">
-                            <label for="floatingPassword">Password</label>
+                            <label for="floatingPassword">Password</label>                         
                         </div>
+                        <label>Mostrar contraseña
+                            <input type="checkbox" onclick="mostrarPasswordLogin()">
+                        </label> 
+                        
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Ingresar</button>
                     </form>
                 </div>
             </div>
+
+            <script>
+                const mostrarPasswordLogin = () => {
+                    let input = document.querySelector("#floatingPassword")
+                    if (input.type === "password") {
+                        input.type = "text"
+                    } else {
+                        input.type = "password"
+                    }
+                }
+            </script>
+
         </form>
 
     </div>

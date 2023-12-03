@@ -103,11 +103,15 @@
                             >
                             <input
                                 type="password"
+                                id="field"
                                 class="form-control"
                                 name="password"
                                 placeholder="Ingrese una contraseña"
                                 th:value="${password}"
-                                />                
+                                />
+                            <label>Mostrar contraseña
+                                <input type="checkbox" onclick="mostrarPassword()">
+                            </label>
                         </div>
 
 
@@ -119,11 +123,15 @@
                             >
                             <input
                                 type="password"
+                                id="field2"
                                 class="form-control"
                                 name="password2"
                                 placeholder="Repita la contraseña"
                                 th:value="${password2}"
                                 />
+                            <label>Mostrar contraseña
+                                <input type="checkbox" onclick="mostrarPassword2()">
+                            </label>
                         </div>
 
                         <div class="form-group my-3">
@@ -161,7 +169,28 @@
                 </form>
             </div>
         </div>
-            
+
+
+        <script>
+            const mostrarPassword = () => {
+                let input = document.querySelector("#field")
+                if (input.type === "password") {
+                    input.type = "text"
+                } else {
+                    input.type = "password"
+                }
+            }
+
+            const mostrarPassword2 = () => {
+                let input = document.querySelector("#field2")
+                if (input.type === "password") {
+                    input.type = "text"
+                } else {
+                    input.type = "password"
+                }
+            }
+        </script>
+
         <div th:replace="~{/fragments/modal :: div}"></div> 
         <div th:replace="~{/fragments/login :: div}"></div>
         <section th:replace="/fragments/section :: section "></section>
@@ -169,5 +198,8 @@
         <footer th:replace="/fragments/footer :: footer"></footer>
         <!-- Bootstrap Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+
+
     </body>
 </html>
