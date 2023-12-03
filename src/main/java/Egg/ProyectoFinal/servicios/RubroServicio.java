@@ -86,10 +86,16 @@ public class RubroServicio {
         }
     }
     
+
     /*
     public List<Rubro> buscarProductos(String query) {
         return rubroRepositorio.findByNombreContainingOrDescripcionContaining(query, query);
+}
+*/
+    public List<Rubro> buscarPorRubro(String query) {
+        return (List<Rubro>) rubroRepositorio.buscarPorRubro(query);
+
     }
-    */
+    
 
 }

@@ -5,6 +5,8 @@ import Egg.ProyectoFinal.excepciones.MiException;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -54,5 +56,10 @@ public class RubroControlador {
 
         return "rubro_list.html";
     }
-
+    
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Rubro>> buscarRubro(@RequestParam String query) {
+        List<Rubro> resultados = (List<Rubro>) rubroServicio.buscarPorRubro(query);
+        return new ResponseEntity<>(resultados, HttpStatus.OK);
+    }
 }
