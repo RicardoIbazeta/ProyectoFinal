@@ -318,7 +318,7 @@
                                 >
                             </li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li>
+                            <li sec:authorize="hasAnyRole('ADMIN', 'USER', 'PROVEEDOR')" >
                                 <a
                                     class="dropdown-item"
                                     style="color: white"
@@ -326,6 +326,14 @@
                                     >Editar Perfil</a
                                 >
                             </li>
+                            <!-- <li sec:authorize="hasRole('PROVEEDOR')">
+                                <a
+                                    class="dropdown-item"
+                                    style="color: white"
+                                    th:href="@{/proveedor/editarPerfil/{id}}"
+                                    >Editar Perfil</a
+                                >
+                            </li> -->
                             <li><hr class="dropdown-divider" /></li>
                             <li>
                                 <a

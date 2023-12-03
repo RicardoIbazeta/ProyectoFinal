@@ -46,14 +46,13 @@
           method="POST"
           enctype="multipart/form-data"
         >
-
           <input hidden value="${contratacion.id}" name="id" >
 
           <p sec:authorize="hasRole('ADMIN')" >Contratacion id: <p sec:authorize="hasRole('ADMIN')" th:text="${contratacion.id}"></p></p>
           <p sec:authorize="hasRole('ADMIN')" >Usuario id: <p sec:authorize="hasRole('ADMIN')" th:text="${usuario.id}"></p></p>
           <p sec:authorize="hasRole('ADMIN')" >Proveedor id: <p sec:authorize="hasRole('ADMIN')" th:text="${proveedor.id}"></p></p>
 
-          <p>Usted se encuentra evaluando al Profesional: <br /><p sec:authorize="hasAnyRole('ADMIN', 'USER')" th:text="${proveedor.nombre}" ></p></p>
+          <p>Evaluacion de conformidad Proveedor: <br /><p sec:authorize="hasAnyRole('ADMIN', 'USER')" th:text="${proveedor.nombre}+${proveedor.apellido}" ></p></p>
 
           <select name="estrellas" required>
             <option value="UNO">1</option>
@@ -65,7 +64,7 @@
           <br />
           <br />
 
-          <input type="textarea" placeholder="Descripcion" name="comentario" />
+          <textarea style="width: 300px; height: 150px;" type="input" placeholder="Descripcion" name="comentario" ></textarea>
           <br />
 
           <button type="submit" class="btn btn-primary mt-3 botones">
