@@ -17,7 +17,8 @@
             <br/>
             <h3 style="text-align: center;" class="card-title">Lista de Reseñas</h3>
             </div>
-        <div id="exito/error">
+
+        <!-- <div id="exito/error">
       <div
         th:if="${exito != null}"
         id="exito"
@@ -34,7 +35,7 @@
         <h5>error</h5>
         <p th:text="${error}"></p>
       </div>
-    </div>
+    </div> -->
 
       <div class="container my-5">
       <div class="p-5 text-center bg-body-tertiary rounded-3">
@@ -45,13 +46,13 @@
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Cliente</th>
             <th scope="col">Nombre del Proveedor</th>
             <th sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="col">Apellido del Proveedor</th>
-            <th scope="col">Fecha de Resenia</th>
+            <th scope="col">Fecha de Reseña</th>
             <th scope="col">Estrellas</th>
             <th scope="col">Comentario</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Cliente ID</th>
             <th sec:authorize="hasRole('ADMIN')" scope="col">Proveedor ID</th>
-            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Modificar</th>
-            <th sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')" scope="col">Eliminar</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Modificar</th>
+            <th sec:authorize="hasRole('ADMIN')" scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody th:each="resenia : ${resenias}">

@@ -163,8 +163,8 @@ public class UsuarioControlador {
         List<Contratacion> contrataciones = new ArrayList<Contratacion>();
 
         
-        modelo.addAttribute("contrataciones", contrataciones);
+        modelo.addAttribute("historial", historial);
 
-        return "contratacion_list.html";
+        return "redirect:/inicio";
     }
 }

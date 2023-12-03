@@ -60,17 +60,10 @@ public class ReseniaControlador {
         String idProveedor = contratacion.getProveedor().getId();
         String idCliente = contratacion.getCliente().getId();
         
-<<<<<<< HEAD
         System.out.println("idProveedor :" + idProveedor);
         System.out.println("idContratacion : "+ id);
         System.out.println("idCliente : "+idCliente);
         
-=======
-        System.out.println("id proveedor " +idProveedor);
-        System.out.println("id cliente " +idCliente);
-        System.out.println("id contratacion " +id);
-
->>>>>>> db689e1 (pull pre entrega)
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("proveedor", proveedor);
         modelo.addAttribute("contratacion", contratacion);

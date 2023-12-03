@@ -28,14 +28,16 @@
                     <p th:text="${error}"></p>
                 </div>
             </div>
-            <div class="card mx-auto mb-3" style="max-width: 2000px;">
 
+            
+            <div class="card mx-auto mb-3" style="max-width: 2000px;">
                 <div class="row g-0">
                     <img
                         th:src="@{/19.png}"
                         class="d-block mx-lg-auto img-fluid"
                         alt="Bootstrap Themes"/>
                     <div class="col-md-4">
+                        <br>
                         <img th:src="@{/imagen/perfil/__${session.usuario.id}__}" class="img-fluid rounded-start" alt="foto">
                     </div>
                     <div class="col-md-8 mx-auto">

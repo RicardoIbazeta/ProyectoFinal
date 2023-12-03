@@ -20,6 +20,7 @@
       <h3 style="text-align: center" class="card-title">Registro Reseña</h3>
       <br />
     </div>
+    
     <div id="exito/error">
       <div
         th:if="${exito != null}"
@@ -49,16 +50,13 @@
         >
 
           <input hidden value="${contratacion.id}" name="id" >
-          <!--<input hidden value="${proveedor.id}" name="idProveedor">
-          <input hidden value="${cliente.id}" name="idCliente">-->
 
-          <p>Contratacion id: <p th:text="${contratacion.id}"></p></p>
-          <p>Usuario id: <p th:text="${usuario.id}"></p></p>
-          <p>Proveedor id: <p th:text="${proveedor.id}"></p></p>
+          <p sec:authorize="hasRole('ADMIN')" >Contratacion id: <p th:text="${contratacion.id}"></p></p>
+          <p sec:authorize="hasRole('ADMIN')" >Usuario id: <p th:text="${usuario.id}"></p></p>
+          <p sec:authorize="hasRole('ADMIN')" >Proveedor id: <p th:text="${proveedor.id}"></p></p>
           <p>Usted se encuentra evaluando al Profesional: <br /><p th:text="${proveedor.nombre}" ></p></p>
 
           <select name="estrellas" required>
-            <!--<option value="">Elija una calificacion</option>-->
             <option value="UNO">1</option>
             <option value="DOS">2</option>
             <option value="TRES">3</option>
