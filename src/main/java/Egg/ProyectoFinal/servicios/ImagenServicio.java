@@ -3,11 +3,19 @@ package Egg.ProyectoFinal.servicios;
 import Egg.ProyectoFinal.Repositorio.ImagenRepositorio;
 import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.excepciones.MiException;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
 
 @Service
 public class ImagenServicio {
@@ -75,6 +83,35 @@ public class ImagenServicio {
             imagenRepositorio.delete(imagen);
         }
     }
+    
+    
+    public Imagen obtenerImagenPredeterminada() {
+    try {
+        // Especifica la ruta relativa al directorio de recursos estáticos
+        String rutaImagenPredeterminada = "static/imagenPredeterminada.png";
+
+        // Carga la imagen predeterminada desde el directorio de recursos estáticos
+        Resource resource = new ClassPathResource(rutaImagenPredeterminada);
+        
+        // Lee el contenido de la imagen en un byte array
+        byte[] contenidoImagen = FileCopyUtils.copyToByteArray(resource.getInputStream());
+
+        // Crea la entidad Imagen con la información de la imagen predeterminada
+        Imagen imagenPredeterminada = new Imagen();
+        imagenPredeterminada.setMime("image/png");
+        imagenPredeterminada.setNombre("imagenPredeterminada.png");
+        imagenPredeterminada.setContenido(contenidoImagen);
+        
+        imagenRepositorio.save(imagenPredeterminada);
+
+        return imagenPredeterminada;
+    } catch (Exception e) {
+        // Maneja las excepciones apropiadamente (puedes lanzar una excepción personalizada o registrar el error)
+        e.printStackTrace(); // Solo imprime en la consola en este ejemplo; debes manejarlo según tu caso de uso.
+        return null; // O devuelve una imagen predeterminada genérica si ocurre un error
+    }
+}
+    
 
     public void validarImagen(MultipartFile archivo)throws MiException{
         

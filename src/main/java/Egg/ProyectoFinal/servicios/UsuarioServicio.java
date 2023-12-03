@@ -5,6 +5,10 @@ import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +27,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +48,7 @@ public class UsuarioServicio implements UserDetailsService {
         validarUsuario(nombre, apellido, documento, telefono, direccion);
         validarEmail(email);
         validarPassword(password, password2);
+        //validarImagen(archivo);
 
         Usuario usuario = new Usuario();
 
@@ -67,17 +73,25 @@ public class UsuarioServicio implements UserDetailsService {
 
         usuario.setAltaBaja(true);
 
-        //Paso la imagen y la seteo
+        // Validacion de imagen y asignacion de imagen predeterminada
+        if (archivo != null && !archivo.isEmpty()){
+        // Usuario proporcionó una imagen, guárdala y asigna al usuario
         Imagen imagen = imagenServicio.guardar(archivo);
-
         usuario.setImagen(imagen);
+            
+        } else {
+            // Si el usuario no sube una imagen, se le asigna la imagen predeterminada
+            Imagen imagenPredeterminada = imagenServicio.obtenerImagenPredeterminada();
+            usuario.setImagen(imagenPredeterminada);
+            
+        }  
 
         usuarioRepositorio.save(usuario);
     }
 
     @Transactional
     public void modificarUsuario(MultipartFile archivo, String id, String nombre, String apellido,
-            String email, String password, String telefono, String direccion) throws MiException {
+            String email, String password, String password2, String telefono, String direccion) throws MiException {
 
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
 
@@ -85,11 +99,15 @@ public class UsuarioServicio implements UserDetailsService {
 
             Usuario usuario = respuesta.get();
 
+            validarEditarPerfil(nombre, apellido, telefono, direccion);
+            validarEmail(email);
+            validarPassword(password, password2);
+
+            usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setPassword(new BCryptPasswordEncoder().encode(password));
             usuario.setDireccion(direccion);
             usuario.setEmail(email);
-            usuario.setNombre(nombre);
             usuario.setTelefono(telefono);
 
             //Verifica que la imagen no sea nula,busca por idImagen y la actualiza
@@ -153,6 +171,24 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
+    // Metodo que valida que el usuario ingrese todos los datos necesarios al editar el perfil
+    private void validarEditarPerfil(String nombre, String apellido,
+            String telefono, String direccion) throws MiException {
+
+        if (nombre == null || nombre.isEmpty()) {
+            throw new MiException("Debes completar tu nombre");
+        }
+        if (apellido == null || apellido.isEmpty()) {
+            throw new MiException("Debes completar tu apellido");
+        }
+        if (telefono == null || telefono.isEmpty()) {
+            throw new MiException("Debes completar tu número de telefono");
+        }
+        if (direccion == null || direccion.isEmpty()) {
+            throw new MiException("Debes completar tu dirección");
+        }
+    }
+
     //Metodo que valida los requisitos de la contraseña
     private void validarPassword(String password, String password2) throws MiException {
 
@@ -194,7 +230,6 @@ public class UsuarioServicio implements UserDetailsService {
             throw new MiException("Correo electrónico invalido");
         }
     }
-
 
     //Implemente el getOne en usuarioservicio
     public Usuario getOne(String id) {
