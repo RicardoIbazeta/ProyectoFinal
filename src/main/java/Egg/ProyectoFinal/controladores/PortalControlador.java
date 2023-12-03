@@ -59,10 +59,10 @@ public class PortalControlador {
     //@GetMapping("/perfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
             @RequestParam String apellido, @RequestParam String email, @RequestParam String password,
-            @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
+            @RequestParam String password2, @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {
 
         try {
-            usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, telefono, direccion);
+            usuarioServicio.modificarUsuario(archivo, id, nombre, apellido, email, password, password2, telefono, direccion);
             modelo.put("exito", "Usuario actualizado correctamente!");
 
             return "inicio.html";

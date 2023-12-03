@@ -214,7 +214,7 @@
                             role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
-                            sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')"
+                            sec:authorize="hasRole('PROVEEDOR')"
                             th:if="${session.usuario != null}"
                             >
                             Reseñas
@@ -229,12 +229,54 @@
                                     class="dropdown-item"
                                     style="color: white"
                                     th:href="@{/resenia/lista/__${session.usuario.id}__}"
-                                    sec:authorize="hasAnyRole('ADMIN', 'PROVEEDOR')"
+                                    sec:authorize="hasRole('PROVEEDOR')"
                                     >Lista de Reseñas</a
                                 >
                             </li>
                         </ul>
+                        
+                        
                     </li>
+                    
+                    
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            style="color: white"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            sec:authorize="hasRole('ADMIN')"
+                            th:if="${session.usuario != null}"
+                            >
+                            Reseñas
+                        </a>
+                        <ul
+                            class="dropdown-menu dropdown-menu-lg-end"
+                            style="background-color: #142e79;
+                            --bs-dropdown-link-hover-bg: #519dea;"
+                            >
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    style="color: white"
+                                    th:href="@{/resenia/lista}"
+                                    sec:authorize="hasRole('ADMIN')"
+                                    >Lista de Reseñas</a
+                                >
+                            </li>
+                        </ul>
+                        
+                        
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
 
                     <div class="dropdown text-end">
                         <a

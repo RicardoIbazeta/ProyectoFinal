@@ -46,7 +46,7 @@ public class ProveedorServicio {
             Rubro rubro, String nombre, String apellido, String documento, String email, String password,
             String password2, String telefono, String direccion, Boolean altaBaja) throws MiException {
 
-        validarProveedor(nombre, apellido, documento, telefono, direccion, precioHora, descripcionServicio, rubro, archivo);
+        validarProveedor(nombre, apellido, documento, telefono, direccion, precioHora, descripcionServicio, rubro /*archivo*/);
         validarEmail(email);
         validarPassword(password, password2);
 
@@ -66,10 +66,19 @@ public class ProveedorServicio {
         proveedor.setRol(Rol.PROVEEDOR);
         proveedor.setFechaAlta(new Date());
         proveedor.setAltaBaja(true);
-        
-        //Paso la imagen y la seteo
-        Imagen imagen = imagenServicio.guardar(archivo);
-        proveedor.setImagen(imagen);
+
+        // Validacion de imagen y asignacion de imagen predeterminada
+        if (archivo != null && !archivo.isEmpty()) {
+            // Usuario proporcionó una imagen, guárdala y asigna al usuario
+            Imagen imagen = imagenServicio.guardar(archivo);
+            proveedor.setImagen(imagen);
+
+        } else {
+            // Si el usuario no sube una imagen, se le asigna la imagen predeterminada
+            Imagen imagenPredeterminada = imagenServicio.obtenerImagenPredeterminada();
+            proveedor.setImagen(imagenPredeterminada);
+
+        }
 
         proveedorRepositorio.save(proveedor);
     }
@@ -92,24 +101,12 @@ public class ProveedorServicio {
             proveedorRepositorio.save(proveedor);
         }
     }
-    
-    
-    
-    
 
     @Transactional
     public void darAltaBaja(Proveedor proveedor) {
 
         proveedor.setAltaBaja(!proveedor.isAltaBaja());
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
     public List<Proveedor> listarProveedores() {
 
@@ -156,8 +153,8 @@ public class ProveedorServicio {
     //////////////////////////////METODOS ESTADO CONTRATACION////////////////////////|||||||||||||||\\\\\\\
 
     // Metodo que valida que el Proveedor haya incluido todos los datos requeridos del form.
-    private void validarProveedor(String nombre, String apellido, String documento, String telefono, String direccion, 
-            Double precioHora, String descripcionServicio, Rubro rubro, MultipartFile archivo) throws MiException {
+    private void validarProveedor(String nombre, String apellido, String documento, String telefono, String direccion,
+            Double precioHora, String descripcionServicio, Rubro rubro /*MultipartFile archivo*/) throws MiException {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("Debes completar tu nombre");
@@ -183,9 +180,11 @@ public class ProveedorServicio {
         if (rubro == null) {
             throw new MiException("Debes seleccionar un rubro de la lista");
         }
+       /*
         if (archivo.isEmpty()) {
             throw new MiException("Debes subir una imagen con el logo de emprendimiento");
         }
+        */
     }
 
     // Metodo que valida que la contraseña cumpla con los criterios requeridos.
@@ -207,9 +206,9 @@ public class ProveedorServicio {
             throw new MiException("Las contraseñas deben coincidir");
         }
     }
-    
+
     // Metodo para validar que el usuario ingrese un formarto de email valido
-        private void validarEmail(String email) throws MiException {
+    private void validarEmail(String email) throws MiException {
 
         if (email == null || email.isEmpty()) {
             throw new MiException("Debes completar tu correo electrónico");

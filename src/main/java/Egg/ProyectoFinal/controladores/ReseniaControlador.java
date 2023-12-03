@@ -105,11 +105,44 @@ public class ReseniaControlador {
     }
     
     
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping("/eliminar/{id}")
+    public String eliminarResenia(@PathVariable String id, ModelMap modelo) {
+
+        Resenia resenia = reseniaServicio.getOne(id);
+
+        reseniaServicio.eliminarResenia(resenia);
+        modelo.put("resenia", resenia);
+
+        return "redirect:/resenia/lista";
+    }
+    
     @GetMapping("/lista/{id}")
     public String listarResenias(ModelMap modelo, @PathVariable String id){
         
         List<Resenia> resenias=new ArrayList();
         resenias=reseniaServicio.listarResenia(id);
+        modelo.addAttribute("resenias", resenias);
+     
+        
+        return "resenia_list.html";
+    }
+    
+    
+    
+    
+    
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////LISTADO DE TODAS LAS RESEÑAS PARA EL ADMIN///////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    @GetMapping("/lista")
+    public String listarReseniasAdmin(ModelMap modelo){
+        
+        List<Resenia> resenias=new ArrayList();
+        resenias=reseniaServicio.listarReseniaAdmin();
         modelo.addAttribute("resenias", resenias);
      
         
