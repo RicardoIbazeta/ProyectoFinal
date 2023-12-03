@@ -14,11 +14,11 @@ public class ImagenServicio {
 
     @Autowired
     private ImagenRepositorio imagenRepositorio;
-
+    
     //Metodo para guardar imagen
     @Transactional
     public Imagen guardar(MultipartFile archivo) throws MiException {
-
+        validarImagen(archivo);
         if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
@@ -82,6 +82,7 @@ public class ImagenServicio {
             throw new MiException("La imagen no se cargo correctamente");
   
         }
+        
         
     }
     

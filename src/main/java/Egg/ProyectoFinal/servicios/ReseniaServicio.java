@@ -8,6 +8,7 @@ import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import Egg.ProyectoFinal.excepciones.MiException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,17 @@ public class ReseniaServicio {
     private ReseniaRepositorio reseniaRepositorio;
 
    @Transactional
-    public Resenia crear(String comentario, Estrella estrella, Proveedor proveedor, Usuario cliente,Contratacion contratacion) throws Exception {
+    public Resenia crear(String comentario, Estrella estrella, Proveedor proveedor, Usuario usuario,Contratacion contratacion) throws Exception {
         
-        validarResenia(comentario, estrella,proveedor,cliente,contratacion);
+        validarResenia(comentario, estrella,proveedor,usuario,contratacion);
         
         Resenia resenia = new Resenia();
         resenia.setComentario(comentario);
         resenia.setEstrellas(estrella);
-        resenia.setCliente(cliente);
+        resenia.setUsuario(usuario);
         resenia.setContratacion(contratacion);
         resenia.setProveedor(proveedor);
+        resenia.setFecha(new Date());
         reseniaRepositorio.save(resenia);
         return resenia;
     }
@@ -72,15 +74,11 @@ public class ReseniaServicio {
     }
 
     @Transactional
-    public void eliminarResenia(String id,String comentario,Proveedor proveedor,Usuario Cliente,Contratacion contratacion,Estrella estrellas) throws MiException {
+    public void eliminarResenia(Resenia resenia){
 
-        validarResenia(comentario, estrellas, proveedor, Cliente, contratacion);
-        
-        Resenia resenia = reseniaRepositorio.findById(id).orElse(null);
-        if (resenia != null) {
+         Optional<Resenia> respuestaResenia = reseniaRepositorio.findById(resenia.getId());
+        if (respuestaResenia.isPresent()) {
             reseniaRepositorio.delete(resenia);
-        } else {
-            throw new MiException("La reseña con el ID " + id + " no existe.");
         }
     }
     
@@ -100,6 +98,14 @@ public class ReseniaServicio {
     }
     
     
+     public List<Resenia> listarReseniaAdmin(){
+        List<Resenia> resenias = new ArrayList();
+        resenias= reseniaRepositorio.findAll();
+        return resenias;
+        
+    }
+   
+   
     public List<Resenia> listarResenia(String id){
         List<Resenia> resenias1= new ArrayList();
         List<Resenia> resenias = new ArrayList();
@@ -113,6 +119,11 @@ public class ReseniaServicio {
         } 
         return resenias;
         
+    }
+    
+    
+     public Resenia getOne(String id) {
+        return reseniaRepositorio.getOne(id);
     }
     
     
