@@ -56,10 +56,11 @@
         </thead>
         <tbody th:each="resenia : ${resenias}">
           <tr>
-            <th scope="row" th:text="${resenia.usuario.nombre}"></td>
-            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${resenia.usuario.apellido}"></td>
+            <th scope="row" th:text="${resenia.cliente.nombre}"></td>
+            <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${resenia.cliente.apellido}"></td>
             <td scope="row" th:text="${resenia.proveedor.nombre}"></td>
             <td sec:authorize="hasAnyRole('USER', 'PROVEEDOR')" scope="row" th:text="${resenia.proveedor.apellido}"></td>
+            <td th:text="${resenia.fecha}"></td>
             <td th:text="${resenia.estrellas}"></td>
             <td th:text="${resenia.comentario}"></td>
             <td

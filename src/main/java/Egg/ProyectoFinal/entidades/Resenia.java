@@ -1,6 +1,7 @@
 package Egg.ProyectoFinal.entidades;
 
 import Egg.ProyectoFinal.enumeraciones.Estrella;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +38,9 @@ public class Resenia {
     @Enumerated(EnumType.STRING)
     private Estrella estrellas; 
 
+    @Temporal(TemporalType.TIMESTAMP)   
+    private Date fecha;
+    
     @ManyToOne(targetEntity = Proveedor.class)
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
@@ -46,6 +52,8 @@ public class Resenia {
     @OneToOne
     @JoinColumn(name = "contratacion_id")
     private Contratacion contratacion;
+    
+    
     
 
 }

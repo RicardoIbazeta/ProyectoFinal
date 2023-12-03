@@ -151,4 +151,20 @@ public class UsuarioControlador {
 
         return "contratacion_list.html";
     }
+    
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping("/cancelar/{id}")
+    public String cancelarContratacion(@PathVariable String id, ModelMap modelo) {
+
+        Contratacion contratacion = contratacionServicio.getOne(id);
+        contratacionServicio.cancelarContratacion(id);
+
+        List<Contratacion> historial = contratacionServicio.listarContrataciones();
+        List<Contratacion> contrataciones = new ArrayList<Contratacion>();
+
+        
+        modelo.addAttribute("contrataciones", contrataciones);
+
+        return "contratacion_list.html";
+    }
 }

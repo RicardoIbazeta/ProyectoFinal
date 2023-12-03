@@ -98,11 +98,13 @@ public class ReseniaServicio {
         }
         
     }
+    
+    
     public List<Resenia> listarResenia(String id){
         List<Resenia> resenias1= new ArrayList();
         List<Resenia> resenias = new ArrayList();
         
-        resenias = reseniaRepositorio.findAll();
+        resenias1 = reseniaRepositorio.findAll();
         
         for (Resenia resenia :resenias1) {
             if (resenia.getProveedor().getId().equals(id)) {
