@@ -50,7 +50,7 @@ public class ReseniaServicio {
      
 
 
-    private void validarResenia(String comentario, Estrella estrella,Proveedor proveedor,Usuario cliente,Contratacion contratacion) throws MiException {
+    private void validarResenia(String comentario, Estrella estrella,Proveedor proveedor,Usuario usuario,Contratacion contratacion) throws MiException {
 
 
         if (comentario == null || comentario.isEmpty()) {
@@ -64,7 +64,7 @@ public class ReseniaServicio {
        if (proveedor == null ) {
             throw new MiException("Debes completar tu comentario");
         }
-        if (cliente == null) {
+        if (usuario == null) {
             throw new MiException("Debes completar tu comentario");
         }
         if (contratacion == null ) {
