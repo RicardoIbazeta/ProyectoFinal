@@ -5,6 +5,7 @@ import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
 import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Proveedor;
+import Egg.ProyectoFinal.entidades.Resenia;
 import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
@@ -13,6 +14,7 @@ import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import Egg.ProyectoFinal.servicios.RubroServicio;
 import Egg.ProyectoFinal.servicios.UsuarioServicio;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -57,9 +59,16 @@ public class ContratacionControlador {
        try {
         Proveedor proveedor = proveedorRepositorio.buscarPorId(id);
         List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
+        
+        List<Resenia> resenias=new ArrayList();
+        resenias=reseniaServicio.listarResenia(id);
+        
+        List<Contratacion> contrataciones = contratacionServicio.listarContrataciones();
+        modelo.addAttribute("contrataciones", contrataciones);
 
         modelo.addAttribute("proveedor", proveedor);
         modelo.addAttribute("rubros", rubros);
+        modelo.addAttribute("resenias", resenias);
         return "contratacion_form.html";
     } catch (Exception e) {
         e.printStackTrace();
