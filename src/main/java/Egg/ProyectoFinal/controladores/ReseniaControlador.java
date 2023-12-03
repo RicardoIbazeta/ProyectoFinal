@@ -86,7 +86,7 @@ public class ReseniaControlador {
             
             Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
             
-            Usuario cliente = usuarioServicio.getOne(contratacion.getProveedor().getId());
+            Usuario cliente = usuarioServicio.getOne(contratacion.getCliente().getId());
 
             reseniaServicio.crear(comentario, estrella,proveedor,cliente,contratacion);
         
@@ -128,11 +128,6 @@ public class ReseniaControlador {
         
         return "resenia_list.html";
     }
-    
-    
-    
-    
-    
     
     //////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////LISTADO DE TODAS LAS RESEÑAS PARA EL ADMIN///////////////////////////////
