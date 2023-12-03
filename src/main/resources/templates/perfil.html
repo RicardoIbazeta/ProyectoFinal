@@ -1,73 +1,90 @@
 <!DOCTYPE html>
 
 <html
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-    >
-    <head th:replace="/fragments/head :: head "></head>
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:replace="/fragments/head :: head "></head>
 
-    <body>
-        <header th:replace="/fragments/header :: header "></header>
-        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
-        <div id="exito/error"><br/>
-            <div id="exito/error">
-                <div
-                    th:if="${exito != null}"
-                    id="exito"
-                    class="card text-white bg-success mb-3 mt-3 mensajeExito"
-                    >
-                    <h5>exito</h5>
-                    <p th:text="${exito}"></p>
-                </div>
-                <div
-                    th:if="${error != null}"
-                    id="error"
-                    class="card text-white bg-danger mb-3 mensajeError"
-                    >
-                    <h5>error</h5>
-                    <p th:text="${error}"></p>
-                </div>
-            </div>
-            <div class="card mx-auto mb-3" style="max-width: 2000px;">
+  <body>
+    <header th:replace="/fragments/header :: header "></header>
+    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-                <div class="row g-0">
-                    <img
-                        th:src="@{/19.png}"
-                        class="d-block mx-lg-auto img-fluid"
-                        alt="Bootstrap Themes"/>
-                    <div class="col-md-4">
-                        <img th:src="@{/imagen/perfil/__${session.usuario.id}__}" class="img-fluid rounded-start" alt="foto">
-                    </div>
-                    <div class="col-md-8 mx-auto">
-                        <div class="card-body">
-                            <h5 class="card-title">Perfil</h5>
-                            <ul class="list-group list-group-flush">
-                                <strong class="list-group-item">Nombre:</strong>
-                                <li th:text="${session.usuario.nombre}" class="list-group-item"></li>
-                                <strong class="list-group-item">Apellido:</strong>
-                                <li th:text="${session.usuario.apellido}" class="list-group-item">A second item</li>
-                                <strong class="list-group-item">Email:</strong>
-                                <li th:text="${session.usuario.email}" class="list-group-item">A third item</li>
-                                <strong class="list-group-item">Telefono:</strong>
-                                <li th:text="${session.usuario.telefono}" class="list-group-item">A third item</li>
-                                <strong class="list-group-item">Documento:</strong>
-                                <li th:text="${session.usuario.documento}" class="list-group-item">A third item</li>
-                                <div class="card-body">
-                                    <a
-                                        class="card-link"
-                                        th:href="@{/usuario/editarPerfil/{id}}"
-                                        >Editar Perfil</a>
-                                </div>
+    <div id="exito/error">
+      <div
+        th:if="${exito != null}"
+        id="exito"
+        class="card text-white bg-success mb-3 mt-3 mensajeExito"
+      >
+        <h5>exito</h5>
+        <p th:text="${exito}"></p>
+      </div>
+      <div
+        th:if="${error != null}"
+        id="error"
+        class="card text-white bg-danger mb-3 mensajeError"
+      >
+        <h5>error</h5>
+        <p th:text="${error}"></p>
+      </div>
+    </div>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="card mx-auto mb-3" style="max-width: 2000px">
+      <div class="row g-0">
+        <img
+          th:src="@{/19.png}"
+          class="d-block mx-lg-auto img-fluid"
+          alt="Bootstrap Themes"
+        />
+        <div class="col-md-4">
+          <br />
+          <img
+            th:src="@{/imagen/perfil/__${session.usuario.id}__}"
+            class="img-fluid rounded-start"
+            alt="foto"
+          />
+        </div>
+        <div class="col-md-8 mx-auto">
+          <div class="card-body">
+            <h5 class="card-title">Perfil</h5>
+            <ul class="list-group list-group-flush">
+              <strong class="list-group-item">Nombre:</strong>
+              <li
+                th:text="${session.usuario.nombre}"
+                class="list-group-item"
+              ></li>
+              <strong class="list-group-item">Apellido:</strong>
+              <li th:text="${session.usuario.apellido}" class="list-group-item">
+                A second item
+              </li>
+              <strong class="list-group-item">Email:</strong>
+              <li th:text="${session.usuario.email}" class="list-group-item">
+                A third item
+              </li>
+              <strong class="list-group-item">Telefono:</strong>
+              <li th:text="${session.usuario.telefono}" class="list-group-item">
+                A third item
+              </li>
+              <strong class="list-group-item">Documento:</strong>
+              <li
+                th:text="${session.usuario.documento}"
+                class="list-group-item"
+              >
+                A third item
+              </li>
+              <div class="card-body">
+                <a class="card-link" th:href="@{/usuario/editarPerfil/{id}}"
+                  >Editar Perfil</a
+                >
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <section th:replace="~{/fragments/section :: section}"></section>
-            <script th:replace="/fragments/script :: script "></script>
-            <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
+    <section th:replace="~{/fragments/section :: section}"></section>
+    <script th:replace="/fragments/script :: script "></script>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
 </html>
-

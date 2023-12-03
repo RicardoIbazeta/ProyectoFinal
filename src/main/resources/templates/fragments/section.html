@@ -3,10 +3,18 @@
     <div class="divVolver">
       <a
         sec:authorize="hasAnyRole('USER', 'PROVEEDOR')"
-        th:href="@{/}"
+        th:href="@{/inicio}"
         class="btn btn-danger my-2 botonVolver botones"
+        th:if="${session.usuario != null}"
         >Volver</a
       >
+      <a
+      th:href="@{/}"
+      class="btn btn-danger my-2 botonVolver botones"
+      th:if="${session.usuario == null}"
+
+      >Volver</a
+    >
       <a
         sec:authorize="hasRole('ADMIN')"
         th:href="@{/admin/dashboard}"

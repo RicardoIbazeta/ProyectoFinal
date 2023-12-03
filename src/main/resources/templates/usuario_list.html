@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head th:replace="/fragments/head :: head "></head>
 
 <body>
@@ -8,13 +7,29 @@
   <nav th:replace="/fragments/nav :: nav"></nav>
 
   <div class="form-group my-3">
-
     <img th:src="@{/7.png}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" />
-    <br>
+  </div>
+
+  <div id="exito/error">
+            <div
+                th:if="${exito != null}"
+                id="exito"
+                class="card text-white bg-success mb-3 mt-3 mensajeExito"
+                >
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
+            </div>
+            <div
+                th:if="${error != null}"
+                id="error"
+                class="card text-white bg-danger mb-3 mensajeError"
+                >
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+  </div>
 
     <div class="p-5 text-center bg-body-tertiary rounded-3">
-
-
       <div class="btn-group dropend">
         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -51,8 +66,6 @@
                 Todos</button></a></li>
         </ul>
       </div>
-
-
 
       <table id="miTabla" class="table">
         <thead>
@@ -100,18 +113,6 @@
         </div>
       </section>
     </div>
-
-    <div id="exito/error">
-      <div th:if="${exito != null}" id="exito" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div th:if="${error != null}" id="error" class="card text-white bg-danger mb-3 mensajeError">
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
-
 
     <script>
       function ordenarTablaPorNombre() {

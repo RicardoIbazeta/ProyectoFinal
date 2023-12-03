@@ -1,4 +1,4 @@
-
+    
 package Egg.ProyectoFinal.controladores;
 
 import Egg.ProyectoFinal.Repositorio.ContratacionRepositorio;
@@ -51,6 +51,8 @@ public class ReseniaControlador {
     @GetMapping("/calificar/{id}")
     public String calificar(ModelMap modelo, @PathVariable String id/*, String idContratacion, String idProveedor, String idCliente*/) {
 
+        
+        
         Contratacion contratacion = contratacionServicio.getOne(id);
         Proveedor proveedor = proveedorServicio.getOne(contratacion.getProveedor().getId());
         Usuario usuario = usuarioServicio.getOne(contratacion.getCliente().getId());
