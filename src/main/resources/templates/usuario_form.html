@@ -77,13 +77,13 @@
                             type="text"
                             class="form-control"
                             name="documento"
-                            placeholder="Indique su numero de Documento"
+                            placeholder="Indique su número de Documento"
                             th:value="${documento}"
                             />
                     </div>
 
                     <div class="form-group my-3">
-                        <label for="email" style="display: flex">Correo electronico</label>
+                        <label for="email" style="display: flex">Correo electrónico</label>
                         <input
                             type="email"
                             class="form-control"
@@ -99,8 +99,10 @@
 
                         <div class="form-group my-3">
                             <label for="password" style="display: flex"
-                                   >Contraseña</label
-                            >
+                                   >Contraseña: </label>
+                            <small id="passwordHelp" class="form-text text-muted">
+                                La contraseña debe tener un mínimo de 8 caracteres y debe incluir al menos una letra mayúscula y un número.
+                            </small>
                             <input
                                 type="password"
                                 id="field"
@@ -136,13 +138,13 @@
 
                         <div class="form-group my-3">
                             <label for="telefono" style="display: flex"
-                                   >Telefono</label
+                                   >Teléfono</label
                             >
                             <input
                                 type="text"
                                 class="form-control"
                                 name="telefono"
-                                placeholder="Indique su telefono de contacto"
+                                placeholder="Indique su teléfono de contacto"
                                 th:value="${telefono}"
                                 />
                         </div>
@@ -155,7 +157,7 @@
                                 type="text"
                                 class="form-control"
                                 name="direccion"
-                                placeholder="Indique su direccion"
+                                placeholder="Indique su dirección"
                                 th:value="${direccion}"
                                 />
                         </div>

@@ -41,8 +41,10 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div class="col" th:each="proveedor : ${proveedores}">
             <div class="card shadow-sm">
-              <img
-                class="logo"
+              <img class="rounded-circle" style=
+               "width: 400px; 
+               height: 300px; 
+               border: 3px solid black;" 
                 th:src="@{/imagen/perfil/__${proveedor.id}__}"
               />
               <div class="card-body">

@@ -38,9 +38,11 @@
         />
         <div class="col-md-4">
           <br />
-          <img
-            th:src="@{/imagen/perfil/__${session.usuario.id}__}"
-            class="img-fluid rounded-start"
+          <img class="rounded-circle" style=
+               "width: 630px; 
+               height: 500px; 
+               border: 3px solid black;" 
+            th:src="@{/imagen/perfil/__${session.usuario.id}__}"            
             alt="foto"
           />
         </div>
@@ -61,7 +63,7 @@
               <li th:text="${session.usuario.email}" class="list-group-item">
                 A third item
               </li>
-              <strong class="list-group-item">Telefono:</strong>
+              <strong class="list-group-item">Teléfono:</strong>
               <li th:text="${session.usuario.telefono}" class="list-group-item">
                 A third item
               </li>
