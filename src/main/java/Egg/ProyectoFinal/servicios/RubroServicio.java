@@ -85,6 +85,7 @@ public class RubroServicio {
             throw new MiException("Debes indicar el rubro");
         }
     }
+<<<<<<< HEAD
     
 
     /*
@@ -97,5 +98,10 @@ public class RubroServicio {
 
     }
     
+=======
+    /*public List<Rubro> buscarProductos(String query) {
+        return rubroRepositorio.findByNombreContainingOrDescripcionContaining(query, query);
+    }*/
+>>>>>>> a0d1259 (pull pre revision final)
 
 }
