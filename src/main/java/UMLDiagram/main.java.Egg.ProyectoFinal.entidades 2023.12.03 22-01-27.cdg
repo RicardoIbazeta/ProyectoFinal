@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="main.java.Egg.ProyectoFinal.entidades">
+  <ClassDiagramComponents>
+    <Class name="Cliente" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="contrataciones" type="List&lt;Contratacion&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getContrataciones" returnType="List&lt;Contratacion&gt;" visibility="public"/>
+        <Method name="setContrataciones" returnType="void" visibility="public">
+          <Argument type="List&lt;Contratacion&gt;" name="contrataciones"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Contratacion" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="cliente" type="Usuario" visibility="private"/>
+        <Field name="proveedor" type="Proveedor" visibility="private"/>
+        <Field name="alta" type="Date" visibility="private"/>
+        <Field name="altaBaja" type="boolean" visibility="private"/>
+        <Field name="estadoContratacion" type="Estado" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getCliente" returnType="Usuario" visibility="public"/>
+        <Method name="setCliente" returnType="void" visibility="public">
+          <Argument type="Usuario" name="cliente"/>
+        </Method>
+        <Method name="getProveedor" returnType="Proveedor" visibility="public"/>
+        <Method name="setProveedor" returnType="void" visibility="public">
+          <Argument type="Proveedor" name="proveedor"/>
+        </Method>
+        <Method name="getAlta" returnType="Date" visibility="public"/>
+        <Method name="setAlta" returnType="void" visibility="public">
+          <Argument type="Date" name="alta"/>
+        </Method>
+        <Method name="getEstadoContratacion" returnType="Estado" visibility="public"/>
+        <Method name="setEstadoContratacion" returnType="void" visibility="public">
+          <Argument type="Estado" name="estadoContratacion"/>
+        </Method>
+        <Method name="isAltaBaja" returnType="boolean" visibility="public"/>
+        <Method name="setAltaBaja" returnType="void" visibility="public">
+          <Argument type="boolean" name="altaBaja"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Imagen" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="mime" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="contenido" type="byte[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getMime" returnType="String" visibility="public"/>
+        <Method name="setMime" returnType="void" visibility="public">
+          <Argument type="String" name="mime"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getContenido" returnType="byte[]" visibility="public"/>
+        <Method name="setContenido" returnType="void" visibility="public">
+          <Argument type="byte[]" name="contenido"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Proveedor" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="calificacion" type="Double" visibility="private"/>
+        <Field name="precioHora" type="Double" visibility="private"/>
+        <Field name="descripcionServicio" type="String" visibility="private"/>
+        <Field name="altaBaja" type="boolean" visibility="private"/>
+        <Field name="resenias" type="List&lt;Resenia&gt;" visibility="private"/>
+        <Field name="rubro" type="Rubro" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCalificacion" returnType="Double" visibility="public"/>
+        <Method name="setCalificacion" returnType="void" visibility="public">
+          <Argument type="Double" name="calificacion"/>
+        </Method>
+        <Method name="getPrecioHora" returnType="Double" visibility="public"/>
+        <Method name="setPrecioHora" returnType="void" visibility="public">
+          <Argument type="Double" name="precioHora"/>
+        </Method>
+        <Method name="getDescripcionServicio" returnType="String" visibility="public"/>
+        <Method name="setDescripcionServicio" returnType="void" visibility="public">
+          <Argument type="String" name="descripcionServicio"/>
+        </Method>
+        <Method name="isAltaBaja" returnType="boolean" visibility="public"/>
+        <Method name="setAltaBaja" returnType="void" visibility="public">
+          <Argument type="boolean" name="altaBaja"/>
+        </Method>
+        <Method name="getRubro" returnType="Rubro" visibility="public"/>
+        <Method name="setRubro" returnType="void" visibility="public">
+          <Argument type="Rubro" name="rubro"/>
+        </Method>
+        <Method name="getResenias" returnType="List&lt;Resenia&gt;" visibility="public"/>
+        <Method name="setResenias" returnType="void" visibility="public">
+          <Argument type="List&lt;Resenia&gt;" name="resenias"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Resenia" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="comentario" type="String" visibility="private"/>
+        <Field name="estrellas" type="Estrella" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="proveedor" type="Proveedor" visibility="private"/>
+        <Field name="usuario" type="Usuario" visibility="private"/>
+        <Field name="contratacion" type="Contratacion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="id"/>
+          <Argument type="String" name="comentario"/>
+          <Argument type="Estrella" name="estrellas"/>
+          <Argument type="Date" name="fecha"/>
+          <Argument type="Proveedor" name="proveedor"/>
+          <Argument type="Usuario" name="usuario"/>
+          <Argument type="Contratacion" name="contratacion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getComentario" returnType="String" visibility="public"/>
+        <Method name="setComentario" returnType="void" visibility="public">
+          <Argument type="String" name="comentario"/>
+        </Method>
+        <Method name="getEstrellas" returnType="Estrella" visibility="public"/>
+        <Method name="setEstrellas" returnType="void" visibility="public">
+          <Argument type="Estrella" name="estrellas"/>
+        </Method>
+        <Method name="getFecha" returnType="Date" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="Date" name="fecha"/>
+        </Method>
+        <Method name="getProveedor" returnType="Proveedor" visibility="public"/>
+        <Method name="setProveedor" returnType="void" visibility="public">
+          <Argument type="Proveedor" name="proveedor"/>
+        </Method>
+        <Method name="getUsuario" returnType="Usuario" visibility="public"/>
+        <Method name="setUsuario" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="getContratacion" returnType="Contratacion" visibility="public"/>
+        <Method name="setContratacion" returnType="void" visibility="public">
+          <Argument type="Contratacion" name="contratacion"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Rubro" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Usuario" package="Egg.ProyectoFinal.entidades" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="id" type="String" visibility="protected"/>
+        <Field name="nombre" type="String" visibility="protected"/>
+        <Field name="apellido" type="String" visibility="protected"/>
+        <Field name="fechaAlta" type="Date" visibility="protected"/>
+        <Field name="email" type="String" visibility="protected"/>
+        <Field name="password" type="String" visibility="protected"/>
+        <Field name="password2" type="String" visibility="protected"/>
+        <Field name="estado" type="Estado" visibility="protected"/>
+        <Field name="rol" type="Rol" visibility="protected"/>
+        <Field name="telefono" type="String" visibility="protected"/>
+        <Field name="imagen" type="Imagen" visibility="protected"/>
+        <Field name="direccion" type="String" visibility="protected"/>
+        <Field name="documento" type="String" visibility="protected"/>
+        <Field name="altaBaja" type="boolean" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="String" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getFechaAlta" returnType="Date" visibility="public"/>
+        <Method name="setFechaAlta" returnType="void" visibility="public">
+          <Argument type="Date" name="fechaAlta"/>
+        </Method>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getPassword2" returnType="String" visibility="public"/>
+        <Method name="setPassword2" returnType="void" visibility="public">
+          <Argument type="String" name="password2"/>
+        </Method>
+        <Method name="getEstado" returnType="Estado" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="Estado" name="estado"/>
+        </Method>
+        <Method name="getRol" returnType="Rol" visibility="public"/>
+        <Method name="setRol" returnType="void" visibility="public">
+          <Argument type="Rol" name="rol"/>
+        </Method>
+        <Method name="getTelefono" returnType="String" visibility="public"/>
+        <Method name="setTelefono" returnType="void" visibility="public">
+          <Argument type="String" name="telefono"/>
+        </Method>
+        <Method name="getImagen" returnType="Imagen" visibility="public"/>
+        <Method name="setImagen" returnType="void" visibility="public">
+          <Argument type="Imagen" name="imagen"/>
+        </Method>
+        <Method name="getDireccion" returnType="String" visibility="public"/>
+        <Method name="setDireccion" returnType="void" visibility="public">
+          <Argument type="String" name="direccion"/>
+        </Method>
+        <Method name="getDocumento" returnType="String" visibility="public"/>
+        <Method name="setDocumento" returnType="void" visibility="public">
+          <Argument type="String" name="documento"/>
+        </Method>
+        <Method name="isAltaBaja" returnType="boolean" visibility="public"/>
+        <Method name="setAltaBaja" returnType="void" visibility="public">
+          <Argument type="boolean" name="altaBaja"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Usuario" target="Egg.ProyectoFinal.entidades.Imagen" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contratacion" source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Contratacion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="imagen" source="Egg.ProyectoFinal.entidades.Usuario" target="Egg.ProyectoFinal.entidades.Imagen" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="proveedor" source="Egg.ProyectoFinal.entidades.Contratacion" target="Egg.ProyectoFinal.entidades.Proveedor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="contrataciones" source="Egg.ProyectoFinal.entidades.Cliente" target="Egg.ProyectoFinal.entidades.Contratacion" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Contratacion&gt;"/>
+    <HasRelation name="resenias" source="Egg.ProyectoFinal.entidades.Proveedor" target="Egg.ProyectoFinal.entidades.Resenia" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Resenia&gt;"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Cliente" target="Egg.ProyectoFinal.entidades.Contratacion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Contratacion" target="Egg.ProyectoFinal.entidades.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Proveedor" target="Egg.ProyectoFinal.entidades.Rubro" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Contratacion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Egg.ProyectoFinal.entidades.Cliente" target="Egg.ProyectoFinal.entidades.Usuario"/>
+    <HasRelation name="cliente" source="Egg.ProyectoFinal.entidades.Contratacion" target="Egg.ProyectoFinal.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Proveedor" target="Egg.ProyectoFinal.entidades.Resenia" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Proveedor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Egg.ProyectoFinal.entidades.Proveedor" target="Egg.ProyectoFinal.entidades.Usuario"/>
+    <HasRelation name="rubro" source="Egg.ProyectoFinal.entidades.Proveedor" target="Egg.ProyectoFinal.entidades.Rubro" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Egg.ProyectoFinal.entidades.Contratacion" target="Egg.ProyectoFinal.entidades.Proveedor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="proveedor" source="Egg.ProyectoFinal.entidades.Resenia" target="Egg.ProyectoFinal.entidades.Proveedor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
