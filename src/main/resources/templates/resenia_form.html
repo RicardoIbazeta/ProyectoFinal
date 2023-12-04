@@ -1,81 +1,95 @@
 <!DOCTYPE html>
 
 <html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head th:replace="/fragments/head :: head "></head>
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    >
+    <head th:replace="/fragments/head :: head "></head>
 
-  <body>
-    <header th:replace="/fragments/header :: header "></header>
-    <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
+    <body>
+        <header th:replace="/fragments/header :: header "></header>
+        <nav id="nav-1" th:replace="/fragments/nav :: nav"></nav>
 
-    <div class="form-group my-3">
-      <img
-        th:src="@{/10.png}"
-        class="d-block mx-lg-auto img-fluid"
-        alt="Bootstrap Themes"
-      />
-      <br />
-    </div>
+        <div class="form-group my-3">
+            <img
+                th:src="@{/10.png}"
+                class="d-block mx-lg-auto img-fluid"
+                alt="Bootstrap Themes"
+                />
+            <br />
+        </div>
 
-    <div id="exito/error">
-      <div
-        th:if="${exito != null}"
-        id="exito"
-        class="card text-white bg-success mb-3 mt-3 mensajeExito"
-      >
-        <h5>exito</h5>
-        <p th:text="${exito}"></p>
-      </div>
-      <div
-        th:if="${error != null}"
-        id="error"
-        class="card text-white bg-danger mb-3 mensajeError"
-      >
-        <h5>error</h5>
-        <p th:text="${error}"></p>
-      </div>
-    </div>
+        <div id="exito/error">
+            <div
+                th:if="${exito != null}"
+                id="exito"
+                class="card text-white bg-success mb-3 mt-3 mensajeExito"
+                >
+                <h5>exito</h5>
+                <p th:text="${exito}"></p>
+            </div>
+            <div
+                th:if="${error != null}"
+                id="error"
+                class="card text-white bg-danger mb-3 mensajeError"
+                >
+                <h5>error</h5>
+                <p th:text="${error}"></p>
+            </div>
+        </div>
 
-    <div class="container my-5">
-      <div class="p-5 text-center bg-body-tertiary rounded-3">
-        <form
-          class="formulario"
-          th:action="@{/resenia/calificado/__${contratacion.id}__}"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input hidden value="${contratacion.id}" name="id" >
+        <div class="container py-4">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <p class="fs-4">En esta página, tendrá la oportunidad de compartir y comentar acerca del servicio que 
+                        ha recibido por parte del proveedor. Le solicitamos amablemente que procure proporcionar una perspectiva honesta 
+                        y constructiva, de manera que otros también puedan beneficiarse de su experiencia. Es fundamental que resalte los 
+                        aspectos positivos y, en caso de identificar áreas de mejora, las aborde de manera constructiva. Le pedimos que 
+                        asegure mantener un tono respetuoso en su comentario y evite el uso de malas palabras o cualquier tipo de insulto.</p>
+                    <p class="fs-4">Agradecemos profundamente su profesionalismo durante la interacción y consideramos que esta 
+                        reseña será una valiosa oportunidad para destacar los puntos fuertes del servicio que ha recibido.</p>
+                    <p class="fs-4">Atentamente, Equipo 4.</p>
+                </div>
+                <div class="p-5 mb-4 bg-secondary rounded-3">
+                    <form
+                        class="formulario"
+                        th:action="@{/resenia/calificado/__${contratacion.id}__}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        >
+                        <input hidden value="${contratacion.id}" name="id" >
 
-          <p sec:authorize="hasRole('ADMIN')" >Contratacion id: <p sec:authorize="hasRole('ADMIN')" th:text="${contratacion.id}"></p></p>
-          <p sec:authorize="hasRole('ADMIN')" >Usuario id: <p sec:authorize="hasRole('ADMIN')" th:text="${usuario.id}"></p></p>
-          <p sec:authorize="hasRole('ADMIN')" >Proveedor id: <p sec:authorize="hasRole('ADMIN')" th:text="${proveedor.id}"></p></p>
+                        <p sec:authorize="hasRole('ADMIN')" >Contratacion id: <p sec:authorize="hasRole('ADMIN')" th:text="${contratacion.id}"></p></p>
+                        <p sec:authorize="hasRole('ADMIN')" >Usuario id: <p sec:authorize="hasRole('ADMIN')" th:text="${usuario.id}"></p></p>
+                        <p sec:authorize="hasRole('ADMIN')" >Proveedor id: <p sec:authorize="hasRole('ADMIN')" th:text="${proveedor.id}"></p></p>
+                        <p class="fs-4 d-inline">Proveedor:</p>
+                        <p class="fs-4 d-inline" sec:authorize="hasAnyRole('ADMIN', 'USER')" th:text="${' ' + proveedor.nombre + ' ' + proveedor.apellido}"></p>
 
-          <p>Evaluacion de conformidad Proveedor: <br /><p sec:authorize="hasAnyRole('ADMIN', 'USER')" th:text="${proveedor.nombre}+${proveedor.apellido}" ></p></p>
+                        <div class="col-md-5">
+                            <p class="fs-4">Estrellas:</p>
+                            <select class="form-select" name="estrellas" required>
+                                <option value="UNO">1</option>
+                                <option value="DOS">2</option>
+                                <option value="TRES">3</option>
+                                <option value="CUATRO">4</option>
+                                <option value="CINCO">5</option>
+                            </select>
+                        </div>
 
-          <select name="estrellas" required>
-            <option value="UNO">1</option>
-            <option value="DOS">2</option>
-            <option value="TRES">3</option>
-            <option value="CUATRO">4</option>
-            <option value="CINCO">5</option>
-          </select>
-          <br />
-          <br />
+                        <p class="fs-4">Comentario:</p>
+                        <textarea class="form-control" style="width: 1000px; height: 150px;" type="input" placeholder="Descripción..." name="comentario" ></textarea>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Aceptar
+                        </button>
+                    </form>
+                </div>
+            </div>
 
-          <textarea style="width: 300px; height: 150px;" type="input" placeholder="Descripcion" name="comentario" ></textarea>
-          <br />
+        </div>
 
-          <button type="submit" class="btn btn-primary mt-3 botones">
-            Aceptar
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <section th:replace="/fragments/section :: section "></section>
-    <script th:replace="/fragments/script :: script "></script>
-    <footer th:replace="/fragments/footer :: footer"></footer>
-  </body>
+        <section th:replace="/fragments/section :: section "></section>
+        <script th:replace="/fragments/script :: script "></script>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 </html>
