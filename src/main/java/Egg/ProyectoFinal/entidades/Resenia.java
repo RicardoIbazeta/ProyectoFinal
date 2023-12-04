@@ -2,46 +2,39 @@ package Egg.ProyectoFinal.entidades;
 
 import Egg.ProyectoFinal.enumeraciones.Estrella;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
 public class Resenia {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid",strategy = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     private String comentario;
 
     @Enumerated(EnumType.STRING)
-    private Estrella estrellas; 
+    private Estrella estrellas;
 
-    @Temporal(TemporalType.TIMESTAMP)   
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    
+
     @ManyToOne
     private Proveedor proveedor;
-    
+
     @ManyToOne
     private Usuario usuario;
-    
+
     @OneToOne
     private Contratacion contratacion;
 
@@ -57,8 +50,6 @@ public class Resenia {
         this.usuario = usuario;
         this.contratacion = contratacion;
     }
-    
-    
 
     public String getId() {
         return id;
@@ -115,8 +106,5 @@ public class Resenia {
     public void setContratacion(Contratacion contratacion) {
         this.contratacion = contratacion;
     }
-    
-    
-    
 
 }

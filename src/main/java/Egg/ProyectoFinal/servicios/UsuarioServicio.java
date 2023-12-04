@@ -5,10 +5,6 @@ import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +23,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -157,15 +152,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN' )")
-    public List<Usuario> listarUsuarios() {
-
-        List<Usuario> usuarios = new ArrayList();
-        usuarios = usuarioRepositorio.findAll();
-
-        return usuarios;
-    }
-
     //Metodo para validar que el usuario ingrese todos los datos requeridos en el form
     private void validarUsuario(String nombre, String apellido, String documento,
             String telefono, String direccion) throws MiException {
@@ -247,11 +233,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
-    //Implemente el getOne en usuarioservicio
-    public Usuario getOne(String id) {
-        return usuarioRepositorio.getOne(id);
-    }
-
     // Metodo usado para autenticar usuarios
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -276,7 +257,19 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             return null;
         }
+    }
 
+    public Usuario getOne(String id) {
+        return usuarioRepositorio.getOne(id);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN' )")
+    public List<Usuario> listarUsuarios() {
+
+        List<Usuario> usuarios = new ArrayList();
+        usuarios = usuarioRepositorio.findAll();
+
+        return usuarios;
     }
 
 }

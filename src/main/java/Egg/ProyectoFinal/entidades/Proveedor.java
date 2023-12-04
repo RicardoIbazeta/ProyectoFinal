@@ -16,9 +16,6 @@ public class Proveedor extends Usuario {
     
     @OneToOne
     public Rubro rubro;
-    
-    /*@OneToMany
-    List<Contratacion> contrataciones; */
 
     public Proveedor() {
     }
@@ -70,12 +67,4 @@ public class Proveedor extends Usuario {
     public void setResenias(List<Resenia> resenias) {
         this.resenias = resenias;
     }
-    
-    /*public List<Contratacion> getContrataciones() {
-        return contrataciones;
-    }
-
-    public void setContrataciones(List<Contratacion> contrataciones) {
-        this.contrataciones = contrataciones;
-    }*/
 }

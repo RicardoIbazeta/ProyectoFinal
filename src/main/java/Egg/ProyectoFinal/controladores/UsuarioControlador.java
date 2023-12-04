@@ -29,7 +29,8 @@ public class UsuarioControlador {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private ContratacionServicio contratacionServicio;
-    @Autowired RubroServicio rubroServicio;
+    @Autowired
+    private RubroServicio rubroServicio;
 
     @GetMapping("/registrar")
     public String registrar() {
@@ -91,17 +92,6 @@ public class UsuarioControlador {
         return "redirect:/usuario/lista";
     }
 
-    /* Mapeo que lista todos los usuarios */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
-    @GetMapping("/lista")
-    public String listarUsuarios(ModelMap modelo) {
-
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-        modelo.addAttribute("usuarios", usuarios);
-
-        return "usuario_list.html";
-    }
-
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN','ROLE_PROVEEDOR' )")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
@@ -118,23 +108,23 @@ public class UsuarioControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         modelo.addAttribute("usuario", usuario);
-        
+
         /*
         Se carga la lista de rubros para que al ser un Proveedor
         quien edite su perfil, se pueda observar la lista.
-        */        
+         */
         List<Rubro> rubros = rubroServicio.listarRubros();
         modelo.addAttribute("rubros", rubros);
 
         return "perfil_form.html";
-    } 
-    
+    }
+
     //Verifica que el usuario sea user o admin
     //si es usuario lo manda a modificar usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
     @PostMapping("/editarPerfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String apellido, @RequestParam(required = false) String email,@RequestParam(required = false) String password,
+            @RequestParam(required = false) String apellido, @RequestParam(required = false) String email, @RequestParam(required = false) String password,
             @RequestParam(required = false) String password2, @RequestParam(required = false) String telefono, @RequestParam(required = false) String direccion, ModelMap modelo) {
 
         try {
@@ -150,18 +140,18 @@ public class UsuarioControlador {
 
             return "perfil_form.html";
         }
-    } 
+    }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contrataciones/{id}")
-    public String historialContrataciones(ModelMap modelo,  @PathVariable String id) {
+    public String historialContrataciones(ModelMap modelo, @PathVariable String id) {
 
         List<Contratacion> contrataciones = contratacionServicio.misContrataciones(id);
         modelo.addAttribute("contrataciones", contrataciones);
 
         return "contratacion_list.html";
     }
-    
+
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/cancelar/{id}")
     public String cancelarContratacion(@PathVariable String id, ModelMap modelo) {
@@ -172,9 +162,19 @@ public class UsuarioControlador {
         List<Contratacion> historial = contratacionServicio.listarContrataciones();
         List<Contratacion> contrataciones = new ArrayList<Contratacion>();
 
-        
         modelo.addAttribute("historial", historial);
 
         return "redirect:/inicio";
+    }
+
+    /* Mapeo que lista todos los usuarios */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
+    @GetMapping("/lista")
+    public String listarUsuarios(ModelMap modelo) {
+
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+        modelo.addAttribute("usuarios", usuarios);
+
+        return "usuario_list.html";
     }
 }

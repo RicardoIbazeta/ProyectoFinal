@@ -45,18 +45,15 @@ public class PortalControlador {
     @GetMapping("/inicio")
     public String inicio(HttpSession session) {
         Usuario logueado = (Usuario) session.getAttribute("usuario");
-        
+
         if (logueado.getRol().toString().equals("ADMIN")) {
             return "redirect:/admin/dashboard";
         }
         return "inicio.html";
     }
 
-    //Verifica que el usuario sea user o admin
-    //si es usuario lo manda a modificar usuario
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROVEEDOR' )")
     @PostMapping("/perfil/{id}")
-    //@GetMapping("/perfil/{id}")
     public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
             @RequestParam String apellido, @RequestParam String email, @RequestParam String password,
             @RequestParam String password2, @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo) {

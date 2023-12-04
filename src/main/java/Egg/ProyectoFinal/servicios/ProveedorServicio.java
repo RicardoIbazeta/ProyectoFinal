@@ -1,12 +1,10 @@
 package Egg.ProyectoFinal.servicios;
 
 import Egg.ProyectoFinal.Repositorio.ProveedorRepositorio;
-import Egg.ProyectoFinal.Repositorio.UsuarioRepositorio;
 import Egg.ProyectoFinal.entidades.Contratacion;
 import Egg.ProyectoFinal.entidades.Imagen;
 import Egg.ProyectoFinal.entidades.Proveedor;
 import Egg.ProyectoFinal.entidades.Rubro;
-import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.enumeraciones.Rol;
 import Egg.ProyectoFinal.excepciones.MiException;
@@ -35,9 +33,6 @@ public class ProveedorServicio {
 
     @Autowired
     private ProveedorRepositorio proveedorRepositorio;
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
-    //Llamo a imagen servicio para vincular la imagen con el usuario
     @Autowired
     private ImagenServicio imagenServicio;
 
@@ -85,13 +80,13 @@ public class ProveedorServicio {
 
     @Transactional
     public void modificarProveedor(String nombre, String apellido, String password, String direccion,
-            String email, String telefono, MultipartFile archivo, String id, Double precioHora, 
+            String email, String telefono, MultipartFile archivo, String id, Double precioHora,
             String descripcionServicio, Rubro rubro) throws MiException {
-        
+
         validarProveedor(nombre, apellido, telefono, telefono, direccion, precioHora, descripcionServicio, rubro);
         validarEmail(email);
         validarPassword(password, password);
-        
+
         Optional<Proveedor> respuesta = proveedorRepositorio.findById(id);
 
         Proveedor proveedor = new Proveedor();
@@ -128,14 +123,6 @@ public class ProveedorServicio {
     public void darAltaBaja(Proveedor proveedor) {
 
         proveedor.setAltaBaja(!proveedor.isAltaBaja());
-    }
-
-    public List<Proveedor> listarProveedores() {
-
-        List<Proveedor> proveedores = new ArrayList();
-        proveedores = proveedorRepositorio.filtrarPorAlta(true);
-
-        return proveedores;
     }
 
     //////////////////////////////METODOS ESTADO CONTRATACION////////////////////////|||||||||||||||\\\\\\\
@@ -252,10 +239,6 @@ public class ProveedorServicio {
         }
     }
 
-    public Proveedor getOne(String id) {
-        return proveedorRepositorio.getOne(id);
-    }
-
     // Metodo usado para autenticar usuarios
     // @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -280,12 +263,18 @@ public class ProveedorServicio {
         } else {
             return null;
         }
-
     }
 
-    /*  TAL VEZ ES INNECESARIO
-    public Contratacion getOneContract(String id) {
-        return contratacionRepositorio.getOne(id);
+    public Proveedor getOne(String id) {
+        return proveedorRepositorio.getOne(id);
     }
-     */
+
+    public List<Proveedor> listarProveedores() {
+
+        List<Proveedor> proveedores = new ArrayList();
+        proveedores = proveedorRepositorio.filtrarPorAlta(true);
+
+        return proveedores;
+    }
+
 }

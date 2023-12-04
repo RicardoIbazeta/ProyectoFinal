@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.excepciones;
 
 public class MiException extends Exception {

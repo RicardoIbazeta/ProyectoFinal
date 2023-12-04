@@ -10,10 +10,8 @@ import Egg.ProyectoFinal.entidades.Rubro;
 import Egg.ProyectoFinal.entidades.Usuario;
 import Egg.ProyectoFinal.enumeraciones.Estado;
 import Egg.ProyectoFinal.servicios.ContratacionServicio;
-import Egg.ProyectoFinal.servicios.ProveedorServicio;
 import Egg.ProyectoFinal.servicios.ReseniaServicio;
 import Egg.ProyectoFinal.servicios.RubroServicio;
-import Egg.ProyectoFinal.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/contratacion")
@@ -42,39 +39,35 @@ public class ContratacionControlador {
     @Autowired
     private ContratacionServicio contratacionServicio;
     @Autowired
-    private ProveedorServicio proveedorServicio;
-    @Autowired
     private RubroServicio rubroServicio;
     @Autowired
     private ReseniaServicio reseniaServicio;
-    @Autowired
-    private UsuarioServicio usuarioServicio;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/contratar/{id}")
     public String contratar(@PathVariable String id, ModelMap modelo) {
-        
-        System.out.println("Proveedor Id:"+id);
-        
-       try {
-        Proveedor proveedor = proveedorRepositorio.buscarPorId(id);
-        List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
-        
-        List<Resenia> resenias=new ArrayList();
-        resenias=reseniaServicio.listarResenia(id);
-        
-        List<Contratacion> contrataciones = contratacionServicio.listarContrataciones();
-        modelo.addAttribute("contrataciones", contrataciones);
 
-        modelo.addAttribute("proveedor", proveedor);
-        modelo.addAttribute("rubros", rubros);
-        modelo.addAttribute("resenias", resenias);
-        return "contratacion_form.html";
-    } catch (Exception e) {
-        e.printStackTrace();
-        // Manejar el error de alguna manera apropiada
-        return "error.html";
-    }
+        System.out.println("Proveedor Id:" + id);
+
+        try {
+            Proveedor proveedor = proveedorRepositorio.buscarPorId(id);
+            List<Rubro> rubros = rubroServicio.listarRubrosPorId(id);
+
+            List<Resenia> resenias = new ArrayList();
+            resenias = reseniaServicio.listarResenia(id);
+
+            List<Contratacion> contrataciones = contratacionServicio.listarContrataciones();
+            modelo.addAttribute("contrataciones", contrataciones);
+
+            modelo.addAttribute("proveedor", proveedor);
+            modelo.addAttribute("rubros", rubros);
+            modelo.addAttribute("resenias", resenias);
+            return "contratacion_form.html";
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejar el error de alguna manera apropiada
+            return "error.html";
+        }
     }
 
     @PostMapping("/contratado/{idProveedor}")
@@ -100,8 +93,6 @@ public class ContratacionControlador {
         return "index.html";
     }
 
-    //ADMIN
-    /* Mapeo que lista todas las contrataciones */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVEEDOR')")
     @GetMapping("/lista")
     public String listarContrataciones(ModelMap modelo) {
@@ -112,7 +103,6 @@ public class ContratacionControlador {
         return "contratacion_list.html";
     }
 
-    /* En desarrollo! Trae todas las contrataciones del id del usuario que esta en sesion   */
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_PROVEEDOR')")
     @GetMapping("/historial/{id}")
     public String misContrataciones(@PathVariable String id, ModelMap modelo) {
@@ -122,5 +112,5 @@ public class ContratacionControlador {
 
         return "contratacion_list";
     }
- 
+
 }

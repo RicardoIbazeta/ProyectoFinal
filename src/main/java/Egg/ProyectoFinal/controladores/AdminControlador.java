@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminControlador {
-    
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/dashboard")
-    public String panelAdministrativo(){
-        return "panel.html";    
+    public String panelAdministrativo() {
+        return "panel.html";
     }
 }
-

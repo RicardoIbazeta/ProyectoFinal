@@ -1,4 +1,4 @@
-package Egg.ProyectoFinal.entidades;
+/*package Egg.ProyectoFinal.entidades;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,4 +21,4 @@ public class Cliente extends Usuario {
     }
     
     
-}
+}*/

@@ -54,6 +54,13 @@ public class RubroServicio {
         }
     }
 
+    private void validarRubro(String nombre) throws MiException {
+
+        if (nombre == null || nombre.isEmpty()) {
+            throw new MiException("Debes indicar el rubro");
+        }
+    }
+
     public List<Rubro> listarRubros() {
 
         List<Rubro> rubros = new ArrayList();
@@ -79,29 +86,8 @@ public class RubroServicio {
         return rubros;
     }
 
-    private void validarRubro(String nombre) throws MiException {
-
-        if (nombre == null || nombre.isEmpty()) {
-            throw new MiException("Debes indicar el rubro");
-        }
-    }
-<<<<<<< HEAD
-    
-
-    /*
-    public List<Rubro> buscarProductos(String query) {
-        return rubroRepositorio.findByNombreContainingOrDescripcionContaining(query, query);
-}
-*/
     public List<Rubro> buscarPorRubro(String query) {
         return (List<Rubro>) rubroRepositorio.buscarPorRubro(query);
-
     }
-    
-=======
-    /*public List<Rubro> buscarProductos(String query) {
-        return rubroRepositorio.findByNombreContainingOrDescripcionContaining(query, query);
-    }*/
->>>>>>> a0d1259 (pull pre revision final)
 
 }

@@ -1,7 +1,6 @@
 package Egg.ProyectoFinal.Repositorio;
 
 import Egg.ProyectoFinal.entidades.Proveedor;
-import Egg.ProyectoFinal.entidades.Rubro;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface ProveedorRepositorio extends JpaRepository<Proveedor, String > {
     
     /* Querys de atributos heredados */
-    
-    
-    
+   
     @Query("SELECT p FROM Proveedor p WHERE p.altaBaja= :altaBaja")
     public List<Proveedor> filtrarPorAlta(@Param("altaBaja") boolean altaBaja);
     @Query("SELECT p FROM Proveedor p WHERE p.id= :id")
@@ -41,13 +38,5 @@ public interface ProveedorRepositorio extends JpaRepository<Proveedor, String > 
     /* Querys de atributos de entidad */
     @Query("SELECT p FROM Proveedor p WHERE p.calificacion= :calificacion")
     public List<Proveedor> buscarPorCalificacion(@Param ("calificacion")String calificacion);
-    
-    /*@Query("SELECT p FROM Proveedor p WHERE p.precio_hora= :precio_hora")
-    public List<Proveedor> buscarPorPrecio(@Param ("precio_hora")String precio_hora);*/
-    
-    /* Query de busqueda por lista de rubros -> requiere modificacion RUBRO 
-       para que tenga relacion con Usuario proveedor, como en CONTRATACION 
-    @Query("SELECT r FROM Rubro r WHERE r.proveedor_id= :proveedor_id")
-    public List<Rubro> buscarPorContrataciones(@Param ("proveedor_id")String proveedor_id);*/
-    
+       
 }

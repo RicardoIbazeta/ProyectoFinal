@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -147,7 +147,5 @@ public class Usuario {
     public void setAltaBaja(boolean altaBaja) {
         this.altaBaja = altaBaja;
     }
-    
-    
-    
+
 }

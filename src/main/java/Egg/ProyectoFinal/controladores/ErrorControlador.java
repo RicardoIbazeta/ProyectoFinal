@@ -1,4 +1,3 @@
-
 package Egg.ProyectoFinal.controladores;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,10 +61,5 @@ public class ErrorControlador implements ErrorController {
         
         return "/error.html";
     }
-    
-    
-
-
-
-    
+       
 }

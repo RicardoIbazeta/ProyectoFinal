@@ -56,7 +56,7 @@ public class RubroControlador {
 
         return "rubro_list.html";
     }
-    
+
     @GetMapping("/buscar")
     public ResponseEntity<List<Rubro>> buscarRubro(@RequestParam String query) {
         List<Rubro> resultados = (List<Rubro>) rubroServicio.buscarPorRubro(query);
