@@ -40,7 +40,7 @@
             <div class="p-5 text-center bg-body-tertiary rounded-3">
                 <form
                     class="formulario"
-                    th:action="@{/usuario/editarPerfil/__${session.usuario.id}__}"
+                    th:action="@{/proveedor/editarPerfil/__${session.usuario.id}__}"
                     method="POST"
                     enctype="multipart/form-data"
                     >
@@ -130,7 +130,7 @@
                         </div>
                         <div class="form-group my-3">
                             <label for="telefono" style="display: flex"
-                                   >Telefono</label
+                                   >Teléfono</label
                             >
                             <input
                                 type="text"
@@ -154,7 +154,7 @@
                                 />
                         </div>
 
-                        <div class="form-group my-3" sec:authorize="hasRole('PROVEEDOR')">
+                        <div class="form-group my-3">
                             <label for="precioHora" style="display: flex"
                                    >Valor Hora Promedio</label
                             >
@@ -167,9 +167,9 @@
                                 />
                         </div>
 
-                        <div class="form-group my-3" sec:authorize="hasRole('PROVEEDOR')">
+                        <div class="form-group my-3">
                             <label for="descripcionServicio" style="display: flex"
-                                   >Descripcion de Servicios</label
+                                   >Descripción de Servicios</label
                             >
                             <textarea
                                 type="text"
@@ -180,7 +180,7 @@
                                 ></textarea>
                         </div>
 
-                        <div sec:authorize="hasRole('PROVEEDOR')">
+                        <div>
                             <select name="rubro" required>
                                 <option value="">Elija un rubro</option>
                                 <option

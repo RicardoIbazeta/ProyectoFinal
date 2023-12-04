@@ -172,7 +172,7 @@ public class ProveedorControlador {
         List<Rubro> rubros = rubroServicio.listarRubros();
         modelo.addAttribute("rubros", rubros);
 
-        return "perfil_form.html";
+        return "proveedorPerfil_form.html";
     } 
     
     @PreAuthorize("hasRole('ROLE_PROVEEDOR')")
@@ -201,7 +201,7 @@ public class ProveedorControlador {
             List<Rubro> rubros = rubroServicio.listarRubros();
             modelo.addAttribute("rubros", rubros);
 
-            return "perfil_form.html";
+            return "proveedorPerfil_form.html";
         }
     }
 

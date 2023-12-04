@@ -87,8 +87,10 @@ public class ProveedorServicio {
     public void modificarProveedor(String nombre, String apellido, String password, String direccion,
             String email, String telefono, MultipartFile archivo, String id, Double precioHora, 
             String descripcionServicio, Rubro rubro) throws MiException {
-
+        
+        validarProveedor(nombre, apellido, telefono, telefono, direccion, precioHora, descripcionServicio, rubro);
         validarEmail(email);
+        validarPassword(password, password);
         
         Optional<Proveedor> respuesta = proveedorRepositorio.findById(id);
 
